@@ -37,12 +37,22 @@
     button:focus, input:focus, textarea:focus, select:focus { outline: 3px solid rgba(20,107,178,.35); outline-offset: 2px; }
     .code-note { font-family: "Space Mono", monospace; font-size: .84rem; white-space: pre-wrap; }
     @keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+    
+    /* Progress bar */
+    .progress-bar-bg { background: #e2f1f7; height: 10px; border-radius: 999px; overflow: hidden; }
+    .progress-bar-fill { background: linear-gradient(90deg, #087f7b, #146bb2); height: 100%; width: 0%; transition: width 0.4s ease; }
+
+    @media print {
+      header, nav, .no-print, .role-button, button, .access-overlay { display: none !important; }
+      body { background: #fff; color: #000; }
+      .card { box-shadow: none; border: 1px solid #ccc; }
+    }
   </style>
 </head>
 <body>
   <div class="app-shell">
     <!-- Header -->
-    <header class="dot-grid border-b border-sky-100 bg-sky-50">
+    <header class="dot-grid border-b border-sky-100 bg-sky-50 no-print">
       <div class="w-full max-w-6xl mx-auto px-5 py-7">
         <div class="flex flex-col lg:flex-row lg:items-center gap-5">
           <div class="flex-1">
@@ -51,19 +61,41 @@
               <span>Modul Interaktif • Informatika Kelas 9</span>
             </div>
             <h1 class="mt-3 font-extrabold text-3xl text-slate-900 tracking-tight">Media Pembelajaran Informatika Kelas 9</h1>
-            <p class="mt-2 text-slate-600 max-w-3xl leading-relaxed">Belajar data, algoritma, literasi digital, dan keamanan digital melalui kegiatan yang terarah.</p>
+            <p class="mt-2 text-slate-600 max-w-3xl leading-relaxed">Belajar data, algoritma, literasi digital, dan keamanan digital melalui kegiatan interaktif.</p>
           </div>
-          <aside class="card rounded-3xl border border-sky-100 bg-white p-5 shadow-lg">
-            <p class="text-sm font-bold text-slate-500">Status tampilan</p>
-            <p id="mode-status" class="mt-1 text-xl font-extrabold text-sky-800">Mode Siswa aktif</p>
+          
+          <aside class="card rounded-3xl border border-sky-100 bg-white p-5 shadow-lg min-w-[260px]">
+            <p class="text-sm font-bold text-slate-500">Profil Siswa</p>
+            <div class="flex items-center justify-between mt-1">
+              <p id="student-identity-display" class="text-lg font-extrabold text-sky-900">Belum diisi</p>
+              <button id="btn-edit-student" class="text-xs bg-sky-100 text-sky-700 px-2.5 py-1 rounded-lg font-bold hover:bg-sky-200">Ubah</button>
+            </div>
+            <div class="mt-3">
+              <div class="flex justify-between text-xs font-bold text-slate-600 mb-1">
+                <span>Progress Belajar</span>
+                <span id="progress-text">0%</span>
+              </div>
+              <div class="progress-bar-bg">
+                <div id="progress-fill" class="progress-bar-fill"></div>
+              </div>
+            </div>
+            <div id="badge-container" class="hidden mt-3 pt-2 border-t text-xs font-bold text-emerald-600 flex items-center gap-1">
+              <i data-lucide="award" class="w-4 h-4"></i> <span>Lencana Pembelajar Tuntas Unlocked!</span>
+            </div>
           </aside>
         </div>
-        <div class="mt-6 flex flex-wrap gap-3" aria-label="Pilih mode pengguna">
-          <button id="student-mode-button" type="button" class="role-button active-student rounded-xl border px-5 py-3 font-bold bg-sky-700 text-white">
-            <i data-lucide="book-open" class="mr-2 inline w-4 h-4"></i>Mode Siswa
-          </button>
-          <button id="teacher-mode-button" type="button" class="role-button rounded-xl border border-violet-200 bg-white px-5 py-3 font-bold text-violet-800">
-            <i data-lucide="presentation" class="mr-2 inline w-4 h-4"></i>Mode Guru
+
+        <div class="mt-6 flex flex-wrap items-center justify-between gap-3">
+          <div class="flex flex-wrap gap-3">
+            <button id="student-mode-button" type="button" class="role-button active-student rounded-xl border px-5 py-3 font-bold bg-sky-700 text-white">
+              <i data-lucide="book-open" class="mr-2 inline w-4 h-4"></i>Mode Siswa
+            </button>
+            <button id="teacher-mode-button" type="button" class="role-button rounded-xl border border-violet-200 bg-white px-5 py-3 font-bold text-violet-800">
+              <i data-lucide="presentation" class="mr-2 inline w-4 h-4"></i>Mode Guru
+            </button>
+          </div>
+          <button id="btn-print-summary" type="button" class="rounded-xl border border-slate-300 bg-white px-4 py-3 font-bold text-slate-700 hover:bg-slate-50">
+            <i data-lucide="printer" class="mr-2 inline w-4 h-4"></i>Cetak Rangkuman
           </button>
         </div>
       </div>
@@ -72,15 +104,21 @@
     <main class="w-full max-w-6xl mx-auto px-5 py-7">
       <!-- MODE SISWA -->
       <section id="student-mode" class="mode-panel active">
-        <div class="notice border border-sky-100 bg-sky-50 text-sky-900">
+        <!-- Search Bar -->
+        <div class="mb-5 flex items-center rounded-2xl border border-sky-200 bg-white px-4 py-2.5 shadow-sm no-print">
+          <i data-lucide="search" class="w-5 h-5 text-slate-400 mr-2"></i>
+          <input id="search-input" type="text" placeholder="Cari materi atau topik (misal: diagram, hoaks, password)..." class="w-full bg-transparent text-sm outline-none">
+        </div>
+
+        <div class="notice border border-sky-100 bg-sky-50 text-sky-900 no-print">
           <div class="flex gap-3">
             <i data-lucide="info" class="mt-0.5 w-5 h-5 shrink-0"></i>
-            <p>Pilih modul dan subbab sesuai urutan belajar. Gunakan tombol latihan, contoh jawaban, checklist, dan catatan refleksi untuk membantu pemahamanmu.</p>
+            <p>Pilih modul dan subbab sesuai urutan belajar. Gunakan kuis interaktif, tes simulasi, dan catatan refleksi untuk menguji pemahamanmu.</p>
           </div>
         </div>
 
         <!-- Navigasi Modul -->
-        <nav aria-label="Navigasi Modul" class="mt-5 flex flex-wrap gap-2">
+        <nav aria-label="Navigasi Modul" class="mt-5 flex flex-wrap gap-2 no-print">
           <button type="button" class="module-button active rounded-xl px-4 py-2.5 text-sm font-bold" data-module="module1">Modul 1: Penyajian Data</button>
           <button type="button" class="module-button rounded-xl px-4 py-2.5 text-sm font-bold" data-module="module2">Modul 2: Algoritma</button>
           <button type="button" class="module-button rounded-xl px-4 py-2.5 text-sm font-bold" data-module="module3">Modul 3: Literasi Digital</button>
@@ -88,29 +126,21 @@
         </nav>
 
         <!-- MODUL 1 -->
-        <section id="module1" class="module-view active mt-6">
+        <section id="module1" class="module-view active mt-6 search-target">
           <article class="card student-card">
             <p class="text-sm font-bold uppercase tracking-widest text-emerald-700">Modul 1 • Informatika Kelas 9</p>
             <h2 class="mt-2 text-2xl font-extrabold text-slate-900">Penyajian Data Mentah Menjadi Tabel dan Diagram</h2>
             <p class="mt-3 text-slate-600 leading-relaxed">Pelajari cara mengubah data mentah menjadi tabel dan diagram agar informasi mudah dipahami.</p>
-            <div class="mt-5 grid sm:grid-cols-3 gap-3">
-              <div class="notice bg-sky-50"><strong>Tujuan:</strong> Menyajikan data agar mudah dibaca.</div>
-              <div class="notice bg-emerald-50"><strong>Keterampilan:</strong> Membuat tabel dan diagram.</div>
-              <div class="notice bg-violet-50"><strong>Hasil:</strong> Menjelaskan informasi dari data.</div>
-            </div>
           </article>
 
-          <!-- Navigasi Subbab dengan POIN A, B, C, D, E, F -->
-          <nav class="mt-5 flex flex-wrap gap-2" aria-label="Subbab Modul 1">
+          <nav class="mt-5 flex flex-wrap gap-2 no-print" aria-label="Subbab Modul 1">
             <button type="button" class="subchapter-button active rounded-xl px-3.5 py-2 text-sm" data-subchapter="m1-konsep">A. Konsep Dasar</button>
             <button type="button" class="subchapter-button rounded-xl px-3.5 py-2 text-sm" data-subchapter="m1-excel">B. Langkah Microsoft Excel</button>
             <button type="button" class="subchapter-button rounded-xl px-3.5 py-2 text-sm" data-subchapter="m1-sheets">C. Langkah Google Sheets</button>
             <button type="button" class="subchapter-button rounded-xl px-3.5 py-2 text-sm" data-subchapter="m1-latihan">D. Latihan Praktik</button>
             <button type="button" class="subchapter-button rounded-xl px-3.5 py-2 text-sm" data-subchapter="m1-refleksi">E. Refleksi Pembelajaran</button>
-            <button type="button" class="subchapter-button rounded-xl px-3.5 py-2 text-sm" data-subchapter="m1-tips">F. Tips Guru</button>
           </nav>
 
-          <!-- Poin A -->
           <section id="m1-konsep" class="subchapter-view active mt-5">
             <div class="grid lg:grid-cols-[1.2fr_.8fr] gap-6">
               <article class="card">
@@ -133,14 +163,6 @@
                       Tabel menyusun data dalam baris dan kolom sehingga kategori, jumlah, dan satuan dapat dibandingkan dengan jelas.
                     </div>
                   </div>
-                  <div class="rounded-2xl border border-violet-100">
-                    <button type="button" class="accordion-trigger p-4 font-bold" data-accordion="m1-diagram">
-                      Kapan memakai diagram?<i data-lucide="chevron-down" class="w-5 h-5"></i>
-                    </button>
-                    <div id="m1-diagram" class="accordion-panel px-4 pb-4">
-                      Diagram batang cocok untuk membandingkan kategori, diagram garis untuk perubahan dari waktu ke waktu, dan diagram lingkaran untuk bagian dari keseluruhan.
-                    </div>
-                  </div>
                 </div>
               </article>
               <aside class="card bg-violet-50 border-violet-100">
@@ -159,123 +181,92 @@
                     <tr><td class="py-2">9C</td><td>34</td></tr>
                   </tbody>
                 </table>
-                <p class="mt-4 text-sm leading-relaxed">Dari tabel tersebut, diagram batang membantu melihat bahwa kelas 9C memiliki jumlah siswa terbanyak.</p>
               </aside>
             </div>
           </section>
 
-          <!-- Poin B -->
           <section id="m1-excel" class="subchapter-view mt-5">
             <article class="card">
               <h3 class="text-xl font-extrabold">B. Langkah-Langkah Menggunakan Microsoft Excel</h3>
-              <p class="mt-2">Gunakan langkah berikut untuk mengubah data mentah menjadi tabel dan diagram batang:</p>
-              <ol class="mt-5 grid md:grid-cols-2 gap-4 list-none">
-                <li class="notice bg-sky-50"><strong>1. Siapkan kolom:</strong> Tulis judul kategori pada kolom A dan jumlah pada kolom B.</li>
-                <li class="notice bg-sky-50"><strong>2. Masukkan data:</strong> Isikan setiap kategori dan nilai secara rapi pada baris yang sesuai.</li>
-                <li class="notice bg-sky-50"><strong>3. Blok tabel:</strong> Pilih seluruh sel berisi judul kolom dan data.</li>
-                <li class="notice bg-sky-50"><strong>4. Pilih Insert:</strong> Klik menu <em>Insert</em>, lalu pilih jenis grafik atau chart.</li>
-                <li class="notice bg-sky-50"><strong>5. Pilih Column/Bar:</strong> Pilih diagram batang untuk membandingkan jumlah antarkategori.</li>
-                <li class="notice bg-sky-50"><strong>6. Periksa judul:</strong> Tambahkan judul diagram, nama sumbu, dan pastikan angka terbaca.</li>
+              <ol class="mt-4 space-y-2 list-decimal list-inside">
+                <li>Siapkan kolom A untuk kategori dan kolom B untuk nilai.</li>
+                <li>Sorot/blok rentang sel yang diisi data.</li>
+                <li>Pilih Menu <strong>Insert</strong> &gt; <strong>Chart / Diagram Batang</strong>.</li>
               </ol>
             </article>
           </section>
 
-          <!-- Poin C -->
           <section id="m1-sheets" class="subchapter-view mt-5">
             <article class="card">
               <h3 class="text-xl font-extrabold">C. Langkah-Langkah Menggunakan Google Sheets</h3>
-              <p class="mt-2">Google Sheets memiliki alur yang serupa dan dapat diakses bersama melalui internet.</p>
-              <div class="mt-5 grid md:grid-cols-2 gap-4">
-                <div class="notice bg-emerald-50"><strong>1. Buka spreadsheet:</strong> Buat lembar baru dan tulis judul tabel.</div>
-                <div class="notice bg-emerald-50"><strong>2. Isi kategori & nilai:</strong> Pastikan satu jenis data berada dalam satu kolom yang konsisten.</div>
-                <div class="notice bg-emerald-50"><strong>3. Sorot rentang data:</strong> Sertakan judul kolom agar label diagram terdeteksi otomatis.</div>
-                <div class="notice bg-emerald-50"><strong>4. Pilih Sisipkan > Diagram:</strong> Panel editor diagram akan muncul di sisi kanan.</div>
-              </div>
+              <p class="mt-2">Isi data pada spreadsheet, blok tabel, pilih menu <strong>Sisipkan &gt; Diagram</strong>.</p>
             </article>
           </section>
 
-          <!-- Poin D -->
           <section id="m1-latihan" class="subchapter-view mt-5">
-            <div class="grid lg:grid-cols-2 gap-6">
-              <article class="card">
-                <h3 class="text-xl font-extrabold">D. Latihan Praktik Modul 1</h3>
-                <p class="mt-3">Data jumlah pengunjung perpustakaan selama tiga hari: Senin (40), Selasa (55), Rabu (48).</p>
-                <p class="mt-4 font-bold">Diagram mana yang paling tepat untuk membandingkan data tersebut?</p>
-                <div class="mt-3 space-y-2">
-                  <label class="flex gap-2 rounded-xl border border-slate-200 p-3 cursor-pointer"><input name="m1-quiz" value="lingkaran" type="radio"> Diagram lingkaran</label>
-                  <label class="flex gap-2 rounded-xl border border-slate-200 p-3 cursor-pointer"><input name="m1-quiz" value="batang" type="radio"> Diagram batang</label>
-                  <label class="flex gap-2 rounded-xl border border-slate-200 p-3 cursor-pointer"><input name="m1-quiz" value="peta" type="radio"> Peta konsep</label>
-                </div>
-                <button id="m1-check-answer" type="button" class="mt-4 rounded-xl bg-emerald-700 px-4 py-3 font-bold text-white">Periksa Jawaban</button>
-                <p id="m1-feedback" class="mt-3 font-semibold"></p>
-              </article>
-              <aside class="card bg-violet-50 border-violet-100">
-                <h3 class="text-xl font-extrabold">Contoh Jawaban</h3>
-                <button id="m1-answer" type="button" class="mt-4 rounded-xl border border-emerald-300 bg-white px-4 py-3 font-bold text-emerald-800">Tampilkan Contoh Jawaban</button>
-                <p id="m1-example-answer" class="hidden mt-3 notice bg-emerald-100 text-emerald-900">
-                  Gunakan diagram batang karena data bertujuan membandingkan jumlah pengunjung pada beberapa kategori hari.
-                </p>
-              </aside>
-            </div>
+            <article class="card">
+              <h3 class="text-xl font-extrabold">D. Latihan Praktik Modul 1</h3>
+              <p class="mt-3">Data jumlah pengunjung perpustakaan selama tiga hari: Senin (40), Selasa (55), Rabu (48).</p>
+              <p class="mt-4 font-bold">Diagram mana yang paling tepat untuk membandingkan data tersebut?</p>
+              <div class="mt-3 space-y-2">
+                <label class="flex gap-2 rounded-xl border p-3 cursor-pointer"><input name="m1-quiz" value="lingkaran" type="radio"> Diagram lingkaran</label>
+                <label class="flex gap-2 rounded-xl border p-3 cursor-pointer"><input name="m1-quiz" value="batang" type="radio"> Diagram batang</label>
+              </div>
+              <button id="m1-check-answer" type="button" class="mt-4 rounded-xl bg-emerald-700 px-4 py-3 font-bold text-white">Periksa Jawaban</button>
+              <p id="m1-feedback" class="mt-3 font-semibold"></p>
+            </article>
           </section>
 
-          <!-- Poin E -->
           <section id="m1-refleksi" class="subchapter-view mt-5">
             <article class="card">
               <h3 class="text-xl font-extrabold">E. Refleksi Pembelajaran Modul 1</h3>
-              <p class="mt-2">Centang materi yang sudah kamu kuasai:</p>
-              <div class="mt-4 grid md:grid-cols-3 gap-3">
-                <label class="flex gap-2"><input id="m1-check-1" type="checkbox"> Memahami data mentah</label>
-                <label class="flex gap-2"><input id="m1-check-2" type="checkbox"> Memahami cara membuat tabel</label>
-                <label class="flex gap-2"><input id="m1-check-3" type="checkbox"> Memilih jenis diagram</label>
+              <div class="mt-4 space-y-2">
+                <label class="flex gap-2 items-center"><input class="progress-check" type="checkbox"> Saya sudah memahami data mentah</label>
+                <label class="flex gap-2 items-center"><input class="progress-check" type="checkbox"> Saya bisa membuat tabel data</label>
+                <label class="flex gap-2 items-center"><input class="progress-check" type="checkbox"> Saya bisa memilih jenis diagram</label>
               </div>
-              <label for="module1-notes" class="mt-5 block font-bold">Catatan Refleksi:</label>
-              <textarea id="module1-notes" class="mt-2 w-full rounded-xl border border-sky-200 p-3" rows="4" placeholder="Tulis hal yang sudah dipahami atau pertanyaan yang belum terjawab..."></textarea>
-              <button id="save-m1-btn" type="button" class="mt-4 rounded-xl bg-sky-700 px-4 py-3 font-bold text-white">Simpan Progres Modul 1</button>
-            </article>
-          </section>
-
-          <!-- Poin F -->
-          <section id="m1-tips" class="subchapter-view mt-5">
-            <article class="card border-emerald-200 bg-emerald-50">
-              <h3 class="text-xl font-extrabold">F. Tips untuk Guru</h3>
-              <ul class="mt-4 list-disc list-inside space-y-2">
-                <li>Gunakan konteks nyata di lingkungan siswa (misal: hobi, makanan favorit).</li>
-                <li>Fokuskan penilaian pada alasan pemilihan jenis diagram.</li>
-              </ul>
+              <label for="module1-notes" class="mt-5 block font-bold">Catatan Refleksi Siswa:</label>
+              <textarea id="module1-notes" class="mt-2 w-full rounded-xl border p-3" rows="3" placeholder="Tulis catatan atau pertanyaanmu di sini..."></textarea>
+              <button id="save-m1-btn" type="button" class="mt-4 rounded-xl bg-sky-700 px-5 py-3 font-bold text-white hover:bg-sky-800">Simpan Jawaban ke Guru</button>
             </article>
           </section>
         </section>
 
-        <!-- MODUL 2, 3, & 4 LENGKAP -->
-        <section id="module2" class="module-view mt-6">
+        <!-- MODUL 2 -->
+        <section id="module2" class="module-view mt-6 search-target">
           <article class="card student-card">
             <p class="text-sm font-bold uppercase tracking-widest text-violet-700">Modul 2 • Informatika Kelas 9</p>
             <h2 class="mt-2 text-2xl font-extrabold text-slate-900">Algoritma dan Pemrograman</h2>
-            <p class="mt-3 text-slate-600">Belajar menyusun langkah runtut, memahami Input-Proses-Output (IPO), serta menguji solusi.</p>
+            <p class="mt-3 text-slate-600">Belajar menyusun langkah runtut, memahami Input-Proses-Output (IPO), serta pengenalan pemrograman visual.</p>
           </article>
-          <!-- Navigasi Subbab Modul 2 -->
-          <nav class="mt-5 flex flex-wrap gap-2" aria-label="Subbab Modul 2">
+
+          <nav class="mt-5 flex flex-wrap gap-2 no-print">
             <button type="button" class="subchapter-button active rounded-xl px-3.5 py-2 text-sm" data-subchapter="m2-konsep">A. Konsep Algoritma</button>
-            <button type="button" class="subchapter-button rounded-xl px-3.5 py-2 text-sm" data-subchapter="m2-blok">B. Pemrograman Blok</button>
+            <button type="button" class="subchapter-button rounded-xl px-3.5 py-2 text-sm" data-subchapter="m2-blok">B. Pemrograman Blok (Simulasi)</button>
             <button type="button" class="subchapter-button rounded-xl px-3.5 py-2 text-sm" data-subchapter="m2-pseudocode">C. Pseudocode</button>
-            <button type="button" class="subchapter-button rounded-xl px-3.5 py-2 text-sm" data-subchapter="m2-refleksi">D. Refleksi & Tugas</button>
+            <button type="button" class="subchapter-button rounded-xl px-3.5 py-2 text-sm" data-subchapter="m2-refleksi">D. Refleksi Modul 2</button>
           </nav>
+
           <section id="m2-konsep" class="subchapter-view active mt-5">
             <article class="card">
-              <h3 class="text-xl font-extrabold">A. Konsep Algoritma</h3>
-              <p class="mt-3">Algoritma adalah urutan langkah logis dan terstruktur untuk menyelesaikan masalah.</p>
+              <h3 class="text-xl font-extrabold">A. Konsep Algoritma &amp; IPO</h3>
+              <p class="mt-3 leading-relaxed">Algoritma adalah instruksi langkah demi langkah secara sistematis untuk menyelesaikan masalah.</p>
             </article>
           </section>
+
           <section id="m2-blok" class="subchapter-view mt-5">
             <article class="card">
-              <h3 class="text-xl font-extrabold">B. Pemrograman Visual Blok</h3>
-              <p class="mt-3">Menggunakan kepingan perintah visual seperti Scratch dan Blockly untuk membangun logika program.</p>
+              <h3 class="text-xl font-extrabold">B. Pemrograman Blok Interaktif</h3>
+              <p class="mt-2 text-sm text-slate-600 mb-4">Coba jalankan proyek pemrograman Scratch berikut langsung dari halaman web ini:</p>
+              <div class="aspect-video w-full rounded-2xl overflow-hidden border bg-slate-900">
+                <iframe src="https://scratch.mit.edu/projects/10128/embed" class="w-full h-full" allowtransparency="true" frameborder="0" scrolling="no" allowfullscreen></iframe>
+              </div>
             </article>
           </section>
+
           <section id="m2-pseudocode" class="subchapter-view mt-5">
             <article class="card">
-              <h3 class="text-xl font-extrabold">C. Pseudocode</h3>
+              <h3 class="text-xl font-extrabold">C. Pseudocode Contoh</h3>
               <pre class="code-note bg-slate-900 text-white p-4 rounded-xl mt-3">MULAI
   INPUT Nilai
   JIKA Nilai >= 75 MAKA
@@ -283,17 +274,117 @@
 SELESAI</pre>
             </article>
           </section>
+
           <section id="m2-refleksi" class="subchapter-view mt-5">
             <article class="card">
               <h3 class="text-xl font-extrabold">D. Refleksi Modul 2</h3>
-              <textarea id="module2-notes" class="mt-2 w-full rounded-xl border p-3" rows="3" placeholder="Catatan pemahaman..."></textarea>
-              <button id="save-m2-btn" type="button" class="mt-3 rounded-xl bg-violet-700 px-4 py-2 font-bold text-white">Simpan Progres Modul 2</button>
+              <div class="mt-3 space-y-2">
+                <label class="flex gap-2 items-center"><input class="progress-check" type="checkbox"> Paham konsep algoritma runtut</label>
+                <label class="flex gap-2 items-center"><input class="progress-check" type="checkbox"> Paham cara kerja blok Scratch</label>
+              </div>
+              <textarea id="module2-notes" class="mt-3 w-full rounded-xl border p-3" rows="3" placeholder="Catatan pemahaman Modul 2..."></textarea>
+              <button id="save-m2-btn" type="button" class="mt-3 rounded-xl bg-violet-700 px-5 py-3 font-bold text-white hover:bg-violet-800">Simpan Jawaban Modul 2</button>
             </article>
           </section>
         </section>
 
-        <!-- Materi & Tugas Tambahan dari Guru -->
-        <section class="mt-8">
+        <!-- MODUL 3 (LITERASI DIGITAL) -->
+        <section id="module3" class="module-view mt-6 search-target">
+          <article class="card student-card">
+            <p class="text-sm font-bold uppercase tracking-widest text-teal-700">Modul 3 • Informatika Kelas 9</p>
+            <h2 class="mt-2 text-2xl font-extrabold text-slate-900">Literasi Digital &amp; Etika Berinternet</h2>
+            <p class="mt-3 text-slate-600">Memahami berita hoaks, etika berkomunikasi, dan cara mengelola jejak digital positif.</p>
+          </article>
+
+          <nav class="mt-5 flex flex-wrap gap-2 no-print">
+            <button type="button" class="subchapter-button active rounded-xl px-3.5 py-2 text-sm" data-subchapter="m3-hoaks">A. Deteksi Hoaks</button>
+            <button type="button" class="subchapter-button rounded-xl px-3.5 py-2 text-sm" data-subchapter="m3-jejak">B. Jejak Digital</button>
+            <button type="button" class="subchapter-button rounded-xl px-3.5 py-2 text-sm" data-subchapter="m3-refleksi">C. Refleksi Modul 3</button>
+          </nav>
+
+          <section id="m3-hoaks" class="subchapter-view active mt-5">
+            <article class="card">
+              <h3 class="text-xl font-extrabold">A. Kuis Interaktif: Uji Deteksi Berita Hoaks</h3>
+              <p class="mt-2 text-slate-600">Baca judul berita berikut dan tentukan apakah terindikasi Hoaks atau Fakta:</p>
+              <div class="mt-4 p-4 rounded-xl bg-amber-50 border border-amber-200">
+                <p class="font-bold text-amber-900">"SEBARKAN! Mengetik kata 'LULUS' di kolom komentar akan otomatis melipatgandakan nilai ujianmu!"</p>
+                <div class="mt-3 flex gap-3">
+                  <button type="button" onclick="checkHoax(true)" class="bg-rose-600 text-white font-bold px-4 py-2 rounded-xl text-sm">Ini HOAKS</button>
+                  <button type="button" onclick="checkHoax(false)" class="bg-emerald-600 text-white font-bold px-4 py-2 rounded-xl text-sm">Ini FAKTA</button>
+                </div>
+                <p id="hoax-result" class="mt-2 text-sm font-bold"></p>
+              </div>
+            </article>
+          </section>
+
+          <section id="m3-jejak" class="subchapter-view mt-5">
+            <article class="card">
+              <h3 class="text-xl font-extrabold">B. Mengelola Jejak Digital Positif</h3>
+              <p class="mt-2 leading-relaxed">Jejak digital adalah rekam jejak aktivitas kita saat menggunakan internet. Selalu ingat aturan: <em>Think before you post!</em></p>
+            </article>
+          </section>
+
+          <section id="m3-refleksi" class="subchapter-view mt-5">
+            <article class="card">
+              <h3 class="text-xl font-extrabold">C. Refleksi Modul 3</h3>
+              <div class="mt-3 space-y-2">
+                <label class="flex gap-2 items-center"><input class="progress-check" type="checkbox"> Saya bisa membedakan berita hoaks &amp; fakta</label>
+                <label class="flex gap-2 items-center"><input class="progress-check" type="checkbox"> Saya berkomitmen menjaga etika berinternet</label>
+              </div>
+              <textarea id="module3-notes" class="mt-3 w-full rounded-xl border p-3" rows="3" placeholder="Catatan refleksi Modul 3..."></textarea>
+              <button id="save-m3-btn" type="button" class="mt-3 rounded-xl bg-teal-700 px-5 py-3 font-bold text-white hover:bg-teal-800">Simpan Jawaban Modul 3</button>
+            </article>
+          </section>
+        </section>
+
+        <!-- MODUL 4 (KEAMANAN DIGITAL) -->
+        <section id="module4" class="module-view mt-6 search-target">
+          <article class="card student-card">
+            <p class="text-sm font-bold uppercase tracking-widest text-rose-700">Modul 4 • Informatika Kelas 9</p>
+            <h2 class="mt-2 text-2xl font-extrabold text-slate-900">Keamanan Digital &amp; Perlindungan Data</h2>
+            <p class="mt-3 text-slate-600">Pelajari cara membuat kata sandi yang kuat dan menghindari bahaya kejahatan siber (*phishing*).</p>
+          </article>
+
+          <nav class="mt-5 flex flex-wrap gap-2 no-print">
+            <button type="button" class="subchapter-button active rounded-xl px-3.5 py-2 text-sm" data-subchapter="m4-pass">A. Uji Password</button>
+            <button type="button" class="subchapter-button rounded-xl px-3.5 py-2 text-sm" data-subchapter="m4-phishing">B. Waspada Phishing</button>
+            <button type="button" class="subchapter-button rounded-xl px-3.5 py-2 text-sm" data-subchapter="m4-refleksi">C. Refleksi Modul 4</button>
+          </nav>
+
+          <section id="m4-pass" class="subchapter-view active mt-5">
+            <article class="card">
+              <h3 class="text-xl font-extrabold">A. Alat Penguji Kekuatan Kata Sandi</h3>
+              <p class="mt-2 text-sm text-slate-600">Ketikkan contoh kata sandi di bawah untuk menguji tingkat keamanannya (Tenang, data ini tidak disimpan):</p>
+              <input id="pass-test-input" type="text" placeholder="Masukkan contoh kata sandi..." class="mt-3 w-full border rounded-xl p-3 font-mono">
+              <div class="mt-3 flex items-center gap-3">
+                <span class="text-sm font-bold">Kekuatan:</span>
+                <span id="pass-strength-label" class="text-sm font-extrabold text-slate-400">Belum diisi</span>
+              </div>
+            </article>
+          </section>
+
+          <section id="m4-phishing" class="subchapter-view mt-5">
+            <article class="card">
+              <h3 class="text-xl font-extrabold">B. Mengenali Phishing</h3>
+              <p class="mt-2 leading-relaxed">Phishing adalah upaya penipuan untuk mencuri informasi sensitif seperti password atau nomor PIN melalui pesan palsu.</p>
+            </article>
+          </section>
+
+          <section id="m4-refleksi" class="subchapter-view mt-5">
+            <article class="card">
+              <h3 class="text-xl font-extrabold">C. Refleksi Modul 4</h3>
+              <div class="mt-3 space-y-2">
+                <label class="flex gap-2 items-center"><input class="progress-check" type="checkbox"> Saya paham kriteria password kuat</label>
+                <label class="flex gap-2 items-center"><input class="progress-check" type="checkbox"> Saya paham cara menghindari link phishing</label>
+              </div>
+              <textarea id="module4-notes" class="mt-3 w-full rounded-xl border p-3" rows="3" placeholder="Catatan refleksi Modul 4..."></textarea>
+              <button id="save-m4-btn" type="button" class="mt-3 rounded-xl bg-rose-700 px-5 py-3 font-bold text-white hover:bg-rose-800">Simpan Jawaban Modul 4</button>
+            </article>
+          </section>
+        </section>
+
+        <!-- Materi & Video Tambahan dari Guru -->
+        <section class="mt-10 border-t pt-8">
           <h2 class="text-2xl font-extrabold text-slate-900">Materi dan Video Tambahan Dari Guru</h2>
           <div id="student-material-list" class="mt-4 grid lg:grid-cols-2 gap-4"></div>
           <div id="student-video-list" class="mt-4 grid lg:grid-cols-2 gap-4"></div>
@@ -304,45 +395,81 @@ SELESAI</pre>
       <section id="teacher-mode" class="mode-panel">
         <div class="card teacher-card border-l-4 border-violet-600">
           <h2 class="text-2xl font-extrabold text-slate-900">Panel Kelola Pembelajaran (Mode Guru)</h2>
-          <p class="mt-1 text-slate-600">Tambah materi, video, atau tugas. Semua perubahan tersimpan otomatis ke Firebase Firestore.</p>
+          <p class="mt-1 text-slate-600">Tambah materi, video, serta pantau hasil jawaban refleksi siswa secara real-time.</p>
         </div>
 
         <nav class="mt-6 flex flex-wrap gap-2">
-          <button type="button" class="teacher-tab active rounded-xl px-4 py-2 text-sm font-bold" data-teacher-tab="add-material">Tambah Materi</button>
+          <button type="button" class="teacher-tab active rounded-xl px-4 py-2 text-sm font-bold" data-teacher-tab="rekap-siswa">Rekap Jawaban Siswa</button>
+          <button type="button" class="teacher-tab rounded-xl px-4 py-2 text-sm font-bold" data-teacher-tab="add-material">Tambah Materi</button>
           <button type="button" class="teacher-tab rounded-xl px-4 py-2 text-sm font-bold" data-teacher-tab="add-video">Tambah Video</button>
         </nav>
 
-        <section id="add-material" class="teacher-tab-panel active mt-6">
+        <!-- Tab Rekap Siswa -->
+        <section id="rekap-siswa" class="teacher-tab-panel active mt-6">
+          <div class="card">
+            <h3 class="font-extrabold text-lg mb-4">Daftar Kiriman Refleksi Siswa</h3>
+            <div id="rekap-siswa-container" class="space-y-3">
+              <p class="text-sm text-slate-500">Memuat data jawaban siswa...</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Tab Tambah Materi -->
+        <section id="add-material" class="teacher-tab-panel mt-6">
           <form id="material-form" class="card">
             <h3 class="font-extrabold text-lg">Form Tambah Materi</h3>
+            <label class="block mt-3 font-bold">Modul Target</label>
+            <select id="material-category" class="w-full border rounded-xl p-3 mt-1">
+              <option value="Umum">Umum / Semua Modul</option>
+              <option value="Modul 1">Modul 1: Penyajian Data</option>
+              <option value="Modul 2">Modul 2: Algoritma</option>
+              <option value="Modul 3">Modul 3: Literasi Digital</option>
+              <option value="Modul 4">Modul 4: Keamanan Digital</option>
+            </select>
             <label class="block mt-3 font-bold">Judul Materi</label>
             <input id="material-title" required class="w-full border rounded-xl p-3 mt-1">
-            <label class="block mt-3 font-bold">Deskripsi Singkat</label>
-            <textarea id="material-description" class="w-full border rounded-xl p-3 mt-1" rows="3"></textarea>
-            <button type="submit" class="mt-4 bg-violet-700 text-white font-bold px-4 py-3 rounded-xl">Simpan ke Firebase</button>
+            <label class="block mt-3 font-bold">Deskripsi / Isi Singkat</label>
+            <textarea id="material-description" class="w-full border rounded-xl p-3 mt-1" rows="3" required></textarea>
+            <button type="submit" class="mt-4 bg-violet-700 text-white font-bold px-4 py-3 rounded-xl hover:bg-violet-800">Simpan ke Firebase</button>
           </form>
         </section>
 
+        <!-- Tab Tambah Video -->
         <section id="add-video" class="teacher-tab-panel mt-6">
           <form id="video-form" class="card">
             <h3 class="font-extrabold text-lg">Form Tambah Video</h3>
             <label class="block mt-3 font-bold">Judul Video</label>
             <input id="video-title" required class="w-full border rounded-xl p-3 mt-1">
-            <label class="block mt-3 font-bold">URL Link Video (YouTube/Drive)</label>
-            <input id="video-url" type="url" required class="w-full border rounded-xl p-3 mt-1" placeholder="https://...">
-            <button type="submit" class="mt-4 bg-violet-700 text-white font-bold px-4 py-3 rounded-xl">Simpan Video</button>
+            <label class="block mt-3 font-bold">URL Link Video (YouTube)</label>
+            <input id="video-url" type="url" required class="w-full border rounded-xl p-3 mt-1" placeholder="https://www.youtube.com/watch?v=...">
+            <button type="submit" class="mt-4 bg-violet-700 text-white font-bold px-4 py-3 rounded-xl hover:bg-violet-800">Simpan Video</button>
           </form>
         </section>
       </section>
     </main>
 
-    <!-- Overlay Sandi Guru -->
+    <!-- Modal Form Identitas Siswa -->
+    <div id="student-modal" class="access-overlay hidden">
+      <div class="access-dialog">
+        <h2 class="text-2xl font-extrabold">Identitas Siswa</h2>
+        <p class="mt-1 text-sm text-slate-600">Lengkapi nama dan kelasmu agar gurumu bisa mencatat hasil belajarmu.</p>
+        <form id="student-identity-form" class="mt-4">
+          <label class="block text-sm font-bold">Nama Lengkap</label>
+          <input id="input-student-name" required class="w-full border rounded-xl p-3 mt-1" placeholder="Contoh: Budi Santoso">
+          <label class="block text-sm font-bold mt-3">Kelas</label>
+          <input id="input-student-class" required class="w-full border rounded-xl p-3 mt-1" placeholder="Contoh: 9A">
+          <button type="submit" class="mt-5 w-full bg-sky-700 text-white font-bold py-3 rounded-xl hover:bg-sky-800">Simpan Identitas</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Overlay PIN Guru -->
     <div id="access-overlay" class="access-overlay hidden">
       <div class="access-dialog">
         <h2 class="text-2xl font-extrabold">Akses Mode Guru</h2>
-        <p class="mt-1 text-sm text-slate-600">Masukkan kode akses unik Anda untuk melanjutkan.</p>
+        <p class="mt-1 text-sm text-slate-600">Masukkan PIN / Sandi Anda untuk masuk ke panel guru.</p>
         <form id="access-form" class="mt-4">
-          <input id="access-code" type="password" class="w-full border rounded-xl p-3" placeholder="Masukkan PIN / Sandi" required>
+          <input id="access-code" type="password" class="w-full border rounded-xl p-3" placeholder="Masukkan PIN" required>
           <p id="access-message" class="text-sm font-bold text-rose-600 mt-2"></p>
           <div class="mt-4 flex gap-2">
             <button type="submit" class="bg-violet-700 text-white font-bold px-4 py-2 rounded-xl">Masuk</button>
@@ -355,10 +482,10 @@ SELESAI</pre>
     <div id="toast" class="toast fixed bottom-5 right-5 z-50 rounded-xl bg-slate-900 px-4 py-3 text-white shadow-xl"></div>
   </div>
 
-  <!-- FIREBASE INTEGRATION SCRIPT (TERBARU DENGAN SINKRONISASI REAL-TIME & VIDEO) -->
+  <!-- FIREBASE INTEGRATION SCRIPT -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-    import { getFirestore, collection, addDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+    import { getFirestore, collection, addDoc, deleteDoc, doc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyCcteYGlVMoWO2C4IWniu7rjghxSPoXAXg",
@@ -373,7 +500,9 @@ SELESAI</pre>
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
 
-    // Toast Notifikasi
+    let isTeacher = false;
+
+    // Toast
     function showToast(msg) {
       const t = document.getElementById("toast");
       t.textContent = msg;
@@ -381,7 +510,7 @@ SELESAI</pre>
       setTimeout(() => t.classList.remove("show"), 3000);
     }
 
-    // Ubah Link YouTube biasa menjadi format Embed
+    // Embed YouTube Helper
     function convertToEmbedUrl(url) {
       if (!url) return '';
       let videoId = '';
@@ -396,7 +525,35 @@ SELESAI</pre>
       return videoId ? `https://www.youtube.com/embed/${videoId}` : url;
     }
 
-    // Toggle Mode Pengguna
+    // Identitas Siswa LocalStorage
+    function checkStudentIdentity() {
+      const name = localStorage.getItem("student_name");
+      const cls = localStorage.getItem("student_class");
+      if (name && cls) {
+        document.getElementById("student-identity-display").textContent = `${name} (${cls})`;
+      } else {
+        document.getElementById("student-modal").classList.remove("hidden");
+      }
+    }
+
+    document.getElementById("student-identity-form").onsubmit = (e) => {
+      e.preventDefault();
+      const name = document.getElementById("input-student-name").value;
+      const cls = document.getElementById("input-student-class").value;
+      localStorage.setItem("student_name", name);
+      localStorage.setItem("student_class", cls);
+      document.getElementById("student-identity-display").textContent = `${name} (${cls})`;
+      document.getElementById("student-modal").classList.add("hidden");
+      showToast("Identitas tersimpan!");
+    };
+
+    document.getElementById("btn-edit-student").onclick = () => {
+      document.getElementById("input-student-name").value = localStorage.getItem("student_name") || "";
+      document.getElementById("input-student-class").value = localStorage.getItem("student_class") || "";
+      document.getElementById("student-modal").classList.remove("hidden");
+    };
+
+    // Mode Switcher & Access Control
     document.getElementById("student-mode-button").onclick = () => switchMode("student");
     document.getElementById("teacher-mode-button").onclick = () => {
       document.getElementById("access-overlay").classList.remove("hidden");
@@ -407,22 +564,22 @@ SELESAI</pre>
       const code = document.getElementById("access-code").value;
       if (code === "123456" || code.length >= 4) {
         document.getElementById("access-overlay").classList.add("hidden");
+        isTeacher = true;
         switchMode("teacher");
       } else {
-        document.getElementById("access-message").textContent = "Kode sandi salah (Min 4 karakter).";
+        document.getElementById("access-message").textContent = "Sandi salah (Min 4 digit).";
       }
     };
 
     function switchMode(mode) {
-      const isStudent = mode === "student";
-      document.getElementById("student-mode").classList.toggle("active", isStudent);
-      document.getElementById("teacher-mode").classList.toggle("active", !isStudent);
-      document.getElementById("student-mode-button").classList.toggle("active-student", isStudent);
-      document.getElementById("teacher-mode-button").classList.toggle("active-teacher", !isStudent);
-      document.getElementById("mode-status").textContent = isStudent ? "Mode Siswa aktif" : "Mode Guru aktif";
+      const isStud = mode === "student";
+      document.getElementById("student-mode").classList.toggle("active", isStud);
+      document.getElementById("teacher-mode").classList.toggle("active", !isStud);
+      document.getElementById("student-mode-button").classList.toggle("active-student", isStud);
+      document.getElementById("teacher-mode-button").classList.toggle("active-teacher", !isStud);
     }
 
-    // Navigasi Modul & Subbab
+    // Tabs Navigasi
     document.querySelectorAll(".module-button").forEach(btn => {
       btn.onclick = () => {
         document.querySelectorAll(".module-button").forEach(b => b.classList.remove("active"));
@@ -451,105 +608,214 @@ SELESAI</pre>
       };
     });
 
-    // Accordion Toggle
+    // Accordions
     document.querySelectorAll(".accordion-trigger").forEach(btn => {
       btn.onclick = () => {
-        const target = document.getElementById(btn.dataset.accordion);
-        target.classList.toggle("open");
+        document.getElementById(btn.dataset.accordion).classList.toggle("open");
       };
     });
 
-    // Kuis Interaktif
-    document.getElementById("m1-check-answer").onclick = () => {
-      const ans = document.querySelector('input[name="m1-quiz"]:checked')?.value;
-      const fb = document.getElementById("m1-feedback");
-      if (ans === "batang") {
-        fb.textContent = "Tepat sekali! Diagram batang cocok untuk membandingkan kategori.";
-        fb.className = "mt-3 font-semibold text-emerald-700";
+    // Progress Bar Calculator
+    function updateProgress() {
+      const checkboxes = document.querySelectorAll(".progress-check");
+      const checked = document.querySelectorAll(".progress-check:checked");
+      const pct = checkboxes.length ? Math.round((checked.length / checkboxes.length) * 100) : 0;
+      document.getElementById("progress-text").textContent = pct + "%";
+      document.getElementById("progress-fill").style.width = pct + "%";
+      
+      if (pct === 100) {
+        document.getElementById("badge-container").classList.remove("hidden");
+      }
+    }
+    document.querySelectorAll(".progress-check").forEach(chk => chk.onchange = updateProgress);
+
+    // Kuis Deteksi Hoaks Modul 3
+    window.checkHoax = function(isHoax) {
+      const res = document.getElementById("hoax-result");
+      if (isHoax) {
+        res.textContent = "Jawaban Benar! Ini adalah contoh kalimat pancingan Hoaks.";
+        res.className = "mt-2 text-sm font-bold text-emerald-700";
       } else {
-        fb.textContent = "Kurang tepat, perhatikan tujuan perbandingan kategorinya.";
-        fb.className = "mt-3 font-semibold text-rose-700";
+        res.textContent = "Jawaban Kurang Tepat. Hati-hati dengan klaim yang tidak masuk akal.";
+        res.className = "mt-2 text-sm font-bold text-rose-700";
       }
     };
-    document.getElementById("m1-answer").onclick = () => {
-      document.getElementById("m1-example-answer").classList.remove("hidden");
+
+    // Password Strength Tester Modul 4
+    const passInput = document.getElementById("pass-test-input");
+    if(passInput) {
+      passInput.oninput = () => {
+        const val = passInput.value;
+        const lbl = document.getElementById("pass-strength-label");
+        if(!val) {
+          lbl.textContent = "Belum diisi";
+          lbl.className = "text-sm font-extrabold text-slate-400";
+        } else if (val.length < 6) {
+          lbl.textContent = "Lemah (Sangat Mudah Ditebak)";
+          lbl.className = "text-sm font-extrabold text-rose-600";
+        } else if (val.length >= 8 && /[A-Z]/.test(val) && /[0-9]/.test(val)) {
+          lbl.textContent = "Sangat Kuat!";
+          lbl.className = "text-sm font-extrabold text-emerald-600";
+        } else {
+          lbl.textContent = "Sedang";
+          lbl.className = "text-sm font-extrabold text-amber-600";
+        }
+      };
+    }
+
+    // Search Bar
+    document.getElementById("search-input").oninput = (e) => {
+      const query = e.target.value.toLowerCase();
+      document.querySelectorAll(".search-target").forEach(card => {
+        const text = card.textContent.toLowerCase();
+        card.style.display = text.includes(query) ? "block" : "none";
+      });
     };
 
-    // FORM SIMPAN MATERI KE FIREBASE
-    const materialForm = document.getElementById("material-form");
-    if (materialForm) {
-      materialForm.onsubmit = async (e) => {
-        e.preventDefault();
-        const title = document.getElementById("material-title").value;
-        const desc = document.getElementById("material-description").value;
-        try {
-          await addDoc(collection(db, "materi"), { title, desc, createdAt: new Date() });
-          showToast("Materi berhasil tersimpan!");
-          materialForm.reset();
-        } catch (err) {
-          showToast("Gagal menyimpan materi: " + err.message);
-        }
-      };
+    // Print Summary
+    document.getElementById("btn-print-summary").onclick = () => window.print();
+
+    // KIRIM JAWABAN REFLEKSI SISWA KE FIREBASE
+    async function saveStudentAnswer(moduleName, notesId) {
+      const name = localStorage.getItem("student_name") || "Tanpa Nama";
+      const cls = localStorage.getItem("student_class") || "Tanpa Kelas";
+      const notes = document.getElementById(notesId).value;
+
+      try {
+        await addDoc(collection(db, "jawaban_siswa"), {
+          studentName: name,
+          studentClass: cls,
+          module: moduleName,
+          notes: notes,
+          timestamp: new Date()
+        });
+        showToast(`Jawaban ${moduleName} berhasil dikirim ke Guru!`);
+      } catch (err) {
+        showToast("Gagal mengirim jawaban: " + err.message);
+      }
     }
 
-    // FORM SIMPAN VIDEO KE FIREBASE
-    const videoForm = document.getElementById("video-form");
-    if (videoForm) {
-      videoForm.onsubmit = async (e) => {
-        e.preventDefault();
-        const title = document.getElementById("video-title").value;
-        const rawUrl = document.getElementById("video-url").value;
-        const embedUrl = convertToEmbedUrl(rawUrl);
+    document.getElementById("save-m1-btn").onclick = () => saveStudentAnswer("Modul 1", "module1-notes");
+    document.getElementById("save-m2-btn").onclick = () => saveStudentAnswer("Modul 2", "module2-notes");
+    document.getElementById("save-m3-btn").onclick = () => saveStudentAnswer("Modul 3", "module3-notes");
+    document.getElementById("save-m4-btn").onclick = () => saveStudentAnswer("Modul 4", "module4-notes");
 
-        try {
-          await addDoc(collection(db, "video"), { title, url: embedUrl, createdAt: new Date() });
-          showToast("Video berhasil tersimpan!");
-          videoForm.reset();
-        } catch (err) {
-          showToast("Gagal menyimpan video: " + err.message);
-        }
-      };
-    }
+    // TAMBAH MATERI & VIDEO (GURU)
+    document.getElementById("material-form").onsubmit = async (e) => {
+      e.preventDefault();
+      const title = document.getElementById("material-title").value;
+      const desc = document.getElementById("material-description").value;
+      const category = document.getElementById("material-category").value;
+      try {
+        await addDoc(collection(db, "materi"), { title, desc, category, createdAt: new Date() });
+        showToast("Materi tersimpan!");
+        document.getElementById("material-form").reset();
+      } catch (err) {
+        showToast("Gagal menyimpan: " + err.message);
+      }
+    };
 
-    // SINKRONISASI REAL-TIME (OTOMATIS SINKRON LAPTOP DENGAN HP)
+    document.getElementById("video-form").onsubmit = async (e) => {
+      e.preventDefault();
+      const title = document.getElementById("video-title").value;
+      const rawUrl = document.getElementById("video-url").value;
+      const embedUrl = convertToEmbedUrl(rawUrl);
+
+      try {
+        await addDoc(collection(db, "video"), { title, url: embedUrl, createdAt: new Date() });
+        showToast("Video tersimpan!");
+        document.getElementById("video-form").reset();
+      } catch (err) {
+        showToast("Gagal menyimpan: " + err.message);
+      }
+    };
+
+    // SINKRONISASI REALTIME FIREBASE
     function listenFirebaseData() {
-      // Sinkronisasi Koleksi Materi
+      // 1. Listen Materi
       onSnapshot(collection(db, "materi"), (snapshot) => {
         const materialList = document.getElementById("student-material-list");
         if (!materialList) return;
         materialList.innerHTML = "";
-        snapshot.forEach((doc) => {
-          const data = doc.data();
+        snapshot.forEach((docSnap) => {
+          const data = docSnap.data();
           const card = document.createElement("div");
-          card.className = "card student-card";
-          card.innerHTML = `<h4 class="font-extrabold text-lg">${data.title}</h4><p class="mt-2 text-slate-600">${data.desc}</p>`;
+          card.className = "card student-card relative";
+          card.innerHTML = `
+            <span class="text-xs font-bold text-violet-700 bg-violet-50 px-2 py-1 rounded-lg">${data.category || 'Umum'}</span>
+            <h4 class="font-extrabold text-lg mt-2">${data.title}</h4>
+            <p class="mt-2 text-slate-600">${data.desc}</p>
+            ${isTeacher ? `<button onclick="deleteDocument('materi', '${docSnap.id}')" class="mt-3 text-xs text-rose-600 font-bold hover:underline">Hapus Materi</button>` : ''}
+          `;
           materialList.appendChild(card);
         });
       });
 
-      // Sinkronisasi Koleksi Video
+      // 2. Listen Video
       onSnapshot(collection(db, "video"), (snapshot) => {
         const videoList = document.getElementById("student-video-list");
         if (!videoList) return;
         videoList.innerHTML = "";
-        snapshot.forEach((doc) => {
-          const data = doc.data();
+        snapshot.forEach((docSnap) => {
+          const data = docSnap.data();
           const card = document.createElement("div");
           card.className = "card student-card";
           card.innerHTML = `
             <h4 class="font-extrabold text-lg mb-2">${data.title}</h4>
             <div class="aspect-video w-full rounded-xl overflow-hidden bg-black">
-              <iframe class="w-full h-full" src="${data.url}" title="${data.title}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <iframe class="w-full h-full" src="${data.url}" title="${data.title}" frameborder="0" allowfullscreen></iframe>
             </div>
+            ${isTeacher ? `<button onclick="deleteDocument('video', '${docSnap.id}')" class="mt-3 text-xs text-rose-600 font-bold hover:underline">Hapus Video</button>` : ''}
           `;
           videoList.appendChild(card);
         });
       });
+
+      // 3. Listen Jawaban Siswa (Panel Guru)
+      onSnapshot(collection(db, "jawaban_siswa"), (snapshot) => {
+        const container = document.getElementById("rekap-siswa-container");
+        if (!container) return;
+        container.innerHTML = "";
+        if (snapshot.empty) {
+          container.innerHTML = '<p class="text-sm text-slate-500">Belum ada jawaban siswa yang dikirim.</p>';
+          return;
+        }
+        snapshot.forEach((docSnap) => {
+          const data = docSnap.data();
+          const item = document.createElement("div");
+          item.className = "p-4 rounded-xl border border-slate-200 bg-slate-50 flex flex-col md:flex-row justify-between md:items-center gap-3";
+          item.innerHTML = `
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="font-extrabold text-slate-900">${data.studentName} (${data.studentClass})</span>
+                <span class="text-xs bg-sky-100 text-sky-800 font-bold px-2 py-0.5 rounded-full">${data.module}</span>
+              </div>
+              <p class="mt-1 text-sm text-slate-600">"${data.notes || 'Tidak ada catatan'}"</p>
+            </div>
+            <button onclick="deleteDocument('jawaban_siswa', '${docSnap.id}')" class="text-xs text-rose-600 font-bold hover:underline self-start md:self-center">Hapus</button>
+          `;
+          container.appendChild(item);
+        });
+      });
     }
+
+    // Fungsi Hapus Dokumen Firestore
+    window.deleteDocument = async function(coll, id) {
+      if (confirm("Apakah Anda yakin ingin menghapus data ini?")) {
+        try {
+          await deleteDoc(doc(db, coll, id));
+          showToast("Data berhasil dihapus.");
+        } catch (err) {
+          showToast("Gagal menghapus: " + err.message);
+        }
+      }
+    };
 
     window.onload = () => {
       lucide.createIcons();
+      checkStudentIdentity();
       listenFirebaseData();
+      updateProgress();
     };
   </script>
 </body>
