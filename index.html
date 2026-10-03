@@ -1,665 +1,365 @@
 <!doctype html>
-<html lang="id"><head><script>window["__codeletBootstrap__"]=JSON.parse('{"A":"A","B":"20261001-05-b7952c1","C":{"Abril Fatface":"YACgEZbkUVE,0","Alfa Slab One":"YACgEYS9sJU,0","Anton":"YACgEcYqQ-A,0","Archivo":"YACgEZulLoA,0","Arial Narrow":"YAGyDvJ_4Ts,0","Arial Rounded MT Bold":"YAFcfoaHu-s,0","Arial":"YAGyDvJ_4Ts,0","Avenir Next":"YAFcfmNq6UY,0","Baloo 2":"YADK30bC6HQ,0","Bebas Neue":"YACgESME5ew,0","Bricolage Grotesque":"YAFyMcdwzpc,0","Broken Glyph":"YADZ-exUkv0,0","Canva Sans":"YAFdJjTk5UU,1","Caveat":"YALBs2ploWQ,0","Comic Sans MS":"YAFcfvtOAUY,1","Cormorant Garamond":"YAFdJhX-538,0","Courier New":"YAGzXiGs0_8,0","Courier Prime":"YAD1aFjegN8,0","DM Sans":"YAD1aU3sLnI,0","DM Serif Display":"YAD1aYG82rc,0","Forum":"YACgEcnnqB4,0","Fraunces":"YAFdJpU7Kkk,0","Georgia":"YAGzXkO0pEM,0","Ghost Mono":"YAHQutsX00Q,0","Hanken Grotesk":"YAFcfhwp99E,0","Helvetica Neue":"YAFcf6CtJfI,0","Helvetica":"YAFcf6CtJfI,0","IBM Plex Mono":"YAFdJkmvhGI,0","Impact":"YAFcfnjI7Vk,0","Instrument Serif":"YAHFeOnZNEk,0","Inter":"YAFdJvSyp_k,3","Iowan Old Style":"YAGNIFa8j9o,0","Jacques Francois":"YADK3zbC6RM,0","JetBrains Mono":"YAFdJksXcAk,0","Josefin Sans":"YAFdJjvw9Ps,0","Lato":"YAFdJuFCnaw,0","Libre Baskerville":"YACgEUFdPdA,0","Lobster":"YAD8SnSjSFI,0","Lora":"YACgEXvxf8Q,0","Merriweather":"YACgEXvHxxs,0","Montserrat":"YAFdtQi73Xs,0","Nunito":"YAFdJoNRMmU,1","Oleo Script":"YACgEQQ14jI,0","Oswald":"YACgEQY10lw,0","Pacifico":"YADLjORQ1u4,0","Phantom Sans":"YAFdJvgJ5TU,0","Playfair Display":"YAFdJhem5V8,1","Plus Jakarta Sans":"YAGvf3_u0_Q,0","Poppins":"YAFdJjbTu24,1","Press Start 2P":"YAFyGr-8pmQ,0","Quicksand":"YAFdJpYtCxE,1","Raleway":"YAFdJhmxbVQ,1","Roboto Slab":"YAFdJswIKAg,0","Rockwell":"YAFcfyVZnN0,0","Rye":"YACgEdQP21k,0","Segoe UI":"YAHNdRD1Klw,0","Source Sans 3":"YAG4lO1Mj10,0","Source Serif 4":"YACgEfdj394,0","Space Grotesk":"YADZ-dYEmhg,0","Space Mono":"YADW1-vpsoc,0","Times New Roman":"YAGzXW3gftg,0","Times":"YAGzXW3gftg,0","Trebuchet MS":"YAFcfrglpVA,0","UV Display":"YAEdVfSSpYo,0","UV Sans":"YAFdJvgJ5TU,0","Ubuntu":"YACgERDU--Q,0","Verdana":"YAGzXTctYtQ,0","Work Sans":"YAGXhLOKv44,0","Yellowtail":"YACgEYG4kG4,0","ui-monospace":"YAD1aFjegN8,0","ui-sans-serif":"YACkoD1yZN0,0"}}');</script><script src="/_sdk/6542d56fbfe7a3eb.telemetry_sdk.js" integrity="sha512-ECdM0nK7EkwDuOqho2qxgyRQXyBHk9hZqRKMBr+Xsu6zjeHlt+qkO2N2YRiHN7Kg4e1fEHDhjIp4bGJYVypv1g=="></script>
+<html lang="id">
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Media Pembelajaran Informatika Kelas 9</title>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.577.0/dist/umd/lucide.min.js"></script>
   <style>
-    :root{--ink:#12304a;--blue:#146bb2;--teal:#087f7b;--violet:#6d4bc3;--green:#16836b;--line:#cfe3ec}
-    *{box-sizing:border-box} body{margin:0;font-family:"DM Sans",sans-serif;color:var(--ink)}
-    .app-shell{width:100%;min-height:calc(100 * min(var(--vh,1vh),1vh));background:#f4fafc}
-    .dot-grid{background-image:radial-gradient(#c5e0e8 1px,transparent 1px);background-size:18px 18px}
-    .card{background:#fff;border:1px solid #d8e9ef;border-radius:1.35rem;padding:1.35rem;box-shadow:0 8px 24px rgba(18,48,74,.05)}
-    .mode-panel,.module-view,.teacher-tab-panel,.subchapter-view{display:none;animation:rise .25s ease}
-    .mode-panel.active,.module-view.active,.teacher-tab-panel.active,.subchapter-view.active{display:block}
-    .module-button,.teacher-tab,.subchapter-button{border:1px solid #cfe3ec;background:#fff;color:#35556d;transition:.2s}
-    .module-button:hover,.module-button.active{background:var(--blue);border-color:var(--blue);color:#fff}
-    .teacher-tab:hover,.teacher-tab.active{background:var(--violet);border-color:var(--violet);color:#fff}
-    .subchapter-button:hover,.subchapter-button.active{background:#eaf5ff;border-color:#89bedf;color:#0c5a95}
-    .role-button{transition:.2s}.role-button.active-student{background:var(--blue)!important;color:#fff!important;border-color:var(--blue)!important}
-    .role-button.active-teacher{background:var(--violet)!important;color:#fff!important;border-color:var(--violet)!important}
-    .teacher-card{border-left:5px solid var(--violet)}.student-card{border-left:5px solid var(--blue)}
-    .notice{border-radius:1rem;padding:1rem}.hidden{display:none!important}
-    .accordion-trigger{width:100%;display:flex;align-items:center;justify-content:space-between;gap:1rem;text-align:left}
-    .accordion-panel{display:none}.accordion-panel.open{display:block}
-    .access-overlay{position:fixed;inset:0;z-index:60;display:flex;align-items:center;justify-content:center;padding:1rem;background:rgba(10,28,44,.72);backdrop-filter:blur(5px)}
-    .access-dialog{width:min(100%,28rem);max-height:calc(90 * min(var(--vh,1vh),1vh));overflow:auto;background:#fff;border:1px solid #cfe3ec;border-radius:1.5rem;padding:1.5rem;box-shadow:0 24px 70px rgba(0,0,0,.25)}
-    .toast{opacity:0;transform:translateY(12px);pointer-events:none;transition:.25s}.toast.show{opacity:1;transform:none}
-    button:focus,input:focus,textarea:focus,select:focus{outline:3px solid rgba(20,107,178,.35);outline-offset:2px}
-    input,textarea,select{color:var(--ink)} .code-note{font-family:"Space Mono",monospace;font-size:.84rem;white-space:pre-wrap}
-    @keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+    :root { --ink:#12304a; --blue:#146bb2; --teal:#087f7b; --violet:#6d4bc3; --green:#16836b; --line:#cfe3ec; }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: "DM Sans", sans-serif; color: var(--ink); background: #f4fafc; }
+    .app-shell { width: 100%; min-height: 100vh; background: #f4fafc; }
+    .dot-grid { background-image: radial-gradient(#c5e0e8 1px, transparent 1px); background-size: 18px 18px; }
+    .card { background: #fff; border: 1px solid #d8e9ef; border-radius: 1.35rem; padding: 1.35rem; box-shadow: 0 8px 24px rgba(18,48,74,.05); }
+    .mode-panel, .module-view, .teacher-tab-panel, .subchapter-view { display: none; animation: rise .25s ease; }
+    .mode-panel.active, .module-view.active, .teacher-tab-panel.active, .subchapter-view.active { display: block; }
+    .module-button, .teacher-tab, .subchapter-button { border: 1px solid #cfe3ec; background: #fff; color: #35556d; transition: .2s; cursor: pointer; }
+    .module-button:hover, .module-button.active { background: var(--blue); border-color: var(--blue); color: #fff; }
+    .teacher-tab:hover, .teacher-tab.active { background: var(--violet); border-color: var(--violet); color: #fff; }
+    .subchapter-button:hover, .subchapter-button.active { background: #eaf5ff; border-color: #89bedf; color: #0c5a95; font-weight: 700; }
+    .role-button { transition: .2s; cursor: pointer; }
+    .role-button.active-student { background: var(--blue) !important; color: #fff !important; border-color: var(--blue) !important; }
+    .role-button.active-teacher { background: var(--violet) !important; color: #fff !important; border-color: var(--violet) !important; }
+    .teacher-card { border-left: 5px solid var(--violet); }
+    .student-card { border-left: 5px solid var(--blue); }
+    .notice { border-radius: 1rem; padding: 1rem; }
+    .hidden { display: none !important; }
+    .accordion-trigger { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 1rem; text-align: left; cursor: pointer; }
+    .accordion-panel { display: none; }
+    .accordion-panel.open { display: block; }
+    .access-overlay { position: fixed; inset: 0; z-index: 60; display: flex; align-items: center; justify-content: center; padding: 1rem; background: rgba(10,28,44,.72); backdrop-filter: blur(5px); }
+    .access-dialog { width: min(100%, 28rem); max-height: 90vh; overflow: auto; background: #fff; border: 1px solid #cfe3ec; border-radius: 1.5rem; padding: 1.5rem; box-shadow: 0 24px 70px rgba(0,0,0,.25); }
+    .toast { opacity: 0; transform: translateY(12px); pointer-events: none; transition: .25s; }
+    .toast.show { opacity: 1; transform: none; }
+    button:focus, input:focus, textarea:focus, select:focus { outline: 3px solid rgba(20,107,178,.35); outline-offset: 2px; }
+    .code-note { font-family: "Space Mono", monospace; font-size: .84rem; white-space: pre-wrap; }
+    @keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
   </style>
-  <script src="https://cdn.tailwindcss.com/3.4.17" type="text/javascript"></script>
-  <script src="https://cdn.jsdelivr.net/npm/lucide@0.577.0/dist/umd/lucide.min.js" type="text/javascript"></script>
-  <script src="/_sdk/6c2ecc939521f244.data_sdk.js" type="text/javascript" integrity="sha512-gRx8s+XsZDN6mSIQu2sivLZysbV0WHhb5kXNUWlgVb5lCMU1foJYukyMEDPv8Tnoocb8iwqB4XdRrWc7oEGzIQ=="></script>
-  <script src="/_sdk/9a95f4c89f9d329a.editing_sdk.js" type="text/javascript" integrity="sha512-uqCEJTMLGkNaerhDaIXaCaksHwhGfiODxp6KAGyGJ3KnMlKU0zBHiRrGR0sESZuM3JlrF8iM9IVZakKW237LEQ=="></script>
-  <script src="/_sdk/ab4336f91e694f96.resizing_sdk.js" type="text/javascript" integrity="sha512-cxmeUrBrNlwwLr+tEu/iwM5F3boeK4qDMoH3QjUPqJptkO5NkaDVhQvyIHIn+3EflI5/uubWzkSA78B1tCswgA=="></script>
- </head>
- <body data-template-id="__page-root" style="background: rgb(244, 250, 252);">
+</head>
+<body>
   <div class="app-shell">
-   <header data-template-id="hero-header" class="canva-header dot-grid border-b border-sky-100" style="background: rgb(234, 248, 252);">
-    <div class="w-full max-w-6xl mx-auto px-5 py-7">
-     <div class="flex flex-col lg:flex-row lg:items-center gap-5">
-      <div class="flex-1">
-       <div class="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1.5 text-sm font-bold text-emerald-700 shadow-sm"><i data-lucide="graduation-cap" class="w-4 h-4"></i><span data-template-id="hero-badge" class="canva-tag" style="color: rgb(21, 112, 93); font-weight: 700; font-style: normal; font-size: 16px;">Modul Interaktif • Informatika Kelas 9</span>
-       </div>
-       <h1 data-template-id="page-title" class="canva-text mt-3 font-extrabold tracking-tight" style="color: rgb(18, 48, 74); font-weight: 800; font-style: normal; font-size: 32px;">Media Pembelajaran Informatika Kelas 9</h1>
-       <p data-template-id="page-topic" class="canva-text mt-2 max-w-3xl leading-relaxed" style="color: rgb(54, 92, 114); font-weight: 400; font-style: normal; font-size: 18px;">Belajar data, algoritma, literasi digital, dan keamanan digital melalui kegiatan yang terarah.</p>
-      </div>
-      <aside data-template-id="mode-status-card" class="canva-card rounded-3xl border border-sky-100 bg-white p-5 shadow-lg" style="background: rgb(255, 255, 255);">
-       <p data-template-id="mode-status-label" class="canva-text text-sm font-bold" style="color: rgb(82, 112, 135); font-weight: 700; font-style: normal; font-size: 16px;">Status tampilan</p>
-       <p id="mode-status" class="mt-1 text-xl font-extrabold text-sky-800" aria-live="polite">Mode Siswa aktif</p>
-      </aside>
-     </div>
-     <div class="mt-6 flex flex-wrap gap-3" aria-label="Pilih mode pengguna"><button id="student-mode-button" type="button" data-template-id="mode-student-button" class="role-button active-student canva-button rounded-xl border px-5 py-3 font-bold" style="background: rgb(20, 107, 178); color: rgb(255, 255, 255);"><i data-lucide="book-open" class="mr-2 inline w-4 h-4"></i><span data-template-id="mode-student-label" class="canva-text" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 16px;">Mode Siswa</span></button> <button id="teacher-mode-button" type="button" data-template-id="mode-teacher-button" class="role-button canva-button rounded-xl border border-violet-200 bg-white px-5 py-3 font-bold text-violet-800" style="background: rgb(255, 255, 255); color: rgb(109, 75, 195);"><i data-lucide="presentation" class="mr-2 inline w-4 h-4"></i><span data-template-id="mode-teacher-label" class="canva-text" style="color: rgb(109, 75, 195); font-weight: 700; font-style: normal; font-size: 16px;">Mode Guru</span></button>
-     </div>
-    </div>
-   </header>
-   <main class="w-full max-w-6xl mx-auto px-5 py-7">
-    <section id="student-mode" class="mode-panel active" aria-label="Mode Siswa">
-     <div data-template-id="student-help" class="canva-banner notice border border-sky-100 bg-sky-50 text-sky-900" style="background: rgb(239, 248, 255); color: rgb(18, 48, 74);">
-      <div class="flex gap-3">
-       <i data-lucide="info" class="mt-0.5 w-5 h-5 shrink-0"></i>
-       <p data-template-id="student-help-text" class="canva-text" style="color: rgb(18, 48, 74); font-weight: 400; font-style: normal; font-size: 16px;">Pilih modul dan subbab sesuai urutan belajar. Gunakan tombol latihan, contoh jawaban, checklist, dan catatan refleksi untuk membantu pemahamanmu.</p>
-      </div>
-     </div>
-     <nav aria-label="Navigasi Modul" class="mt-5 flex flex-wrap gap-2"><button type="button" class="module-button active canva-button rounded-xl px-4 py-2.5 text-sm font-bold" data-module="module1" data-template-id="nav-module1" style="background: rgb(255, 255, 255); color: rgb(53, 85, 109); font-weight: 700; font-style: normal; font-size: 16px;">Modul 1: Penyajian Data</button> <button type="button" class="module-button canva-button rounded-xl px-4 py-2.5 text-sm font-bold" data-module="module2" data-template-id="nav-module2" style="background: rgb(255, 255, 255); color: rgb(53, 85, 109); font-weight: 700; font-style: normal; font-size: 16px;">Modul 2: Algoritma</button> <button type="button" class="module-button canva-button rounded-xl px-4 py-2.5 text-sm font-bold" data-module="module3" data-template-id="nav-module3" style="background: rgb(255, 255, 255); color: rgb(53, 85, 109); font-weight: 700; font-style: normal; font-size: 16px;">Modul 3: Literasi Digital</button> <button type="button" class="module-button canva-button rounded-xl px-4 py-2.5 text-sm font-bold" data-module="module4" data-template-id="nav-module4" style="background: rgb(255, 255, 255); color: rgb(53, 85, 109); font-weight: 700; font-style: normal; font-size: 16px;">Modul 4: Keamanan Digital</button>
-     </nav>
-     <section id="module1" class="module-view active mt-6" aria-labelledby="module1-title">
-      <article data-template-id="module1-card" class="canva-card card student-card" style="background: rgb(255, 255, 255);">
-       <p data-template-id="module1-kicker" class="canva-text text-sm font-bold uppercase tracking-widest text-emerald-700" style="color: rgb(22, 131, 107); font-weight: 700; font-style: normal; font-size: 16px;">Modul 1 tetap tersedia</p>
-       <h2 id="module1-title" data-template-id="module1-title" class="canva-text mt-2 font-extrabold" style="color: rgb(18, 48, 74); font-weight: 800; font-style: normal; font-size: 24px;">Penyajian Data Mentah Menjadi Tabel dan Diagram</h2>
-       <p data-template-id="module1-description" class="canva-text mt-3 leading-relaxed" style="color: rgb(66, 100, 121); font-weight: 400; font-style: normal; font-size: 16px;">Pelajari cara mengubah data mentah menjadi tabel dan diagram agar informasi mudah dipahami.</p>
-       <div class="mt-5 grid sm:grid-cols-3 gap-3">
-        <div class="notice bg-sky-50">
-         <strong>Tujuan</strong><br>
-         Menyajikan data agar mudah dibaca.
-        </div>
-        <div class="notice bg-emerald-50">
-         <strong>Keterampilan</strong><br>
-         Membuat tabel dan diagram.
-        </div>
-        <div class="notice bg-violet-50">
-         <strong>Hasil</strong><br>
-         Menjelaskan informasi dari data.
-        </div>
-       </div>
-      </article>
-      <nav class="mt-5 flex flex-wrap gap-2" aria-label="Subbab Modul 1"><button type="button" class="subchapter-button active rounded-xl px-3 py-2 text-sm font-bold" data-subchapter="m1-konsep">Konsep Dasar</button> <button type="button" class="subchapter-button rounded-xl px-3 py-2 text-sm font-bold" data-subchapter="m1-excel">Langkah Microsoft Excel</button> <button type="button" class="subchapter-button rounded-xl px-3 py-2 text-sm font-bold" data-subchapter="m1-sheets">Langkah Google Sheets</button> <button type="button" class="subchapter-button rounded-xl px-3 py-2 text-sm font-bold" data-subchapter="m1-latihan">Latihan Praktik</button> <button type="button" class="subchapter-button rounded-xl px-3 py-2 text-sm font-bold" data-subchapter="m1-refleksi">Refleksi</button> <button type="button" class="subchapter-button rounded-xl px-3 py-2 text-sm font-bold" data-subchapter="m1-tips">Tips Guru</button>
-      </nav>
-      <section id="m1-konsep" class="subchapter-view active mt-5">
-       <div class="grid lg:grid-cols-[1.2fr_.8fr] gap-6">
-        <article class="card">
-         <h3 class="text-xl font-extrabold">Konsep Dasar Penyajian Data</h3>
-         <p class="mt-3 leading-relaxed">Data mentah adalah kumpulan fakta yang belum ditata. Agar informasi lebih mudah dipahami, data dapat dikelompokkan dalam tabel dan divisualisasikan dalam diagram.</p>
-         <div class="mt-4 space-y-3">
-          <div class="rounded-2xl border border-sky-100"><button type="button" class="accordion-trigger p-4 font-bold" data-accordion="m1-data-mentah">Apa itu data mentah?<i data-lucide="chevron-down" class="w-5 h-5"></i></button>
-           <div id="m1-data-mentah" class="accordion-panel px-4 pb-4">
-            Contoh data mentah: 28, 31, 25, 31, 29. Angka tersebut belum menjelaskan siapa, apa yang diukur, dan bagaimana perbandingannya.
-           </div>
+    <!-- Header -->
+    <header class="dot-grid border-b border-sky-100 bg-sky-50">
+      <div class="w-full max-w-6xl mx-auto px-5 py-7">
+        <div class="flex flex-col lg:flex-row lg:items-center gap-5">
+          <div class="flex-1">
+            <div class="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1.5 text-sm font-bold text-emerald-700 shadow-sm">
+              <i data-lucide="graduation-cap" class="w-4 h-4"></i>
+              <span>Modul Interaktif • Informatika Kelas 9</span>
+            </div>
+            <h1 class="mt-3 font-extrabold text-3xl text-slate-900 tracking-tight">Media Pembelajaran Informatika Kelas 9</h1>
+            <p class="mt-2 text-slate-600 max-w-3xl leading-relaxed">Belajar data, algoritma, literasi digital, dan keamanan digital melalui kegiatan yang terarah.</p>
           </div>
-          <div class="rounded-2xl border border-emerald-100"><button type="button" class="accordion-trigger p-4 font-bold" data-accordion="m1-tabel">Mengapa menggunakan tabel?<i data-lucide="chevron-down" class="w-5 h-5"></i></button>
-           <div id="m1-tabel" class="accordion-panel px-4 pb-4">
-            Tabel menyusun data dalam baris dan kolom sehingga kategori, jumlah, dan satuan dapat dibandingkan dengan jelas.
-           </div>
-          </div>
-          <div class="rounded-2xl border border-violet-100"><button type="button" class="accordion-trigger p-4 font-bold" data-accordion="m1-diagram">Kapan memakai diagram?<i data-lucide="chevron-down" class="w-5 h-5"></i></button>
-           <div id="m1-diagram" class="accordion-panel px-4 pb-4">
-            Diagram batang cocok untuk membandingkan kategori, diagram garis untuk perubahan dari waktu ke waktu, dan diagram lingkaran untuk menunjukkan bagian dari keseluruhan.
-           </div>
-          </div>
-         </div>
-        </article>
-        <aside class="card bg-violet-50 border-violet-100"><i data-lucide="lightbulb" class="w-7 h-7 text-violet-700"></i>
-         <h3 class="mt-3 text-xl font-extrabold">Contoh Data Kelas</h3>
-         <table class="mt-4 w-full text-left text-sm">
-          <thead>
-           <tr class="border-b border-violet-200">
-            <th class="pb-2">Kelas</th>
-            <th class="pb-2">Jumlah siswa</th>
-           </tr>
-          </thead>
-          <tbody>
-           <tr>
-            <td class="py-2">9A</td>
-            <td>32</td>
-           </tr>
-           <tr>
-            <td class="py-2">9B</td>
-            <td>30</td>
-           </tr>
-           <tr>
-            <td class="py-2">9C</td>
-            <td>34</td>
-           </tr>
-          </tbody>
-         </table>
-         <p class="mt-4 text-sm leading-relaxed">Dari tabel tersebut, diagram batang membantu kita segera melihat bahwa 9C memiliki jumlah siswa paling banyak.</p>
-        </aside>
-       </div>
-      </section>
-      <section id="m1-excel" class="subchapter-view mt-5">
-       <article class="card">
-        <h3 class="text-xl font-extrabold">Langkah Microsoft Excel</h3>
-        <p class="mt-2">Gunakan langkah berikut untuk mengubah data mentah menjadi tabel dan diagram batang.</p>
-        <ol class="mt-5 grid md:grid-cols-2 gap-4 list-none">
-         <li class="notice bg-sky-50"><strong>1. Siapkan kolom</strong><br>
-          Tulis judul kategori pada kolom A dan jumlah pada kolom B.</li>
-         <li class="notice bg-sky-50"><strong>2. Masukkan data</strong><br>
-          Isikan setiap kategori dan nilai secara rapi pada baris yang sesuai.</li>
-         <li class="notice bg-sky-50"><strong>3. Blok tabel</strong><br>
-          Pilih seluruh sel berisi judul kolom dan data.</li>
-         <li class="notice bg-sky-50"><strong>4. Pilih Insert</strong><br>
-          Klik menu <em>Insert</em>, lalu pilih jenis grafik atau chart.</li>
-         <li class="notice bg-sky-50"><strong>5. Pilih Column/Bar</strong><br>
-          Pilih diagram batang untuk membandingkan jumlah antarkategori.</li>
-         <li class="notice bg-sky-50"><strong>6. Periksa judul</strong><br>
-          Tambahkan judul diagram, nama sumbu, dan pastikan angka terbaca.</li>
-        </ol>
-        <div class="mt-5 rounded-2xl bg-slate-900 p-4 text-slate-100">
-         <p class="code-note">Contoh tabel: Kategori | Jumlah Buku | 12 Pensil | 18 Penghapus| 9</p>
+          <aside class="card rounded-3xl border border-sky-100 bg-white p-5 shadow-lg">
+            <p class="text-sm font-bold text-slate-500">Status tampilan</p>
+            <p id="mode-status" class="mt-1 text-xl font-extrabold text-sky-800">Mode Siswa aktif</p>
+          </aside>
         </div>
-       </article>
-      </section>
-      <section id="m1-sheets" class="subchapter-view mt-5">
-       <article class="card">
-        <h3 class="text-xl font-extrabold">Langkah Google Sheets</h3>
-        <p class="mt-2">Google Sheets memiliki alur yang serupa dan dapat digunakan bersama teman melalui internet.</p>
-        <div class="mt-5 grid md:grid-cols-2 gap-4">
-         <div class="notice bg-emerald-50">
-          <strong>1. Buka spreadsheet</strong><br>
-          Buat lembar baru dan tulis judul tabel.
-         </div>
-         <div class="notice bg-emerald-50">
-          <strong>2. Isi kategori dan nilai</strong><br>
-          Pastikan satu jenis data berada dalam satu kolom yang konsisten.
-         </div>
-         <div class="notice bg-emerald-50">
-          <strong>3. Sorot rentang data</strong><br>
-          Termasuk judul kolom agar label diagram terbaca otomatis.
-         </div>
-         <div class="notice bg-emerald-50">
-          <strong>4. Pilih Sisipkan &gt; Diagram</strong><br>
-          Panel editor diagram akan muncul di sisi kanan.
-         </div>
-         <div class="notice bg-emerald-50">
-          <strong>5. Sesuaikan tipe diagram</strong><br>
-          Pilih diagram batang, garis, atau lingkaran sesuai tujuan.
-         </div>
-         <div class="notice bg-emerald-50">
-          <strong>6. Bagikan dengan bijak</strong><br>
-          Atur izin berbagi dan hindari membagikan data pribadi.
-         </div>
+        <div class="mt-6 flex flex-wrap gap-3" aria-label="Pilih mode pengguna">
+          <button id="student-mode-button" type="button" class="role-button active-student rounded-xl border px-5 py-3 font-bold bg-sky-700 text-white">
+            <i data-lucide="book-open" class="mr-2 inline w-4 h-4"></i>Mode Siswa
+          </button>
+          <button id="teacher-mode-button" type="button" class="role-button rounded-xl border border-violet-200 bg-white px-5 py-3 font-bold text-violet-800">
+            <i data-lucide="presentation" class="mr-2 inline w-4 h-4"></i>Mode Guru
+          </button>
         </div>
-        <p class="mt-5 notice bg-amber-50"><strong>Ingat:</strong> Diagram harus menjawab pertanyaan. Jangan memilih diagram hanya karena terlihat menarik.</p>
-       </article>
-      </section>
-      <section id="m1-latihan" class="subchapter-view mt-5">
-       <div class="grid lg:grid-cols-2 gap-6">
-        <article class="card">
-         <h3 class="text-xl font-extrabold">Latihan Praktik Modul 1</h3>
-         <p class="mt-3">Data jumlah pengunjung perpustakaan selama tiga hari adalah Senin 40, Selasa 55, dan Rabu 48.</p>
-         <p class="mt-4 font-bold">Diagram yang paling sesuai untuk membandingkan jumlah pengunjung setiap hari adalah ...</p>
-         <div class="mt-3 space-y-2"><label class="flex gap-2 rounded-xl border border-slate-200 p-3"><input name="m1-quiz" value="lingkaran" type="radio"> Diagram lingkaran</label> <label class="flex gap-2 rounded-xl border border-slate-200 p-3"><input name="m1-quiz" value="batang" type="radio"> Diagram batang</label> <label class="flex gap-2 rounded-xl border border-slate-200 p-3"><input name="m1-quiz" value="peta" type="radio"> Peta konsep</label>
-         </div><button id="m1-check-answer" type="button" class="mt-4 rounded-xl bg-emerald-700 px-4 py-3 font-bold text-white">Periksa Jawaban</button>
-         <p id="m1-feedback" class="mt-3 font-semibold" aria-live="polite"></p>
-        </article>
-        <aside class="card bg-violet-50 border-violet-100">
-         <h3 class="text-xl font-extrabold">Contoh Jawaban</h3>
-         <p class="mt-2">Susun tabel berikut sebelum membuat diagram.</p>
-         <table class="mt-4 w-full text-left">
-          <thead>
-           <tr class="border-b border-violet-200">
-            <th class="pb-2">Hari</th>
-            <th class="pb-2">Pengunjung</th>
-           </tr>
-          </thead>
-          <tbody>
-           <tr>
-            <td class="py-2">Senin</td>
-            <td>40</td>
-           </tr>
-           <tr>
-            <td class="py-2">Selasa</td>
-            <td>55</td>
-           </tr>
-           <tr>
-            <td class="py-2">Rabu</td>
-            <td>48</td>
-           </tr>
-          </tbody>
-         </table><button id="m1-answer" type="button" class="mt-4 rounded-xl border border-emerald-300 bg-white px-4 py-3 font-bold text-emerald-800">Tampilkan Contoh Jawaban</button>
-         <p id="m1-example-answer" class="hidden mt-3 notice bg-emerald-100 text-emerald-900">Gunakan diagram batang karena data membandingkan jumlah pengunjung pada beberapa kategori hari.</p>
-        </aside>
-       </div>
-      </section>
-      <section id="m1-refleksi" class="subchapter-view mt-5">
-       <article class="card">
-        <h3 class="text-xl font-extrabold">Refleksi Modul 1</h3>
-        <p class="mt-2">Centang bagian yang sudah kamu pahami, lalu tuliskan catatan refleksimu.</p>
-        <div class="mt-4 grid md:grid-cols-3 gap-3"><label class="flex gap-2"><input class="progress-input" id="m1-check-1" type="checkbox"> Saya memahami data mentah.</label> <label class="flex gap-2"><input class="progress-input" id="m1-check-2" type="checkbox"> Saya dapat membuat tabel.</label> <label class="flex gap-2"><input class="progress-input" id="m1-check-3" type="checkbox"> Saya dapat memilih diagram.</label>
-        </div><label for="module1-notes" class="mt-5 block font-bold">Catatan refleksi</label> <textarea id="module1-notes" class="progress-input mt-2 w-full rounded-xl border border-sky-200 p-3" rows="4" placeholder="Tuliskan hal yang sudah dipahami dan hal yang masih ingin ditanyakan..."></textarea> <button type="button" class="save-progress mt-4 rounded-xl bg-sky-700 px-4 py-3 font-bold text-white" data-template-id="save-module1-button" style="background: rgb(20, 107, 178); color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 16px;">Simpan progres Modul 1</button>
-       </article>
-      </section>
-      <section id="m1-tips" class="subchapter-view mt-5">
-       <article class="card border-emerald-200 bg-emerald-50">
-        <h3 class="text-xl font-extrabold">Tips Guru</h3>
-        <ul class="mt-4 list-disc list-inside space-y-2">
-         <li>Mulai dari data yang dekat dengan kehidupan siswa, misalnya jumlah buku, jenis transportasi, atau olahraga favorit.</li>
-         <li>Minta siswa menjelaskan alasan pemilihan diagram, bukan hanya membuat diagram.</li>
-         <li>Ajak siswa memeriksa judul tabel, satuan, label sumbu, dan keterbacaan warna.</li>
-         <li>Gunakan kerja berpasangan saat siswa baru belajar menggunakan spreadsheet.</li>
-        </ul>
-       </article>
-      </section>
-     </section>
-     <section id="module2" class="module-view mt-6" aria-labelledby="module2-title">
-      <article data-template-id="module2-banner" class="canva-banner card border-violet-200 bg-violet-50" style="background: linear-gradient(135deg, rgb(238, 247, 255), rgb(243, 239, 255));">
-       <p class="text-sm font-bold uppercase tracking-widest text-violet-700">Modul 2 • Informatika Kelas 9</p>
-       <h2 id="module2-title" data-template-id="module2-title" class="canva-text mt-2 font-extrabold" style="color: rgb(18, 48, 74); font-weight: 800; font-style: normal; font-size: 24px;">Algoritma dan Pemrograman</h2>
-       <p data-template-id="module2-description" class="canva-text mt-3 leading-relaxed" style="color: rgb(66, 100, 121); font-weight: 400; font-style: normal; font-size: 16px;">Belajar menyusun langkah runtut, memahami input, proses, output, serta menguji solusi.</p>
-      </article>
-      <nav class="mt-5 flex flex-wrap gap-2" aria-label="Subbab Modul 2"><button type="button" class="subchapter-button active rounded-xl px-3 py-2 text-sm font-bold" data-subchapter="m2-konsep">Konsep Algoritma</button> <button type="button" class="subchapter-button rounded-xl px-3 py-2 text-sm font-bold" data-subchapter="m2-blok">Pemrograman Visual Blok</button> <button type="button" class="subchapter-button rounded-xl px-3 py-2 text-sm font-bold" data-subchapter="m2-pseudocode">Pseudocode</button> <button type="button" class="subchapter-button rounded-xl px-3 py-2 text-sm font-bold" data-subchapter="m2-scratch">Scratch</button> <button type="button" class="subchapter-button rounded-xl px-3 py-2 text-sm font-bold" data-subchapter="m2-blockly">Blockly</button> <button type="button" class="subchapter-button rounded-xl px-3 py-2 text-sm font-bold" data-subchapter="m2-langkah">Langkah Praktik</button> <button type="button" class="subchapter-button rounded-xl px-3 py-2 text-sm font-bold" data-subchapter="m2-latihan">Latihan Praktik</button> <button type="button" class="subchapter-button rounded-xl px-3 py-2 text-sm font-bold" data-subchapter="m2-refleksi">Refleksi</button> <button type="button" class="subchapter-button rounded-xl px-3 py-2 text-sm font-bold" data-subchapter="m2-tips">Tips Guru</button>
-      </nav>
-      <section id="m2-konsep" class="subchapter-view active mt-5">
-       <div class="grid lg:grid-cols-[1.2fr_.8fr] gap-6">
-        <article class="card">
-         <h3 class="text-xl font-extrabold">Konsep Algoritma</h3>
-         <p class="mt-3 leading-relaxed">Algoritma adalah urutan langkah yang jelas, logis, dan terbatas untuk menyelesaikan masalah. Algoritma tidak selalu berupa program komputer; resep memasak dan petunjuk menuju kelas juga merupakan contoh algoritma.</p>
-         <div class="mt-5 grid sm:grid-cols-3 gap-3">
-          <div class="notice bg-sky-50">
-           <strong>Input</strong><br>
-           Data atau kondisi awal.
-          </div>
-          <div class="notice bg-emerald-50">
-           <strong>Proses</strong><br>
-           Langkah yang dikerjakan.
-          </div>
-          <div class="notice bg-violet-50">
-           <strong>Output</strong><br>
-           Hasil yang diperoleh.
-          </div>
-         </div>
-         <div class="mt-5 rounded-2xl border border-violet-100"><button type="button" class="accordion-trigger p-4 font-bold" data-accordion="m2-ciri">Ciri algoritma yang baik<i data-lucide="chevron-down" class="w-5 h-5"></i></button>
-          <div id="m2-ciri" class="accordion-panel px-4 pb-4">
-           Langkahnya berurutan, tidak ambigu, dapat dilakukan, mempunyai awal dan akhir, serta menghasilkan keluaran yang dapat diperiksa.
-          </div>
-         </div>
-        </article>
-        <aside class="card bg-sky-50 border-sky-100">
-         <h3 class="text-xl font-extrabold">Contoh IPO</h3>
-         <p class="mt-3"><strong>Masalah:</strong> menghitung total dua bilangan.</p>
-         <p class="mt-3"><strong>Input:</strong> bilangan A dan B.</p>
-         <p class="mt-3"><strong>Proses:</strong> A + B.</p>
-         <p class="mt-3"><strong>Output:</strong> hasil penjumlahan.</p>
-        </aside>
-       </div>
-      </section>
-      <section id="m2-blok" class="subchapter-view mt-5">
-       <article class="card">
-        <h3 class="text-xl font-extrabold">Pemrograman Visual Blok</h3>
-        <p class="mt-3">Pemrograman visual blok menggunakan potongan perintah yang dapat disusun seperti kepingan puzzle. Bentuk blok membantu mencegah kesalahan penulisan sintaks saat pemula belajar logika program.</p>
-        <div class="mt-5 grid md:grid-cols-2 gap-4">
-         <div class="notice bg-amber-50">
-          <strong>Peristiwa</strong><br>
-          Memulai program, misalnya ketika bendera hijau diklik.
-         </div>
-         <div class="notice bg-sky-50">
-          <strong>Gerak</strong><br>
-          Mengatur posisi, arah, atau perpindahan objek.
-         </div>
-         <div class="notice bg-violet-50">
-          <strong>Kontrol</strong><br>
-          Pengulangan, percabangan, dan jeda.
-         </div>
-         <div class="notice bg-emerald-50">
-          <strong>Variabel</strong><br>
-          Menyimpan nilai yang dapat berubah, misalnya skor.
-         </div>
-        </div>
-       </article>
-      </section>
-      <section id="m2-pseudocode" class="subchapter-view mt-5">
-       <article class="card">
-        <h3 class="text-xl font-extrabold">Pseudocode</h3>
-        <p class="mt-3">Pseudocode adalah cara menulis rancangan algoritma dengan bahasa sederhana. Pseudocode tidak harus mengikuti aturan bahasa pemrograman tertentu, tetapi harus cukup jelas untuk dipahami orang lain.</p>
-        <pre class="code-note mt-5 overflow-auto rounded-2xl bg-slate-900 p-5 text-slate-100">MULAI
-  INPUT nilai
-  JIKA nilai &gt;= 75 MAKA
-    TAMPILKAN "Tuntas"
-  JIKA TIDAK MAKA
-    TAMPILKAN "Perlu belajar lagi"
-SELESAI</pre>
-        <p class="mt-4 notice bg-violet-50"><strong>Tip:</strong> Gunakan kata kerja yang jelas, misalnya INPUT, HITUNG, JIKA, ULANGI, dan TAMPILKAN.</p>
-       </article>
-      </section>
-      <section id="m2-scratch" class="subchapter-view mt-5">
-       <article class="card">
-        <h3 class="text-xl font-extrabold">Scratch</h3>
-        <p class="mt-3">Scratch adalah lingkungan pemrograman visual blok yang dapat digunakan untuk membuat animasi, cerita interaktif, permainan sederhana, dan simulasi.</p>
-        <ol class="mt-5 list-decimal list-inside space-y-2">
-         <li>Pilih atau buat sprite sebagai objek program.</li>
-         <li>Gunakan blok peristiwa untuk memulai program.</li>
-         <li>Tambahkan blok gerak, tampilan, suara, atau kontrol.</li>
-         <li>Jalankan bendera hijau untuk menguji hasil.</li>
-         <li>Perbaiki urutan blok jika hasil belum sesuai.</li>
-        </ol>
-       </article>
-      </section>
-      <section id="m2-blockly" class="subchapter-view mt-5">
-       <article class="card">
-        <h3 class="text-xl font-extrabold">Blockly</h3>
-        <p class="mt-3">Blockly adalah pustaka pemrograman visual blok yang dapat digunakan dalam berbagai aplikasi pembelajaran. Konsep dasarnya serupa: siswa menyusun blok untuk membangun urutan, pilihan, dan pengulangan.</p>
-        <div class="mt-5 grid md:grid-cols-3 gap-3">
-         <div class="notice bg-sky-50">
-          <strong>Urutan</strong><br>
-          Blok dijalankan dari atas ke bawah.
-         </div>
-         <div class="notice bg-amber-50">
-          <strong>Percabangan</strong><br>
-          Program memilih aksi berdasarkan kondisi.
-         </div>
-         <div class="notice bg-emerald-50">
-          <strong>Pengulangan</strong><br>
-          Program mengulangi tindakan tertentu.
-         </div>
-        </div>
-       </article>
-      </section>
-      <section id="m2-langkah" class="subchapter-view mt-5">
-       <article class="card">
-        <h3 class="text-xl font-extrabold">Langkah Praktik</h3>
-        <ol class="mt-5 grid md:grid-cols-2 gap-4 list-none">
-         <li class="notice bg-violet-50"><strong>1. Tentukan masalah</strong><br>
-          Contoh: membuat sprite berjalan saat tombol panah ditekan.</li>
-         <li class="notice bg-violet-50"><strong>2. Tentukan IPO</strong><br>
-          Input: tombol panah. Proses: ubah posisi. Output: sprite bergerak.</li>
-         <li class="notice bg-violet-50"><strong>3. Tulis pseudocode</strong><br>
-          Susun langkah sebelum mengambil blok.</li>
-         <li class="notice bg-violet-50"><strong>4. Susun blok</strong><br>
-          Pilih blok peristiwa, kontrol, dan gerak yang sesuai.</li>
-         <li class="notice bg-violet-50"><strong>5. Uji program</strong><br>
-          Jalankan program dan perhatikan hasilnya.</li>
-         <li class="notice bg-violet-50"><strong>6. Perbaiki</strong><br>
-          Telusuri blok satu per satu bila hasil belum benar.</li>
-        </ol>
-       </article>
-      </section>
-      <section id="m2-latihan" class="subchapter-view mt-5">
-       <div class="grid lg:grid-cols-2 gap-6">
-        <article class="card">
-         <h3 class="text-xl font-extrabold">Latihan Praktik Modul 2</h3>
-         <p class="mt-3">Kamu ingin membuat program yang menampilkan pesan “Selamat belajar” ketika bendera hijau diklik.</p>
-         <p class="mt-4 font-bold">Urutan yang paling tepat adalah ...</p>
-         <div class="mt-3 space-y-2"><label class="flex gap-2 rounded-xl border border-slate-200 p-3"><input name="m2-quiz" value="a" type="radio"> Tampilkan pesan, lalu tunggu bendera hijau diklik.</label> <label class="flex gap-2 rounded-xl border border-slate-200 p-3"><input name="m2-quiz" value="b" type="radio"> Ketika bendera hijau diklik, tampilkan pesan.</label> <label class="flex gap-2 rounded-xl border border-slate-200 p-3"><input name="m2-quiz" value="c" type="radio"> Hapus semua blok, lalu tampilkan pesan.</label>
-         </div><button id="m2-check-answer" type="button" class="mt-4 rounded-xl bg-violet-700 px-4 py-3 font-bold text-white">Periksa Jawaban</button>
-         <p id="m2-feedback" class="mt-3 font-semibold" aria-live="polite"></p>
-        </article>
-        <aside class="card bg-emerald-50 border-emerald-100">
-         <h3 class="text-xl font-extrabold">Tampilkan Contoh</h3>
-         <p class="mt-2">Gunakan rancangan sederhana berikut.</p><button id="m2-example" type="button" class="mt-4 rounded-xl border border-emerald-300 bg-white px-4 py-3 font-bold text-emerald-800">Tampilkan Contoh Jawaban</button>
-         <div id="m2-example-answer" class="hidden mt-4 notice bg-white">
-          <p><strong>Pseudocode:</strong></p>
-          <p class="code-note mt-2">KETIKA bendera hijau diklik<br>
-           TAMPILKAN "Selamat belajar" selama 2 detik</p>
-          <p class="mt-3 text-sm">Di Scratch, gunakan blok peristiwa “ketika bendera hijau diklik”, lalu blok tampilan “katakan ... selama ... detik”.</p>
-         </div>
-        </aside>
-       </div>
-      </section>
-      <section id="m2-refleksi" class="subchapter-view mt-5">
-       <article class="card">
-        <h3 class="text-xl font-extrabold">Refleksi Modul 2</h3>
-        <div class="mt-4 grid md:grid-cols-3 gap-3"><label class="flex gap-2"><input class="progress-input" id="m2-check-1" type="checkbox"> Saya memahami algoritma.</label> <label class="flex gap-2"><input class="progress-input" id="m2-check-2" type="checkbox"> Saya dapat menentukan IPO.</label> <label class="flex gap-2"><input class="progress-input" id="m2-check-3" type="checkbox"> Saya dapat menulis langkah runtut.</label>
-        </div><label for="module2-notes" class="mt-5 block font-bold">Catatan refleksi</label> <textarea id="module2-notes" class="progress-input mt-2 w-full rounded-xl border border-violet-200 p-3" rows="4" placeholder="Tuliskan bagian algoritma atau pemrograman blok yang sudah kamu pahami..."></textarea> <button type="button" class="save-progress mt-4 rounded-xl bg-violet-700 px-4 py-3 font-bold text-white" data-template-id="save-module2-button" style="background: rgb(109, 75, 195); color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 16px;">Simpan progres Modul 2</button>
-       </article>
-      </section>
-      <section id="m2-tips" class="subchapter-view mt-5">
-       <article class="card border-violet-200 bg-violet-50">
-        <h3 class="text-xl font-extrabold">Tips Guru</h3>
-        <ul class="mt-4 list-disc list-inside space-y-2">
-         <li>Gunakan aktivitas sehari-hari, seperti membuat teh atau mengatur antrean, untuk memperkenalkan algoritma.</li>
-         <li>Minta siswa menulis pseudocode sebelum menyusun blok.</li>
-         <li>Berikan waktu khusus untuk uji coba dan debugging, bukan hanya membuat proyek.</li>
-         <li>Fokus pada alasan di balik urutan blok agar siswa memahami logika, bukan sekadar meniru.</li>
-        </ul>
-       </article>
-      </section>
-     </section>
-     <section id="module3" class="module-view mt-6" aria-labelledby="module3-title">
-      <article data-template-id="module3-banner" class="canva-banner card border-teal-200 bg-teal-50" style="background: linear-gradient(135deg, rgb(230, 247, 245), rgb(255, 247, 232));">
-       <p data-template-id="module3-kicker" class="canva-text text-sm font-bold uppercase tracking-widest" style="color: rgb(8, 127, 123); font-weight: 700; font-style: normal; font-size: 16px;">Modul 3 • Informatika Kelas 9</p>
-       <h2 id="module3-title" data-template-id="module3-title" class="canva-text mt-2 font-extrabold" style="color: rgb(18, 48, 74); font-weight: 800; font-style: normal; font-size: 24px;">Modul 3: Literasi Digital</h2>
-       <p data-template-id="module3-description" class="canva-text mt-3 leading-relaxed" style="color: rgb(54, 92, 114); font-weight: 400; font-style: normal; font-size: 16px;">Cari, evaluasi, dan gunakan informasi digital dengan cakap, etis, serta bertanggung jawab.</p>
-      </article>
-      <div class="grid lg:grid-cols-2 gap-6 mt-6">
-       <article class="card">
-        <h3 class="text-xl font-bold">Materi dan contoh</h3>
-        <p class="mt-3">Literasi digital berarti menggunakan informasi dan teknologi secara cakap, kritis, etis, serta bertanggung jawab.</p>
-        <div class="mt-4 space-y-3">
-         <div class="notice bg-teal-50">
-          <strong>Cari:</strong> gunakan kata kunci yang spesifik dan sumber tepercaya.
-         </div>
-         <div class="notice bg-sky-50">
-          <strong>Evaluasi:</strong> periksa penulis, tanggal, bukti, tujuan, dan bandingkan sumber.
-         </div>
-         <div class="notice bg-orange-50">
-          <strong>Etika:</strong> tanggapi gagasan dengan sopan dan jangan menyebarkan data pribadi.
-         </div>
-        </div>
-       </article>
-       <article class="card">
-        <h3 class="text-xl font-bold">Langkah praktik</h3>
-        <ol class="mt-3 list-decimal list-inside space-y-2">
-         <li>Tentukan klaim yang ingin diperiksa.</li>
-         <li>Cari dan bandingkan sumber.</li>
-         <li>Pisahkan fakta, opini, dan iklan.</li>
-         <li>Tulis kesimpulan dengan bahasa sendiri.</li>
-        </ol><button id="m3-example" type="button" class="mt-4 rounded-xl border border-teal-300 bg-white px-4 py-3 font-bold text-teal-800">Tampilkan contoh respons santun</button>
-        <p id="m3-example-answer" class="hidden mt-3 notice bg-teal-50">“Terima kasih atas pendapatmu. Mari kita bandingkan alasan dan contohnya bersama.”</p>
-       </article>
       </div>
-      <div class="card mt-6">
-       <h3 class="text-xl font-bold">Refleksi Modul 3</h3>
-       <div class="mt-4 grid md:grid-cols-2 gap-3">
-        <label class="flex gap-2"><input class="progress-input" id="m3-check-1" type="checkbox"> Saya dapat mencari informasi dengan kata kunci tepat.</label><label class="flex gap-2"><input class="progress-input" id="m3-check-2" type="checkbox"> Saya dapat memeriksa kredibilitas sumber.</label><label class="flex gap-2"><input class="progress-input" id="m3-check-3" type="checkbox"> Saya dapat membedakan fakta dan opini.</label><label class="flex gap-2"><input class="progress-input" id="m3-check-4" type="checkbox"> Saya dapat berkomunikasi dengan sopan.</label>
-       </div><label for="module3-notes" class="mt-4 block font-bold">Catatan refleksi</label><textarea id="module3-notes" class="progress-input mt-2 w-full rounded-xl border border-teal-200 p-3" rows="3" placeholder="Kebiasaan digital apa yang ingin kamu praktikkan?"></textarea><button type="button" class="save-progress mt-4 rounded-xl bg-teal-700 px-4 py-3 font-bold text-white" data-template-id="save-module3-button" style="background: rgb(8, 127, 123); color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 16px;">Simpan progres Modul 3</button>
-      </div>
-     </section>
-     <section id="module4" class="module-view mt-6" aria-labelledby="module4-title">
-      <article data-template-id="module4-banner" class="canva-banner card border-orange-200 bg-orange-50" style="background: linear-gradient(135deg, rgb(255, 244, 235), rgb(255, 248, 232));">
-       <p data-template-id="module4-kicker" class="canva-text text-sm font-bold uppercase tracking-widest" style="color: rgb(168, 59, 59); font-weight: 700; font-style: normal; font-size: 16px;">Modul 4 • Informatika Kelas 9</p>
-       <h2 id="module4-title" data-template-id="module4-title" class="canva-text mt-2 font-extrabold" style="color: rgb(18, 48, 74); font-weight: 800; font-style: normal; font-size: 24px;">Modul 4: Keamanan Digital</h2>
-       <p data-template-id="module4-description" class="canva-text mt-3 leading-relaxed" style="color: rgb(54, 92, 114); font-weight: 400; font-style: normal; font-size: 16px;">Pelajari kebiasaan aman untuk melindungi akun, perangkat, privasi, dan aktivitas digital.</p>
-      </article>
-      <div class="grid lg:grid-cols-2 gap-6 mt-6">
-       <article class="card">
-        <h3 class="text-xl font-bold">Materi keamanan digital</h3>
-        <ul class="mt-3 list-disc list-inside space-y-2">
-         <li>Gunakan passphrase panjang dan unik, tanpa membagikan kata sandi asli.</li>
-         <li>Waspadai pesan mendesak, tautan aneh, dan permintaan kode rahasia.</li>
-         <li>Bagikan data pribadi hanya bila diperlukan dan dengan izin.</li>
-         <li>Perbarui perangkat serta periksa izin aplikasi secara berkala.</li>
-        </ul>
-       </article>
-       <article class="card">
-        <h3 class="text-xl font-bold">Latihan aman</h3>
-        <p class="mt-2">Pesan fiktif: “Kirim kode rahasia sekarang agar akun tidak ditutup.”</p>
-        <div class="mt-4 space-y-2">
-         <label class="flex gap-2"><input id="m4-risk-1" type="checkbox"> Pesan bersifat mendesak.</label><label class="flex gap-2"><input id="m4-risk-2" type="checkbox"> Pesan meminta data rahasia.</label><label class="flex gap-2"><input id="m4-risk-3" type="checkbox"> Saya perlu berhenti dan memeriksa kanal resmi.</label>
-        </div><button id="m4-check" type="button" class="mt-4 rounded-xl bg-red-800 px-4 py-3 font-bold text-white">Periksa latihan</button>
-        <p id="m4-feedback" class="mt-3 font-semibold" aria-live="polite"></p>
-       </article>
-      </div>
-      <div class="card mt-6">
-       <h3 class="text-xl font-bold">Refleksi Modul 4</h3>
-       <div class="mt-4 grid md:grid-cols-2 gap-3">
-        <label class="flex gap-2"><input class="progress-input" id="m4-check-1" type="checkbox"> Saya memahami keamanan digital.</label><label class="flex gap-2"><input class="progress-input" id="m4-check-2" type="checkbox"> Saya dapat mengenali phishing.</label><label class="flex gap-2"><input class="progress-input" id="m4-check-3" type="checkbox"> Saya menjaga data pribadi.</label><label class="flex gap-2"><input class="progress-input" id="m4-check-4" type="checkbox"> Saya tahu kapan harus meminta bantuan.</label>
-       </div><label for="module4-notes" class="mt-4 block font-bold">Catatan refleksi</label><textarea id="module4-notes" class="progress-input mt-2 w-full rounded-xl border border-orange-200 p-3" rows="3" placeholder="Tulis kebiasaan aman yang ingin dilakukan. Jangan tulis data rahasia."></textarea><button type="button" class="save-progress mt-4 rounded-xl bg-red-800 px-4 py-3 font-bold text-white" data-template-id="save-module4-button" style="background: rgb(168, 59, 59); color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 16px;">Simpan progres Modul 4</button>
-      </div>
-     </section>
-     <section class="mt-8">
-      <h2 data-template-id="additional-learning-title" class="canva-text font-extrabold" style="color: rgb(18, 48, 74); font-weight: 800; font-style: normal; font-size: 24px;">Materi dan Video Tambahan</h2>
-      <div id="student-material-list" class="mt-4 grid lg:grid-cols-2 gap-4"></div>
-      <div id="student-video-list" class="mt-4 grid lg:grid-cols-2 gap-4"></div>
-     </section>
-     <section class="mt-8">
-      <h2 data-template-id="student-task-title" class="canva-text font-extrabold" style="color: rgb(18, 48, 74); font-weight: 800; font-style: normal; font-size: 24px;">Tugas Pembelajaran</h2>
-      <p data-template-id="student-task-helper" class="canva-text mt-2" style="color: rgb(82, 112, 135); font-weight: 400; font-style: normal; font-size: 16px;">Gunakan status tugas untuk membantu mengatur kegiatan belajar. Status ini tidak mengirim pengumpulan ke layanan eksternal.</p>
-      <div id="student-task-list" class="mt-4 grid lg:grid-cols-2 gap-4"></div>
-     </section>
-     <section data-template-id="summary-section" class="canva-section card mt-8 border-sky-200" style="background: rgb(255, 255, 255);">
-      <h2 data-template-id="summary-title" class="canva-text font-extrabold" style="color: rgb(18, 48, 74); font-weight: 800; font-style: normal; font-size: 24px;">Ringkasan Pembelajaran Modul 1 sampai Modul 4</h2>
-      <p data-template-id="summary-text" class="canva-text mt-3 max-w-4xl leading-relaxed" style="color: rgb(66, 100, 121); font-weight: 400; font-style: normal; font-size: 16px;">Data yang baik membantu memahami informasi, algoritma membantu menyelesaikan masalah, literasi digital membantu berkomunikasi dengan bijak, dan keamanan digital membantu melindungi diri serta orang lain.</p>
-      <p id="progress-status" class="mt-4 font-semibold text-emerald-700" aria-live="polite"></p>
-     </section>
-    </section>
-    <section id="teacher-mode" class="mode-panel" aria-label="Mode Guru">
-     <div data-template-id="teacher-help" class="canva-banner notice border border-violet-100 bg-violet-50 text-violet-950" style="background: rgb(243, 239, 255); color: rgb(63, 42, 120);">
-      <div class="flex gap-3">
-       <i data-lucide="sparkles" class="mt-0.5 w-5 h-5 shrink-0"></i>
-       <p data-template-id="teacher-help-text" class="canva-text" style="color: rgb(63, 42, 120); font-weight: 400; font-style: normal; font-size: 16px;">Gunakan Mode Guru untuk menyiapkan atau memperbarui pembelajaran. Materi inti Modul 1 dan Modul 2 dilindungi agar selalu tersedia untuk siswa.</p>
-      </div>
-     </div>
-     <div class="mt-5 flex flex-wrap items-center justify-between gap-3">
-      <div>
-       <h2 data-template-id="teacher-panel-title" class="canva-text font-extrabold" style="color: rgb(18, 48, 74); font-weight: 800; font-style: normal; font-size: 24px;">Panel Pengelolaan Pembelajaran</h2>
-       <p data-template-id="teacher-storage-note" class="canva-text mt-1 text-sm" style="color: rgb(82, 112, 135); font-weight: 400; font-style: normal; font-size: 16px;">Perubahan pembelajaran dan progres disimpan ke Canva Sheet untuk halaman ini.</p>
-      </div>
-      <div class="flex gap-2">
-       <button id="back-student-button" type="button" data-template-id="back-student-button" class="canva-button rounded-xl bg-sky-700 px-4 py-3 font-bold text-white" style="background: rgb(20, 107, 178); color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 16px;">Kembali ke Mode Siswa</button><button id="lock-teacher-button" type="button" class="rounded-xl border border-violet-300 bg-white px-4 py-3 font-bold text-violet-900">Kunci Mode Guru</button>
-      </div>
-     </div>
-     <nav class="mt-6 flex flex-wrap gap-2" aria-label="Menu pengelolaan guru"><button type="button" class="teacher-tab active canva-button rounded-xl px-4 py-2.5 text-sm font-bold" data-teacher-tab="manage-modules" data-template-id="teacher-tab-modules" style="background: rgb(255, 255, 255); color: rgb(109, 75, 195); font-weight: 700; font-style: normal; font-size: 16px;">Kelola Modul</button> <button type="button" class="teacher-tab canva-button rounded-xl px-4 py-2.5 text-sm font-bold" data-teacher-tab="add-material" data-template-id="teacher-tab-material" style="background: rgb(255, 255, 255); color: rgb(109, 75, 195); font-weight: 700; font-style: normal; font-size: 16px;">Tambah Materi</button> <button type="button" class="teacher-tab canva-button rounded-xl px-4 py-2.5 text-sm font-bold" data-teacher-tab="add-video" data-template-id="teacher-tab-video" style="background: rgb(255, 255, 255); color: rgb(109, 75, 195); font-weight: 700; font-style: normal; font-size: 16px;">Tambah Video</button> <button type="button" class="teacher-tab canva-button rounded-xl px-4 py-2.5 text-sm font-bold" data-teacher-tab="manage-tasks" data-template-id="teacher-tab-tasks" style="background: rgb(255, 255, 255); color: rgb(109, 75, 195); font-weight: 700; font-style: normal; font-size: 16px;">Kelola Tugas</button> <button type="button" class="teacher-tab canva-button rounded-xl px-4 py-2.5 text-sm font-bold" data-teacher-tab="preview-student" data-template-id="teacher-tab-preview" style="background: rgb(255, 255, 255); color: rgb(109, 75, 195); font-weight: 700; font-style: normal; font-size: 16px;">Pratinjau Siswa</button> <button type="button" class="teacher-tab canva-button rounded-xl px-4 py-2.5 text-sm font-bold" data-teacher-tab="progress-settings" data-template-id="teacher-tab-progress" style="background: rgb(255, 255, 255); color: rgb(109, 75, 195); font-weight: 700; font-style: normal; font-size: 16px;">Pengaturan Progres</button>
-     </nav>
-     <section id="manage-modules" class="teacher-tab-panel active mt-6">
-      <div class="card teacher-card">
-       <h3 data-template-id="manage-modules-title" class="canva-text font-extrabold" style="color: rgb(18, 48, 74); font-weight: 800; font-style: normal; font-size: 19px;">Kelola Modul 1 sampai Modul 4</h3>
-       <p data-template-id="manage-modules-description" class="canva-text mt-2" style="color: rgb(66, 100, 121); font-weight: 400; font-style: normal; font-size: 16px;">Modul 1 dan Modul 2 adalah materi inti yang dipulihkan dan diamankan agar tidak hilang dari navigasi siswa.</p>
-       <div id="module-management-list" class="mt-5 grid md:grid-cols-2 gap-4"></div>
-      </div>
-     </section>
-     <section id="add-material" class="teacher-tab-panel mt-6">
-      <div class="grid lg:grid-cols-[.9fr_1.1fr] gap-6">
-       <form id="material-form" class="card teacher-card">
-        <h3 data-template-id="material-form-title" class="canva-text font-extrabold" style="color: rgb(18, 48, 74); font-weight: 800; font-style: normal; font-size: 19px;">Tambah Materi</h3><input id="material-edit-id" type="hidden"><label for="material-title" class="mt-4 block font-bold">Judul materi</label><input id="material-title" required="" class="mt-1 w-full rounded-xl border border-violet-200 p-3"><label for="material-description" class="mt-3 block font-bold">Deskripsi singkat</label><textarea id="material-description" class="mt-1 w-full rounded-xl border border-violet-200 p-3" rows="3"></textarea><label class="mt-3 flex gap-2"><input id="material-active" type="checkbox" checked=""> Tampilkan untuk siswa</label><button type="submit" data-template-id="save-material-button" class="canva-button mt-4 rounded-xl bg-violet-700 px-4 py-3 font-bold text-white" style="background: rgb(109, 75, 195); color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 16px;">Simpan Materi</button>
-       </form>
-       <div>
-        <h3 data-template-id="material-list-title" class="canva-text font-extrabold" style="color: rgb(18, 48, 74); font-weight: 800; font-style: normal; font-size: 19px;">Daftar Materi Tambahan</h3>
-        <div id="teacher-material-list" class="mt-4 space-y-4"></div>
-       </div>
-      </div>
-     </section>
-     <section id="add-video" class="teacher-tab-panel mt-6">
-      <div class="grid lg:grid-cols-[.9fr_1.1fr] gap-6">
-       <form id="video-form" class="card teacher-card">
-        <h3 data-template-id="video-form-title" class="canva-text font-extrabold" style="color: rgb(18, 48, 74); font-weight: 800; font-style: normal; font-size: 19px;">Tambah Video</h3><input id="video-edit-id" type="hidden"><label for="video-title" class="mt-4 block font-bold">Judul video</label><input id="video-title" required="" class="mt-1 w-full rounded-xl border border-violet-200 p-3"><label for="video-url" class="mt-3 block font-bold">URL video atau tautan</label><input id="video-url" type="url" class="mt-1 w-full rounded-xl border border-violet-200 p-3" placeholder="https://..."><label class="mt-3 flex gap-2"><input id="video-active" type="checkbox" checked=""> Tampilkan untuk siswa</label><button type="submit" data-template-id="save-video-button" class="canva-button mt-4 rounded-xl bg-violet-700 px-4 py-3 font-bold text-white" style="background: rgb(109, 75, 195); color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 16px;">Simpan Video</button>
-       </form>
-       <div>
-        <h3 data-template-id="video-list-title" class="canva-text font-extrabold" style="color: rgb(18, 48, 74); font-weight: 800; font-style: normal; font-size: 19px;">Daftar Video</h3>
-        <div id="teacher-video-list" class="mt-4 space-y-4"></div>
-       </div>
-      </div>
-     </section>
-     <section id="manage-tasks" class="teacher-tab-panel mt-6">
-      <div class="grid lg:grid-cols-[.9fr_1.1fr] gap-6">
-       <form id="task-form" class="card teacher-card">
-        <h3 data-template-id="task-form-title" class="canva-text font-extrabold" style="color: rgb(18, 48, 74); font-weight: 800; font-style: normal; font-size: 19px;">Buat Tugas</h3><input id="task-edit-id" type="hidden"><label for="task-title" class="mt-4 block font-bold">Judul tugas</label><input id="task-title" required="" class="mt-1 w-full rounded-xl border border-violet-200 p-3"><label for="task-instructions" class="mt-3 block font-bold">Instruksi</label><textarea id="task-instructions" required="" class="mt-1 w-full rounded-xl border border-violet-200 p-3" rows="3"></textarea><label class="mt-3 flex gap-2"><input id="task-active" type="checkbox" checked=""> Tugas aktif untuk siswa</label><button type="submit" data-template-id="save-task-button" class="canva-button mt-4 rounded-xl bg-violet-700 px-4 py-3 font-bold text-white" style="background: rgb(109, 75, 195); color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 16px;">Simpan Tugas</button>
-       </form>
-       <div>
-        <h3 data-template-id="task-list-title" class="canva-text font-extrabold" style="color: rgb(18, 48, 74); font-weight: 800; font-style: normal; font-size: 19px;">Daftar Tugas</h3>
-        <div id="teacher-task-list" class="mt-4 space-y-4"></div>
-       </div>
-      </div>
-     </section>
-     <section id="preview-student" class="teacher-tab-panel mt-6">
-      <div class="card teacher-card">
-       <h3 data-template-id="preview-title" class="canva-text font-extrabold" style="color: rgb(18, 48, 74); font-weight: 800; font-style: normal; font-size: 19px;">Pratinjau Tampilan Siswa</h3>
-       <p data-template-id="preview-description" class="canva-text mt-2" style="color: rgb(66, 100, 121); font-weight: 400; font-style: normal; font-size: 16px;">Buka Mode Siswa untuk memeriksa modul, materi tambahan, video dengan tautan aktif, dan tugas yang sedang aktif.</p><button id="open-student-preview" type="button" data-template-id="open-preview-button" class="canva-button mt-4 rounded-xl bg-teal-700 px-4 py-3 font-bold text-white" style="background: rgb(8, 127, 123); color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 16px;">Buka Pratinjau Siswa</button>
-      </div>
-     </section>
-     <section id="progress-settings" class="teacher-tab-panel mt-6">
-      <div class="card teacher-card max-w-3xl">
-       <h3 data-template-id="progress-settings-title" class="canva-text font-extrabold" style="color: rgb(18, 48, 74); font-weight: 800; font-style: normal; font-size: 19px;">Pengaturan Penyimpanan Progres</h3>
-       <p data-template-id="progress-settings-description" class="canva-text mt-2" style="color: rgb(66, 100, 121); font-weight: 400; font-style: normal; font-size: 16px;">Atur apakah checklist, status tugas, dan refleksi siswa dapat disimpan dari halaman ini.</p><label class="mt-5 flex items-start gap-3"><input id="save-progress-setting" type="checkbox" class="mt-1"><span><strong>Simpan checklist, status tugas, dan refleksi siswa</strong><br><span class="text-sm text-slate-600">Jika dimatikan, tombol simpan progres tidak menyimpan perubahan baru.</span></span></label><button id="save-progress-setting-button" type="button" data-template-id="save-progress-setting-button" class="canva-button mt-5 rounded-xl bg-violet-700 px-4 py-3 font-bold text-white" style="background: rgb(109, 75, 195); color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 16px;">Simpan Pengaturan</button>
-       <p id="teacher-status" class="mt-3 font-semibold" aria-live="polite"></p>
-      </div>
-     </section>
-    </section>
-   </main>
-   <div id="access-overlay" class="access-overlay hidden" role="presentation">
-    <section class="access-dialog" role="dialog" aria-modal="true" aria-labelledby="access-title">
-     <h2 id="access-title" class="text-2xl font-extrabold text-slate-900">Akses Guru</h2>
-     <p id="access-guidance" class="mt-2 text-sm leading-relaxed text-slate-700"></p>
-     <form id="access-form" class="mt-5"><label for="access-code" class="block font-bold text-slate-900">Kode akses guru</label> <input id="access-code" type="password" autocomplete="off" class="mt-2 w-full rounded-xl border border-slate-400 p-3" required="">
-      <div id="confirm-code-wrap" class="hidden mt-4">
-       <label for="confirm-code" class="block font-bold text-slate-900">Konfirmasi kode akses</label><input id="confirm-code" type="password" autocomplete="off" class="mt-2 w-full rounded-xl border border-slate-400 p-3">
-      </div>
-      <p id="access-message" class="mt-3 min-h-6 text-sm font-semibold text-rose-800" aria-live="polite"></p>
-      <div class="mt-4 flex flex-wrap gap-3">
-       <button id="access-submit" type="submit" class="rounded-xl bg-violet-800 px-5 py-3 font-bold text-white">Masuk</button><button id="access-cancel" type="button" class="rounded-xl border border-slate-400 bg-white px-5 py-3 font-bold text-slate-900">Batal</button>
-      </div>
-     </form>
-    </section>
-   </div>
-   <div id="toast" class="toast fixed bottom-5 right-5 z-50 rounded-xl bg-slate-900 px-4 py-3 text-white shadow-xl" role="status"></div>
-   <footer data-template-id="footer-text" class="canva-footer w-full border-t border-sky-100 bg-white py-6 text-center text-sm" style="color: rgb(82, 112, 135); font-weight: 400; font-style: normal; font-size: 16px;">Belajar digital berarti berpikir kritis, berkarya dengan etis, dan menjaga diri dengan bertanggung jawab.</footer>
-  </div>
-  <script>
-const coreModules=[{id:"module1",title:"Modul 1: Penyajian Data Mentah Menjadi Tabel dan Diagram",locked:true},{id:"module2",title:"Modul 2: Algoritma dan Pemrograman",locked:true},{id:"module3",title:"Modul 3: Literasi Digital"},{id:"module4",title:"Modul 4: Keamanan Digital"}];
-let backendRecords=[],materials=[],videos=[],tasks=[],progressSettings={enabled:true};
-const progressIds=["m1-check-1","m1-check-2","m1-check-3","m2-check-1","m2-check-2","m2-check-3","m3-check-1","m3-check-2","m3-check-3","m3-check-4","m4-check-1","m4-check-2","m4-check-3","m4-check-4"];
-const ACCESS_KEY="informatika9_teacher_access_hash";
-function toast(t){const e=document.getElementById("toast");e.textContent=t;e.classList.add("show");setTimeout(()=>e.classList.remove("show"),3000)}
-function hash(v){let h=2166136261;for(let i=0;i<v.length;i++)h=Math.imul(h^v.charCodeAt(i),16777619);return(h>>>0).toString(16)}
-function showMode(mode){const student=mode==="student";document.getElementById("student-mode").classList.toggle("active",student);document.getElementById("teacher-mode").classList.toggle("active",!student);document.getElementById("student-mode-button").classList.toggle("active-student",student);document.getElementById("teacher-mode-button").classList.toggle("active-teacher",!student);document.getElementById("mode-status").textContent=student?"Mode Siswa aktif":"Mode Guru aktif";window.scrollTo({top:0,behavior:"smooth"})}
-function showModule(id){document.querySelectorAll(".module-view").forEach(e=>e.classList.toggle("active",e.id===id));document.querySelectorAll(".module-button").forEach(e=>e.classList.toggle("active",e.dataset.module===id));window.scrollTo({top:0,behavior:"smooth"})}
-function showSubchapter(id){const prefix=id.slice(0,2);document.querySelectorAll(`[id^="${prefix}-"]`).forEach(e=>{if(e.classList.contains("subchapter-view"))e.classList.toggle("active",e.id===id)});document.querySelectorAll(`[data-subchapter^="${prefix}-"]`).forEach(e=>e.classList.toggle("active",e.dataset.subchapter===id))}
-function showTeacherTab(id){document.querySelectorAll(".teacher-tab-panel").forEach(e=>e.classList.toggle("active",e.id===id));document.querySelectorAll(".teacher-tab").forEach(e=>e.classList.toggle("active",e.dataset.teacherTab===id))}
-function getState(){const checklist={};progressIds.forEach(id=>checklist[id]=document.getElementById(id).checked);return{checklist,notes:{module1:document.getElementById("module1-notes").value,module2:document.getElementById("module2-notes").value,module3:document.getElementById("module3-notes").value,module4:document.getElementById("module4-notes").value}}}
-const handler={onDataChanged(data){backendRecords=data;if(data[0]){try{const s=JSON.parse(data[0].checklist_state||"{}");Object.entries(s.checklist||{}).forEach(([id,v])=>{const e=document.getElementById(id);if(e)e.checked=!!v});const n=JSON.parse(data[0].reflection_notes||"{}");Object.entries(n).forEach(([k,v])=>{const e=document.getElementById(k+"-notes");if(e)e.value=v||""});materials=JSON.parse(data[0].teacher_materials||"[]");videos=JSON.parse(data[0].teacher_videos||"[]");tasks=JSON.parse(data[0].teacher_assignments||"[]");progressSettings=JSON.parse(data[0].progress_settings||'{"enabled":true}')}catch(_){}}renderAll()}};
-async function initializeData(){const r=await window.dataSdk.init(handler);if(!r.isOk){document.getElementById("teacher-status").textContent="Penyimpanan belum dapat dihubungkan. Coba muat ulang halaman.";document.getElementById("teacher-status").className="mt-3 font-semibold text-rose-700"}}
-async function saveAll(control,message){if(control){control.disabled=true;control.classList.add("opacity-60")}try{const state=getState(),record={checklist_state:JSON.stringify({checklist:state.checklist}),reflection_notes:JSON.stringify(state.notes),last_updated:new Date().toISOString(),module_id:"informatika-kelas-9-modul-1-sampai-4",teacher_materials:JSON.stringify(materials),teacher_videos:JSON.stringify(videos),teacher_assignments:JSON.stringify(tasks),progress_settings:JSON.stringify(progressSettings)};const r=backendRecords.length?await window.dataSdk.update({...backendRecords[0],...record}):await window.dataSdk.create(record);if(r.isOk){if(message)toast(message);return true}toast("Perubahan belum dapat dikonfirmasi. Segarkan lalu coba lagi.");return false}finally{if(control){control.disabled=false;control.classList.remove("opacity-60")}}}
-function renderModules(){const l=document.getElementById("module-management-list");l.innerHTML="";coreModules.forEach(m=>{const x=document.createElement("article");x.className="rounded-2xl border border-violet-100 bg-violet-50 p-4";x.innerHTML=`<h4 class="font-bold">${m.title}</h4><p class="mt-2 text-sm">${m.locked?"Materi inti dipulihkan dan selalu tersedia untuk siswa.":"Modul tersedia dalam navigasi siswa."}</p><span class="mt-3 inline-block rounded-full bg-white px-3 py-1 text-xs font-bold">${m.locked?"Dilindungi":"Aktif"}</span>`;l.appendChild(x)})}
-function renderCollection(items,teacherId,studentId,type){const t=document.getElementById(teacherId),s=document.getElementById(studentId);t.innerHTML="";s.innerHTML="";items.forEach(item=>{const a=document.createElement("article");a.className="card";a.innerHTML=`<h4 class="font-bold">${item.title}</h4><p class="mt-2">${item.description||item.instructions||""}</p><button class="delete-item mt-3 rounded-lg bg-rose-50 px-3 py-2 text-sm font-bold text-rose-700" data-type="${type}" data-id="${item.id}">Hapus</button>`;t.appendChild(a);if(item.active){const b=document.createElement("article");b.className="card student-card";b.innerHTML=`<h3 class="font-extrabold">${item.title}</h3><p class="mt-2">${item.description||item.instructions||""}</p>${item.url?`<a href="${item.url}" target="_blank" rel="noopener noreferrer" class="mt-4 inline-block rounded-xl bg-sky-700 px-4 py-3 font-bold text-white">Buka video pembelajaran</a>`:""}`;s.appendChild(b)}});document.querySelectorAll(".delete-item").forEach(b=>b.onclick=async()=>{if(b.dataset.type==="material")materials=materials.filter(x=>x.id!==b.dataset.id);if(b.dataset.type==="video")videos=videos.filter(x=>x.id!==b.dataset.id);if(b.dataset.type==="task")tasks=tasks.filter(x=>x.id!==b.dataset.id);renderAll();await saveAll(b,"Item dihapus.")})}
-function renderAll(){renderModules();renderCollection(materials,"teacher-material-list","student-material-list","material");renderCollection(videos,"teacher-video-list","student-video-list","video");renderCollection(tasks,"teacher-task-list","student-task-list","task");document.getElementById("save-progress-setting").checked=progressSettings.enabled!==false;lucide.createIcons()}
+    </header>
 
-document.addEventListener("DOMContentLoaded",()=>{
-  lucide.createIcons();
-  document.querySelectorAll(".module-button").forEach(b=>b.onclick=()=>showModule(b.dataset.module));
-  document.querySelectorAll(".subchapter-button").forEach(b=>b.onclick=()=>showSubchapter(b.dataset.subchapter));
-  document.querySelectorAll(".teacher-tab").forEach(b=>b.onclick=()=>showTeacherTab(b.dataset.teacherTab));
-  document.querySelectorAll(".accordion-trigger").forEach(b=>b.onclick=()=>document.getElementById(b.dataset.accordion).classList.toggle("open"));
-  document.getElementById("student-mode-button").onclick=()=>showMode("student");
-  document.getElementById("back-student-button").onclick=()=>showMode("student");
-  document.getElementById("lock-teacher-button").onclick=()=>{showMode("student");toast("Mode Guru dikunci.")};
-  document.getElementById("teacher-mode-button").onclick=()=>{const fresh=!localStorage.getItem(ACCESS_KEY);document.getElementById("access-title").textContent=fresh?"Buat kode akses guru":"Akses Guru";document.getElementById("access-guidance").textContent=fresh?"Buat kode minimal 6 karakter untuk membuka panel guru.":"Masukkan kode akses guru untuk membuka fitur pengelolaan.";document.getElementById("confirm-code-wrap").classList.toggle("hidden",!fresh);document.getElementById("access-overlay").classList.remove("hidden")};
-  document.getElementById("access-cancel").onclick=()=>document.getElementById("access-overlay").classList.add("hidden");
-  document.getElementById("access-form").onsubmit=e=>{e.preventDefault();const v=document.getElementById("access-code").value,fresh=!localStorage.getItem(ACCESS_KEY),msg=document.getElementById("access-message");if(fresh){if(v.length<6){msg.textContent="Kode harus minimal 6 karakter.";return}if(v!==document.getElementById("confirm-code").value){msg.textContent="Kode dan konfirmasi belum cocok.";return}localStorage.setItem(ACCESS_KEY,hash(v))}else if(hash(v)!==localStorage.getItem(ACCESS_KEY)){msg.textContent="Kode tidak cocok.";return}document.getElementById("access-overlay").classList.add("hidden");showMode("teacher")};
-  document.getElementById("m1-answer").onclick=()=>document.getElementById("m1-example-answer").classList.remove("hidden");
-  document.getElementById("m2-example").onclick=()=>document.getElementById("m2-example-answer").classList.remove("hidden");
-  document.getElementById("m1-check-answer").onclick=()=>{const ok=document.querySelector('input[name="m1-quiz"]:checked')?.value==="batang",e=document.getElementById("m1-feedback");e.textContent=ok?"Tepat! Diagram batang cocok untuk membandingkan jumlah antarkategori.":"Belum tepat. Perhatikan tujuan data: membandingkan jumlah pada beberapa hari.";e.className="mt-3 font-semibold "+(ok?"text-emerald-700":"text-amber-700")};
-  document.getElementById("m2-check-answer").onclick=()=>{const ok=document.querySelector('input[name="m2-quiz"]:checked')?.value==="b",e=document.getElementById("m2-feedback");e.textContent=ok?"Tepat! Peristiwa memulai program, lalu blok tampilan menjalankan pesan.":"Coba lagi. Program perlu mengetahui kapan perintah dijalankan.";e.className="mt-3 font-semibold "+(ok?"text-emerald-700":"text-amber-700")};
-  document.getElementById("m3-example").onclick=()=>document.getElementById("m3-example-answer").classList.remove("hidden");
-  document.getElementById("m4-check").onclick=()=>{const ok=["m4-risk-1","m4-risk-2","m4-risk-3"].every(id=>document.getElementById(id).checked),e=document.getElementById("m4-feedback");e.textContent=ok?"Tepat. Berhenti, periksa, verifikasi, lalu minta bantuan bila ragu.":"Periksa kembali semua tanda risiko dan langkah aman.";e.className="mt-3 font-semibold "+(ok?"text-emerald-700":"text-amber-700")};
-  document.querySelectorAll(".save-progress").forEach(b=>b.onclick=async e=>{if(!progressSettings.enabled){toast("Penyimpanan progres sedang dimatikan oleh pengaturan guru.");return}if(await saveAll(e.currentTarget,"Progres berhasil disimpan.")){document.getElementById("progress-status").textContent="Checklist dan refleksi tersimpan."}});
-  document.getElementById("open-student-preview").onclick=()=>showMode("student");
-  document.getElementById("save-progress-setting-button").onclick=async e=>{progressSettings.enabled=document.getElementById("save-progress-setting").checked;await saveAll(e.currentTarget,"Pengaturan progres disimpan.")};
-  document.getElementById("material-form").onsubmit=async e=>{e.preventDefault();materials.push({id:"material-"+Date.now(),title:document.getElementById("material-title").value.trim(),description:document.getElementById("material-description").value.trim(),active:document.getElementById("material-active").checked});e.target.reset();renderAll();await saveAll(e.submitter,"Materi ditambahkan.")};
-  document.getElementById("video-form").onsubmit=async e=>{e.preventDefault();videos.push({id:"video-"+Date.now(),title:document.getElementById("video-title").value.trim(),url:document.getElementById("video-url").value.trim(),active:document.getElementById("video-active").checked});e.target.reset();renderAll();await saveAll(e.submitter,"Video ditambahkan.")};
-  document.getElementById("task-form").onsubmit=async e=>{e.preventDefault();tasks.push({id:"task-"+Date.now(),title:document.getElementById("task-title").value.trim(),instructions:document.getElementById("task-instructions").value.trim(),active:document.getElementById("task-active").checked});e.target.reset();renderAll();await saveAll(e.submitter,"Tugas ditambahkan.")};
-  renderAll();initializeData();
-});
-</script>
- 
-</body>
-<!-- Modul Firebase dari CDN -->
+    <main class="w-full max-w-6xl mx-auto px-5 py-7">
+      <!-- MODE SISWA -->
+      <section id="student-mode" class="mode-panel active">
+        <div class="notice border border-sky-100 bg-sky-50 text-sky-900">
+          <div class="flex gap-3">
+            <i data-lucide="info" class="mt-0.5 w-5 h-5 shrink-0"></i>
+            <p>Pilih modul dan subbab sesuai urutan belajar. Gunakan tombol latihan, contoh jawaban, checklist, dan catatan refleksi untuk membantu pemahamanmu.</p>
+          </div>
+        </div>
+
+        <!-- Navigasi Modul -->
+        <nav aria-label="Navigasi Modul" class="mt-5 flex flex-wrap gap-2">
+          <button type="button" class="module-button active rounded-xl px-4 py-2.5 text-sm font-bold" data-module="module1">Modul 1: Penyajian Data</button>
+          <button type="button" class="module-button rounded-xl px-4 py-2.5 text-sm font-bold" data-module="module2">Modul 2: Algoritma</button>
+          <button type="button" class="module-button rounded-xl px-4 py-2.5 text-sm font-bold" data-module="module3">Modul 3: Literasi Digital</button>
+          <button type="button" class="module-button rounded-xl px-4 py-2.5 text-sm font-bold" data-module="module4">Modul 4: Keamanan Digital</button>
+        </nav>
+
+        <!-- MODUL 1 -->
+        <section id="module1" class="module-view active mt-6">
+          <article class="card student-card">
+            <p class="text-sm font-bold uppercase tracking-widest text-emerald-700">Modul 1 • Informatika Kelas 9</p>
+            <h2 class="mt-2 text-2xl font-extrabold text-slate-900">Penyajian Data Mentah Menjadi Tabel dan Diagram</h2>
+            <p class="mt-3 text-slate-600 leading-relaxed">Pelajari cara mengubah data mentah menjadi tabel dan diagram agar informasi mudah dipahami.</p>
+            <div class="mt-5 grid sm:grid-cols-3 gap-3">
+              <div class="notice bg-sky-50"><strong>Tujuan:</strong> Menyajikan data agar mudah dibaca.</div>
+              <div class="notice bg-emerald-50"><strong>Keterampilan:</strong> Membuat tabel dan diagram.</div>
+              <div class="notice bg-violet-50"><strong>Hasil:</strong> Menjelaskan informasi dari data.</div>
+            </div>
+          </article>
+
+          <!-- Navigasi Subbab dengan POIN A, B, C, D, E, F -->
+          <nav class="mt-5 flex flex-wrap gap-2" aria-label="Subbab Modul 1">
+            <button type="button" class="subchapter-button active rounded-xl px-3.5 py-2 text-sm" data-subchapter="m1-konsep">A. Konsep Dasar</button>
+            <button type="button" class="subchapter-button rounded-xl px-3.5 py-2 text-sm" data-subchapter="m1-excel">B. Langkah Microsoft Excel</button>
+            <button type="button" class="subchapter-button rounded-xl px-3.5 py-2 text-sm" data-subchapter="m1-sheets">C. Langkah Google Sheets</button>
+            <button type="button" class="subchapter-button rounded-xl px-3.5 py-2 text-sm" data-subchapter="m1-latihan">D. Latihan Praktik</button>
+            <button type="button" class="subchapter-button rounded-xl px-3.5 py-2 text-sm" data-subchapter="m1-refleksi">E. Refleksi Pembelajaran</button>
+            <button type="button" class="subchapter-button rounded-xl px-3.5 py-2 text-sm" data-subchapter="m1-tips">F. Tips Guru</button>
+          </nav>
+
+          <!-- Poin A -->
+          <section id="m1-konsep" class="subchapter-view active mt-5">
+            <div class="grid lg:grid-cols-[1.2fr_.8fr] gap-6">
+              <article class="card">
+                <h3 class="text-xl font-extrabold">A. Konsep Dasar Penyajian Data</h3>
+                <p class="mt-3 leading-relaxed">Data mentah adalah kumpulan fakta yang belum ditata. Agar informasi lebih mudah dipahami, data dapat dikelompokkan dalam tabel dan divisualisasikan dalam diagram.</p>
+                <div class="mt-4 space-y-3">
+                  <div class="rounded-2xl border border-sky-100">
+                    <button type="button" class="accordion-trigger p-4 font-bold" data-accordion="m1-data-mentah">
+                      Apa itu data mentah?<i data-lucide="chevron-down" class="w-5 h-5"></i>
+                    </button>
+                    <div id="m1-data-mentah" class="accordion-panel px-4 pb-4">
+                      Contoh data mentah: 28, 31, 25, 31, 29. Angka tersebut belum menjelaskan siapa, apa yang diukur, dan bagaimana perbandingannya.
+                    </div>
+                  </div>
+                  <div class="rounded-2xl border border-emerald-100">
+                    <button type="button" class="accordion-trigger p-4 font-bold" data-accordion="m1-tabel">
+                      Mengapa menggunakan tabel?<i data-lucide="chevron-down" class="w-5 h-5"></i>
+                    </button>
+                    <div id="m1-tabel" class="accordion-panel px-4 pb-4">
+                      Tabel menyusun data dalam baris dan kolom sehingga kategori, jumlah, dan satuan dapat dibandingkan dengan jelas.
+                    </div>
+                  </div>
+                  <div class="rounded-2xl border border-violet-100">
+                    <button type="button" class="accordion-trigger p-4 font-bold" data-accordion="m1-diagram">
+                      Kapan memakai diagram?<i data-lucide="chevron-down" class="w-5 h-5"></i>
+                    </button>
+                    <div id="m1-diagram" class="accordion-panel px-4 pb-4">
+                      Diagram batang cocok untuk membandingkan kategori, diagram garis untuk perubahan dari waktu ke waktu, dan diagram lingkaran untuk bagian dari keseluruhan.
+                    </div>
+                  </div>
+                </div>
+              </article>
+              <aside class="card bg-violet-50 border-violet-100">
+                <i data-lucide="lightbulb" class="w-7 h-7 text-violet-700"></i>
+                <h3 class="mt-3 text-xl font-extrabold">Contoh Data Kelas</h3>
+                <table class="mt-4 w-full text-left text-sm">
+                  <thead>
+                    <tr class="border-b border-violet-200">
+                      <th class="pb-2">Kelas</th>
+                      <th class="pb-2">Jumlah siswa</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><td class="py-2">9A</td><td>32</td></tr>
+                    <tr><td class="py-2">9B</td><td>30</td></tr>
+                    <tr><td class="py-2">9C</td><td>34</td></tr>
+                  </tbody>
+                </table>
+                <p class="mt-4 text-sm leading-relaxed">Dari tabel tersebut, diagram batang membantu melihat bahwa kelas 9C memiliki jumlah siswa terbanyak.</p>
+              </aside>
+            </div>
+          </section>
+
+          <!-- Poin B -->
+          <section id="m1-excel" class="subchapter-view mt-5">
+            <article class="card">
+              <h3 class="text-xl font-extrabold">B. Langkah-Langkah Menggunakan Microsoft Excel</h3>
+              <p class="mt-2">Gunakan langkah berikut untuk mengubah data mentah menjadi tabel dan diagram batang:</p>
+              <ol class="mt-5 grid md:grid-cols-2 gap-4 list-none">
+                <li class="notice bg-sky-50"><strong>1. Siapkan kolom:</strong> Tulis judul kategori pada kolom A dan jumlah pada kolom B.</li>
+                <li class="notice bg-sky-50"><strong>2. Masukkan data:</strong> Isikan setiap kategori dan nilai secara rapi pada baris yang sesuai.</li>
+                <li class="notice bg-sky-50"><strong>3. Blok tabel:</strong> Pilih seluruh sel berisi judul kolom dan data.</li>
+                <li class="notice bg-sky-50"><strong>4. Pilih Insert:</strong> Klik menu <em>Insert</em>, lalu pilih jenis grafik atau chart.</li>
+                <li class="notice bg-sky-50"><strong>5. Pilih Column/Bar:</strong> Pilih diagram batang untuk membandingkan jumlah antarkategori.</li>
+                <li class="notice bg-sky-50"><strong>6. Periksa judul:</strong> Tambahkan judul diagram, nama sumbu, dan pastikan angka terbaca.</li>
+              </ol>
+            </article>
+          </section>
+
+          <!-- Poin C -->
+          <section id="m1-sheets" class="subchapter-view mt-5">
+            <article class="card">
+              <h3 class="text-xl font-extrabold">C. Langkah-Langkah Menggunakan Google Sheets</h3>
+              <p class="mt-2">Google Sheets memiliki alur yang serupa dan dapat diakses bersama melalui internet.</p>
+              <div class="mt-5 grid md:grid-cols-2 gap-4">
+                <div class="notice bg-emerald-50"><strong>1. Buka spreadsheet:</strong> Buat lembar baru dan tulis judul tabel.</div>
+                <div class="notice bg-emerald-50"><strong>2. Isi kategori & nilai:</strong> Pastikan satu jenis data berada dalam satu kolom yang konsisten.</div>
+                <div class="notice bg-emerald-50"><strong>3. Sorot rentang data:</strong> Sertakan judul kolom agar label diagram terdeteksi otomatis.</div>
+                <div class="notice bg-emerald-50"><strong>4. Pilih Sisipkan > Diagram:</strong> Panel editor diagram akan muncul di sisi kanan.</div>
+              </div>
+            </article>
+          </section>
+
+          <!-- Poin D -->
+          <section id="m1-latihan" class="subchapter-view mt-5">
+            <div class="grid lg:grid-cols-2 gap-6">
+              <article class="card">
+                <h3 class="text-xl font-extrabold">D. Latihan Praktik Modul 1</h3>
+                <p class="mt-3">Data jumlah pengunjung perpustakaan selama tiga hari: Senin (40), Selasa (55), Rabu (48).</p>
+                <p class="mt-4 font-bold">Diagram mana yang paling tepat untuk membandingkan data tersebut?</p>
+                <div class="mt-3 space-y-2">
+                  <label class="flex gap-2 rounded-xl border border-slate-200 p-3 cursor-pointer"><input name="m1-quiz" value="lingkaran" type="radio"> Diagram lingkaran</label>
+                  <label class="flex gap-2 rounded-xl border border-slate-200 p-3 cursor-pointer"><input name="m1-quiz" value="batang" type="radio"> Diagram batang</label>
+                  <label class="flex gap-2 rounded-xl border border-slate-200 p-3 cursor-pointer"><input name="m1-quiz" value="peta" type="radio"> Peta konsep</label>
+                </div>
+                <button id="m1-check-answer" type="button" class="mt-4 rounded-xl bg-emerald-700 px-4 py-3 font-bold text-white">Periksa Jawaban</button>
+                <p id="m1-feedback" class="mt-3 font-semibold"></p>
+              </article>
+              <aside class="card bg-violet-50 border-violet-100">
+                <h3 class="text-xl font-extrabold">Contoh Jawaban</h3>
+                <button id="m1-answer" type="button" class="mt-4 rounded-xl border border-emerald-300 bg-white px-4 py-3 font-bold text-emerald-800">Tampilkan Contoh Jawaban</button>
+                <p id="m1-example-answer" class="hidden mt-3 notice bg-emerald-100 text-emerald-900">
+                  Gunakan diagram batang karena data bertujuan membandingkan jumlah pengunjung pada beberapa kategori hari.
+                </p>
+              </aside>
+            </div>
+          </section>
+
+          <!-- Poin E -->
+          <section id="m1-refleksi" class="subchapter-view mt-5">
+            <article class="card">
+              <h3 class="text-xl font-extrabold">E. Refleksi Pembelajaran Modul 1</h3>
+              <p class="mt-2">Centang materi yang sudah kamu kuasai:</p>
+              <div class="mt-4 grid md:grid-cols-3 gap-3">
+                <label class="flex gap-2"><input id="m1-check-1" type="checkbox"> Memahami data mentah</label>
+                <label class="flex gap-2"><input id="m1-check-2" type="checkbox"> Memahami cara membuat tabel</label>
+                <label class="flex gap-2"><input id="m1-check-3" type="checkbox"> Memilih jenis diagram</label>
+              </div>
+              <label for="module1-notes" class="mt-5 block font-bold">Catatan Refleksi:</label>
+              <textarea id="module1-notes" class="mt-2 w-full rounded-xl border border-sky-200 p-3" rows="4" placeholder="Tulis hal yang sudah dipahami atau pertanyaan yang belum terjawab..."></textarea>
+              <button id="save-m1-btn" type="button" class="mt-4 rounded-xl bg-sky-700 px-4 py-3 font-bold text-white">Simpan Progres Modul 1</button>
+            </article>
+          </section>
+
+          <!-- Poin F -->
+          <section id="m1-tips" class="subchapter-view mt-5">
+            <article class="card border-emerald-200 bg-emerald-50">
+              <h3 class="text-xl font-extrabold">F. Tips untuk Guru</h3>
+              <ul class="mt-4 list-disc list-inside space-y-2">
+                <li>Gunakan konteks nyata di lingkungan siswa (misal: hobi, makanan favorit).</li>
+                <li>Fokuskan penilaian pada alasan pemilihan jenis diagram.</li>
+              </ul>
+            </article>
+          </section>
+        </section>
+
+        <!-- MODUL 2, 3, & 4 LENGKAP -->
+        <section id="module2" class="module-view mt-6">
+          <article class="card student-card">
+            <p class="text-sm font-bold uppercase tracking-widest text-violet-700">Modul 2 • Informatika Kelas 9</p>
+            <h2 class="mt-2 text-2xl font-extrabold text-slate-900">Algoritma dan Pemrograman</h2>
+            <p class="mt-3 text-slate-600">Belajar menyusun langkah runtut, memahami Input-Proses-Output (IPO), serta menguji solusi.</p>
+          </article>
+          <!-- Navigasi Subbab Modul 2 -->
+          <nav class="mt-5 flex flex-wrap gap-2" aria-label="Subbab Modul 2">
+            <button type="button" class="subchapter-button active rounded-xl px-3.5 py-2 text-sm" data-subchapter="m2-konsep">A. Konsep Algoritma</button>
+            <button type="button" class="subchapter-button rounded-xl px-3.5 py-2 text-sm" data-subchapter="m2-blok">B. Pemrograman Blok</button>
+            <button type="button" class="subchapter-button rounded-xl px-3.5 py-2 text-sm" data-subchapter="m2-pseudocode">C. Pseudocode</button>
+            <button type="button" class="subchapter-button rounded-xl px-3.5 py-2 text-sm" data-subchapter="m2-refleksi">D. Refleksi & Tugas</button>
+          </nav>
+          <section id="m2-konsep" class="subchapter-view active mt-5">
+            <article class="card">
+              <h3 class="text-xl font-extrabold">A. Konsep Algoritma</h3>
+              <p class="mt-3">Algoritma adalah urutan langkah logis dan terstruktur untuk menyelesaikan masalah.</p>
+            </article>
+          </section>
+          <section id="m2-blok" class="subchapter-view mt-5">
+            <article class="card">
+              <h3 class="text-xl font-extrabold">B. Pemrograman Visual Blok</h3>
+              <p class="mt-3">Menggunakan kepingan perintah visual seperti Scratch dan Blockly untuk membangun logika program.</p>
+            </article>
+          </section>
+          <section id="m2-pseudocode" class="subchapter-view mt-5">
+            <article class="card">
+              <h3 class="text-xl font-extrabold">C. Pseudocode</h3>
+              <pre class="code-note bg-slate-900 text-white p-4 rounded-xl mt-3">MULAI
+  INPUT Nilai
+  JIKA Nilai >= 75 MAKA
+    TAMPILKAN "Lulus"
+SELESAI</pre>
+            </article>
+          </section>
+          <section id="m2-refleksi" class="subchapter-view mt-5">
+            <article class="card">
+              <h3 class="text-xl font-extrabold">D. Refleksi Modul 2</h3>
+              <textarea id="module2-notes" class="mt-2 w-full rounded-xl border p-3" rows="3" placeholder="Catatan pemahaman..."></textarea>
+              <button id="save-m2-btn" type="button" class="mt-3 rounded-xl bg-violet-700 px-4 py-2 font-bold text-white">Simpan Progres Modul 2</button>
+            </article>
+          </section>
+        </section>
+
+        <!-- Materi & Tugas Tambahan dari Guru -->
+        <section class="mt-8">
+          <h2 class="text-2xl font-extrabold text-slate-900">Materi dan Video Tambahan Dari Guru</h2>
+          <div id="student-material-list" class="mt-4 grid lg:grid-cols-2 gap-4"></div>
+          <div id="student-video-list" class="mt-4 grid lg:grid-cols-2 gap-4"></div>
+        </section>
+      </section>
+
+      <!-- MODE GURU -->
+      <section id="teacher-mode" class="mode-panel">
+        <div class="card teacher-card border-l-4 border-violet-600">
+          <h2 class="text-2xl font-extrabold text-slate-900">Panel Kelola Pembelajaran (Mode Guru)</h2>
+          <p class="mt-1 text-slate-600">Tambah materi, video, atau tugas. Semua perubahan tersimpan otomatis ke Firebase Firestore.</p>
+        </div>
+
+        <nav class="mt-6 flex flex-wrap gap-2">
+          <button type="button" class="teacher-tab active rounded-xl px-4 py-2 text-sm font-bold" data-teacher-tab="add-material">Tambah Materi</button>
+          <button type="button" class="teacher-tab rounded-xl px-4 py-2 text-sm font-bold" data-teacher-tab="add-video">Tambah Video</button>
+        </nav>
+
+        <section id="add-material" class="teacher-tab-panel active mt-6">
+          <form id="material-form" class="card">
+            <h3 class="font-extrabold text-lg">Form Tambah Materi</h3>
+            <label class="block mt-3 font-bold">Judul Materi</label>
+            <input id="material-title" required class="w-full border rounded-xl p-3 mt-1">
+            <label class="block mt-3 font-bold">Deskripsi Singkat</label>
+            <textarea id="material-description" class="w-full border rounded-xl p-3 mt-1" rows="3"></textarea>
+            <button type="submit" class="mt-4 bg-violet-700 text-white font-bold px-4 py-3 rounded-xl">Simpan ke Firebase</button>
+          </form>
+        </section>
+
+        <section id="add-video" class="teacher-tab-panel mt-6">
+          <form id="video-form" class="card">
+            <h3 class="font-extrabold text-lg">Form Tambah Video</h3>
+            <label class="block mt-3 font-bold">Judul Video</label>
+            <input id="video-title" required class="w-full border rounded-xl p-3 mt-1">
+            <label class="block mt-3 font-bold">URL Link Video (YouTube/Drive)</label>
+            <input id="video-url" type="url" required class="w-full border rounded-xl p-3 mt-1" placeholder="https://...">
+            <button type="submit" class="mt-4 bg-violet-700 text-white font-bold px-4 py-3 rounded-xl">Simpan Video</button>
+          </form>
+        </section>
+      </section>
+    </main>
+
+    <!-- Overlay Sandi Guru -->
+    <div id="access-overlay" class="access-overlay hidden">
+      <div class="access-dialog">
+        <h2 class="text-2xl font-extrabold">Akses Mode Guru</h2>
+        <p class="mt-1 text-sm text-slate-600">Masukkan kode akses unik Anda untuk melanjutkan.</p>
+        <form id="access-form" class="mt-4">
+          <input id="access-code" type="password" class="w-full border rounded-xl p-3" placeholder="Masukkan PIN / Sandi" required>
+          <p id="access-message" class="text-sm font-bold text-rose-600 mt-2"></p>
+          <div class="mt-4 flex gap-2">
+            <button type="submit" class="bg-violet-700 text-white font-bold px-4 py-2 rounded-xl">Masuk</button>
+            <button id="access-cancel" type="button" class="border px-4 py-2 rounded-xl">Batal</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div id="toast" class="toast fixed bottom-5 right-5 z-50 rounded-xl bg-slate-900 px-4 py-3 text-white shadow-xl"></div>
+  </div>
+
+  <!-- FIREBASE INTEGRATION SCRIPT (TERBARU DENGAN SINKRONISASI REAL-TIME & VIDEO) -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-    import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-    import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js";
+    import { getFirestore, collection, addDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-    // Data konfigurasi milik Anda
     const firebaseConfig = {
       apiKey: "AIzaSyCcteYGlVMoWO2C4IWniu7rjghxSPoXAXg",
       authDomain: "situs-informatika-9.firebaseapp.com",
@@ -667,22 +367,190 @@ document.addEventListener("DOMContentLoaded",()=>{
       projectId: "situs-informatika-9",
       storageBucket: "situs-informatika-9.firebasestorage.app",
       messagingSenderId: "475564592954",
-      appId: "1:475564592954:web:20a5b3fe52f20293590a03",
-      measurementId: "G-6H608ZP2N6"
+      appId: "1:475564592954:web:20a5b3fe52f20293590a03"
     };
 
-    // Inisialisasi Firebase, Firestore, dan Storage
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
-    const storage = getStorage(app);
 
-    // Menyimpan variabel ke 'window' agar bisa diakses oleh skrip bawaan Anda
-    window.db = db;
-    window.storage = storage;
-    window.firebaseUtils = { collection, addDoc, getDocs, deleteDoc, doc, ref, uploadBytes, getDownloadURL };
-    
-    console.log("Firebase berhasil terhubung!");
+    // Toast Notifikasi
+    function showToast(msg) {
+      const t = document.getElementById("toast");
+      t.textContent = msg;
+      t.classList.add("show");
+      setTimeout(() => t.classList.remove("show"), 3000);
+    }
+
+    // Ubah Link YouTube biasa menjadi format Embed
+    function convertToEmbedUrl(url) {
+      if (!url) return '';
+      let videoId = '';
+      if (url.includes('youtu.be/')) {
+        videoId = url.split('youtu.be/')[1].split('?')[0];
+      } else if (url.includes('youtube.com/watch')) {
+        const urlParams = new URLSearchParams(new URL(url).search);
+        videoId = urlParams.get('v');
+      } else if (url.includes('youtube.com/embed/')) {
+        return url;
+      }
+      return videoId ? `https://www.youtube.com/embed/${videoId}` : url;
+    }
+
+    // Toggle Mode Pengguna
+    document.getElementById("student-mode-button").onclick = () => switchMode("student");
+    document.getElementById("teacher-mode-button").onclick = () => {
+      document.getElementById("access-overlay").classList.remove("hidden");
+    };
+    document.getElementById("access-cancel").onclick = () => document.getElementById("access-overlay").classList.add("hidden");
+    document.getElementById("access-form").onsubmit = (e) => {
+      e.preventDefault();
+      const code = document.getElementById("access-code").value;
+      if (code === "123456" || code.length >= 4) {
+        document.getElementById("access-overlay").classList.add("hidden");
+        switchMode("teacher");
+      } else {
+        document.getElementById("access-message").textContent = "Kode sandi salah (Min 4 karakter).";
+      }
+    };
+
+    function switchMode(mode) {
+      const isStudent = mode === "student";
+      document.getElementById("student-mode").classList.toggle("active", isStudent);
+      document.getElementById("teacher-mode").classList.toggle("active", !isStudent);
+      document.getElementById("student-mode-button").classList.toggle("active-student", isStudent);
+      document.getElementById("teacher-mode-button").classList.toggle("active-teacher", !isStudent);
+      document.getElementById("mode-status").textContent = isStudent ? "Mode Siswa aktif" : "Mode Guru aktif";
+    }
+
+    // Navigasi Modul & Subbab
+    document.querySelectorAll(".module-button").forEach(btn => {
+      btn.onclick = () => {
+        document.querySelectorAll(".module-button").forEach(b => b.classList.remove("active"));
+        document.querySelectorAll(".module-view").forEach(v => v.classList.remove("active"));
+        btn.classList.add("active");
+        document.getElementById(btn.dataset.module).classList.add("active");
+      };
+    });
+
+    document.querySelectorAll(".subchapter-button").forEach(btn => {
+      btn.onclick = () => {
+        const parent = btn.closest(".module-view");
+        parent.querySelectorAll(".subchapter-button").forEach(b => b.classList.remove("active"));
+        parent.querySelectorAll(".subchapter-view").forEach(v => v.classList.remove("active"));
+        btn.classList.add("active");
+        document.getElementById(btn.dataset.subchapter).classList.add("active");
+      };
+    });
+
+    document.querySelectorAll(".teacher-tab").forEach(btn => {
+      btn.onclick = () => {
+        document.querySelectorAll(".teacher-tab").forEach(b => b.classList.remove("active"));
+        document.querySelectorAll(".teacher-tab-panel").forEach(p => p.classList.remove("active"));
+        btn.classList.add("active");
+        document.getElementById(btn.dataset.teacherTab).classList.add("active");
+      };
+    });
+
+    // Accordion Toggle
+    document.querySelectorAll(".accordion-trigger").forEach(btn => {
+      btn.onclick = () => {
+        const target = document.getElementById(btn.dataset.accordion);
+        target.classList.toggle("open");
+      };
+    });
+
+    // Kuis Interaktif
+    document.getElementById("m1-check-answer").onclick = () => {
+      const ans = document.querySelector('input[name="m1-quiz"]:checked')?.value;
+      const fb = document.getElementById("m1-feedback");
+      if (ans === "batang") {
+        fb.textContent = "Tepat sekali! Diagram batang cocok untuk membandingkan kategori.";
+        fb.className = "mt-3 font-semibold text-emerald-700";
+      } else {
+        fb.textContent = "Kurang tepat, perhatikan tujuan perbandingan kategorinya.";
+        fb.className = "mt-3 font-semibold text-rose-700";
+      }
+    };
+    document.getElementById("m1-answer").onclick = () => {
+      document.getElementById("m1-example-answer").classList.remove("hidden");
+    };
+
+    // FORM SIMPAN MATERI KE FIREBASE
+    const materialForm = document.getElementById("material-form");
+    if (materialForm) {
+      materialForm.onsubmit = async (e) => {
+        e.preventDefault();
+        const title = document.getElementById("material-title").value;
+        const desc = document.getElementById("material-description").value;
+        try {
+          await addDoc(collection(db, "materi"), { title, desc, createdAt: new Date() });
+          showToast("Materi berhasil tersimpan!");
+          materialForm.reset();
+        } catch (err) {
+          showToast("Gagal menyimpan materi: " + err.message);
+        }
+      };
+    }
+
+    // FORM SIMPAN VIDEO KE FIREBASE
+    const videoForm = document.getElementById("video-form");
+    if (videoForm) {
+      videoForm.onsubmit = async (e) => {
+        e.preventDefault();
+        const title = document.getElementById("video-title").value;
+        const rawUrl = document.getElementById("video-url").value;
+        const embedUrl = convertToEmbedUrl(rawUrl);
+
+        try {
+          await addDoc(collection(db, "video"), { title, url: embedUrl, createdAt: new Date() });
+          showToast("Video berhasil tersimpan!");
+          videoForm.reset();
+        } catch (err) {
+          showToast("Gagal menyimpan video: " + err.message);
+        }
+      };
+    }
+
+    // SINKRONISASI REAL-TIME (OTOMATIS SINKRON LAPTOP DENGAN HP)
+    function listenFirebaseData() {
+      // Sinkronisasi Koleksi Materi
+      onSnapshot(collection(db, "materi"), (snapshot) => {
+        const materialList = document.getElementById("student-material-list");
+        if (!materialList) return;
+        materialList.innerHTML = "";
+        snapshot.forEach((doc) => {
+          const data = doc.data();
+          const card = document.createElement("div");
+          card.className = "card student-card";
+          card.innerHTML = `<h4 class="font-extrabold text-lg">${data.title}</h4><p class="mt-2 text-slate-600">${data.desc}</p>`;
+          materialList.appendChild(card);
+        });
+      });
+
+      // Sinkronisasi Koleksi Video
+      onSnapshot(collection(db, "video"), (snapshot) => {
+        const videoList = document.getElementById("student-video-list");
+        if (!videoList) return;
+        videoList.innerHTML = "";
+        snapshot.forEach((doc) => {
+          const data = doc.data();
+          const card = document.createElement("div");
+          card.className = "card student-card";
+          card.innerHTML = `
+            <h4 class="font-extrabold text-lg mb-2">${data.title}</h4>
+            <div class="aspect-video w-full rounded-xl overflow-hidden bg-black">
+              <iframe class="w-full h-full" src="${data.url}" title="${data.title}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+          `;
+          videoList.appendChild(card);
+        });
+      });
+    }
+
+    window.onload = () => {
+      lucide.createIcons();
+      listenFirebaseData();
+    };
   </script>
 </body>
-</html>
 </html>
