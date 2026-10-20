@@ -38,7 +38,6 @@
     .code-note { font-family: "Space Mono", monospace; font-size: .84rem; white-space: pre-wrap; }
     @keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
     
-    /* Progress bar */
     .progress-bar-bg { background: #e2f1f7; height: 10px; border-radius: 999px; overflow: hidden; }
     .progress-bar-fill { background: linear-gradient(90deg, #087f7b, #146bb2); height: 100%; width: 0%; transition: width 0.4s ease; }
 
@@ -133,7 +132,6 @@
             <p class="mt-3 text-slate-600 leading-relaxed">Pelajari cara mengolah data mentah menggunakan rumus otomatis serta menyajikannya ke dalam diagram interaktif.</p>
           </article>
 
-          <!-- Navigasi Subbab -->
           <nav class="mt-5 flex flex-wrap gap-2 no-print" aria-label="Subbab Modul 1">
             <button type="button" class="subchapter-button active rounded-xl px-3.5 py-2 text-sm" data-subchapter="m1-konsep">A. Konsep Dasar</button>
             <button type="button" class="subchapter-button rounded-xl px-3.5 py-2 text-sm" data-subchapter="m1-excel">B. Tabel & Rumus Olah Data</button>
@@ -142,7 +140,7 @@
             <button type="button" class="subchapter-button rounded-xl px-3.5 py-2 text-sm" data-subchapter="m1-refleksi">E. Refleksi Pembelajaran</button>
           </nav>
 
-          <!-- Subbab A: Konsep Dasar -->
+          <!-- Subbab A -->
           <section id="m1-konsep" class="subchapter-view active mt-5">
             <div class="grid lg:grid-cols-[1.2fr_.8fr] gap-6">
               <article class="card">
@@ -187,7 +185,7 @@
             </div>
           </section>
 
-          <!-- Subbab B: Pembuatan Tabel & Rumus Olah Data -->
+          <!-- Subbab B -->
           <section id="m1-excel" class="subchapter-view mt-5">
             <article class="card">
               <div class="flex items-center gap-3 border-b pb-3 mb-4">
@@ -200,7 +198,6 @@
                 </div>
               </div>
 
-              <!-- Langkah Pembuatan Tabel -->
               <div class="mb-6">
                 <h4 class="font-extrabold text-lg text-slate-800 mb-2">1. Langkah-Langkah Pembuatan Tabel</h4>
                 <div class="grid md:grid-cols-2 gap-4">
@@ -231,7 +228,6 @@
                 </div>
               </div>
 
-              <!-- Contoh Lembar Kerja Data -->
               <div class="mb-6">
                 <h4 class="font-extrabold text-lg text-slate-800 mb-2">2. Contoh Visual Tampilan Lembar Kerja (Spreadsheet)</h4>
                 <div class="overflow-x-auto border rounded-xl shadow-sm bg-white p-2">
@@ -276,12 +272,9 @@
                 </div>
               </div>
 
-              <!-- Panduan Rumus -->
               <div>
                 <h4 class="font-extrabold text-lg text-slate-800 mb-3">3. Panduan Rumus & Formula Dasar</h4>
                 <div class="grid md:grid-cols-2 gap-4">
-
-                  <!-- SUM -->
                   <div class="p-4 rounded-xl border border-sky-100 bg-sky-50/50">
                     <div class="flex items-center justify-between mb-1">
                       <span class="font-bold text-sky-900">SUM (Penjumlahan)</span>
@@ -291,7 +284,6 @@
                     <pre class="code-note bg-slate-900 text-emerald-400 p-2 rounded-lg mt-2 text-xs">=SUM(B2:C2)</pre>
                   </div>
 
-                  <!-- AVERAGE -->
                   <div class="p-4 rounded-xl border border-sky-100 bg-sky-50/50">
                     <div class="flex items-center justify-between mb-1">
                       <span class="font-bold text-sky-900">AVERAGE (Rata-rata)</span>
@@ -301,7 +293,6 @@
                     <pre class="code-note bg-slate-900 text-emerald-400 p-2 rounded-lg mt-2 text-xs">=AVERAGE(B2:C2)</pre>
                   </div>
 
-                  <!-- MAX -->
                   <div class="p-4 rounded-xl border border-emerald-100 bg-emerald-50/50">
                     <div class="flex items-center justify-between mb-1">
                       <span class="font-bold text-emerald-900">MAX (Nilai Tertinggi)</span>
@@ -311,7 +302,6 @@
                     <pre class="code-note bg-slate-900 text-emerald-400 p-2 rounded-lg mt-2 text-xs">=MAX(D2:D4)</pre>
                   </div>
 
-                  <!-- MIN -->
                   <div class="p-4 rounded-xl border border-emerald-100 bg-emerald-50/50">
                     <div class="flex items-center justify-between mb-1">
                       <span class="font-bold text-emerald-900">MIN (Nilai Terendah)</span>
@@ -321,7 +311,6 @@
                     <pre class="code-note bg-slate-900 text-emerald-400 p-2 rounded-lg mt-2 text-xs">=MIN(D2:D4)</pre>
                   </div>
 
-                  <!-- IF LOGIKA -->
                   <div class="p-4 rounded-xl border border-violet-100 bg-violet-50/50 md:col-span-2">
                     <div class="flex items-center justify-between mb-1">
                       <span class="font-bold text-violet-900">IF (Logika Tunggal)</span>
@@ -331,7 +320,6 @@
                     <pre class="code-note bg-slate-900 text-amber-300 p-2 rounded-lg mt-2 text-xs">=IF(D2>=75; "Lulus"; "Remidial")</pre>
                   </div>
 
-                  <!-- IF AND -->
                   <div class="p-4 rounded-xl border border-amber-100 bg-amber-50/50">
                     <div class="flex items-center justify-between mb-1">
                       <span class="font-bold text-amber-900">IF AND (Semua Syarat Wajib Terpenuhi)</span>
@@ -340,7 +328,6 @@
                     <pre class="code-note bg-slate-900 text-amber-300 p-2 rounded-lg mt-2 text-xs">=IF(AND(B2>=75; C2>=75); "Lulus"; "Remidial")</pre>
                   </div>
 
-                  <!-- IF OR -->
                   <div class="p-4 rounded-xl border border-amber-100 bg-amber-50/50">
                     <div class="flex items-center justify-between mb-1">
                       <span class="font-bold text-amber-900">IF OR (Minimal Salah Satu Terpenuhi)</span>
@@ -348,13 +335,12 @@
                     <p class="text-xs text-slate-600">Istimewa JIKA Tugas ATAU Ujian mencapai angka &gt;= 90.</p>
                     <pre class="code-note bg-slate-900 text-amber-300 p-2 rounded-lg mt-2 text-xs">=IF(OR(B2>=90; C2>=90); "Istimewa"; "Reguler")</pre>
                   </div>
-
                 </div>
               </div>
             </article>
           </section>
 
-          <!-- Subbab C: Visualisasi 3 Diagram -->
+          <!-- Subbab C -->
           <section id="m1-sheets" class="subchapter-view mt-5">
             <article class="card">
               <div class="flex items-center gap-3 border-b pb-3 mb-4">
@@ -367,7 +353,6 @@
                 </div>
               </div>
 
-              <!-- Langkah Umum Pembuatan Diagram -->
               <div class="mb-6 p-4 rounded-xl bg-slate-50 border border-slate-200">
                 <h4 class="font-extrabold text-slate-800 text-sm uppercase tracking-wide mb-2">Langkah Membuat Diagram (Excel / Google Sheets):</h4>
                 <ol class="list-decimal list-inside space-y-1 text-sm text-slate-700">
@@ -378,10 +363,8 @@
                 </ol>
               </div>
 
-              <!-- 3 Jenis Diagram & Gambarnya -->
               <div class="space-y-6">
-
-                <!-- 1. Diagram Batang -->
+                <!-- Diagram Batang -->
                 <div class="p-5 border rounded-2xl bg-white shadow-sm">
                   <div class="flex items-center justify-between mb-3">
                     <h4 class="font-extrabold text-lg text-sky-900 flex items-center gap-2">
@@ -393,7 +376,6 @@
                     Digunakan untuk membandingkan jumlah atau nilai antar individu/kategori secara langsung.
                   </p>
                   
-                  <!-- Ilustrasi Diagram Batang -->
                   <div class="bg-slate-900 rounded-xl p-4 text-white">
                     <p class="text-xs font-mono text-slate-400 mb-2 border-b border-slate-800 pb-1">Gambar 1: Perbandingan Rata-Rata Nilai Siswa</p>
                     <svg viewBox="0 0 400 180" class="w-full h-44">
@@ -407,17 +389,14 @@
                       <text x="30" y="105" fill="#94a3b8" font-size="10" text-anchor="end">50</text>
                       <text x="30" y="145" fill="#94a3b8" font-size="10" text-anchor="end">0</text>
 
-                      <!-- Batang Andi -->
                       <rect x="70" y="40" width="45" height="100" rx="4" fill="#38bdf8" />
                       <text x="92.5" y="32" fill="#38bdf8" font-size="11" font-weight="bold" text-anchor="middle">87.5</text>
                       <text x="92.5" y="158" fill="#cbd5e1" font-size="11" text-anchor="middle">Andi</text>
 
-                      <!-- Batang Budi -->
                       <rect x="175" y="72" width="45" height="68" rx="4" fill="#fb7185" />
                       <text x="197.5" y="64" fill="#fb7185" font-size="11" font-weight="bold" text-anchor="middle">67.5</text>
                       <text x="197.5" y="158" fill="#cbd5e1" font-size="11" text-anchor="middle">Budi</text>
 
-                      <!-- Batang Citra -->
                       <rect x="280" y="30" width="45" height="110" rx="4" fill="#34d399" />
                       <text x="302.5" y="22" fill="#34d399" font-size="11" font-weight="bold" text-anchor="middle">93.5</text>
                       <text x="302.5" y="158" fill="#cbd5e1" font-size="11" text-anchor="middle">Citra</text>
@@ -425,7 +404,7 @@
                   </div>
                 </div>
 
-                <!-- 2. Diagram Garis -->
+                <!-- Diagram Garis -->
                 <div class="p-5 border rounded-2xl bg-white shadow-sm">
                   <div class="flex items-center justify-between mb-3">
                     <h4 class="font-extrabold text-lg text-emerald-900 flex items-center gap-2">
@@ -437,7 +416,6 @@
                     Cocok untuk melihat tren perkembangan atau perubahan nilai berdasarkan urutan waktu (misalnya nilai Try Out 1 hingga Try Out 3).
                   </p>
 
-                  <!-- Ilustrasi Diagram Garis -->
                   <div class="bg-slate-900 rounded-xl p-4 text-white">
                     <p class="text-xs font-mono text-slate-400 mb-2 border-b border-slate-800 pb-1">Gambar 2: Tren Perkembangan Nilai Try Out</p>
                     <svg viewBox="0 0 400 180" class="w-full h-44">
@@ -454,11 +432,9 @@
                       <text x="210" y="158" fill="#cbd5e1" font-size="11" text-anchor="middle">Try Out 2</text>
                       <text x="340" y="158" fill="#cbd5e1" font-size="11" text-anchor="middle">Try Out 3</text>
 
-                      <!-- Garis Tren -->
                       <polyline fill="none" stroke="#38bdf8" stroke-width="3" points="80,100 210,65 340,30" />
                       <polygon fill="rgba(56, 189, 248, 0.15)" points="80,140 80,100 210,65 340,30 340,140" />
 
-                      <!-- Titik Data -->
                       <circle cx="80" cy="100" r="5" fill="#38bdf8" />
                       <text x="80" y="88" fill="#38bdf8" font-size="10" font-weight="bold" text-anchor="middle">60</text>
 
@@ -471,7 +447,7 @@
                   </div>
                 </div>
 
-                <!-- 3. Diagram Lingkaran -->
+                <!-- Diagram Lingkaran -->
                 <div class="p-5 border rounded-2xl bg-white shadow-sm">
                   <div class="flex items-center justify-between mb-3">
                     <h4 class="font-extrabold text-lg text-violet-900 flex items-center gap-2">
@@ -483,7 +459,6 @@
                     Digunakan untuk melihat proporsi persentase bagian dari keseluruhan total (100%).
                   </p>
 
-                  <!-- Ilustrasi Diagram Lingkaran -->
                   <div class="bg-slate-900 rounded-xl p-4 text-white flex flex-col md:flex-row items-center justify-around gap-4">
                     <div class="w-40 h-40">
                       <svg viewBox="0 0 36 36" class="w-full h-full transform -rotate-90">
@@ -504,12 +479,11 @@
                     </div>
                   </div>
                 </div>
-
               </div>
             </article>
           </section>
 
-          <!-- Subbab D: Latihan Praktik -->
+          <!-- Subbab D -->
           <section id="m1-latihan" class="subchapter-view mt-5">
             <article class="card">
               <h3 class="text-xl font-extrabold">D. Latihan Praktik Modul 1</h3>
@@ -524,7 +498,7 @@
             </article>
           </section>
 
-          <!-- Subbab E: Refleksi Pembelajaran -->
+          <!-- Subbab E -->
           <section id="m1-refleksi" class="subchapter-view mt-5">
             <article class="card">
               <h3 class="text-xl font-extrabold">E. Refleksi Pembelajaran Modul 1</h3>
@@ -596,7 +570,7 @@ SELESAI</pre>
           </section>
         </section>
 
-        <!-- MODUL 3 (LITERASI DIGITAL) -->
+        <!-- MODUL 3 -->
         <section id="module3" class="module-view mt-6 search-target">
           <article class="card student-card">
             <p class="text-sm font-bold uppercase tracking-widest text-teal-700">Modul 3 • Informatika Kelas 9</p>
@@ -645,7 +619,7 @@ SELESAI</pre>
           </section>
         </section>
 
-        <!-- MODUL 4 (KEAMANAN DIGITAL) -->
+        <!-- MODUL 4 -->
         <section id="module4" class="module-view mt-6 search-target">
           <article class="card student-card">
             <p class="text-sm font-bold uppercase tracking-widest text-rose-700">Modul 4 • Informatika Kelas 9</p>
@@ -691,7 +665,35 @@ SELESAI</pre>
           </section>
         </section>
 
-        <!-- Materi & Video Tambahan dari Guru -->
+        <!-- FORUM DISKUSI PEMBELAJARAN -->
+        <section class="mt-10 border-t pt-8">
+          <div class="card bg-sky-50/50 border-sky-100">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="p-2.5 rounded-xl bg-sky-100 text-sky-800">
+                <i data-lucide="messages-square" class="w-6 h-6"></i>
+              </div>
+              <div>
+                <h2 class="text-2xl font-extrabold text-slate-900">Forum Diskusi Pembelajaran</h2>
+                <p class="text-sm text-slate-600">Punya pertanyaan tentang materi atau tugas? Tanyakan di sini agar bisa dijawab guru dan teman-teman!</p>
+              </div>
+            </div>
+
+            <!-- Form Pertanyaan -->
+            <form id="forum-form" class="mt-3">
+              <textarea id="forum-message-input" required class="w-full border rounded-xl p-3 bg-white" rows="2" placeholder="Tuliskan pertanyaan atau tanggapanmu di sini..."></textarea>
+              <button type="submit" class="mt-3 bg-sky-700 text-white font-bold px-5 py-2.5 rounded-xl hover:bg-sky-800 flex items-center gap-2">
+                <i data-lucide="send" class="w-4 h-4"></i> Kirim Pertanyaan
+              </button>
+            </form>
+
+            <!-- Daftar Pesan Diskusi -->
+            <div id="forum-posts-container" class="mt-6 space-y-3">
+              <p class="text-sm text-slate-500">Memuat diskusi...</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Materi & Video Tambahan -->
         <section class="mt-10 border-t pt-8">
           <h2 class="text-2xl font-extrabold text-slate-900">Materi dan Video Tambahan Dari Guru</h2>
           <div id="student-material-list" class="mt-4 grid lg:grid-cols-2 gap-4"></div>
@@ -703,12 +705,13 @@ SELESAI</pre>
       <section id="teacher-mode" class="mode-panel">
         <div class="card teacher-card border-l-4 border-violet-600">
           <h2 class="text-2xl font-extrabold text-slate-900">Panel Kelola Pembelajaran (Mode Guru)</h2>
-          <p class="mt-1 text-slate-600">Tambah materi, video, serta pantau rekap absen dan hasil jawaban siswa secara real-time.</p>
+          <p class="mt-1 text-slate-600">Kelola materi, video, rekap absen, rekap jawaban, serta ekspor data ke Excel/CSV.</p>
         </div>
 
         <nav class="mt-6 flex flex-wrap gap-2">
           <button type="button" class="teacher-tab active rounded-xl px-4 py-2 text-sm font-bold" data-teacher-tab="rekap-absen">Rekap Absen Harian</button>
           <button type="button" class="teacher-tab rounded-xl px-4 py-2 text-sm font-bold" data-teacher-tab="rekap-siswa">Rekap Jawaban Siswa</button>
+          <button type="button" class="teacher-tab rounded-xl px-4 py-2 text-sm font-bold" data-teacher-tab="export-data">Fitur Ekspor Data</button>
           <button type="button" class="teacher-tab rounded-xl px-4 py-2 text-sm font-bold" data-teacher-tab="add-material">Tambah Materi</button>
           <button type="button" class="teacher-tab rounded-xl px-4 py-2 text-sm font-bold" data-teacher-tab="add-video">Tambah Video</button>
         </nav>
@@ -729,6 +732,37 @@ SELESAI</pre>
             <h3 class="font-extrabold text-lg mb-4">Daftar Kiriman Refleksi Siswa</h3>
             <div id="rekap-siswa-container" class="space-y-3">
               <p class="text-sm text-slate-500">Memuat data jawaban siswa...</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Tab Fitur Ekspor Data -->
+        <section id="export-data" class="teacher-tab-panel mt-6">
+          <div class="card">
+            <h3 class="font-extrabold text-lg mb-2">Ekspor Rekapitulasi Data (Excel / CSV)</h3>
+            <p class="text-sm text-slate-600 mb-5">Unduh data kehadiran, jawaban siswa, dan riwayat diskusi ke dalam format spreadsheet (.csv) untuk pengolahan e-Rapor atau rekapitulasi.</p>
+            
+            <div class="grid md:grid-cols-3 gap-4">
+              <div class="p-4 border rounded-xl bg-slate-50 text-center">
+                <i data-lucide="file-spreadsheet" class="w-8 h-8 text-emerald-600 mx-auto mb-2"></i>
+                <h4 class="font-bold text-slate-900 mb-1">Data Absen Harian</h4>
+                <p class="text-xs text-slate-500 mb-3">Rekap nama, kelas, dan waktu hadir.</p>
+                <button id="btn-export-absen" class="w-full bg-emerald-700 text-white font-bold py-2 px-3 rounded-lg text-xs hover:bg-emerald-800">Unduh CSV Absen</button>
+              </div>
+
+              <div class="p-4 border rounded-xl bg-slate-50 text-center">
+                <i data-lucide="file-check" class="w-8 h-8 text-sky-600 mx-auto mb-2"></i>
+                <h4 class="font-bold text-slate-900 mb-1">Data Refleksi Siswa</h4>
+                <p class="text-xs text-slate-500 mb-3">Rekap hasil catatan refleksi modul.</p>
+                <button id="btn-export-jawaban" class="w-full bg-sky-700 text-white font-bold py-2 px-3 rounded-lg text-xs hover:bg-sky-800">Unduh CSV Jawaban</button>
+              </div>
+
+              <div class="p-4 border rounded-xl bg-slate-50 text-center">
+                <i data-lucide="messages-square" class="w-8 h-8 text-violet-600 mx-auto mb-2"></i>
+                <h4 class="font-bold text-slate-900 mb-1">Data Forum Diskusi</h4>
+                <p class="text-xs text-slate-500 mb-3">Rekap pertanyaan & diskusi kelas.</p>
+                <button id="btn-export-forum" class="w-full bg-violet-700 text-white font-bold py-2 px-3 rounded-lg text-xs hover:bg-violet-800">Unduh CSV Diskusi</button>
+              </div>
             </div>
           </div>
         </section>
@@ -767,7 +801,7 @@ SELESAI</pre>
       </section>
     </main>
 
-    <!-- Modal Form Absen & Identitas Siswa -->
+    <!-- Modal Form Absen -->
     <div id="student-modal" class="access-overlay hidden">
       <div class="access-dialog">
         <h2 class="text-2xl font-extrabold">Absen Harian Siswa</h2>
@@ -819,7 +853,7 @@ SELESAI</pre>
   <!-- FIREBASE INTEGRATION SCRIPT -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-    import { getFirestore, collection, addDoc, deleteDoc, doc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+    import { getFirestore, collection, addDoc, deleteDoc, doc, onSnapshot, getDocs } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyCcteYGlVMoWO2C4IWniu7rjghxSPoXAXg",
@@ -859,7 +893,7 @@ SELESAI</pre>
       return videoId ? `https://www.youtube.com/embed/${videoId}` : url;
     }
 
-    // Identitas Siswa LocalStorage & Kirim Absen ke Firebase
+    // Identitas & Absen Siswa
     function checkStudentIdentity() {
       const name = localStorage.getItem("student_name");
       const cls = localStorage.getItem("student_class");
@@ -900,7 +934,7 @@ SELESAI</pre>
       document.getElementById("student-modal").classList.remove("hidden");
     };
 
-    // Mode Switcher & Access Control
+    // Mode Switcher
     document.getElementById("student-mode-button").onclick = () => switchMode("student");
     document.getElementById("teacher-mode-button").onclick = () => {
       document.getElementById("access-overlay").classList.remove("hidden");
@@ -962,7 +996,7 @@ SELESAI</pre>
       };
     });
 
-    // Progress Bar Calculator
+    // Progress Bar
     function updateProgress() {
       const checkboxes = document.querySelectorAll(".progress-check");
       const checked = document.querySelectorAll(".progress-check:checked");
@@ -976,7 +1010,7 @@ SELESAI</pre>
     }
     document.querySelectorAll(".progress-check").forEach(chk => chk.onchange = updateProgress);
 
-    // Kuis Latihan Praktik Modul 1
+    // Kuis Modul 1
     const m1CheckBtn = document.getElementById("m1-check-answer");
     if (m1CheckBtn) {
       m1CheckBtn.onclick = () => {
@@ -995,7 +1029,7 @@ SELESAI</pre>
       };
     }
 
-    // Kuis Deteksi Hoaks Modul 3
+    // Kuis Modul 3
     window.checkHoax = function(isHoax) {
       const res = document.getElementById("hoax-result");
       if (isHoax) {
@@ -1007,7 +1041,7 @@ SELESAI</pre>
       }
     };
 
-    // Password Strength Tester Modul 4
+    // Password Tester Modul 4
     const passInput = document.getElementById("pass-test-input");
     if(passInput) {
       passInput.oninput = () => {
@@ -1038,10 +1072,33 @@ SELESAI</pre>
       });
     };
 
-    // Print Summary
+    // Print
     document.getElementById("btn-print-summary").onclick = () => window.print();
 
-    // KIRIM JAWABAN REFLEKSI SISWA KE FIREBASE
+    // FORUM DISKUSI PEMBELAJARAN
+    document.getElementById("forum-form").onsubmit = async (e) => {
+      e.preventDefault();
+      const name = localStorage.getItem("student_name") || "Siswa";
+      const cls = localStorage.getItem("student_class") || "Umum";
+      const msg = document.getElementById("forum-message-input").value;
+      const wibTime = new Date().toLocaleString('id-ID', { dateStyle: 'medium', timeStyle: 'short' });
+
+      try {
+        await addDoc(collection(db, "forum_diskusi"), {
+          studentName: name,
+          studentClass: cls,
+          message: msg,
+          timeString: wibTime,
+          timestamp: new Date()
+        });
+        document.getElementById("forum-message-input").value = "";
+        showToast("Pertanyaan berhasil dikirim ke Forum!");
+      } catch (err) {
+        showToast("Gagal mengirim pesan: " + err.message);
+      }
+    };
+
+    // SIMPAN REFLEKSI SISWA
     async function saveStudentAnswer(moduleName, notesId) {
       const name = localStorage.getItem("student_name") || "Tanpa Nama";
       const cls = localStorage.getItem("student_class") || "Tanpa Kelas";
@@ -1096,9 +1153,58 @@ SELESAI</pre>
       }
     };
 
+    // FITUR EKSPOR DATA KE CSV (EXCEL)
+    function exportToCSV(dataArray, filename) {
+      if (!dataArray || !dataArray.length) {
+        showToast("Belum ada data untuk diekspor.");
+        return;
+      }
+      const headers = Object.keys(dataArray[0]).join(",");
+      const rows = dataArray.map(obj => 
+        Object.values(obj).map(val => `"${String(val).replace(/"/g, '""')}"`).join(",")
+      );
+      const csvString = "\uFEFF" + [headers, ...rows].join("\r\n");
+      const blob = new Blob([csvString], { type: "text/csv;charset=utf-8;" });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = filename;
+      link.click();
+      showToast("File CSV berhasil diunduh!");
+    }
+
+    document.getElementById("btn-export-absen").onclick = async () => {
+      const snap = await getDocs(collection(db, "absen_harian"));
+      const list = [];
+      snap.forEach(d => {
+        const data = d.data();
+        list.push({ "Nama Siswa": data.studentName, "Kelas": data.studentClass, "Waktu Absen": data.timeString || "" });
+      });
+      exportToCSV(list, "Rekap_Absen_Harian_Informatika.csv");
+    };
+
+    document.getElementById("btn-export-jawaban").onclick = async () => {
+      const snap = await getDocs(collection(db, "jawaban_siswa"));
+      const list = [];
+      snap.forEach(d => {
+        const data = d.data();
+        list.push({ "Nama Siswa": data.studentName, "Kelas": data.studentClass, "Modul": data.module, "Catatan Refleksi": data.notes });
+      });
+      exportToCSV(list, "Rekap_Refleksi_Siswa_Informatika.csv");
+    };
+
+    document.getElementById("btn-export-forum").onclick = async () => {
+      const snap = await getDocs(collection(db, "forum_diskusi"));
+      const list = [];
+      snap.forEach(d => {
+        const data = d.data();
+        list.push({ "Nama Siswa": data.studentName, "Kelas": data.studentClass, "Pesan Pertanyaan": data.message, "Waktu": data.timeString || "" });
+      });
+      exportToCSV(list, "Rekap_Forum_Diskusi_Informatika.csv");
+    };
+
     // SINKRONISASI REALTIME FIREBASE
     function listenFirebaseData() {
-      // 1. Listen Rekap Absen Harian
+      // 1. Absen Harian
       onSnapshot(collection(db, "absen_harian"), (snapshot) => {
         const container = document.getElementById("rekap-absen-container");
         if (!container) return;
@@ -1125,7 +1231,35 @@ SELESAI</pre>
         });
       });
 
-      // 2. Listen Materi
+      // 2. Forum Diskusi
+      onSnapshot(collection(db, "forum_diskusi"), (snapshot) => {
+        const container = document.getElementById("forum-posts-container");
+        if (!container) return;
+        container.innerHTML = "";
+        if (snapshot.empty) {
+          container.innerHTML = '<p class="text-sm text-slate-500">Belum ada diskusi. Jadilah yang pertama bertanya!</p>';
+          return;
+        }
+        snapshot.forEach((docSnap) => {
+          const data = docSnap.data();
+          const item = document.createElement("div");
+          item.className = "p-4 rounded-2xl border border-slate-200 bg-white shadow-sm";
+          item.innerHTML = `
+            <div class="flex justify-between items-start">
+              <div class="flex items-center gap-2">
+                <span class="font-extrabold text-slate-900 text-sm">${data.studentName}</span>
+                <span class="text-xs bg-sky-100 text-sky-800 font-bold px-2 py-0.5 rounded-md">Kelas ${data.studentClass}</span>
+              </div>
+              <span class="text-xs text-slate-400 font-mono">${data.timeString || ''}</span>
+            </div>
+            <p class="mt-2 text-sm text-slate-700 leading-relaxed">${data.message}</p>
+            ${isTeacher ? `<button onclick="deleteDocument('forum_diskusi', '${docSnap.id}')" class="mt-2 text-xs text-rose-600 font-bold hover:underline">Hapus Pesan</button>` : ''}
+          `;
+          container.appendChild(item);
+        });
+      });
+
+      // 3. Materi
       onSnapshot(collection(db, "materi"), (snapshot) => {
         const materialList = document.getElementById("student-material-list");
         if (!materialList) return;
@@ -1144,7 +1278,7 @@ SELESAI</pre>
         });
       });
 
-      // 3. Listen Video
+      // 4. Video
       onSnapshot(collection(db, "video"), (snapshot) => {
         const videoList = document.getElementById("student-video-list");
         if (!videoList) return;
@@ -1164,7 +1298,7 @@ SELESAI</pre>
         });
       });
 
-      // 4. Listen Jawaban Siswa (Panel Guru)
+      // 5. Jawaban Siswa
       onSnapshot(collection(db, "jawaban_siswa"), (snapshot) => {
         const container = document.getElementById("rekap-siswa-container");
         if (!container) return;
@@ -1192,7 +1326,7 @@ SELESAI</pre>
       });
     }
 
-    // Fungsi Hapus Dokumen Firestore
+    // Fungsi Hapus Firestore
     window.deleteDocument = async function(coll, id) {
       if (confirm("Apakah Anda yakin ingin menghapus data ini?")) {
         try {
