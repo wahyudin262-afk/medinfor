@@ -65,10 +65,10 @@
           </div>
           
           <aside class="card rounded-3xl border border-sky-100 bg-white p-5 shadow-lg min-w-[260px]">
-            <p class="text-sm font-bold text-slate-500">Profil Siswa</p>
+            <p class="text-sm font-bold text-slate-500">Absen & Profil Siswa</p>
             <div class="flex items-center justify-between mt-1">
-              <p id="student-identity-display" class="text-lg font-extrabold text-sky-900">Belum diisi</p>
-              <button id="btn-edit-student" class="text-xs bg-sky-100 text-sky-700 px-2.5 py-1 rounded-lg font-bold hover:bg-sky-200">Ubah</button>
+              <p id="student-identity-display" class="text-lg font-extrabold text-sky-900">Belum Absen</p>
+              <button id="btn-edit-student" class="text-xs bg-sky-100 text-sky-700 px-2.5 py-1 rounded-lg font-bold hover:bg-sky-200">Absen / Ubah</button>
             </div>
             <div class="mt-3">
               <div class="flex justify-between text-xs font-bold text-slate-600 mb-1">
@@ -178,9 +178,9 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr><td class="py-2">9A</td><td>32</td></tr>
-                    <tr><td class="py-2">9B</td><td>30</td></tr>
-                    <tr><td class="py-2">9C</td><td>34</td></tr>
+                    <tr><td class="py-2">9.1</td><td>32</td></tr>
+                    <tr><td class="py-2">9.2</td><td>30</td></tr>
+                    <tr><td class="py-2">9.3</td><td>34</td></tr>
                   </tbody>
                 </table>
               </aside>
@@ -703,17 +703,28 @@ SELESAI</pre>
       <section id="teacher-mode" class="mode-panel">
         <div class="card teacher-card border-l-4 border-violet-600">
           <h2 class="text-2xl font-extrabold text-slate-900">Panel Kelola Pembelajaran (Mode Guru)</h2>
-          <p class="mt-1 text-slate-600">Tambah materi, video, serta pantau hasil jawaban refleksi siswa secara real-time.</p>
+          <p class="mt-1 text-slate-600">Tambah materi, video, serta pantau rekap absen dan hasil jawaban siswa secara real-time.</p>
         </div>
 
         <nav class="mt-6 flex flex-wrap gap-2">
-          <button type="button" class="teacher-tab active rounded-xl px-4 py-2 text-sm font-bold" data-teacher-tab="rekap-siswa">Rekap Jawaban Siswa</button>
+          <button type="button" class="teacher-tab active rounded-xl px-4 py-2 text-sm font-bold" data-teacher-tab="rekap-absen">Rekap Absen Harian</button>
+          <button type="button" class="teacher-tab rounded-xl px-4 py-2 text-sm font-bold" data-teacher-tab="rekap-siswa">Rekap Jawaban Siswa</button>
           <button type="button" class="teacher-tab rounded-xl px-4 py-2 text-sm font-bold" data-teacher-tab="add-material">Tambah Materi</button>
           <button type="button" class="teacher-tab rounded-xl px-4 py-2 text-sm font-bold" data-teacher-tab="add-video">Tambah Video</button>
         </nav>
 
+        <!-- Tab Rekap Absen Harian -->
+        <section id="rekap-absen" class="teacher-tab-panel active mt-6">
+          <div class="card">
+            <h3 class="font-extrabold text-lg mb-4">Daftar Kehadiran / Absen Siswa</h3>
+            <div id="rekap-absen-container" class="space-y-3">
+              <p class="text-sm text-slate-500">Memuat data absen harian siswa...</p>
+            </div>
+          </div>
+        </section>
+
         <!-- Tab Rekap Siswa -->
-        <section id="rekap-siswa" class="teacher-tab-panel active mt-6">
+        <section id="rekap-siswa" class="teacher-tab-panel mt-6">
           <div class="card">
             <h3 class="font-extrabold text-lg mb-4">Daftar Kiriman Refleksi Siswa</h3>
             <div id="rekap-siswa-container" class="space-y-3">
@@ -756,17 +767,32 @@ SELESAI</pre>
       </section>
     </main>
 
-    <!-- Modal Form Identitas Siswa -->
+    <!-- Modal Form Absen & Identitas Siswa -->
     <div id="student-modal" class="access-overlay hidden">
       <div class="access-dialog">
-        <h2 class="text-2xl font-extrabold">Identitas Siswa</h2>
-        <p class="mt-1 text-sm text-slate-600">Lengkapi nama dan kelasmu agar gurumu bisa mencatat hasil belajarmu.</p>
+        <h2 class="text-2xl font-extrabold">Absen Harian Siswa</h2>
+        <p class="mt-1 text-sm text-slate-600">Isi nama lengkap dan pilih kelasmu untuk melakukan absen masuk pembelajaran hari ini.</p>
         <form id="student-identity-form" class="mt-4">
           <label class="block text-sm font-bold">Nama Lengkap</label>
           <input id="input-student-name" required class="w-full border rounded-xl p-3 mt-1" placeholder="Contoh: Budi Santoso">
-          <label class="block text-sm font-bold mt-3">Kelas</label>
-          <input id="input-student-class" required class="w-full border rounded-xl p-3 mt-1" placeholder="Contoh: 9A">
-          <button type="submit" class="mt-5 w-full bg-sky-700 text-white font-bold py-3 rounded-xl hover:bg-sky-800">Simpan Identitas</button>
+          
+          <label class="block text-sm font-bold mt-3">Pilih Kelas (9.1 - 9.11)</label>
+          <select id="input-student-class" required class="w-full border rounded-xl p-3 mt-1 bg-white">
+            <option value="">-- Pilih Kelas --</option>
+            <option value="9.1">Kelas 9.1</option>
+            <option value="9.2">Kelas 9.2</option>
+            <option value="9.3">Kelas 9.3</option>
+            <option value="9.4">Kelas 9.4</option>
+            <option value="9.5">Kelas 9.5</option>
+            <option value="9.6">Kelas 9.6</option>
+            <option value="9.7">Kelas 9.7</option>
+            <option value="9.8">Kelas 9.8</option>
+            <option value="9.9">Kelas 9.9</option>
+            <option value="9.10">Kelas 9.10</option>
+            <option value="9.11">Kelas 9.11</option>
+          </select>
+
+          <button type="submit" class="mt-5 w-full bg-sky-700 text-white font-bold py-3 rounded-xl hover:bg-sky-800">Kirim Absen & Masuk</button>
         </form>
       </div>
     </div>
@@ -833,7 +859,7 @@ SELESAI</pre>
       return videoId ? `https://www.youtube.com/embed/${videoId}` : url;
     }
 
-    // Identitas Siswa LocalStorage
+    // Identitas Siswa LocalStorage & Kirim Absen ke Firebase
     function checkStudentIdentity() {
       const name = localStorage.getItem("student_name");
       const cls = localStorage.getItem("student_class");
@@ -844,15 +870,28 @@ SELESAI</pre>
       }
     }
 
-    document.getElementById("student-identity-form").onsubmit = (e) => {
+    document.getElementById("student-identity-form").onsubmit = async (e) => {
       e.preventDefault();
       const name = document.getElementById("input-student-name").value;
       const cls = document.getElementById("input-student-class").value;
+      const wibTime = new Date().toLocaleString('id-ID', { dateStyle: 'medium', timeStyle: 'short' });
+
       localStorage.setItem("student_name", name);
       localStorage.setItem("student_class", cls);
       document.getElementById("student-identity-display").textContent = `${name} (${cls})`;
       document.getElementById("student-modal").classList.add("hidden");
-      showToast("Identitas tersimpan!");
+
+      try {
+        await addDoc(collection(db, "absen_harian"), {
+          studentName: name,
+          studentClass: cls,
+          timeString: wibTime,
+          timestamp: new Date()
+        });
+        showToast("Absen harian berhasil dicatat!");
+      } catch (err) {
+        showToast("Gagal menyimpan absen: " + err.message);
+      }
     };
 
     document.getElementById("btn-edit-student").onclick = () => {
@@ -1059,7 +1098,34 @@ SELESAI</pre>
 
     // SINKRONISASI REALTIME FIREBASE
     function listenFirebaseData() {
-      // 1. Listen Materi
+      // 1. Listen Rekap Absen Harian
+      onSnapshot(collection(db, "absen_harian"), (snapshot) => {
+        const container = document.getElementById("rekap-absen-container");
+        if (!container) return;
+        container.innerHTML = "";
+        if (snapshot.empty) {
+          container.innerHTML = '<p class="text-sm text-slate-500">Belum ada siswa yang absen hari ini.</p>';
+          return;
+        }
+        snapshot.forEach((docSnap) => {
+          const data = docSnap.data();
+          const item = document.createElement("div");
+          item.className = "p-3.5 rounded-xl border border-slate-200 bg-slate-50 flex justify-between items-center";
+          item.innerHTML = `
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="font-extrabold text-slate-900">${data.studentName}</span>
+                <span class="text-xs bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded-full">Kelas ${data.studentClass}</span>
+              </div>
+              <p class="text-xs text-slate-500 mt-1">Waktu Masuk: ${data.timeString || 'Hari ini'}</p>
+            </div>
+            ${isTeacher ? `<button onclick="deleteDocument('absen_harian', '${docSnap.id}')" class="text-xs text-rose-600 font-bold hover:underline">Hapus</button>` : ''}
+          `;
+          container.appendChild(item);
+        });
+      });
+
+      // 2. Listen Materi
       onSnapshot(collection(db, "materi"), (snapshot) => {
         const materialList = document.getElementById("student-material-list");
         if (!materialList) return;
@@ -1078,7 +1144,7 @@ SELESAI</pre>
         });
       });
 
-      // 2. Listen Video
+      // 3. Listen Video
       onSnapshot(collection(db, "video"), (snapshot) => {
         const videoList = document.getElementById("student-video-list");
         if (!videoList) return;
@@ -1098,7 +1164,7 @@ SELESAI</pre>
         });
       });
 
-      // 3. Listen Jawaban Siswa (Panel Guru)
+      // 4. Listen Jawaban Siswa (Panel Guru)
       onSnapshot(collection(db, "jawaban_siswa"), (snapshot) => {
         const container = document.getElementById("rekap-siswa-container");
         if (!container) return;
