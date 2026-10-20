@@ -10,7 +10,7 @@
   <style>
     :root { --ink:#12304a; --blue:#146bb2; --teal:#087f7b; --violet:#6d4bc3; --green:#16836b; --line:#cfe3ec; }
     * { box-sizing: border-box; }
-    body { margin: 0; font-family: "DM Sans", sans-serif; color: var(--ink); background: #f4fafc; }
+    body { margin: 0; font-family: "DM Sans", sans-serif; color: var(--ink); background: #f4fafc; user-select: none; }
     .app-shell { width: 100%; min-height: 100vh; background: #f4fafc; }
     .dot-grid { background-image: radial-gradient(#c5e0e8 1px, transparent 1px); background-size: 18px 18px; }
     .card { background: #fff; border: 1px solid #d8e9ef; border-radius: 1.35rem; padding: 1.35rem; box-shadow: 0 8px 24px rgba(18,48,74,.05); }
@@ -30,8 +30,8 @@
     .accordion-trigger { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 1rem; text-align: left; cursor: pointer; }
     .accordion-panel { display: none; }
     .accordion-panel.open { display: block; }
-    .access-overlay { position: fixed; inset: 0; z-index: 60; display: flex; align-items: center; justify-content: center; padding: 1rem; background: rgba(10,28,44,.72); backdrop-filter: blur(5px); }
-    .access-dialog { width: min(100%, 28rem); max-height: 90vh; overflow: auto; background: #fff; border: 1px solid #cfe3ec; border-radius: 1.5rem; padding: 1.5rem; box-shadow: 0 24px 70px rgba(0,0,0,.25); }
+    .access-overlay { position: fixed; inset: 0; z-index: 100; display: flex; align-items: center; justify-content: center; padding: 1rem; background: rgba(10,28,44,.85); backdrop-filter: blur(8px); }
+    .access-dialog { width: min(100%, 28rem); max-height: 90vh; overflow: auto; background: #fff; border: 1px solid #cfe3ec; border-radius: 1.5rem; padding: 1.5rem; box-shadow: 0 24px 70px rgba(0,0,0,.3); }
     .toast { opacity: 0; transform: translateY(12px); pointer-events: none; transition: .25s; }
     .toast.show { opacity: 1; transform: none; }
     button:focus, input:focus, textarea:focus, select:focus { outline: 3px solid rgba(20,107,178,.35); outline-offset: 2px; }
@@ -112,7 +112,7 @@
         <div class="notice border border-sky-100 bg-sky-50 text-sky-900 no-print">
           <div class="flex gap-3">
             <i data-lucide="info" class="mt-0.5 w-5 h-5 shrink-0"></i>
-            <p>Pilih modul, tugas praktik, atau ulangan harian. Jangan lupa kirimkan hasil tugasmu agar diperiksa oleh Guru!</p>
+            <p>Pilih modul materi, kirim tugas praktik, atau ikuti simulasi ujian berpenjagaan kamera depan.</p>
           </div>
         </div>
 
@@ -125,8 +125,8 @@
           <button type="button" class="module-button rounded-xl px-4 py-2.5 text-sm font-bold border-teal-300 text-teal-800" data-module="module-tugas">
             <i data-lucide="file-up" class="w-4 h-4 inline mr-1"></i>Tugas Praktik
           </button>
-          <button type="button" class="module-button rounded-xl px-4 py-2.5 text-sm font-bold border-amber-300 text-amber-800" data-module="module-ulangan">
-            <i data-lucide="file-text" class="w-4 h-4 inline mr-1"></i>Ulangan Harian
+          <button type="button" class="module-button rounded-xl px-4 py-2.5 text-sm font-bold border-amber-300 text-amber-800" data-module="module-simulasi">
+            <i data-lucide="shield-check" class="w-4 h-4 inline mr-1"></i>Simulasi Modul
           </button>
         </nav>
 
@@ -295,7 +295,7 @@
                       <span class="font-bold text-sky-900">AVERAGE (Rata-rata)</span>
                       <span class="text-xs bg-sky-200 text-sky-800 px-2 py-0.5 rounded font-mono font-bold">=AVERAGE(...)</span>
                     </div>
-                    <p class="text-xs text-slate-600">Menghitung nilai rata-rata dari rentang angka.</p>
+                    <p class="text-xs text-slate-600">Menhitung nilai rata-rata dari rentang angka.</p>
                     <pre class="code-note bg-slate-900 text-emerald-400 p-2 rounded-lg mt-2 text-xs">=AVERAGE(B2:C2)</pre>
                   </div>
 
@@ -671,7 +671,7 @@ SELESAI</pre>
           </section>
         </section>
 
-        <!-- FITUR MODUL: PENGUMPULAN TUGAS PRAKTIK -->
+        <!-- FITUR TUGAS PRAKTIK -->
         <section id="module-tugas" class="module-view mt-6">
           <div class="card border-l-4 border-teal-600">
             <h2 class="text-2xl font-extrabold text-slate-900">Pengumpulan Tugas Praktik Informatika</h2>
@@ -679,7 +679,6 @@ SELESAI</pre>
           </div>
 
           <div class="grid lg:grid-cols-2 gap-6 mt-6">
-            <!-- Form Pengumpulan -->
             <form id="tugas-submit-form" class="card">
               <h3 class="font-extrabold text-lg text-teal-900 border-b pb-2 mb-3">Formulir Kirim Tugas</h3>
               
@@ -694,7 +693,6 @@ SELESAI</pre>
 
               <label class="block text-sm font-bold mt-3">Tautan / Link Hasil Tugas</label>
               <input id="tugas-link" type="url" required class="w-full border rounded-xl p-3 mt-1" placeholder="https://drive.google.com/... atau https://scratch.mit.edu/...">
-              <p class="text-xs text-slate-500 mt-1">*Pastikan akses tautan Google Drive disetel ke "Siapa saja yang memiliki link".</p>
 
               <label class="block text-sm font-bold mt-3">Catatan Tambahan untuk Guru (Opsional)</label>
               <textarea id="tugas-notes" class="w-full border rounded-xl p-3 mt-1" rows="2" placeholder="Tuliskan kendala atau penjelasan singkat karya Anda..."></textarea>
@@ -702,7 +700,6 @@ SELESAI</pre>
               <button type="submit" class="mt-4 w-full bg-teal-700 text-white font-bold py-3 rounded-xl hover:bg-teal-800">Kirim Tugas Praktik</button>
             </form>
 
-            <!-- Riwayat Pengumpulan Tugas Siswa -->
             <div class="card">
               <h3 class="font-extrabold text-lg text-slate-900 border-b pb-2 mb-3">Riwayat Pengumpulan Tugas Saya</h3>
               <div id="student-tugas-history" class="space-y-3">
@@ -712,97 +709,62 @@ SELESAI</pre>
           </div>
         </section>
 
-        <!-- FITUR MODUL: ULANGAN HARIAN AUTOMATED -->
-        <section id="module-ulangan" class="module-view mt-6">
+        <!-- FITUR SIMULASI MODUL (SISTEM PROCTORING & KAMERA) -->
+        <section id="module-simulasi" class="module-view mt-6">
           <div class="card border-l-4 border-amber-500">
             <div class="flex justify-between items-center flex-wrap gap-3">
               <div>
-                <h2 class="text-2xl font-extrabold text-slate-900">Ulangan Harian Informatika Kelas 9</h2>
-                <p class="mt-1 text-slate-600 text-sm">Kerjakan soal pilihan ganda di bawah ini secara jujur dan mandiri. Nilai akan otomatis dihitung.</p>
+                <h2 class="text-2xl font-extrabold text-slate-900" id="simulasi-heading">Simulasi Pembelajaran</h2>
+                <p class="mt-1 text-slate-600 text-sm">Uji pemahaman modul dengan sistem pengawasan kamera depan dan anti-kecurangan.</p>
               </div>
-              <div id="quiz-timer-box" class="hidden bg-amber-100 border border-amber-300 rounded-xl px-4 py-2 font-mono font-bold text-amber-900 text-lg">
-                Sisa Waktu: <span id="quiz-timer">10:00</span>
+              <div class="flex items-center gap-3">
+                <video id="simulasi-webcam" autoplay playsinline muted class="hidden w-24 h-16 rounded-lg border-2 border-amber-500 bg-black object-cover"></video>
+                <div id="quiz-timer-box" class="hidden bg-amber-100 border border-amber-300 rounded-xl px-4 py-2 font-mono font-bold text-amber-900 text-base">
+                  Sisa Waktu: <span id="quiz-timer">10:00</span>
+                </div>
               </div>
             </div>
           </div>
 
-          <!-- Banner Sebelum Mulai -->
-          <div id="quiz-start-banner" class="card mt-6 text-center py-10">
-            <i data-lucide="help-circle" class="w-12 h-12 text-amber-500 mx-auto mb-3"></i>
-            <h3 class="text-xl font-extrabold text-slate-900">Sudah Siap Memulai Ulangan?</h3>
-            <p class="text-slate-600 max-w-md mx-auto mt-1 text-sm">Ulangan terdiri dari 5 soal pilihan ganda dengan durasi waktu 10 menit. Pastikan koneksi internet Anda stabil.</p>
-            <button id="btn-start-quiz" type="button" class="mt-5 bg-amber-500 text-white font-bold px-6 py-3 rounded-xl text-base hover:bg-amber-600 shadow-md">
-              Mulai Mengerjakan Sekarang
+          <!-- Merekam Pilihan Judul Simulasi -->
+          <div id="quiz-start-banner" class="card mt-6 text-center py-8">
+            <i data-lucide="shield-alert" class="w-12 h-12 text-amber-500 mx-auto mb-2"></i>
+            <h3 class="text-xl font-extrabold text-slate-900">Pilih Judul Simulasi Modul</h3>
+            <p class="text-slate-600 max-w-lg mx-auto mt-1 text-sm">Sebelum memulai, pastikan izin Kamera Depan diberikan. Sistem akan mengunci otomatis jika Anda berpindah tab, meminimalkan layar, atau mengambil screenshot.</p>
+            
+            <div class="max-w-md mx-auto mt-4 text-left">
+              <label class="block text-sm font-bold text-slate-700">Judul Simulasi yang Diikuti:</label>
+              <select id="simulasi-target-select" class="w-full border rounded-xl p-3 mt-1 font-bold bg-white">
+                <option value="Simulasi Modul 1: Penyajian Data Mentah">Simulasi Modul 1: Penyajian Data Mentah</option>
+                <option value="Simulasi Modul 2: Algoritma dan Pemrograman">Simulasi Modul 2: Algoritma dan Pemrograman</option>
+                <option value="Simulasi Modul 3: Literasi Digital & Etika">Simulasi Modul 3: Literasi Digital & Etika</option>
+                <option value="Simulasi Modul 4: Keamanan Digital & Data">Simulasi Modul 4: Keamanan Digital & Data</option>
+              </select>
+            </div>
+
+            <button id="btn-start-quiz" type="button" class="mt-6 bg-amber-500 text-white font-bold px-6 py-3 rounded-xl text-base hover:bg-amber-600 shadow-md">
+              Izinkan Kamera &amp; Mulai Simulasi
             </button>
           </div>
 
-          <!-- Lembar Soal Ulangan (Hidden sampai tombol mulai diklik) -->
+          <!-- Lembar Soal Simulasi -->
           <form id="quiz-form" class="card mt-6 hidden space-y-6">
-            <!-- Soal 1 -->
-            <div class="border-b pb-4">
-              <p class="font-extrabold text-slate-900">1. Rumus pada lembar kerja spreadsheet yang digunakan untuk menghitung nilai rata-rata dari sekelompok data adalah...</p>
-              <div class="mt-3 space-y-2 text-sm">
-                <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="q1" value="a" required> A. =SUM(...)</label>
-                <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="q1" value="b"> B. =AVERAGE(...)</label>
-                <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="q1" value="c"> C. =MAX(...)</label>
-                <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="q1" value="d"> D. =IF(...)</label>
-              </div>
-            </div>
-
-            <!-- Soal 2 -->
-            <div class="border-b pb-4">
-              <p class="font-extrabold text-slate-900">2. Urutan langkah logis, sistematis, dan terstruktur untuk menyelesaikan suatu permasalahan dinamakan...</p>
-              <div class="mt-3 space-y-2 text-sm">
-                <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="q2" value="a" required> A. Algoritma</label>
-                <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="q2" value="b"> B. Hardware</label>
-                <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="q2" value="c"> C. Phishing</label>
-                <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="q2" value="d"> D. Web Browser</label>
-              </div>
-            </div>
-
-            <!-- Soal 3 -->
-            <div class="border-b pb-4">
-              <p class="font-extrabold text-slate-900">3. Upaya penipuan digital untuk mencuri data pribadi atau password melalui tautan palsu dinamakan...</p>
-              <div class="mt-3 space-y-2 text-sm">
-                <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="q3" value="a" required> A. Cyberbullying</label>
-                <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="q3" value="b"> B. Phishing</label>
-                <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="q3" value="c"> C. Coding</label>
-                <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="q3" value="d"> D. Spreadsheet</label>
-              </div>
-            </div>
-
-            <!-- Soal 4 -->
-            <div class="border-b pb-4">
-              <p class="font-extrabold text-slate-900">4. Manakah kombinasi kata sandi (password) di bawah ini yang paling kuat dan aman?</p>
-              <div class="mt-3 space-y-2 text-sm">
-                <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="q4" value="a" required> A. 12345678</label>
-                <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="q4" value="b"> B. rahasia123</label>
-                <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="q4" value="c"> C. P@ssw0rd99!</label>
-                <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="q4" value="d"> D. tanggallahir</label>
-              </div>
-            </div>
-
-            <!-- Soal 5 -->
-            <div>
-              <p class="font-extrabold text-slate-900">5. Jenis diagram yang paling cocok digunakan untuk melihat proporsi persentase dari keseluruhan total (100%) adalah...</p>
-              <div class="mt-3 space-y-2 text-sm">
-                <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="q5" value="a" required> A. Diagram Garis</label>
-                <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="q5" value="b"> B. Diagram Batang</label>
-                <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="q5" value="c"> C. Diagram Lingkaran (Pie Chart)</label>
-                <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="q5" value="d"> D. Diagram Area</label>
-              </div>
+            <h3 id="current-simulasi-title" class="font-extrabold text-lg text-amber-900 border-b pb-2">Judul Simulasi</h3>
+            
+            <div id="simulasi-questions-container" class="space-y-6">
+              <!-- Soal-soal dirender otomatis via JS berdasarkan modul yang dipilih -->
             </div>
 
             <button type="submit" class="w-full bg-amber-500 text-white font-bold py-3 rounded-xl hover:bg-amber-600 text-lg">
-              Kirim Jawaban Ulangan
+              Kirim Jawaban Simulasi
             </button>
           </form>
 
-          <!-- Tampilan Hasil Ulangan -->
+          <!-- Tampilan Hasil Simulasi -->
           <div id="quiz-result-box" class="card mt-6 hidden text-center py-8">
             <i data-lucide="award" class="w-16 h-16 text-amber-500 mx-auto mb-2"></i>
-            <h3 class="text-2xl font-extrabold text-slate-900">Ulangan Selesai!</h3>
-            <p class="text-slate-600 mt-1">Nilai kamu telah otomatis tercatat ke sistem Guru.</p>
+            <h3 class="text-2xl font-extrabold text-slate-900">Simulasi Selesai!</h3>
+            <p class="text-slate-600 mt-1">Nilai kamu telah otomatis tersimpan ke data Guru.</p>
             <div class="mt-4 text-4xl font-extrabold text-amber-600" id="quiz-score-display">0 / 100</div>
           </div>
         </section>
@@ -845,12 +807,12 @@ SELESAI</pre>
       <section id="teacher-mode" class="mode-panel">
         <div class="card teacher-card border-l-4 border-violet-600">
           <h2 class="text-2xl font-extrabold text-slate-900">Panel Kelola Pembelajaran (Mode Guru)</h2>
-          <p class="mt-1 text-slate-600">Kelola nilai ulangan, tugas praktik, materi, video, rekap absen, dan ekspor data.</p>
+          <p class="mt-1 text-slate-600">Kelola hasil simulasi per modul, nilai tugas praktik, materi, video, rekap absen, dan ekspor data.</p>
         </div>
 
         <nav class="mt-6 flex flex-wrap gap-2">
           <button type="button" class="teacher-tab active rounded-xl px-4 py-2 text-sm font-bold" data-teacher-tab="rekap-absen">Rekap Absen</button>
-          <button type="button" class="teacher-tab rounded-xl px-4 py-2 text-sm font-bold" data-teacher-tab="rekap-ulangan">Nilai Ulangan</button>
+          <button type="button" class="teacher-tab rounded-xl px-4 py-2 text-sm font-bold" data-teacher-tab="rekap-ulangan">Nilai Simulasi Modul</button>
           <button type="button" class="teacher-tab rounded-xl px-4 py-2 text-sm font-bold" data-teacher-tab="rekap-tugas">Penilaian Tugas Praktik</button>
           <button type="button" class="teacher-tab rounded-xl px-4 py-2 text-sm font-bold" data-teacher-tab="rekap-siswa">Refleksi Siswa</button>
           <button type="button" class="teacher-tab rounded-xl px-4 py-2 text-sm font-bold" data-teacher-tab="export-data">Ekspor Data</button>
@@ -868,12 +830,12 @@ SELESAI</pre>
           </div>
         </section>
 
-        <!-- Tab Rekap Nilai Ulangan -->
+        <!-- Tab Rekap Nilai Simulasi -->
         <section id="rekap-ulangan" class="teacher-tab-panel mt-6">
           <div class="card">
-            <h3 class="font-extrabold text-lg mb-4">Rekap Hasil Nilai Ulangan Harian Siswa</h3>
+            <h3 class="font-extrabold text-lg mb-4">Rekap Hasil Nilai Simulasi Siswa per Modul</h3>
             <div id="rekap-ulangan-container" class="space-y-3">
-              <p class="text-sm text-slate-500">Memuat data nilai ulangan...</p>
+              <p class="text-sm text-slate-500">Memuat data nilai simulasi...</p>
             </div>
           </div>
         </section>
@@ -902,7 +864,7 @@ SELESAI</pre>
         <section id="export-data" class="teacher-tab-panel mt-6">
           <div class="card">
             <h3 class="font-extrabold text-lg mb-2">Ekspor Rekapitulasi Data (Excel / CSV)</h3>
-            <p class="text-sm text-slate-600 mb-5">Unduh data kehadiran, nilai ulangan, pengumpulan tugas, dan jawaban siswa ke format spreadsheet (.csv).</p>
+            <p class="text-sm text-slate-600 mb-5">Unduh data kehadiran, nilai simulasi, pengumpulan tugas, dan jawaban siswa ke format spreadsheet (.csv).</p>
             
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
               <div class="p-4 border rounded-xl bg-slate-50 text-center">
@@ -913,7 +875,7 @@ SELESAI</pre>
 
               <div class="p-4 border rounded-xl bg-slate-50 text-center">
                 <i data-lucide="award" class="w-8 h-8 text-amber-600 mx-auto mb-2"></i>
-                <h4 class="font-bold text-slate-900 mb-1">Nilai Ulangan Harian</h4>
+                <h4 class="font-bold text-slate-900 mb-1">Nilai Simulasi Modul</h4>
                 <button id="btn-export-ulangan" class="mt-2 w-full bg-amber-600 text-white font-bold py-2 px-3 rounded-lg text-xs hover:bg-amber-700">Unduh CSV Nilai</button>
               </div>
 
@@ -996,7 +958,7 @@ SELESAI</pre>
       </div>
     </div>
 
-    <!-- Overlay PIN Guru -->
+    <!-- Overlay PIN Guru Akses Mode Guru -->
     <div id="access-overlay" class="access-overlay hidden">
       <div class="access-dialog">
         <h2 class="text-2xl font-extrabold">Akses Mode Guru</h2>
@@ -1008,6 +970,26 @@ SELESAI</pre>
             <button type="submit" class="bg-violet-700 text-white font-bold px-4 py-2 rounded-xl">Masuk</button>
             <button id="access-cancel" type="button" class="border px-4 py-2 rounded-xl">Batal</button>
           </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Overlay Terkunci Peringatan Anti-Kecurangan (Meminta PIN Guru) -->
+    <div id="quiz-lock-overlay" class="access-overlay hidden">
+      <div class="access-dialog border-2 border-rose-500">
+        <div class="text-center">
+          <i data-lucide="lock" class="w-14 h-14 text-rose-600 mx-auto mb-2"></i>
+          <h2 class="text-2xl font-extrabold text-rose-700">Simulasi Terkunci!</h2>
+          <p id="quiz-lock-reason" class="mt-2 text-sm font-bold text-slate-800 bg-rose-50 p-3 rounded-xl border border-rose-200">
+            Terdeteksi tindakan tidak diizinkan.
+          </p>
+          <p class="mt-3 text-xs text-slate-600">Minta bantuan Guru untuk memasukkan PIN pembuka kunci agar Anda dapat melanjutkan simulasi.</p>
+        </div>
+
+        <form id="quiz-unlock-form" class="mt-5">
+          <input id="quiz-unlock-pin" type="password" class="w-full border rounded-xl p-3 text-center text-lg font-mono tracking-widest" placeholder="Masukkan PIN Guru" required>
+          <p id="quiz-unlock-msg" class="text-xs font-bold text-rose-600 mt-2 text-center"></p>
+          <button type="submit" class="mt-4 w-full bg-rose-600 text-white font-bold py-3 rounded-xl hover:bg-rose-700">Buka Kunci Layar</button>
         </form>
       </div>
     </div>
@@ -1035,6 +1017,29 @@ SELESAI</pre>
 
     let isTeacher = false;
     let quizTimerInterval = null;
+    let isQuizActive = false;
+    let quizLocked = false;
+    let webcamStream = null;
+
+    // Database Soal per Judul Simulasi
+    const simulasiDatabase = {
+      "Simulasi Modul 1: Penyajian Data Mentah": [
+        { q: "1. Formula spreadsheet untuk menghitung nilai rata-rata dari sekelompok data adalah...", options: ["=SUM(...)", "=AVERAGE(...)", "=MAX(...)", "=IF(...)"], answer: "b" },
+        { q: "2. Jenis diagram yang paling tepat digunakan untuk membandingkan jumlah nilai antar siswa/kategori secara langsung adalah...", options: ["Diagram Batang", "Diagram Garis", "Diagram Lingkaran", "Diagram Venn"], answer: "a" }
+      ],
+      "Simulasi Modul 2: Algoritma dan Pemrograman": [
+        { q: "1. Urutan langkah-langkah logis dan sistematis untuk menyelesaikan suatu masalah disebut...", options: ["Hardware", "Algoritma", "Phishing", "Spreadsheet"], answer: "b" },
+        { q: "2. Pemrograman visual Scratch menggunakan penyusunan logika dalam bentuk...", options: ["Teks Python", "Blok Visual", "Biner 0 dan 1", "Sinyal Elektrik"], answer: "b" }
+      ],
+      "Simulasi Modul 3: Literasi Digital & Etika": [
+        { q: "1. Ciri utama dari berita yang terindikasi Hoaks di media sosial adalah...", options: ["Berasal dari situs resmi", "Judul provokatif & memaksa disebarkan", "Mencantumkan data penelitian", "Ditulis bahasa ilmiah"], answer: "b" },
+        { q: "2. Rekam jejak seluruh aktivitas yang kita tinggalkan saat menggunakan internet disebut...", options: ["Jejak Digital", "Browsing History", "Cookie", "Phishing"], answer: "a" }
+      ],
+      "Simulasi Modul 4: Keamanan Digital & Data": [
+        { q: "1. Upaya penipuan digital untuk mencuri data akun/password melalui tautan palsu disebut...", options: ["Cyberbullying", "Phishing", "Coding", "Formatting"], answer: "b" },
+        { q: "2. Kombinasi kata sandi (password) berikut yang memiliki kriteria paling kuat adalah...", options: ["12345678", "rahasia123", "P@ssw0rd99!", "tanggallahir"], answer: "c" }
+      ]
+    };
 
     function showToast(msg) {
       const t = document.getElementById("toast");
@@ -1231,22 +1236,134 @@ SELESAI</pre>
 
     document.getElementById("btn-print-summary").onclick = () => window.print();
 
-    // FITUR ULANGAN HARIAN AUTOMATED WITH TIMER
+    // FITUR KAMERA DEPAN & PENGAWASAN ANTI-KECURANGAN
+    async function startFrontCamera() {
+      try {
+        webcamStream = await navigator.mediaDevices.getUserMedia({
+          video: { facingMode: "user" },
+          audio: false
+        });
+        const videoEl = document.getElementById("simulasi-webcam");
+        videoEl.srcObject = webcamStream;
+        videoEl.classList.remove("hidden");
+      } catch (err) {
+        alert("Akses kamera depan wajib diizinkan untuk memulai simulasi ini!");
+        throw err;
+      }
+    }
+
+    function stopFrontCamera() {
+      if (webcamStream) {
+        webcamStream.getTracks().forEach(track => track.stop());
+        webcamStream = null;
+      }
+      document.getElementById("simulasi-webcam").classList.add("hidden");
+    }
+
+    function lockSimulasiScreen(reasonText) {
+      if (!isQuizActive || quizLocked) return;
+      quizLocked = true;
+      document.getElementById("quiz-lock-reason").textContent = reasonText;
+      document.getElementById("quiz-lock-overlay").classList.remove("hidden");
+    }
+
+    // Unlocking oleh Guru
+    document.getElementById("quiz-unlock-form").onsubmit = (e) => {
+      e.preventDefault();
+      const pin = document.getElementById("quiz-unlock-pin").value;
+      if (pin === "123456") {
+        quizLocked = false;
+        document.getElementById("quiz-lock-overlay").classList.add("hidden");
+        document.getElementById("quiz-unlock-pin").value = "";
+        document.getElementById("quiz-unlock-msg").textContent = "";
+        showToast("Layar simulasi dibuka kembali!");
+      } else {
+        document.getElementById("quiz-unlock-msg").textContent = "PIN Guru salah!";
+      }
+    };
+
+    // Deteksi Pindah Tab & Layar Belah / Blur
+    document.addEventListener("visibilitychange", () => {
+      if (isQuizActive && document.hidden) {
+        lockSimulasiScreen("Terdeteksi berpindah tab atau meminimalkan browser!");
+      }
+    });
+
+    window.addEventListener("blur", () => {
+      if (isQuizActive && !quizLocked) {
+        lockSimulasiScreen("Terdeteksi kehilangan fokus layar / membuka aplikasi lain atau mode layar belah!");
+      }
+    });
+
+    // Bloking Tangkapan Layar (Screenshot) & Kombinasi Tombol
+    document.addEventListener("keydown", (e) => {
+      if (!isQuizActive) return;
+      if (
+        e.key === "PrintScreen" ||
+        (e.ctrlKey && (e.key === "p" || e.key === "P" || e.key === "c" || e.key === "C" || e.key === "u" || e.key === "U")) ||
+        (e.ctrlKey && e.shiftKey && (e.key === "S" || e.key === "s" || e.key === "I" || e.key === "i"))
+      ) {
+        e.preventDefault();
+        lockSimulasiScreen("Terdeteksi mencoba mengambil tangkapan layar (screenshot) / menyalin teks!");
+      }
+    });
+
+    document.addEventListener("contextmenu", (e) => {
+      if (isQuizActive) {
+        e.preventDefault();
+        lockSimulasiScreen("Klik kanan dilarang selama simulasi berlangsung!");
+      }
+    });
+
+    // MEMULAI SIMULASI DENGAN JUDUL PILIHAN
     const btnStartQuiz = document.getElementById("btn-start-quiz");
     if (btnStartQuiz) {
-      btnStartQuiz.onclick = () => {
+      btnStartQuiz.onclick = async () => {
+        const titleSelect = document.getElementById("simulasi-target-select").value;
+        const questions = simulasiDatabase[titleSelect] || simulasiDatabase["Simulasi Modul 1: Penyajian Data Mentah"];
+
+        try {
+          await startFrontCamera();
+        } catch (e) {
+          return;
+        }
+
+        isQuizActive = true;
+        quizLocked = false;
+
         document.getElementById("quiz-start-banner").classList.add("hidden");
         document.getElementById("quiz-form").classList.remove("hidden");
         document.getElementById("quiz-timer-box").classList.remove("hidden");
+        document.getElementById("current-simulasi-title").textContent = titleSelect;
 
-        let duration = 600; // 10 menit
+        // Render Soal
+        const container = document.getElementById("simulasi-questions-container");
+        container.innerHTML = "";
+        questions.forEach((qObj, idx) => {
+          const qBox = document.createElement("div");
+          qBox.className = "border-b pb-4";
+          qBox.innerHTML = `
+            <p class="font-extrabold text-slate-900">${qObj.q}</p>
+            <div class="mt-3 space-y-2 text-sm">
+              <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="sq_${idx}" value="a" required> A. ${qObj.options[0]}</label>
+              <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="sq_${idx}" value="b"> B. ${qObj.options[1]}</label>
+              <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="sq_${idx}" value="c"> C. ${qObj.options[2]}</label>
+              <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="sq_${idx}" value="d"> D. ${qObj.options[3]}</label>
+            </div>
+          `;
+          container.appendChild(qBox);
+        });
+
+        // Timer
+        let duration = 600;
         quizTimerInterval = setInterval(() => {
+          if (quizLocked) return; // Pause timer jika layar terkunci
           const m = Math.floor(duration / 60);
           const s = duration % 60;
           document.getElementById("quiz-timer").textContent = `${m}:${s < 10 ? '0' : ''}${s}`;
           if (--duration < 0) {
             clearInterval(quizTimerInterval);
-            alert("Waktu ulangan telah habis! Jawabanmu akan dikirim otomatis.");
+            alert("Waktu simulasi telah habis! Jawabanmu dikirim otomatis.");
             document.getElementById("quiz-form").requestSubmit();
           }
         }, 1000);
@@ -1256,16 +1373,20 @@ SELESAI</pre>
     document.getElementById("quiz-form").onsubmit = async (e) => {
       e.preventDefault();
       if (quizTimerInterval) clearInterval(quizTimerInterval);
+      stopFrontCamera();
+      isQuizActive = false;
 
-      const keys = { q1: "b", q2: "a", q3: "b", q4: "c", q5: "c" };
+      const titleSelect = document.getElementById("simulasi-target-select").value;
+      const questions = simulasiDatabase[titleSelect] || simulasiDatabase["Simulasi Modul 1: Penyajian Data Mentah"];
+      
       let correct = 0;
       const formData = new FormData(document.getElementById("quiz-form"));
 
-      for (let [q, ans] of Object.entries(keys)) {
-        if (formData.get(q) === ans) correct++;
-      }
+      questions.forEach((qObj, idx) => {
+        if (formData.get(`sq_${idx}`) === qObj.answer) correct++;
+      });
 
-      const score = (correct / 5) * 100;
+      const score = Math.round((correct / questions.length) * 100);
       const name = localStorage.getItem("student_name") || "Siswa";
       const cls = localStorage.getItem("student_class") || "Umum";
       const wibTime = new Date().toLocaleString('id-ID', { dateStyle: 'medium', timeStyle: 'short' });
@@ -1279,14 +1400,14 @@ SELESAI</pre>
         await addDoc(collection(db, "ulangan_harian"), {
           studentName: name,
           studentClass: cls,
+          simulasiTitle: titleSelect,
           score: score,
-          correctCount: correct,
           timeString: wibTime,
           timestamp: new Date()
         });
-        showToast("Hasil Ulangan Harian berhasil disimpan!");
+        showToast("Hasil simulasi berhasil tersimpan!");
       } catch (err) {
-        showToast("Gagal menyimpan nilai: " + err.message);
+        showToast("Gagal menyimpan hasil: " + err.message);
       }
     };
 
@@ -1454,9 +1575,9 @@ SELESAI</pre>
       const list = [];
       snap.forEach(d => {
         const data = d.data();
-        list.push({ "Nama Siswa": data.studentName, "Kelas": data.studentClass, "Nilai": data.score, "Benar": data.correctCount, "Waktu": data.timeString || "" });
+        list.push({ "Nama Siswa": data.studentName, "Kelas": data.studentClass, "Judul Simulasi": data.simulasiTitle || "Simulasi", "Nilai": data.score, "Waktu": data.timeString || "" });
       });
-      exportToCSV(list, "Rekap_Nilai_Ulangan.csv");
+      exportToCSV(list, "Rekap_Nilai_Simulasi.csv");
     };
 
     document.getElementById("btn-export-tugas").onclick = async () => {
@@ -1508,13 +1629,13 @@ SELESAI</pre>
         });
       });
 
-      // 2. Rekap Nilai Ulangan
+      // 2. Rekap Nilai Simulasi
       onSnapshot(collection(db, "ulangan_harian"), (snapshot) => {
         const container = document.getElementById("rekap-ulangan-container");
         if (!container) return;
         container.innerHTML = "";
         if (snapshot.empty) {
-          container.innerHTML = '<p class="text-sm text-slate-500">Belum ada hasil ulangan harian.</p>';
+          container.innerHTML = '<p class="text-sm text-slate-500">Belum ada hasil simulasi siswa.</p>';
           return;
         }
         snapshot.forEach((docSnap) => {
@@ -1525,9 +1646,9 @@ SELESAI</pre>
             <div>
               <div class="flex items-center gap-2">
                 <span class="font-extrabold text-slate-900">${data.studentName} (${data.studentClass})</span>
-                <span class="text-xs font-mono text-slate-400">${data.timeString || ''}</span>
+                <span class="text-xs bg-amber-100 text-amber-800 font-bold px-2 py-0.5 rounded-full">${data.simulasiTitle || 'Simulasi'}</span>
               </div>
-              <p class="text-xs text-slate-600 mt-1">Benar ${data.correctCount} dari 5 soal</p>
+              <p class="text-xs text-slate-400 mt-1">Waktu: ${data.timeString || ''}</p>
             </div>
             <div class="flex items-center gap-4">
               <span class="text-xl font-extrabold text-amber-600">${data.score} / 100</span>
@@ -1538,7 +1659,7 @@ SELESAI</pre>
         });
       });
 
-      // 3. Tugas Praktik (Siswa Side History & Teacher Side Panel)
+      // 3. Tugas Praktik
       onSnapshot(collection(db, "tugas_praktik"), (snapshot) => {
         const currentStudentName = localStorage.getItem("student_name");
         const studentHistory = document.getElementById("student-tugas-history");
@@ -1556,7 +1677,6 @@ SELESAI</pre>
         snapshot.forEach((docSnap) => {
           const data = docSnap.data();
 
-          // Render Riwayat Siswa
           if (studentHistory && data.studentName === currentStudentName) {
             const isGraded = data.status === "Sudah Dinilai";
             const hItem = document.createElement("div");
@@ -1574,7 +1694,6 @@ SELESAI</pre>
             studentHistory.appendChild(hItem);
           }
 
-          // Render Mode Guru Penilaian
           if (teacherContainer) {
             const tItem = document.createElement("div");
             tItem.className = "p-4 rounded-xl border border-slate-200 bg-white shadow-sm";
@@ -1591,7 +1710,6 @@ SELESAI</pre>
                 <button onclick="deleteDocument('tugas_praktik', '${docSnap.id}')" class="text-xs text-rose-600 font-bold hover:underline">Hapus</button>
               </div>
 
-              <!-- Form Input Nilai Guru -->
               <div class="mt-3 pt-3 border-t grid md:grid-cols-3 gap-2 items-center">
                 <input id="grade-input-${docSnap.id}" type="number" min="0" max="100" placeholder="Nilai (0-100)" value="${data.grade || ''}" class="border rounded-lg p-2 text-sm">
                 <input id="feedback-input-${docSnap.id}" type="text" placeholder="Catatan / Masukan Guru..." value="${data.feedback || ''}" class="border rounded-lg p-2 text-sm">
@@ -1603,7 +1721,7 @@ SELESAI</pre>
         });
 
         if (studentHistory && !studentHistory.children.length) {
-          studentHistory.innerHTML = '<p class="text-sm text-slate-500">Belum ada riwayat pengumpulan atas nama kamu.</p>';
+          studentHistory.innerHTML = '<p class="text-sm text-slate-500">Belum ada riwayat pengumpulkan atas nama kamu.</p>';
         }
       });
 
