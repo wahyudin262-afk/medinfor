@@ -112,16 +112,22 @@
         <div class="notice border border-sky-100 bg-sky-50 text-sky-900 no-print">
           <div class="flex gap-3">
             <i data-lucide="info" class="mt-0.5 w-5 h-5 shrink-0"></i>
-            <p>Pilih modul dan subbab sesuai urutan belajar. Gunakan kuis interaktif, tes simulasi, dan catatan refleksi untuk menguji pemahamanmu.</p>
+            <p>Pilih modul, tugas praktik, atau ulangan harian. Jangan lupa kirimkan hasil tugasmu agar diperiksa oleh Guru!</p>
           </div>
         </div>
 
-        <!-- Navigasi Modul -->
+        <!-- Navigasi Utama Siswa -->
         <nav aria-label="Navigasi Modul" class="mt-5 flex flex-wrap gap-2 no-print">
           <button type="button" class="module-button active rounded-xl px-4 py-2.5 text-sm font-bold" data-module="module1">Modul 1: Penyajian Data</button>
           <button type="button" class="module-button rounded-xl px-4 py-2.5 text-sm font-bold" data-module="module2">Modul 2: Algoritma</button>
           <button type="button" class="module-button rounded-xl px-4 py-2.5 text-sm font-bold" data-module="module3">Modul 3: Literasi Digital</button>
           <button type="button" class="module-button rounded-xl px-4 py-2.5 text-sm font-bold" data-module="module4">Modul 4: Keamanan Digital</button>
+          <button type="button" class="module-button rounded-xl px-4 py-2.5 text-sm font-bold border-teal-300 text-teal-800" data-module="module-tugas">
+            <i data-lucide="file-up" class="w-4 h-4 inline mr-1"></i>Tugas Praktik
+          </button>
+          <button type="button" class="module-button rounded-xl px-4 py-2.5 text-sm font-bold border-amber-300 text-amber-800" data-module="module-ulangan">
+            <i data-lucide="file-text" class="w-4 h-4 inline mr-1"></i>Ulangan Harian
+          </button>
         </nav>
 
         <!-- MODUL 1 -->
@@ -665,6 +671,142 @@ SELESAI</pre>
           </section>
         </section>
 
+        <!-- FITUR MODUL: PENGUMPULAN TUGAS PRAKTIK -->
+        <section id="module-tugas" class="module-view mt-6">
+          <div class="card border-l-4 border-teal-600">
+            <h2 class="text-2xl font-extrabold text-slate-900">Pengumpulan Tugas Praktik Informatika</h2>
+            <p class="mt-1 text-slate-600 text-sm">Kirimkan hasil karya praktikummu (tautan Google Drive, link proyek Scratch, atau dokumen lembar kerja) di sini.</p>
+          </div>
+
+          <div class="grid lg:grid-cols-2 gap-6 mt-6">
+            <!-- Form Pengumpulan -->
+            <form id="tugas-submit-form" class="card">
+              <h3 class="font-extrabold text-lg text-teal-900 border-b pb-2 mb-3">Formulir Kirim Tugas</h3>
+              
+              <label class="block text-sm font-bold mt-2">Judul / Topik Tugas</label>
+              <select id="tugas-topic" required class="w-full border rounded-xl p-3 mt-1 bg-white">
+                <option value="">-- Pilih Topik Tugas --</option>
+                <option value="Praktik Excel / Google Sheets (Modul 1)">Praktik Excel / Google Sheets (Modul 1)</option>
+                <option value="Proyek Pemrograman Scratch (Modul 2)">Proyek Pemrograman Scratch (Modul 2)</option>
+                <option value="Poster / Kampanye Anti Hoaks (Modul 3)">Poster / Kampanye Anti Hoaks (Modul 3)</option>
+                <option value="Analisis Keamanan Password (Modul 4)">Analisis Keamanan Password (Modul 4)</option>
+              </select>
+
+              <label class="block text-sm font-bold mt-3">Tautan / Link Hasil Tugas</label>
+              <input id="tugas-link" type="url" required class="w-full border rounded-xl p-3 mt-1" placeholder="https://drive.google.com/... atau https://scratch.mit.edu/...">
+              <p class="text-xs text-slate-500 mt-1">*Pastikan akses tautan Google Drive disetel ke "Siapa saja yang memiliki link".</p>
+
+              <label class="block text-sm font-bold mt-3">Catatan Tambahan untuk Guru (Opsional)</label>
+              <textarea id="tugas-notes" class="w-full border rounded-xl p-3 mt-1" rows="2" placeholder="Tuliskan kendala atau penjelasan singkat karya Anda..."></textarea>
+
+              <button type="submit" class="mt-4 w-full bg-teal-700 text-white font-bold py-3 rounded-xl hover:bg-teal-800">Kirim Tugas Praktik</button>
+            </form>
+
+            <!-- Riwayat Pengumpulan Tugas Siswa -->
+            <div class="card">
+              <h3 class="font-extrabold text-lg text-slate-900 border-b pb-2 mb-3">Riwayat Pengumpulan Tugas Saya</h3>
+              <div id="student-tugas-history" class="space-y-3">
+                <p class="text-sm text-slate-500">Memuat riwayat pengumpulan...</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- FITUR MODUL: ULANGAN HARIAN AUTOMATED -->
+        <section id="module-ulangan" class="module-view mt-6">
+          <div class="card border-l-4 border-amber-500">
+            <div class="flex justify-between items-center flex-wrap gap-3">
+              <div>
+                <h2 class="text-2xl font-extrabold text-slate-900">Ulangan Harian Informatika Kelas 9</h2>
+                <p class="mt-1 text-slate-600 text-sm">Kerjakan soal pilihan ganda di bawah ini secara jujur dan mandiri. Nilai akan otomatis dihitung.</p>
+              </div>
+              <div id="quiz-timer-box" class="hidden bg-amber-100 border border-amber-300 rounded-xl px-4 py-2 font-mono font-bold text-amber-900 text-lg">
+                Sisa Waktu: <span id="quiz-timer">10:00</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Banner Sebelum Mulai -->
+          <div id="quiz-start-banner" class="card mt-6 text-center py-10">
+            <i data-lucide="help-circle" class="w-12 h-12 text-amber-500 mx-auto mb-3"></i>
+            <h3 class="text-xl font-extrabold text-slate-900">Sudah Siap Memulai Ulangan?</h3>
+            <p class="text-slate-600 max-w-md mx-auto mt-1 text-sm">Ulangan terdiri dari 5 soal pilihan ganda dengan durasi waktu 10 menit. Pastikan koneksi internet Anda stabil.</p>
+            <button id="btn-start-quiz" type="button" class="mt-5 bg-amber-500 text-white font-bold px-6 py-3 rounded-xl text-base hover:bg-amber-600 shadow-md">
+              Mulai Mengerjakan Sekarang
+            </button>
+          </div>
+
+          <!-- Lembar Soal Ulangan (Hidden sampai tombol mulai diklik) -->
+          <form id="quiz-form" class="card mt-6 hidden space-y-6">
+            <!-- Soal 1 -->
+            <div class="border-b pb-4">
+              <p class="font-extrabold text-slate-900">1. Rumus pada lembar kerja spreadsheet yang digunakan untuk menghitung nilai rata-rata dari sekelompok data adalah...</p>
+              <div class="mt-3 space-y-2 text-sm">
+                <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="q1" value="a" required> A. =SUM(...)</label>
+                <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="q1" value="b"> B. =AVERAGE(...)</label>
+                <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="q1" value="c"> C. =MAX(...)</label>
+                <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="q1" value="d"> D. =IF(...)</label>
+              </div>
+            </div>
+
+            <!-- Soal 2 -->
+            <div class="border-b pb-4">
+              <p class="font-extrabold text-slate-900">2. Urutan langkah logis, sistematis, dan terstruktur untuk menyelesaikan suatu permasalahan dinamakan...</p>
+              <div class="mt-3 space-y-2 text-sm">
+                <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="q2" value="a" required> A. Algoritma</label>
+                <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="q2" value="b"> B. Hardware</label>
+                <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="q2" value="c"> C. Phishing</label>
+                <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="q2" value="d"> D. Web Browser</label>
+              </div>
+            </div>
+
+            <!-- Soal 3 -->
+            <div class="border-b pb-4">
+              <p class="font-extrabold text-slate-900">3. Upaya penipuan digital untuk mencuri data pribadi atau password melalui tautan palsu dinamakan...</p>
+              <div class="mt-3 space-y-2 text-sm">
+                <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="q3" value="a" required> A. Cyberbullying</label>
+                <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="q3" value="b"> B. Phishing</label>
+                <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="q3" value="c"> C. Coding</label>
+                <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="q3" value="d"> D. Spreadsheet</label>
+              </div>
+            </div>
+
+            <!-- Soal 4 -->
+            <div class="border-b pb-4">
+              <p class="font-extrabold text-slate-900">4. Manakah kombinasi kata sandi (password) di bawah ini yang paling kuat dan aman?</p>
+              <div class="mt-3 space-y-2 text-sm">
+                <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="q4" value="a" required> A. 12345678</label>
+                <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="q4" value="b"> B. rahasia123</label>
+                <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="q4" value="c"> C. P@ssw0rd99!</label>
+                <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="q4" value="d"> D. tanggallahir</label>
+              </div>
+            </div>
+
+            <!-- Soal 5 -->
+            <div>
+              <p class="font-extrabold text-slate-900">5. Jenis diagram yang paling cocok digunakan untuk melihat proporsi persentase dari keseluruhan total (100%) adalah...</p>
+              <div class="mt-3 space-y-2 text-sm">
+                <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="q5" value="a" required> A. Diagram Garis</label>
+                <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="q5" value="b"> B. Diagram Batang</label>
+                <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="q5" value="c"> C. Diagram Lingkaran (Pie Chart)</label>
+                <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="q5" value="d"> D. Diagram Area</label>
+              </div>
+            </div>
+
+            <button type="submit" class="w-full bg-amber-500 text-white font-bold py-3 rounded-xl hover:bg-amber-600 text-lg">
+              Kirim Jawaban Ulangan
+            </button>
+          </form>
+
+          <!-- Tampilan Hasil Ulangan -->
+          <div id="quiz-result-box" class="card mt-6 hidden text-center py-8">
+            <i data-lucide="award" class="w-16 h-16 text-amber-500 mx-auto mb-2"></i>
+            <h3 class="text-2xl font-extrabold text-slate-900">Ulangan Selesai!</h3>
+            <p class="text-slate-600 mt-1">Nilai kamu telah otomatis tercatat ke sistem Guru.</p>
+            <div class="mt-4 text-4xl font-extrabold text-amber-600" id="quiz-score-display">0 / 100</div>
+          </div>
+        </section>
+
         <!-- FORUM DISKUSI PEMBELAJARAN -->
         <section class="mt-10 border-t pt-8">
           <div class="card bg-sky-50/50 border-sky-100">
@@ -678,7 +820,6 @@ SELESAI</pre>
               </div>
             </div>
 
-            <!-- Form Pertanyaan -->
             <form id="forum-form" class="mt-3">
               <textarea id="forum-message-input" required class="w-full border rounded-xl p-3 bg-white" rows="2" placeholder="Tuliskan pertanyaan atau tanggapanmu di sini..."></textarea>
               <button type="submit" class="mt-3 bg-sky-700 text-white font-bold px-5 py-2.5 rounded-xl hover:bg-sky-800 flex items-center gap-2">
@@ -686,7 +827,6 @@ SELESAI</pre>
               </button>
             </form>
 
-            <!-- Daftar Pesan Diskusi -->
             <div id="forum-posts-container" class="mt-6 space-y-3">
               <p class="text-sm text-slate-500">Memuat diskusi...</p>
             </div>
@@ -705,13 +845,15 @@ SELESAI</pre>
       <section id="teacher-mode" class="mode-panel">
         <div class="card teacher-card border-l-4 border-violet-600">
           <h2 class="text-2xl font-extrabold text-slate-900">Panel Kelola Pembelajaran (Mode Guru)</h2>
-          <p class="mt-1 text-slate-600">Kelola materi, video, rekap absen, rekap jawaban, serta ekspor data ke Excel/CSV.</p>
+          <p class="mt-1 text-slate-600">Kelola nilai ulangan, tugas praktik, materi, video, rekap absen, dan ekspor data.</p>
         </div>
 
         <nav class="mt-6 flex flex-wrap gap-2">
-          <button type="button" class="teacher-tab active rounded-xl px-4 py-2 text-sm font-bold" data-teacher-tab="rekap-absen">Rekap Absen Harian</button>
-          <button type="button" class="teacher-tab rounded-xl px-4 py-2 text-sm font-bold" data-teacher-tab="rekap-siswa">Rekap Jawaban Siswa</button>
-          <button type="button" class="teacher-tab rounded-xl px-4 py-2 text-sm font-bold" data-teacher-tab="export-data">Fitur Ekspor Data</button>
+          <button type="button" class="teacher-tab active rounded-xl px-4 py-2 text-sm font-bold" data-teacher-tab="rekap-absen">Rekap Absen</button>
+          <button type="button" class="teacher-tab rounded-xl px-4 py-2 text-sm font-bold" data-teacher-tab="rekap-ulangan">Nilai Ulangan</button>
+          <button type="button" class="teacher-tab rounded-xl px-4 py-2 text-sm font-bold" data-teacher-tab="rekap-tugas">Penilaian Tugas Praktik</button>
+          <button type="button" class="teacher-tab rounded-xl px-4 py-2 text-sm font-bold" data-teacher-tab="rekap-siswa">Refleksi Siswa</button>
+          <button type="button" class="teacher-tab rounded-xl px-4 py-2 text-sm font-bold" data-teacher-tab="export-data">Ekspor Data</button>
           <button type="button" class="teacher-tab rounded-xl px-4 py-2 text-sm font-bold" data-teacher-tab="add-material">Tambah Materi</button>
           <button type="button" class="teacher-tab rounded-xl px-4 py-2 text-sm font-bold" data-teacher-tab="add-video">Tambah Video</button>
         </nav>
@@ -726,7 +868,27 @@ SELESAI</pre>
           </div>
         </section>
 
-        <!-- Tab Rekap Siswa -->
+        <!-- Tab Rekap Nilai Ulangan -->
+        <section id="rekap-ulangan" class="teacher-tab-panel mt-6">
+          <div class="card">
+            <h3 class="font-extrabold text-lg mb-4">Rekap Hasil Nilai Ulangan Harian Siswa</h3>
+            <div id="rekap-ulangan-container" class="space-y-3">
+              <p class="text-sm text-slate-500">Memuat data nilai ulangan...</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Tab Panel Penilaian Tugas Praktik -->
+        <section id="rekap-tugas" class="teacher-tab-panel mt-6">
+          <div class="card">
+            <h3 class="font-extrabold text-lg mb-4">Daftar Pengumpulan Tugas Praktik &amp; Form Penilaian</h3>
+            <div id="rekap-tugas-container" class="space-y-4">
+              <p class="text-sm text-slate-500">Memuat kiriman tugas praktik siswa...</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Tab Rekap Siswa Refleksi -->
         <section id="rekap-siswa" class="teacher-tab-panel mt-6">
           <div class="card">
             <h3 class="font-extrabold text-lg mb-4">Daftar Kiriman Refleksi Siswa</h3>
@@ -740,28 +902,31 @@ SELESAI</pre>
         <section id="export-data" class="teacher-tab-panel mt-6">
           <div class="card">
             <h3 class="font-extrabold text-lg mb-2">Ekspor Rekapitulasi Data (Excel / CSV)</h3>
-            <p class="text-sm text-slate-600 mb-5">Unduh data kehadiran, jawaban siswa, dan riwayat diskusi ke dalam format spreadsheet (.csv) untuk pengolahan e-Rapor atau rekapitulasi.</p>
+            <p class="text-sm text-slate-600 mb-5">Unduh data kehadiran, nilai ulangan, pengumpulan tugas, dan jawaban siswa ke format spreadsheet (.csv).</p>
             
-            <div class="grid md:grid-cols-3 gap-4">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
               <div class="p-4 border rounded-xl bg-slate-50 text-center">
                 <i data-lucide="file-spreadsheet" class="w-8 h-8 text-emerald-600 mx-auto mb-2"></i>
                 <h4 class="font-bold text-slate-900 mb-1">Data Absen Harian</h4>
-                <p class="text-xs text-slate-500 mb-3">Rekap nama, kelas, dan waktu hadir.</p>
-                <button id="btn-export-absen" class="w-full bg-emerald-700 text-white font-bold py-2 px-3 rounded-lg text-xs hover:bg-emerald-800">Unduh CSV Absen</button>
+                <button id="btn-export-absen" class="mt-2 w-full bg-emerald-700 text-white font-bold py-2 px-3 rounded-lg text-xs hover:bg-emerald-800">Unduh CSV Absen</button>
+              </div>
+
+              <div class="p-4 border rounded-xl bg-slate-50 text-center">
+                <i data-lucide="award" class="w-8 h-8 text-amber-600 mx-auto mb-2"></i>
+                <h4 class="font-bold text-slate-900 mb-1">Nilai Ulangan Harian</h4>
+                <button id="btn-export-ulangan" class="mt-2 w-full bg-amber-600 text-white font-bold py-2 px-3 rounded-lg text-xs hover:bg-amber-700">Unduh CSV Nilai</button>
+              </div>
+
+              <div class="p-4 border rounded-xl bg-slate-50 text-center">
+                <i data-lucide="file-up" class="w-8 h-8 text-teal-600 mx-auto mb-2"></i>
+                <h4 class="font-bold text-slate-900 mb-1">Data Tugas Praktik</h4>
+                <button id="btn-export-tugas" class="mt-2 w-full bg-teal-700 text-white font-bold py-2 px-3 rounded-lg text-xs hover:bg-teal-800">Unduh CSV Tugas</button>
               </div>
 
               <div class="p-4 border rounded-xl bg-slate-50 text-center">
                 <i data-lucide="file-check" class="w-8 h-8 text-sky-600 mx-auto mb-2"></i>
                 <h4 class="font-bold text-slate-900 mb-1">Data Refleksi Siswa</h4>
-                <p class="text-xs text-slate-500 mb-3">Rekap hasil catatan refleksi modul.</p>
-                <button id="btn-export-jawaban" class="w-full bg-sky-700 text-white font-bold py-2 px-3 rounded-lg text-xs hover:bg-sky-800">Unduh CSV Jawaban</button>
-              </div>
-
-              <div class="p-4 border rounded-xl bg-slate-50 text-center">
-                <i data-lucide="messages-square" class="w-8 h-8 text-violet-600 mx-auto mb-2"></i>
-                <h4 class="font-bold text-slate-900 mb-1">Data Forum Diskusi</h4>
-                <p class="text-xs text-slate-500 mb-3">Rekap pertanyaan & diskusi kelas.</p>
-                <button id="btn-export-forum" class="w-full bg-violet-700 text-white font-bold py-2 px-3 rounded-lg text-xs hover:bg-violet-800">Unduh CSV Diskusi</button>
+                <button id="btn-export-jawaban" class="mt-2 w-full bg-sky-700 text-white font-bold py-2 px-3 rounded-lg text-xs hover:bg-sky-800">Unduh CSV Refleksi</button>
               </div>
             </div>
           </div>
@@ -853,7 +1018,7 @@ SELESAI</pre>
   <!-- FIREBASE INTEGRATION SCRIPT -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-    import { getFirestore, collection, addDoc, deleteDoc, doc, onSnapshot, getDocs } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+    import { getFirestore, collection, addDoc, deleteDoc, doc, updateDoc, onSnapshot, getDocs } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyCcteYGlVMoWO2C4IWniu7rjghxSPoXAXg",
@@ -869,8 +1034,8 @@ SELESAI</pre>
     const db = getFirestore(app);
 
     let isTeacher = false;
+    let quizTimerInterval = null;
 
-    // Toast
     function showToast(msg) {
       const t = document.getElementById("toast");
       t.textContent = msg;
@@ -878,7 +1043,6 @@ SELESAI</pre>
       setTimeout(() => t.classList.remove("show"), 3000);
     }
 
-    // Embed YouTube Helper
     function convertToEmbedUrl(url) {
       if (!url) return '';
       let videoId = '';
@@ -893,7 +1057,6 @@ SELESAI</pre>
       return videoId ? `https://www.youtube.com/embed/${videoId}` : url;
     }
 
-    // Identitas & Absen Siswa
     function checkStudentIdentity() {
       const name = localStorage.getItem("student_name");
       const cls = localStorage.getItem("student_class");
@@ -989,28 +1152,25 @@ SELESAI</pre>
       };
     });
 
-    // Accordions
     document.querySelectorAll(".accordion-trigger").forEach(btn => {
       btn.onclick = () => {
         document.getElementById(btn.dataset.accordion).classList.toggle("open");
       };
     });
 
-    // Progress Bar
     function updateProgress() {
       const checkboxes = document.querySelectorAll(".progress-check");
       const checked = document.querySelectorAll(".progress-check:checked");
       const pct = checkboxes.length ? Math.round((checked.length / checkboxes.length) * 100) : 0;
       document.getElementById("progress-text").textContent = pct + "%";
       document.getElementById("progress-fill").style.width = pct + "%";
-      
       if (pct === 100) {
         document.getElementById("badge-container").classList.remove("hidden");
       }
     }
     document.querySelectorAll(".progress-check").forEach(chk => chk.onchange = updateProgress);
 
-    // Kuis Modul 1
+    // Kuis Modul 1 & 3
     const m1CheckBtn = document.getElementById("m1-check-answer");
     if (m1CheckBtn) {
       m1CheckBtn.onclick = () => {
@@ -1020,20 +1180,19 @@ SELESAI</pre>
           feedback.textContent = "Silakan pilih salah satu jawaban terlebih dahulu.";
           feedback.className = "mt-3 font-semibold text-amber-600";
         } else if (selected.value === "batang") {
-          feedback.textContent = "Jawaban Benar! Diagram batang sangat tepat untuk membandingkan jumlah pengunjung antar hari.";
+          feedback.textContent = "Jawaban Benar! Diagram batang sangat tepat untuk membandingkan jumlah pengunjung.";
           feedback.className = "mt-3 font-semibold text-emerald-700";
         } else {
-          feedback.textContent = "Jawaban Kurang Tepat. Diagram lingkaran lebih cocok untuk persentase proporsi keseluruhan.";
+          feedback.textContent = "Jawaban Kurang Tepat. Diagram lingkaran lebih cocok untuk persentase proporsi.";
           feedback.className = "mt-3 font-semibold text-rose-700";
         }
       };
     }
 
-    // Kuis Modul 3
     window.checkHoax = function(isHoax) {
       const res = document.getElementById("hoax-result");
       if (isHoax) {
-        res.textContent = "Jawaban Benar! Ini adalah contoh kalimat pancingan Hoaks.";
+        res.textContent = "Jawaban Benar! Ini adalah contoh pancingan Hoaks.";
         res.className = "mt-2 text-sm font-bold text-emerald-700";
       } else {
         res.textContent = "Jawaban Kurang Tepat. Hati-hati dengan klaim yang tidak masuk akal.";
@@ -1041,7 +1200,6 @@ SELESAI</pre>
       }
     };
 
-    // Password Tester Modul 4
     const passInput = document.getElementById("pass-test-input");
     if(passInput) {
       passInput.oninput = () => {
@@ -1063,7 +1221,6 @@ SELESAI</pre>
       };
     }
 
-    // Search Bar
     document.getElementById("search-input").oninput = (e) => {
       const query = e.target.value.toLowerCase();
       document.querySelectorAll(".search-target").forEach(card => {
@@ -1072,10 +1229,98 @@ SELESAI</pre>
       });
     };
 
-    // Print
     document.getElementById("btn-print-summary").onclick = () => window.print();
 
-    // FORUM DISKUSI PEMBELAJARAN
+    // FITUR ULANGAN HARIAN AUTOMATED WITH TIMER
+    const btnStartQuiz = document.getElementById("btn-start-quiz");
+    if (btnStartQuiz) {
+      btnStartQuiz.onclick = () => {
+        document.getElementById("quiz-start-banner").classList.add("hidden");
+        document.getElementById("quiz-form").classList.remove("hidden");
+        document.getElementById("quiz-timer-box").classList.remove("hidden");
+
+        let duration = 600; // 10 menit
+        quizTimerInterval = setInterval(() => {
+          const m = Math.floor(duration / 60);
+          const s = duration % 60;
+          document.getElementById("quiz-timer").textContent = `${m}:${s < 10 ? '0' : ''}${s}`;
+          if (--duration < 0) {
+            clearInterval(quizTimerInterval);
+            alert("Waktu ulangan telah habis! Jawabanmu akan dikirim otomatis.");
+            document.getElementById("quiz-form").requestSubmit();
+          }
+        }, 1000);
+      };
+    }
+
+    document.getElementById("quiz-form").onsubmit = async (e) => {
+      e.preventDefault();
+      if (quizTimerInterval) clearInterval(quizTimerInterval);
+
+      const keys = { q1: "b", q2: "a", q3: "b", q4: "c", q5: "c" };
+      let correct = 0;
+      const formData = new FormData(document.getElementById("quiz-form"));
+
+      for (let [q, ans] of Object.entries(keys)) {
+        if (formData.get(q) === ans) correct++;
+      }
+
+      const score = (correct / 5) * 100;
+      const name = localStorage.getItem("student_name") || "Siswa";
+      const cls = localStorage.getItem("student_class") || "Umum";
+      const wibTime = new Date().toLocaleString('id-ID', { dateStyle: 'medium', timeStyle: 'short' });
+
+      document.getElementById("quiz-form").classList.add("hidden");
+      document.getElementById("quiz-timer-box").classList.add("hidden");
+      document.getElementById("quiz-result-box").classList.remove("hidden");
+      document.getElementById("quiz-score-display").textContent = `${score} / 100`;
+
+      try {
+        await addDoc(collection(db, "ulangan_harian"), {
+          studentName: name,
+          studentClass: cls,
+          score: score,
+          correctCount: correct,
+          timeString: wibTime,
+          timestamp: new Date()
+        });
+        showToast("Hasil Ulangan Harian berhasil disimpan!");
+      } catch (err) {
+        showToast("Gagal menyimpan nilai: " + err.message);
+      }
+    };
+
+    // FITUR PENGUMPULAN TUGAS PRAKTIK
+    document.getElementById("tugas-submit-form").onsubmit = async (e) => {
+      e.preventDefault();
+      const name = localStorage.getItem("student_name") || "Siswa";
+      const cls = localStorage.getItem("student_class") || "Umum";
+      const topic = document.getElementById("tugas-topic").value;
+      const link = document.getElementById("tugas-link").value;
+      const notes = document.getElementById("tugas-notes").value;
+      const wibTime = new Date().toLocaleString('id-ID', { dateStyle: 'medium', timeStyle: 'short' });
+
+      try {
+        await addDoc(collection(db, "tugas_praktik"), {
+          studentName: name,
+          studentClass: cls,
+          topic: topic,
+          link: link,
+          notes: notes,
+          status: "Menunggu Penilaian",
+          grade: null,
+          feedback: "",
+          timeString: wibTime,
+          timestamp: new Date()
+        });
+        document.getElementById("tugas-submit-form").reset();
+        showToast("Tugas Praktik berhasil dikirim ke Guru!");
+      } catch (err) {
+        showToast("Gagal mengirim tugas: " + err.message);
+      }
+    };
+
+    // FITUR FORUM DISKUSI
     document.getElementById("forum-form").onsubmit = async (e) => {
       e.preventDefault();
       const name = localStorage.getItem("student_name") || "Siswa";
@@ -1092,7 +1337,7 @@ SELESAI</pre>
           timestamp: new Date()
         });
         document.getElementById("forum-message-input").value = "";
-        showToast("Pertanyaan berhasil dikirim ke Forum!");
+        showToast("Pertanyaan dikirim ke Forum!");
       } catch (err) {
         showToast("Gagal mengirim pesan: " + err.message);
       }
@@ -1112,7 +1357,7 @@ SELESAI</pre>
           notes: notes,
           timestamp: new Date()
         });
-        showToast(`Jawaban ${moduleName} berhasil dikirim ke Guru!`);
+        showToast(`Jawaban ${moduleName} dikirim ke Guru!`);
       } catch (err) {
         showToast("Gagal mengirim jawaban: " + err.message);
       }
@@ -1153,7 +1398,29 @@ SELESAI</pre>
       }
     };
 
-    // FITUR EKSPOR DATA KE CSV (EXCEL)
+    // FORM PENILAIAN TUGAS OLEH GURU
+    window.gradeStudentTask = async function(docId) {
+      const gradeInput = document.getElementById(`grade-input-${docId}`).value;
+      const feedbackInput = document.getElementById(`feedback-input-${docId}`).value;
+
+      if (!gradeInput) {
+        showToast("Silakan isi nilai terlebih dahulu.");
+        return;
+      }
+
+      try {
+        await updateDoc(doc(db, "tugas_praktik", docId), {
+          grade: Number(gradeInput),
+          feedback: feedbackInput,
+          status: "Sudah Dinilai"
+        });
+        showToast("Penilaian tugas berhasil disimpan!");
+      } catch (err) {
+        showToast("Gagal menyimpan nilai: " + err.message);
+      }
+    };
+
+    // FITUR EKSPOR DATA KE CSV
     function exportToCSV(dataArray, filename) {
       if (!dataArray || !dataArray.length) {
         showToast("Belum ada data untuk diekspor.");
@@ -1179,7 +1446,27 @@ SELESAI</pre>
         const data = d.data();
         list.push({ "Nama Siswa": data.studentName, "Kelas": data.studentClass, "Waktu Absen": data.timeString || "" });
       });
-      exportToCSV(list, "Rekap_Absen_Harian_Informatika.csv");
+      exportToCSV(list, "Rekap_Absen_Harian.csv");
+    };
+
+    document.getElementById("btn-export-ulangan").onclick = async () => {
+      const snap = await getDocs(collection(db, "ulangan_harian"));
+      const list = [];
+      snap.forEach(d => {
+        const data = d.data();
+        list.push({ "Nama Siswa": data.studentName, "Kelas": data.studentClass, "Nilai": data.score, "Benar": data.correctCount, "Waktu": data.timeString || "" });
+      });
+      exportToCSV(list, "Rekap_Nilai_Ulangan.csv");
+    };
+
+    document.getElementById("btn-export-tugas").onclick = async () => {
+      const snap = await getDocs(collection(db, "tugas_praktik"));
+      const list = [];
+      snap.forEach(d => {
+        const data = d.data();
+        list.push({ "Nama Siswa": data.studentName, "Kelas": data.studentClass, "Topik Tugas": data.topic, "Link Tugas": data.link, "Status": data.status, "Nilai": data.grade || "Belum", "Catatan Guru": data.feedback || "" });
+      });
+      exportToCSV(list, "Rekap_Tugas_Praktik.csv");
     };
 
     document.getElementById("btn-export-jawaban").onclick = async () => {
@@ -1189,17 +1476,7 @@ SELESAI</pre>
         const data = d.data();
         list.push({ "Nama Siswa": data.studentName, "Kelas": data.studentClass, "Modul": data.module, "Catatan Refleksi": data.notes });
       });
-      exportToCSV(list, "Rekap_Refleksi_Siswa_Informatika.csv");
-    };
-
-    document.getElementById("btn-export-forum").onclick = async () => {
-      const snap = await getDocs(collection(db, "forum_diskusi"));
-      const list = [];
-      snap.forEach(d => {
-        const data = d.data();
-        list.push({ "Nama Siswa": data.studentName, "Kelas": data.studentClass, "Pesan Pertanyaan": data.message, "Waktu": data.timeString || "" });
-      });
-      exportToCSV(list, "Rekap_Forum_Diskusi_Informatika.csv");
+      exportToCSV(list, "Rekap_Refleksi_Siswa.csv");
     };
 
     // SINKRONISASI REALTIME FIREBASE
@@ -1231,7 +1508,106 @@ SELESAI</pre>
         });
       });
 
-      // 2. Forum Diskusi
+      // 2. Rekap Nilai Ulangan
+      onSnapshot(collection(db, "ulangan_harian"), (snapshot) => {
+        const container = document.getElementById("rekap-ulangan-container");
+        if (!container) return;
+        container.innerHTML = "";
+        if (snapshot.empty) {
+          container.innerHTML = '<p class="text-sm text-slate-500">Belum ada hasil ulangan harian.</p>';
+          return;
+        }
+        snapshot.forEach((docSnap) => {
+          const data = docSnap.data();
+          const item = document.createElement("div");
+          item.className = "p-4 rounded-xl border border-slate-200 bg-white flex justify-between items-center shadow-sm";
+          item.innerHTML = `
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="font-extrabold text-slate-900">${data.studentName} (${data.studentClass})</span>
+                <span class="text-xs font-mono text-slate-400">${data.timeString || ''}</span>
+              </div>
+              <p class="text-xs text-slate-600 mt-1">Benar ${data.correctCount} dari 5 soal</p>
+            </div>
+            <div class="flex items-center gap-4">
+              <span class="text-xl font-extrabold text-amber-600">${data.score} / 100</span>
+              ${isTeacher ? `<button onclick="deleteDocument('ulangan_harian', '${docSnap.id}')" class="text-xs text-rose-600 font-bold hover:underline">Hapus</button>` : ''}
+            </div>
+          `;
+          container.appendChild(item);
+        });
+      });
+
+      // 3. Tugas Praktik (Siswa Side History & Teacher Side Panel)
+      onSnapshot(collection(db, "tugas_praktik"), (snapshot) => {
+        const currentStudentName = localStorage.getItem("student_name");
+        const studentHistory = document.getElementById("student-tugas-history");
+        const teacherContainer = document.getElementById("rekap-tugas-container");
+
+        if (studentHistory) studentHistory.innerHTML = "";
+        if (teacherContainer) teacherContainer.innerHTML = "";
+
+        if (snapshot.empty) {
+          if (studentHistory) studentHistory.innerHTML = '<p class="text-sm text-slate-500">Kamu belum mengumpulkan tugas apapun.</p>';
+          if (teacherContainer) teacherContainer.innerHTML = '<p class="text-sm text-slate-500">Belum ada kiriman tugas praktik dari siswa.</p>';
+          return;
+        }
+
+        snapshot.forEach((docSnap) => {
+          const data = docSnap.data();
+
+          // Render Riwayat Siswa
+          if (studentHistory && data.studentName === currentStudentName) {
+            const isGraded = data.status === "Sudah Dinilai";
+            const hItem = document.createElement("div");
+            hItem.className = "p-3.5 rounded-xl border bg-slate-50 text-sm";
+            hItem.innerHTML = `
+              <div class="flex justify-between items-start">
+                <span class="font-bold text-slate-900">${data.topic}</span>
+                <span class="text-xs px-2 py-0.5 rounded-full font-bold ${isGraded ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'}">${data.status}</span>
+              </div>
+              <a href="${data.link}" target="_blank" class="text-xs text-sky-700 underline block mt-1 break-all">Lihat File / Link Tugas</a>
+              ${isGraded ? `<div class="mt-2 p-2 bg-emerald-50 border border-emerald-200 rounded-lg text-xs">
+                <span class="font-extrabold text-emerald-900">Nilai: ${data.grade}</span> | <em>Catatan Guru: "${data.feedback || '-'}"</em>
+              </div>` : ''}
+            `;
+            studentHistory.appendChild(hItem);
+          }
+
+          // Render Mode Guru Penilaian
+          if (teacherContainer) {
+            const tItem = document.createElement("div");
+            tItem.className = "p-4 rounded-xl border border-slate-200 bg-white shadow-sm";
+            tItem.innerHTML = `
+              <div class="flex justify-between items-start flex-wrap gap-2">
+                <div>
+                  <div class="flex items-center gap-2">
+                    <span class="font-extrabold text-slate-900">${data.studentName} (${data.studentClass})</span>
+                    <span class="text-xs bg-teal-100 text-teal-800 font-bold px-2 py-0.5 rounded-full">${data.topic}</span>
+                  </div>
+                  <a href="${data.link}" target="_blank" class="text-xs text-sky-700 underline font-mono block mt-1">Buka Link Tugas Siswa <i data-lucide="external-link" class="w-3 h-3 inline"></i></a>
+                  ${data.notes ? `<p class="text-xs text-slate-500 italic mt-1">Catatan Siswa: "${data.notes}"</p>` : ''}
+                </div>
+                <button onclick="deleteDocument('tugas_praktik', '${docSnap.id}')" class="text-xs text-rose-600 font-bold hover:underline">Hapus</button>
+              </div>
+
+              <!-- Form Input Nilai Guru -->
+              <div class="mt-3 pt-3 border-t grid md:grid-cols-3 gap-2 items-center">
+                <input id="grade-input-${docSnap.id}" type="number" min="0" max="100" placeholder="Nilai (0-100)" value="${data.grade || ''}" class="border rounded-lg p-2 text-sm">
+                <input id="feedback-input-${docSnap.id}" type="text" placeholder="Catatan / Masukan Guru..." value="${data.feedback || ''}" class="border rounded-lg p-2 text-sm">
+                <button onclick="gradeStudentTask('${docSnap.id}')" class="bg-teal-700 text-white font-bold py-2 px-3 rounded-lg text-xs hover:bg-teal-800">Simpan Nilai</button>
+              </div>
+            `;
+            teacherContainer.appendChild(tItem);
+          }
+        });
+
+        if (studentHistory && !studentHistory.children.length) {
+          studentHistory.innerHTML = '<p class="text-sm text-slate-500">Belum ada riwayat pengumpulan atas nama kamu.</p>';
+        }
+      });
+
+      // 4. Forum Diskusi
       onSnapshot(collection(db, "forum_diskusi"), (snapshot) => {
         const container = document.getElementById("forum-posts-container");
         if (!container) return;
@@ -1259,7 +1635,7 @@ SELESAI</pre>
         });
       });
 
-      // 3. Materi
+      // 5. Materi
       onSnapshot(collection(db, "materi"), (snapshot) => {
         const materialList = document.getElementById("student-material-list");
         if (!materialList) return;
@@ -1278,7 +1654,7 @@ SELESAI</pre>
         });
       });
 
-      // 4. Video
+      // 6. Video
       onSnapshot(collection(db, "video"), (snapshot) => {
         const videoList = document.getElementById("student-video-list");
         if (!videoList) return;
@@ -1298,7 +1674,7 @@ SELESAI</pre>
         });
       });
 
-      // 5. Jawaban Siswa
+      // 7. Jawaban Siswa
       onSnapshot(collection(db, "jawaban_siswa"), (snapshot) => {
         const container = document.getElementById("rekap-siswa-container");
         if (!container) return;
@@ -1326,7 +1702,6 @@ SELESAI</pre>
       });
     }
 
-    // Fungsi Hapus Firestore
     window.deleteDocument = async function(coll, id) {
       if (confirm("Apakah Anda yakin ingin menghapus data ini?")) {
         try {
