@@ -51,18 +51,6 @@
     .flow-step.current { border-color:#146bb2; background:#eaf5ff; box-shadow:0 0 0 3px rgba(20,107,178,.25); }
     .flow-step.done { border-color:#16836b; background:#e1f6e9; color:#145b38; }
 
-    /* Scratch visual blocks simulator style */
-    .scratch-block { font-family: 'DM Sans', sans-serif; font-size: 0.82rem; font-weight: 700; color: white; padding: 0.45rem 0.75rem; border-radius: 0.5rem; display: inline-flex; align-items: center; gap: 0.4rem; box-shadow: 0 2px 4px rgba(0,0,0,0.12); margin-bottom: 0.25rem; }
-    .sb-events { background-color: #ffd000; color: #4a3b00; }
-    .sb-motion { background-color: #4c97ff; }
-    .sb-looks { background-color: #9966ff; }
-    .sb-sound { background-color: #cf63cf; }
-    .sb-control { background-color: #ffab19; color: #402800; }
-    .sb-sensing { background-color: #5cb1d6; }
-    .sb-operators { background-color: #59c059; }
-    .sb-variables { background-color: #ff8c1a; }
-    .sb-myblocks { background-color: #ff6680; }
-
     @media print {
       header, nav, .no-print, .role-button, button, .access-overlay { display: none !important; }
       body { background: #fff; color: #000; }
@@ -128,7 +116,7 @@
         <!-- Search Bar -->
         <div class="mb-5 flex items-center rounded-2xl border border-sky-200 bg-white px-4 py-2.5 shadow-sm no-print">
           <i data-lucide="search" class="w-5 h-5 text-slate-400 mr-2"></i>
-          <input id="search-input" type="text" placeholder="Cari materi atau topik (misal: diagram, hoaks, password, scratch, flowchart, sprite)..." class="w-full bg-transparent text-sm outline-none">
+          <input id="search-input" type="text" placeholder="Cari materi atau topik (misal: diagram, hoaks, password, function, flowchart)..." class="w-full bg-transparent text-sm outline-none">
         </div>
 
         <div class="notice border border-sky-100 bg-sky-50 text-sky-900 no-print">
@@ -141,7 +129,7 @@
         <!-- Navigasi Utama Siswa -->
         <nav aria-label="Navigasi Bab" class="mt-5 flex flex-wrap gap-2 no-print">
           <button type="button" class="module-button active rounded-xl px-4 py-2.5 text-sm font-bold" data-module="module1">Bab 1: Penyajian Data</button>
-          <button type="button" class="module-button rounded-xl px-4 py-2.5 text-sm font-bold" data-module="module2">Bab 2: Algoritma & Scratch</button>
+          <button type="button" class="module-button rounded-xl px-4 py-2.5 text-sm font-bold" data-module="module2">Bab 2: Algoritma Lanjutan</button>
           <button type="button" class="module-button rounded-xl px-4 py-2.5 text-sm font-bold" data-module="module3">Bab 3: Literasi Digital</button>
           <button type="button" class="module-button rounded-xl px-4 py-2.5 text-sm font-bold" data-module="module4">Bab 4: Keamanan Digital</button>
           <button type="button" class="module-button rounded-xl px-4 py-2.5 text-sm font-bold border-teal-300 text-teal-800" data-module="module-tugas">
@@ -571,106 +559,167 @@
           </section>
         </section>
 
-        <!-- BAB 2 (TERLEBUR LENGKAP: ALGORITMA, PSEUDOCODE, Scratch, BLOK & ANTARMUKA) -->
+        <!-- BAB 2 -->
         <section id="module2" class="module-view mt-6 search-target">
           <article class="card student-card">
-            <p class="text-sm font-bold uppercase tracking-widest text-violet-700">Bab 2 • Informatika Kelas 9</p>
-            <h2 class="mt-2 text-2xl font-extrabold text-slate-900">Algoritma, Pseudocode & Pemrograman Scratch</h2>
-            <p class="mt-3 text-slate-600 leading-relaxed">Pelajari rancangan alur berpikir logis (Algoritma, Flowchart, Pseudocode), transisi menuju Pemrograman Blok Scratch, pengenalan Antarmuka, Kategori Blok, hingga Modularisasi Program.</p>
+            <p class="text-sm font-bold uppercase tracking-widest text-violet-700">Bab 2 • Informatika Kelas 9 (Edisi Terpadu Halaman 56–114)</p>
+            <h2 class="mt-2 text-2xl font-extrabold text-slate-900">Algoritma Lanjutan & Fondasi Pemrograman</h2>
+            <p class="mt-3 text-slate-600 leading-relaxed">Pelajari teknik pemecahan masalah dengan modularisasi program, penggunaan library, transisi pemrograman visual ke tekstual, serta flowchart & pseudocode secara interaktif.</p>
           </article>
 
           <!-- Navigasi Subbab Bab 2 -->
           <nav class="mt-5 flex flex-wrap gap-2 no-print" aria-label="Subbab Bab 2">
-            <button type="button" class="subchapter-button active rounded-xl px-3.5 py-2 text-sm" data-subchapter="m2-algoritma">A. Algoritma, Flowchart & Pseudocode</button>
-            <button type="button" class="subchapter-button rounded-xl px-3.5 py-2 text-sm" data-subchapter="m2-antarmuka">B. Antarmuka & Kategori Blok Scratch</button>
-            <button type="button" class="subchapter-button rounded-xl px-3.5 py-2 text-sm" data-subchapter="m2-transisi-scratch">C. Transisi Pseudocode ke Scratch</button>
-            <button type="button" class="subchapter-button rounded-xl px-3.5 py-2 text-sm" data-subchapter="m2-modularisasi">D. Modularisasi & My Blocks</button>
-            <button type="button" class="subchapter-button rounded-xl px-3.5 py-2 text-sm" data-subchapter="m2-library">E. Library & Blok vs Tekstual</button>
-            <button type="button" class="subchapter-button rounded-xl px-3.5 py-2 text-sm" data-subchapter="m2-scratch">F. Proyek Scratch Interaktif</button>
-            <button type="button" class="subchapter-button rounded-xl px-3.5 py-2 text-sm" data-subchapter="m2-matching">G. Game Pasang Istilah</button>
-            <button type="button" class="subchapter-button rounded-xl px-3.5 py-2 text-sm" data-subchapter="m2-refleksi">H. Refleksi Bab 2</button>
+            <button type="button" class="subchapter-button active rounded-xl px-3.5 py-2 text-sm" data-subchapter="m2-modularisasi">A. Modularisasi Program</button>
+            <button type="button" class="subchapter-button rounded-xl px-3.5 py-2 text-sm" data-subchapter="m2-library">B. Konsep Library</button>
+            <button type="button" class="subchapter-button rounded-xl px-3.5 py-2 text-sm" data-subchapter="m2-transisi">C. Blok vs Tekstual</button>
+            <button type="button" class="subchapter-button rounded-xl px-3.5 py-2 text-sm" data-subchapter="m2-flowchart">D. Flowchart & Tracing</button>
+            <button type="button" class="subchapter-button rounded-xl px-3.5 py-2 text-sm" data-subchapter="m2-scratch">E. Simulasi Scratch</button>
+            <button type="button" class="subchapter-button rounded-xl px-3.5 py-2 text-sm" data-subchapter="m2-matching">F. Game Pasang Istilah</button>
+            <button type="button" class="subchapter-button rounded-xl px-3.5 py-2 text-sm" data-subchapter="m2-refleksi">G. Refleksi Bab 2</button>
           </nav>
 
-          <!-- Subbab A Bab 2: ALGORITMA, FLOWCHART & PSEUDOCODE -->
-          <section id="m2-algoritma" class="subchapter-view active mt-5">
+          <!-- Subbab A Bab 2 -->
+          <section id="m2-modularisasi" class="subchapter-view active mt-5">
+            <article class="card">
+              <span class="text-xs font-bold text-violet-700 uppercase block mb-1">TOPIK 01 • HALAMAN 56–63</span>
+              <h3 class="text-xl font-extrabold text-slate-900 mb-3">Modularisasi Program: Function dan Procedure</h3>
+              <p class="text-slate-700 text-sm leading-relaxed mb-4">
+                <strong>Modularisasi</strong> adalah teknik memecah program besar yang kompleks menjadi subprogram (modul) kecil agar lebih terstruktur, mudah dikembangkan, dan dapat digunakan kembali (reusable).
+              </p>
+              <div class="grid md:grid-cols-2 gap-4 mb-4">
+                <div class="bg-sky-50 border border-sky-100 p-4 rounded-xl text-sm">
+                  <strong class="text-sky-900 block mb-1 flex items-center gap-2"><i data-lucide="function-square" class="w-4 h-4"></i> 1. Function (Fungsi)</strong>
+                  <p class="text-slate-700">Modul yang <strong>mengembalikan nilai hasil (return value)</strong> setelah memproses instruksi.<br><em>Analogi:</em> Ibu bertanya berapa jumlah apel di meja, Anto menghitung lalu menjawab <strong>"7 buah"</strong>.</p>
+                </div>
+                <div class="bg-emerald-50 border border-emerald-100 p-4 rounded-xl text-sm">
+                  <strong class="text-emerald-900 block mb-1 flex items-center gap-2"><i data-lucide="play-circle" class="w-4 h-4"></i> 2. Procedure (Prosedur)</strong>
+                  <p class="text-slate-700">Modul yang <strong>menjalankan serangkaian instruksi/aksi</strong> tanpa mengembalikan nilai balik.<br><em>Analogi:</em> Ibu meminta Anto mencuci apel lalu menaruhnya kembali di piring.</p>
+                </div>
+              </div>
+              <div class="codebox"># Contoh Implementasi dalam Bahasa Pemrograman Python
+
+def hitung_apel():
+    return 7  # Function dengan return value (mengembalikan nilai 7)
+
+def cuci_apel():
+    print("Apel telah dicuci bersih!")  # Procedure tanpa return value</div>
+            </article>
+          </section>
+
+          <!-- Subbab B Bab 2 -->
+          <section id="m2-library" class="subchapter-view mt-5">
+            <article class="card">
+              <span class="text-xs font-bold text-violet-700 uppercase block mb-1">TOPIK 02 • HALAMAN 64–75</span>
+              <h3 class="text-xl font-extrabold text-slate-900 mb-3">Konsep dan Penggunaan Library (Pustaka Program)</h3>
+              <p class="text-slate-700 text-sm leading-relaxed mb-4">
+                <strong>Library (Pustaka)</strong> adalah kumpulan modul program atau fungsi siap pakai yang disimpan dalam satu wadah sehingga dapat dipanggil dan digunakan berulang kali tanpa perlu menulis kodenya dari nol.
+              </p>
+              <div class="grid md:grid-cols-3 gap-3 mb-4 text-sm">
+                <div class="bg-sky-50 p-4 rounded-xl border border-sky-100">
+                  <strong class="text-sky-900 block mb-1">01. Reusability</strong>
+                  <span class="text-xs text-slate-600">Kode yang telah dibuat dapat digunakan kembali secara fleksibel di berbagai proyek.</span>
+                </div>
+                <div class="bg-violet-50 p-4 rounded-xl border border-violet-100">
+                  <strong class="text-violet-900 block mb-1">02. Abstraction</strong>
+                  <span class="text-xs text-slate-600">Menyembunyikan kerumitan detail algoritma internal sehingga pemrogram tinggal memakainya.</span>
+                </div>
+                <div class="bg-emerald-50 p-4 rounded-xl border border-emerald-100">
+                  <strong class="text-emerald-900 block mb-1">03. Efficiency</strong>
+                  <span class="text-xs text-slate-600">Menghemat waktu dan meningkatkan efisiensi proses pembuatan aplikasi.</span>
+                </div>
+              </div>
+              <div class="codebox">import math
+
+# Menggunakan fungsi sqrt (akar kuadrat) dari library math bawaan Python
+akar = math.sqrt(16)
+print(akar)  # Hasil Output: 4.0</div>
+            </article>
+          </section>
+
+          <!-- Subbab C Bab 2 -->
+          <section id="m2-transisi" class="subchapter-view mt-5">
+            <article class="card">
+              <span class="text-xs font-bold text-violet-700 uppercase block mb-1">TOPIK 03 • HALAMAN 76–90</span>
+              <h3 class="text-xl font-extrabold text-slate-900 mb-3">Transisi Pemrograman Visual Blok ke Tekstual</h3>
+              <p class="text-slate-700 text-sm leading-relaxed mb-4">
+                Pemrograman visual berbasis blok (seperti Scratch/Blockly) mengandalkan metode *drag-and-drop* untuk melatih logika berpikir tanpa terbebani kesalahan penulisan (*syntax error*). Pemrograman tekstual (seperti Bahasa C atau Python) digunakan dalam industri profesional untuk kontrol program yang dinamis.
+              </p>
+              <div class="overflow-x-auto border rounded-xl shadow-sm bg-white p-2">
+                <table class="w-full text-xs text-left border-collapse">
+                  <thead>
+                    <tr class="bg-slate-800 text-white font-bold">
+                      <th class="p-2.5 border border-slate-700">Konsep Algoritma</th>
+                      <th class="p-2.5 border border-slate-700">Visual Blok (Scratch)</th>
+                      <th class="p-2.5 border border-slate-700">Bahasa C (Tekstual)</th>
+                      <th class="p-2.5 border border-slate-700">Python (Tekstual)</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-slate-200 text-slate-700">
+                    <tr>
+                      <td class="p-2.5 font-bold bg-slate-50">Input / Output</td>
+                      <td class="p-2.5">Blok <code>ask [...] and wait</code> / <code>say [...]</code></td>
+                      <td class="p-2.5 font-mono">scanf() / printf()</td>
+                      <td class="p-2.5 font-mono">input() / print()</td>
+                    </tr>
+                    <tr>
+                      <td class="p-2.5 font-bold bg-slate-50">Variabel</td>
+                      <td class="p-2.5">Blok <code>set [x] to (3 + 2)</code></td>
+                      <td class="p-2.5 font-mono">int x = 3 + 2;</td>
+                      <td class="p-2.5 font-mono">x = 3 + 2</td>
+                    </tr>
+                    <tr>
+                      <td class="p-2.5 font-bold bg-slate-50">Percabangan</td>
+                      <td class="p-2.5">Blok <code>if [...] then ... else</code></td>
+                      <td class="p-2.5 font-mono">if (x < y) { ... } else { ... }</td>
+                      <td class="p-2.5 font-mono">if x < y: ... else: ...</td>
+                    </tr>
+                    <tr>
+                      <td class="p-2.5 font-bold bg-slate-50">Perulangan</td>
+                      <td class="p-2.5">Blok <code>repeat (3)</code> / <code>forever</code></td>
+                      <td class="p-2.5 font-mono">for(int i=0; i<3; i++) { ... }</td>
+                      <td class="p-2.5 font-mono">for i in range(3): ...</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </article>
+          </section>
+
+          <!-- Subbab D Bab 2 -->
+          <section id="m2-flowchart" class="subchapter-view mt-5">
             <article class="card space-y-6">
               <div>
-                <span class="text-xs font-bold text-violet-700 uppercase block mb-1">BAGIAN 01 • LOGIKA PEMROGRAMAN</span>
-                <h3 class="text-xl font-extrabold text-slate-900 mb-2">Menyusun Langkah Logis: Algoritma, Flowchart & Pseudocode</h3>
+                <span class="text-xs font-bold text-violet-700 uppercase block mb-1">TOPIK 04 • HALAMAN 91–114</span>
+                <h3 class="text-xl font-extrabold text-slate-900 mb-2">Flowchart, Pseudocode, dan Simulasi Tracing</h3>
                 <p class="text-slate-700 text-sm leading-relaxed">
-                  Sebelum mengetik kode atau menyusun blok program, seorang pemrogram harus merancang alur logika pemecahan masalah terlebih dahulu melalui tiga bentuk representasi baku.
+                  <strong>Flowchart</strong> menggambarkan alur langkah logika program secara visual dengan simbol-simbol standar. <strong>Pseudocode</strong> adalah deskripsi algoritma menggunakan bahasa natural yang terstruktur (seperti INPUT, IF, THEN, ELSE, OUTPUT) untuk merancang program sebelum diketik menjadi kode asli.
                 </p>
               </div>
 
-              <div class="grid md:grid-cols-3 gap-4 text-sm">
-                <div class="bg-sky-50 border border-sky-100 p-4 rounded-xl">
-                  <h4 class="font-bold text-sky-900 mb-1 flex items-center gap-1.5"><i data-lucide="list-ordered" class="w-4 h-4"></i> 1. Algoritma</h4>
-                  <p class="text-xs text-slate-700 leading-relaxed">Urutan langkah logis, terstruktur, dan sistematis untuk menyelesaikan suatu permasalahan tertentu.</p>
+              <div class="grid md:grid-cols-2 gap-4 text-sm">
+                <div class="p-4 rounded-xl border border-slate-200 bg-slate-50">
+                  <strong class="block mb-2 text-slate-800">Simbol-Simbol Utama Flowchart:</strong>
+                  <ul class="space-y-1.5 text-xs text-slate-600">
+                    <li>• <strong>Oval (Terminator):</strong> Menyatakan titik Mulai (Start) atau Selesai (Stop).</li>
+                    <li>• <strong>Jajar Genjang (Input/Output):</strong> Menyatakan pembacaan data masukan atau pencetakan keluaran.</li>
+                    <li>• <strong>Persegi Panjang (Process):</strong> Menyatakan proses perhitungan atau pengolahan data.</li>
+                    <li>• <strong>Belah Ketupat (Decision):</strong> Menyatakan keputusan/percabangan logika (Ya / Tidak).</li>
+                  </ul>
                 </div>
-                <div class="bg-violet-50 border border-violet-100 p-4 rounded-xl">
-                  <h4 class="font-bold text-violet-900 mb-1 flex items-center gap-1.5"><i data-lucide="git-fork" class="w-4 h-4"></i> 2. Flowchart</h4>
-                  <p class="text-xs text-slate-700 leading-relaxed">Representasi visual alur algoritma menggunakan simbol-simbol grafis standar baku.</p>
-                </div>
-                <div class="bg-emerald-50 border border-emerald-100 p-4 rounded-xl">
-                  <h4 class="font-bold text-emerald-900 mb-1 flex items-center gap-1.5"><i data-lucide="code" class="w-4 h-4"></i> 3. Pseudocode</h4>
-                  <p class="text-xs text-slate-700 leading-relaxed">Penulisan kode semu menggunakan bahasa manusia sehari-hari disertai kata kunci komputer (INPUT, IF, THEN, PRINT).</p>
-                </div>
-              </div>
+                <div class="codebox"># Contoh Pseudocode Penentuan Bilangan Genap/Ganjil
 
-              <!-- Simbol Flowchart -->
-              <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
-                <h4 class="font-extrabold text-slate-800 text-sm mb-3">Simbol Standar Diagram Alir (Flowchart):</h4>
-                <div class="grid grid-cols-2 md:grid-cols-3 gap-3 text-xs">
-                  <div class="p-2.5 bg-white border rounded-lg"><strong>• Terminator (Oval):</strong> Mulai (Start) & Selesai (Stop).</div>
-                  <div class="p-2.5 bg-white border rounded-lg"><strong>• Input / Output (Jajar Genjang):</strong> Membaca masukan / Menampilkan hasil.</div>
-                  <div class="p-2.5 bg-white border rounded-lg"><strong>• Process (Persegi Panjang):</strong> Perhitungan / Pengolahan data.</div>
-                  <div class="p-2.5 bg-white border rounded-lg"><strong>• Decision (Belah Ketupat):</strong> Keputusan percabangan logika (Ya / Tidak).</div>
-                  <div class="p-2.5 bg-white border rounded-lg"><strong>• Subprogram (Persegi Garis Ganda):</strong> Pemanggilan fungsi / prosedur terpisah.</div>
-                  <div class="p-2.5 bg-white border rounded-lg"><strong>• Flowline (Panah):</strong> Menunjukkan arah alur eksekusi langkah.</div>
-                </div>
-              </div>
-
-              <!-- Contoh Studi Kasus Cek Kelulusan (Nilai >= 75) -->
-              <div class="grid lg:grid-cols-2 gap-5">
-                <div class="p-5 rounded-2xl bg-sky-50 border border-sky-200">
-                  <h4 class="font-extrabold text-sky-900 text-sm mb-2">Contoh Alur Flowchart · Penentuan Kelulusan</h4>
-                  <p class="text-xs text-slate-600 mb-3">Siswa dinyatakan "Lulus" jika $Nilai \ge 75$, dan "Belum Lulus" jika $Nilai < 75$.</p>
-
-                  <div class="flex flex-col items-center gap-1.5 text-xs font-bold text-slate-800 py-2">
-                    <div class="px-4 py-1.5 bg-sky-700 text-white rounded-full">⬭ Mulai (Start)</div>
-                    <div class="text-sky-600">↓</div>
-                    <div class="px-4 py-1.5 bg-white border border-sky-300 transform -skew-x-12"><span>▱ Input nilai</span></div>
-                    <div class="text-sky-600">↓</div>
-                    <div class="px-3 py-2 bg-amber-100 border border-amber-400 text-amber-900 text-center rounded-lg">◇ Apakah nilai $\ge 75$?</div>
-                    <div class="flex justify-between w-full max-w-xs text-2xl font-normal text-sky-700 px-4">
-                      <span>↙ <em class="text-xs font-bold text-emerald-700">Ya</em></span>
-                      <span><em class="text-xs font-bold text-rose-700">Tidak</em> ↘</span>
-                    </div>
-                    <div class="flex justify-between w-full gap-2">
-                      <div class="px-3 py-1.5 bg-emerald-100 text-emerald-900 border border-emerald-300 rounded text-center flex-1">▱ PRINT "Lulus"</div>
-                      <div class="px-3 py-1.5 bg-rose-100 text-rose-900 border border-rose-300 rounded text-center flex-1">▱ PRINT "Belum Lulus"</div>
-                    </div>
-                    <div class="text-sky-600">↓</div>
-                    <div class="px-4 py-1.5 bg-sky-700 text-white rounded-full">⬭ Selesai (Stop)</div>
-                  </div>
-                </div>
-
-                <div class="p-5 rounded-2xl bg-slate-900 text-white">
-                  <h4 class="font-extrabold text-amber-300 text-sm mb-2">Padanan Pseudocode (Kode Semu)</h4>
-                  <p class="text-xs text-slate-400 mb-3">Penulisan kata kunci komputer terstruktur:</p>
-                  <pre class="codebox text-xs leading-relaxed text-emerald-400">START
-INPUT nilai
-IF nilai >= 75 THEN
-    PRINT "Lulus"
-ELSE
-    PRINT "Belum Lulus"
-END IF
-STOP</pre>
-                </div>
+MULAI
+  INPUT angka
+  JIKA (angka MOD 2 = 0) MAKA
+      OUTPUT "Genap"
+  SELAIN ITU
+      OUTPUT "Ganjil"
+  SELESAI_JIKA
+SELESAI</div>
               </div>
 
               <!-- Interactive Flowchart Tracing Simulation -->
-              <div class="p-5 border border-sky-200 rounded-2xl bg-white shadow-sm">
+              <div class="p-5 border border-sky-200 rounded-2xl bg-sky-50/50">
                 <h4 class="font-extrabold text-sky-900 text-base mb-1 flex items-center gap-2">
                   <i data-lucide="play" class="w-5 h-5 text-sky-700"></i> Simulasi Tracing Flowchart Interaktif
                 </h4>
@@ -693,288 +742,17 @@ STOP</pre>
                   <div class="flow-step" data-step="4">⬭ Stop</div>
                 </div>
 
-                <div id="sim-feedback" class="p-3 bg-sky-50 border border-sky-200 rounded-xl text-sm font-extrabold text-sky-900">
+                <div id="sim-feedback" class="p-3 bg-white border border-sky-200 rounded-xl text-sm font-extrabold text-sky-900">
                   Tekan "Langkah Berikutnya" untuk memulai penelusuran.
                 </div>
               </div>
             </article>
           </section>
 
-          <!-- Subbab B Bab 2: ANTARMUKA & BLOK-BLOK SCRATCH -->
-          <section id="m2-antarmuka" class="subchapter-view mt-5">
-            <article class="card space-y-6">
-              <div>
-                <span class="text-xs font-bold text-violet-700 uppercase block mb-1">BAGIAN 02 • LINGKUNGAN SCRATCH</span>
-                <h3 class="text-xl font-extrabold text-slate-900 mb-2">Pengenalan Antarmuka & Kategori Blok Scratch</h3>
-                <p class="text-slate-700 text-sm leading-relaxed">
-                  <strong>Scratch</strong> adalah bahasa pemrograman visual berbasis blok yang dikembangkan oleh MIT Media Lab. Pengguna cukup menyusun skrip dengan metode *drag-and-drop* tanpa perlu mengkhawatirkan kesalahan penulisan (*syntax error*).
-                </p>
-              </div>
-
-              <!-- Elemen Antarmuka Scratch -->
-              <div>
-                <h4 class="font-extrabold text-slate-800 text-base mb-3">1. Elemen Utama Antarmuka (User Interface) Scratch</h4>
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-3 text-xs">
-                  <div class="p-4 border rounded-xl bg-slate-50">
-                    <strong class="text-sky-800 text-sm block mb-1">🎭 Stage (Panggung)</strong>
-                    <span class="text-slate-600">Area layar tempat Sprite beraksi, bergerak, dan menampilkan visual animasi atau game.</span>
-                  </div>
-                  <div class="p-4 border rounded-xl bg-slate-50">
-                    <strong class="text-violet-800 text-sm block mb-1">🐱 Sprite (Objek)</strong>
-                    <span class="text-slate-600">Karakter atau objek gambar yang dikendalikan oleh susunan blok perintah program.</span>
-                  </div>
-                  <div class="p-4 border rounded-xl bg-slate-50">
-                    <strong class="text-emerald-800 text-sm block mb-1">🎨 Block Palette</strong>
-                    <span class="text-slate-600">Panel kumpulan blok perintah yang dikelompokkan berdasarkan warna dan fungsi kategori.</span>
-                  </div>
-                  <div class="p-4 border rounded-xl bg-slate-50">
-                    <strong class="text-amber-800 text-sm block mb-1">🧩 Script Area (Area Kerja)</strong>
-                    <span class="text-slate-600">Lahan tempat Anda menyeret (*drag*) dan menyusun (*drop*) blok-blok logika program.</span>
-                  </div>
-                  <div class="p-4 border rounded-xl bg-slate-50">
-                    <strong class="text-rose-800 text-sm block mb-1">👗 Costumes & Sounds Tab</strong>
-                    <span class="text-slate-600">Menu untuk mengganti tampilan kostum animasi Sprite serta mengedit efek suara.</span>
-                  </div>
-                  <div class="p-4 border rounded-xl bg-slate-50">
-                    <strong class="text-indigo-800 text-sm block mb-1">🚩 Green Flag / Stop</strong>
-                    <span class="text-slate-600">Tombol Bendera Hijau untuk menjalankan program dan tombol Merah untuk menghentikan program.</span>
-                  </div>
-                </div>
-              </div>
-
-              <!-- 9 Kategori Warna Blok Scratch -->
-              <div>
-                <h4 class="font-extrabold text-slate-800 text-base mb-3">2. 9 Kategori Warna Blok Perintah Scratch</h4>
-                <div class="grid md:grid-cols-3 gap-3 text-xs">
-                  <div class="p-3 rounded-xl border border-blue-200 bg-blue-50/60">
-                    <div class="scratch-block sb-motion">Motion (Gerakan)</div>
-                    <p class="text-slate-600 mt-1">Mengatur posisi, arah, dan perpindahan Sprite. Contoh: <code class="bg-blue-100 px-1 rounded">move 10 steps</code>, <code class="bg-blue-100 px-1 rounded">turn 15 degrees</code>.</p>
-                  </div>
-
-                  <div class="p-3 rounded-xl border border-purple-200 bg-purple-50/60">
-                    <div class="scratch-block sb-looks">Looks (Tampilan)</div>
-                    <p class="text-slate-600 mt-1">Mengatur ucapan gelembung teks, warna, dan kostum. Contoh: <code class="bg-purple-100 px-1 rounded">say [Halo!] for 2 secs</code>.</p>
-                  </div>
-
-                  <div class="p-3 rounded-xl border border-pink-200 bg-pink-50/60">
-                    <div class="scratch-block sb-sound">Sound (Suara)</div>
-                    <p class="text-slate-600 mt-1">Memutar efek suara atau nada musik. Contoh: <code class="bg-pink-100 px-1 rounded">play sound [Meow] until done</code>.</p>
-                  </div>
-
-                  <div class="p-3 rounded-xl border border-yellow-200 bg-yellow-50/60">
-                    <div class="scratch-block sb-events">Events (Kejadian)</div>
-                    <p class="text-slate-600 mt-1">Pemicu awal jalannya skrip (*Hat block*). Contoh: <code class="bg-yellow-100 px-1 rounded">when green flag clicked</code>.</p>
-                  </div>
-
-                  <div class="p-3 rounded-xl border border-amber-200 bg-amber-50/60">
-                    <div class="scratch-block sb-control">Control (Kontrol)</div>
-                    <p class="text-slate-600 mt-1">Mengatur perulangan dan kondisi percabangan. Contoh: <code class="bg-amber-100 px-1 rounded">repeat 10</code>, <code class="bg-amber-100 px-1 rounded">if ... then ... else</code>.</p>
-                  </div>
-
-                  <div class="p-3 rounded-xl border border-sky-200 bg-sky-50/60">
-                    <div class="scratch-block sb-sensing">Sensing (Sensor)</div>
-                    <p class="text-slate-600 mt-1">Mendeteksi masukan pengguna / benturan. Contoh: <code class="bg-sky-100 px-1 rounded">ask [Nama?] and wait</code>, <code class="bg-sky-100 px-1 rounded">touching mouse-pointer?</code>.</p>
-                  </div>
-
-                  <div class="p-3 rounded-xl border border-emerald-200 bg-emerald-50/60">
-                    <div class="scratch-block sb-operators">Operators (Operator)</div>
-                    <p class="text-slate-600 mt-1">Operasi matematika ($+,-,*,/$) & logika ($>, <, =, AND, OR$). Contoh: <code class="bg-emerald-100 px-1 rounded">(score) > [50]</code>.</p>
-                  </div>
-
-                  <div class="p-3 rounded-xl border border-orange-200 bg-orange-50/60">
-                    <div class="scratch-block sb-variables">Variables (Variabel)</div>
-                    <p class="text-slate-600 mt-1">Menyimpan nilai data sementara. Contoh: <code class="bg-orange-100 px-1 rounded">set [skor] to 0</code>, <code class="bg-orange-100 px-1 rounded">change [skor] by 1</code>.</p>
-                  </div>
-
-                  <div class="p-3 rounded-xl border border-rose-200 bg-rose-50/60">
-                    <div class="scratch-block sb-myblocks">My Blocks (Blok Saya)</div>
-                    <p class="text-slate-600 mt-1">Membuat prosedur / fungsi buatan sendiri (*Custom Blocks*) untuk modularisasi program.</p>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Bentuk-Bentuk Blok Scratch -->
-              <div>
-                <h4 class="font-extrabold text-slate-800 text-base mb-3">3. Mengenal Forms / Bentuk Fisik Blok Scratch</h4>
-                <div class="grid md:grid-cols-2 gap-4 text-xs">
-                  <div class="p-3.5 border rounded-xl bg-slate-50">
-                    <strong class="text-slate-900 block mb-1">🧢 Hat Blocks (Topi)</strong>
-                    <p class="text-slate-600 mb-1">Berpenutup lengkung di atas. Selalu menjadi pemicu paling awal di bagian atas skrip.</p>
-                    <div class="scratch-block sb-events">when [green flag] clicked</div>
-                  </div>
-
-                  <div class="p-3.5 border rounded-xl bg-slate-50">
-                    <strong class="text-slate-900 block mb-1">🧩 Stack Blocks (Tumpukan)</strong>
-                    <p class="text-slate-600 mb-1">Memiliki takik pasang di atas dan di bawah. Digunakan untuk instruksi aksi berurutan.</p>
-                    <div class="scratch-block sb-motion">move (10) steps</div>
-                  </div>
-
-                  <div class="p-3.5 border rounded-xl bg-slate-50">
-                    <strong class="text-slate-900 block mb-1">🔷 Boolean Blocks (Hexagon / Segi Enam)</strong>
-                    <p class="text-slate-600 mb-1">Berbentuk segi enam. Menghasilkan nilai Benar/Salah (TRUE / FALSE) untuk syarat percabangan.</p>
-                    <div class="scratch-block sb-operators">&lt; (nilai) &gt; [75] &gt;</div>
-                  </div>
-
-                  <div class="p-3.5 border rounded-xl bg-slate-50">
-                    <strong class="text-slate-900 block mb-1">🟢 Reporter Blocks (Lonjong / Oval)</strong>
-                    <p class="text-slate-600 mb-1">Berbentuk oval lonjong. Mengembalikan nilai angka atau teks ke dalam blok lain.</p>
-                    <div class="scratch-block sb-sensing">(answer)</div>
-                  </div>
-
-                  <div class="p-3.5 border rounded-xl bg-slate-50">
-                    <strong class="text-slate-900 block mb-1">🔲 C-Blocks (Mulut C)</strong>
-                    <p class="text-slate-600 mb-1">Berbentuk seperti huruf C untuk membungkus blok lain di dalamnya (perulangan/kondisi).</p>
-                    <div class="scratch-block sb-control">repeat (10) [ ... ]</div>
-                  </div>
-
-                  <div class="p-3.5 border rounded-xl bg-slate-50">
-                    <strong class="text-slate-900 block mb-1">🛑 Cap Blocks (Penutup)</strong>
-                    <p class="text-slate-600 mb-1">Berpermukaan rata di bawah. Menandai akhir dari eksekusi alur skrip.</p>
-                    <div class="scratch-block sb-control">stop [all]</div>
-                  </div>
-                </div>
-              </div>
-            </article>
-          </section>
-
-          <!-- Subbab C Bab 2: TRANSISI PSEUDOCODE KE SCRATCH -->
-          <section id="m2-transisi-scratch" class="subchapter-view mt-5">
-            <article class="card space-y-6">
-              <div>
-                <span class="text-xs font-bold text-violet-700 uppercase block mb-1">BAGIAN 03 • MENTERJEMAHKAN LOGIKA</span>
-                <h3 class="text-xl font-extrabold text-slate-900 mb-2">Transisi Pseudocode ke Pemrograman Visual Scratch</h3>
-                <p class="text-slate-700 text-sm leading-relaxed">
-                  Perhatikan bagaimana susunan logika pada pseudocode diterjemahkan secara langsung menjadi rangkaian blok pada Scratch:
-                </p>
-              </div>
-
-              <div class="grid md:grid-cols-2 gap-6 items-start">
-                <!-- Pseudocode Side -->
-                <div class="bg-slate-900 text-white p-5 rounded-2xl">
-                  <h4 class="font-extrabold text-amber-300 text-sm mb-3 border-b border-slate-700 pb-2">1. Deskripsi Pseudocode</h4>
-                  <pre class="codebox text-xs leading-loose text-emerald-300">START
-  INPUT nilai
-  IF nilai >= 75 THEN
-      PRINT "Lulus"
-  ELSE
-      PRINT "Belum Lulus"
-  END IF
-STOP</pre>
-                </div>
-
-                <!-- Scratch Visual Script Side -->
-                <div class="bg-slate-50 border border-slate-200 p-5 rounded-2xl">
-                  <h4 class="font-extrabold text-sky-900 text-sm mb-3 border-b border-slate-200 pb-2">2. Padanan Tumpukan Blok Scratch</h4>
-                  <div class="space-y-1.5 flex flex-col items-start font-mono text-xs">
-                    <div class="scratch-block sb-events">when [green flag] clicked</div>
-                    <div class="scratch-block sb-sensing">ask [Masukkan nilai Anda:] and wait</div>
-                    <div class="scratch-block sb-variables">set [nilai] to (answer)</div>
-                    <div class="scratch-block sb-control">if &lt; (nilai) &gt;= [75] &gt; then</div>
-                    <div class="ml-5 scratch-block sb-looks">say [Lulus!] for (2) secs</div>
-                    <div class="scratch-block sb-control">else</div>
-                    <div class="ml-5 scratch-block sb-looks">say [Belum Lulus] for (2) secs</div>
-                    <div class="scratch-block sb-control">stop [this script]</div>
-                  </div>
-                </div>
-              </div>
-            </article>
-          </section>
-
-          <!-- Subbab D Bab 2: MODULARISASI & MY BLOCKS -->
-          <section id="m2-modularisasi" class="subchapter-view mt-5">
-            <article class="card space-y-5">
-              <div>
-                <span class="text-xs font-bold text-violet-700 uppercase block mb-1">BAGIAN 04 • SUBPROGRAM</span>
-                <h3 class="text-xl font-extrabold text-slate-900 mb-3">Modularisasi Program: Function, Procedure, & My Blocks</h3>
-                <p class="text-slate-700 text-sm leading-relaxed">
-                  <strong>Modularisasi</strong> adalah teknik memecah program besar menjadi subprogram (modul) kecil agar lebih terstruktur, mudah dikembangkan, dan dapat digunakan kembali (*reusable*).
-                </p>
-              </div>
-
-              <div class="grid md:grid-cols-2 gap-4">
-                <div class="bg-sky-50 border border-sky-100 p-4 rounded-xl text-sm">
-                  <strong class="text-sky-900 block mb-1 flex items-center gap-2"><i data-lucide="function-square" class="w-4 h-4"></i> 1. Function (Fungsi)</strong>
-                  <p class="text-slate-700 text-xs leading-relaxed">Modul yang <strong>mengembalikan nilai hasil (*return value*)</strong> setelah memproses instruksi.<br><em>Analogi:</em> Menghitung luas persegi panjang dan memberikan angka jawabannya.</p>
-                </div>
-                <div class="bg-emerald-50 border border-emerald-100 p-4 rounded-xl text-sm">
-                  <strong class="text-emerald-900 block mb-1 flex items-center gap-2"><i data-lucide="play-circle" class="w-4 h-4"></i> 2. Procedure (Prosedur)</strong>
-                  <p class="text-slate-700 text-xs leading-relaxed">Modul yang <strong>menjalankan aksi/instruksi</strong> tanpa mengembalikan nilai balik.<br><em>Analogi:</em> Perintah mencuci piring atau membunyikan klakson.</p>
-                </div>
-              </div>
-
-              <!-- Implementasi My Blocks di Scratch -->
-              <div class="p-4 border rounded-xl bg-violet-50/50 border-violet-100">
-                <h4 class="font-extrabold text-violet-900 text-sm mb-2">Membuat Modul Kustom di Scratch dengan "My Blocks" (Blok Saya):</h4>
-                <p class="text-xs text-slate-600 mb-3">Di Scratch, Anda dapat membuat prosedur buatan sendiri melalui tombol <strong>Make a Block</strong> pada kategori My Blocks.</p>
-                <div class="flex flex-wrap gap-3 items-center text-xs font-mono">
-                  <div class="scratch-block sb-myblocks">define [SapaSiswa (nama)]</div>
-                  <span>→</span>
-                  <div class="scratch-block sb-looks">say (join [Selamat belajar, ] (nama)) for (2) secs</div>
-                </div>
-              </div>
-            </article>
-          </section>
-
-          <!-- Subbab E Bab 2: LIBRARY & BLOK VS TEKSTUAL -->
-          <section id="m2-library" class="subchapter-view mt-5">
-            <article class="card space-y-6">
-              <div>
-                <span class="text-xs font-bold text-violet-700 uppercase block mb-1">BAGIAN 05 • PUSTAKA & TRANSISI TEKSTUAL</span>
-                <h3 class="text-xl font-extrabold text-slate-900 mb-3">Konsep Library & Matriks Komparasi Blok vs Tekstual</h3>
-                <p class="text-slate-700 text-sm leading-relaxed mb-4">
-                  <strong>Library (Pustaka)</strong> adalah kumpulan modul siap pakai. Pada Scratch, library diwujudkan dalam fitur <strong>Add Extension (Tambah Ekstensi)</strong> seperti Ekstensi Pen, Music, dan Text-to-Speech. Pada bahasa tekstual seperti Python, pustaka dipanggil memakai perintah <code class="bg-slate-200 px-1 rounded">import math</code>.
-                </p>
-              </div>
-
-              <div>
-                <h4 class="font-extrabold text-slate-800 text-sm mb-3">Matriks Perbandingan Sintaksis: Scratch vs Python vs Bahasa C</h4>
-                <div class="overflow-x-auto border rounded-xl shadow-sm bg-white p-2">
-                  <table class="w-full text-xs text-left border-collapse">
-                    <thead>
-                      <tr class="bg-slate-800 text-white font-bold">
-                        <th class="p-2.5 border border-slate-700">Konsep Algoritma</th>
-                        <th class="p-2.5 border border-slate-700">Visual Blok (Scratch)</th>
-                        <th class="p-2.5 border border-slate-700">Bahasa Python (Tekstual)</th>
-                        <th class="p-2.5 border border-slate-700">Bahasa C (Tekstual)</th>
-                      </tr>
-                    </thead>
-                    <tbody class="divide-y divide-slate-200 text-slate-700">
-                      <tr>
-                        <td class="p-2.5 font-bold bg-slate-50">Input / Output</td>
-                        <td class="p-2.5"><code>ask [...] and wait</code> / <code>say [...]</code></td>
-                        <td class="p-2.5 font-mono">input() / print()</td>
-                        <td class="p-2.5 font-mono">scanf() / printf()</td>
-                      </tr>
-                      <tr>
-                        <td class="p-2.5 font-bold bg-slate-50">Variabel</td>
-                        <td class="p-2.5">Blok <code>set [x] to (3 + 2)</code></td>
-                        <td class="p-2.5 font-mono">x = 3 + 2</td>
-                        <td class="p-2.5 font-mono">int x = 3 + 2;</td>
-                      </tr>
-                      <tr>
-                        <td class="p-2.5 font-bold bg-slate-50">Percabangan</td>
-                        <td class="p-2.5">Blok <code>if [...] then ... else</code></td>
-                        <td class="p-2.5 font-mono">if x >= 75: ... else: ...</td>
-                        <td class="p-2.5 font-mono">if (x >= 75) { ... } else { ... }</td>
-                      </tr>
-                      <tr>
-                        <td class="p-2.5 font-bold bg-slate-50">Perulangan</td>
-                        <td class="p-2.5">Blok <code>repeat (3)</code> / <code>forever</code></td>
-                        <td class="p-2.5 font-mono">for i in range(3): ...</td>
-                        <td class="p-2.5 font-mono">for(int i=0; i<3; i++) { ... }</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </article>
-          </section>
-
-          <!-- Subbab F Bab 2: SIMULASI SCRATCH INTERAKTIF -->
+          <!-- Subbab E Bab 2 -->
           <section id="m2-scratch" class="subchapter-view mt-5">
             <article class="card">
-              <span class="text-xs font-bold text-violet-700 uppercase block mb-1">BAGIAN 06 • PRAKTIK LANGSUNG</span>
-              <h3 class="text-xl font-extrabold text-slate-900 mb-2">Simulasi Proyek Pemrograman Scratch</h3>
+              <h3 class="text-xl font-extrabold text-slate-900 mb-2">E. Simulasi Pemrograman Blok Scratch</h3>
               <p class="text-sm text-slate-600 mb-4">Coba jalankan proyek pemrograman Scratch berikut langsung dari halaman web ini:</p>
               <div class="aspect-video w-full rounded-2xl overflow-hidden border bg-slate-900">
                 <iframe src="https://scratch.mit.edu/projects/10128/embed" class="w-full h-full" allowtransparency="true" frameborder="0" scrolling="no" allowfullscreen></iframe>
@@ -982,15 +760,15 @@ STOP</pre>
             </article>
           </section>
 
-          <!-- Subbab G Bab 2: GAME PASANG ISTILAH -->
+          <!-- Subbab F Bab 2 -->
           <section id="m2-matching" class="subchapter-view mt-5">
             <article class="card">
               <div class="flex justify-between items-center mb-4 flex-wrap gap-2">
                 <div>
-                  <h3 class="font-extrabold text-xl text-slate-900">Kuis Pasang Istilah & Definisi Bab 2</h3>
+                  <h3 class="font-extrabold text-xl text-slate-900">F. Kuis Pasang Istilah & Definisi Bab 2</h3>
                   <p class="text-xs text-slate-500">Klik istilah di sebelah kiri, lalu klik pasangan definisi yang sesuai di sebelah kanan.</p>
                 </div>
-                <span id="match-count-badge" class="text-xs bg-sky-100 text-sky-800 font-bold px-3 py-1 rounded-full">0 / 10 Terpasang</span>
+                <span id="match-count-badge" class="text-xs bg-sky-100 text-sky-800 font-bold px-3 py-1 rounded-full">0 / 6 Terpasang</span>
               </div>
 
               <div class="grid md:grid-cols-2 gap-4">
@@ -1007,18 +785,17 @@ STOP</pre>
             </article>
           </section>
 
-          <!-- Subbab H Bab 2: REFLEKSI -->
+          <!-- Subbab G Bab 2 -->
           <section id="m2-refleksi" class="subchapter-view mt-5">
             <article class="card">
-              <h3 class="text-xl font-extrabold text-slate-900">Refleksi Pembelajaran Bab 2</h3>
+              <h3 class="text-xl font-extrabold text-slate-900">G. Refleksi Pembelajaran Bab 2</h3>
               <p class="text-sm text-slate-600 mt-1 mb-4">Beri tanda centang pada poin-poin materi yang telah kamu kuasai:</p>
 
               <div class="space-y-2 text-sm text-slate-800">
-                <label class="flex gap-2 items-center cursor-pointer"><input class="progress-check" type="checkbox"> Saya memahami perbedaan Algoritma, Flowchart, dan Pseudocode</label>
-                <label class="flex gap-2 items-center cursor-pointer"><input class="progress-check" type="checkbox"> Saya mengenali elemen antarmuka Scratch (Stage, Sprite, Block Palette)</label>
-                <label class="flex gap-2 items-center cursor-pointer"><input class="progress-check" type="checkbox"> Saya memahami fungsi 9 kategori warna dan bentuk-bentuk blok Scratch</label>
-                <label class="flex gap-2 items-center cursor-pointer"><input class="progress-check" type="checkbox"> Saya mampu menerjemahkan alur Pseudocode ke dalam blok skrip Scratch</label>
-                <label class="flex gap-2 items-center cursor-pointer"><input class="progress-check" type="checkbox"> Saya paham penggunaan My Blocks untuk membuat prosedur/fungsi kustom</label>
+                <label class="flex gap-2 items-center cursor-pointer"><input class="progress-check" type="checkbox"> Paham perbedaan Function (return value) dan Procedure</label>
+                <label class="flex gap-2 items-center cursor-pointer"><input class="progress-check" type="checkbox"> Memahami 3 manfaat utama penggunaan Library</label>
+                <label class="flex gap-2 items-center cursor-pointer"><input class="progress-check" type="checkbox"> Memahami transisi dari pemrograman blok Scratch ke bahasa tekstual</label>
+                <label class="flex gap-2 items-center cursor-pointer"><input class="progress-check" type="checkbox"> Mampu menelusuri alur logika flowchart &amp; pseudocode</label>
               </div>
 
               <label for="module2-notes" class="mt-5 block font-bold text-sm text-slate-900">Catatan Pemahaman &amp; Pertanyaan Refleksi Siswa:</label>
@@ -1187,7 +964,7 @@ STOP</pre>
               <label class="block text-sm font-bold text-slate-700">Judul Simulasi yang Diikuti:</label>
               <select id="simulasi-target-select" class="w-full border rounded-xl p-3 mt-1 font-bold bg-white">
                 <option value="Simulasi Bab 1: Penyajian Data Mentah">Simulasi Bab 1: Penyajian Data Mentah</option>
-                <option value="Simulasi Bab 2: Algoritma & Pemrograman Scratch">Simulasi Bab 2: Algoritma & Pemrograman Scratch</option>
+                <option value="Simulasi Bab 2: Algoritma Lanjutan & Literasi">Simulasi Bab 2: Algoritma Lanjutan & Literasi</option>
                 <option value="Simulasi Bab 3: Literasi Digital & Etika">Simulasi Bab 3: Literasi Digital & Etika</option>
                 <option value="Simulasi Bab 4: Keamanan Digital & Data">Simulasi Bab 4: Keamanan Digital & Data</option>
               </select>
@@ -1351,7 +1128,7 @@ STOP</pre>
             <select id="material-category" class="w-full border rounded-xl p-3 mt-1">
               <option value="Umum">Umum / Semua Bab</option>
               <option value="Bab 1">Bab 1: Penyajian Data</option>
-              <option value="Bab 2">Bab 2: Algoritma & Scratch</option>
+              <option value="Bab 2">Bab 2: Algoritma Lanjutan</option>
               <option value="Bab 3">Bab 3: Literasi Digital</option>
               <option value="Bab 4">Bab 4: Keamanan Digital</option>
             </select>
@@ -1660,12 +1437,10 @@ STOP</pre>
         { q: "1. Formula spreadsheet untuk menghitung nilai rata-rata dari sekelompok data adalah...", options: ["=SUM(...)", "=AVERAGE(...)", "=MAX(...)", "=IF(...)"], answer: "b" },
         { q: "2. Jenis diagram yang paling tepat digunakan untuk membandingkan jumlah nilai antar siswa/kategori secara langsung adalah...", options: ["Diagram Batang", "Diagram Garis", "Diagram Lingkaran", "Diagram Venn"], answer: "a" }
       ],
-      "Simulasi Bab 2: Algoritma & Pemrograman Scratch": [
-        { q: "1. Penulisan deskripsi alur algoritma menggunakan kata kunci menyerupai kode komputer disebut...", options: ["Flowchart", "Pseudocode", "Sprite", "Compiler"], answer: "b" },
-        { q: "2. Area pada Scratch tempat Sprite beraksi dan menampilkan hasil program dinamakan...", options: ["Script Area", "Block Palette", "Stage (Panggung)", "Costumes"], answer: "c" },
-        { q: "3. Jenis blok Scratch berpenutup lengkung di atas yang berfungsi sebagai pemicu awal skrip dinamakan...", options: ["Hat Block", "Stack Block", "Boolean Block", "Cap Block"], answer: "a" },
-        { q: "4. Kategori warna blok Scratch yang digunakan untuk membuat variabel dan menyimpan nilai data adalah...", options: ["Kuning (Events)", "Oranye (Variables)", "Biru (Motion)", "Hijau (Operators)"], answer: "b" },
-        { q: "5. Fitur Scratch untuk membuat prosedur atau fungsi buatan sendiri dinamakan...", options: ["Extension", "My Blocks (Blok Saya)", "Costumes", "Backdrops"], answer: "b" }
+      "Simulasi Bab 2: Algoritma Lanjutan & Literasi": [
+        { q: "1. Modul/subprogram yang mengembalikan nilai hasil (return value) dinamakan...", options: ["Procedure", "Function", "Variable", "Loop"], answer: "b" },
+        { q: "2. Salah satu manfaat utama dari penggunaan Library dalam pemrograman adalah...", options: ["Reusability (dapat dipakai ulang)", "Membuat RAM permanen", "Menghapus bug otomatis", "Mematikan CPU"], answer: "a" },
+        { q: "3. Simbol flowchart berbentuk belah ketupat (Decision) berfungsi untuk...", options: ["Start/Stop", "Proses Perhitungan", "Input/Output Data", "Keputusan / Percabangan"], answer: "d" }
       ],
       "Simulasi Bab 3: Literasi Digital & Etika": [
         { q: "1. Ciri utama dari berita yang terindikasi Hoaks di media sosial adalah...", options: ["Berasal dari situs resmi", "Judul provokatif & memaksa disebarkan", "Mencantumkan data penelitian", "Ditulis bahasa ilmiah"], answer: "b" },
@@ -1989,18 +1764,14 @@ STOP</pre>
       };
     }
 
-    // Matching Game Bab 2 (10 Pasang Istilah Terlebur)
+    // Matching Game Bab 2
     const matchPairs = [
-      ["Pseudocode", "Deskripsi langkah algoritma terstruktur menyerupai kode komputer."],
-      ["Flowchart", "Diagram alir visual dengan simbol standar penggambar alur logika."],
-      ["Sprite", "Karakter atau objek visual pada Scratch yang diberi perintah skrip."],
-      ["Stage", "Area panggung visual Scratch tempat program menampilkan aksi sprite."],
-      ["Hat Block", "Blok pemicu awal berpenutup lengkung di atas (seperti when flag clicked)."],
-      ["C-Block", "Blok berbentuk mulut C penampung skrip perulangan atau percabangan."],
-      ["My Blocks", "Fitur Scratch untuk membuat modul/prosedur kustom buatan sendiri."],
-      ["Extension", "Library/pustaka tambahan pada Scratch seperti Pen, Music, & Translate."],
-      ["Function", "Subprogram/modul yang mengembalikan nilai hasil (return value)."],
-      ["Procedure", "Subprogram/modul yang menjalankan aksi tanpa mengembalikan nilai."]
+      ["Function", "Subprogram yang mengembalikan suatu nilai hasil (return value)."],
+      ["Procedure", "Subprogram yang menjalankan perintah tanpa return value."],
+      ["Library", "Kumpulan modul kode siap pakai yang dapat digunakan berulang kali."],
+      ["Flowchart", "Diagram simbolis visual yang menggambarkan alur langkah algoritma."],
+      ["Pseudocode", "Deskripsi langkah algoritma terstruktur menyerupai kode asli."],
+      ["Tracing", "Proses menelusuri dan menguji logika program langkah demi langkah."]
     ];
 
     let selectedTermIdx = null;
@@ -2029,7 +1800,7 @@ STOP</pre>
         termsCol.appendChild(btn);
       });
 
-      const shuffledOrder = [3, 0, 8, 1, 6, 2, 7, 4, 9, 5];
+      const shuffledOrder = [3, 0, 5, 1, 4, 2];
       shuffledOrder.forEach(idx => {
         const btn = document.createElement("button");
         btn.type = "button";
@@ -2057,8 +1828,8 @@ STOP</pre>
             }
 
             selectedTermIdx = null;
-            document.getElementById("match-count-badge").textContent = `${matchedSet.size} / 10 Terpasang`;
-            msg.textContent = matchedSet.size === 10 ? "Luar Biasa! Semua istilah Bab 2 berhasil terpasang sempurna! 🎉" : "Jawaban Tepat! Silakan pilih istilah berikutnya.";
+            document.getElementById("match-count-badge").textContent = `${matchedSet.size} / 6 Terpasang`;
+            msg.textContent = matchedSet.size === 6 ? "Luar Biasa! Semua istilah Bab 2 berhasil terpasang sempurna! 🎉" : "Jawaban Tepat! Silakan pilih istilah berikutnya.";
           } else {
             btn.classList.add("wrong");
             setTimeout(() => btn.classList.remove("wrong"), 600);
@@ -2073,7 +1844,7 @@ STOP</pre>
         restartBtn.onclick = () => {
           matchedSet.clear();
           selectedTermIdx = null;
-          document.getElementById("match-count-badge").textContent = "0 / 10 Terpasang";
+          document.getElementById("match-count-badge").textContent = "0 / 6 Terpasang";
           document.getElementById("match-feedback-msg").textContent = "Pilih salah satu istilah di sebelah kiri untuk memulai.";
           renderMatchingGame();
         };
@@ -2441,17 +2212,6 @@ STOP</pre>
 
     // SINKRONISASI REALTIME FIREBASE
     function listenFirebaseData() {
-      const handlePermError = (containerId, err) => {
-        console.warn(`Firestore listener permission error on ${containerId}:`, err.message);
-        const el = document.getElementById(containerId);
-        if (el && (!el.children.length || el.textContent.includes("Memuat"))) {
-          el.innerHTML = `<div class="p-3 bg-amber-50 border border-amber-200 rounded-xl text-xs text-amber-900">
-            ⚠️ <strong>Akses Firestore Dibatasi (Permission Denied).</strong><br>
-            Aplikasi tetap dapat digunakan untuk eksplorasi. Jika menggunakan akun Firebase sendiri, aktifkan aturan akses pada menu <em>Firestore Security Rules</em> di Firebase Console.
-          </div>`;
-        }
-      };
-
       // 1. Absen Harian
       onSnapshot(collection(db, "absen_harian"), (snapshot) => {
         const container = document.getElementById("rekap-absen-container");
@@ -2461,217 +2221,6 @@ STOP</pre>
           container.innerHTML = '<p class="text-sm text-slate-500">Belum ada siswa yang absen hari ini.</p>';
           return;
         }
-        snapshot.forEach((docSnap) => {
-          const data = docSnap.data();
-          const item = document.createElement("div");
-          item.className = "p-3.5 rounded-xl border border-slate-200 bg-slate-50 flex justify-between items-center";
-          item.innerHTML = `
-            <div>
-              <div class="flex items-center gap-2">
-                <span class="font-extrabold text-slate-900">${data.studentName}</span>
-                <span class="text-xs bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded-full">Kelas ${data.studentClass}</span>
-              </div>
-              <p class="text-xs text-slate-500 mt-1">Waktu Masuk: ${data.timeString || 'Hari ini'}</p>
-            </div>
-            ${isTeacher ? `<button onclick="deleteDocument('absen_harian', '${docSnap.id}')" class="text-xs text-rose-600 font-bold hover:underline">Hapus</button>` : ''}
-          `;
-          container.appendChild(item);
-        });
-      }, (err) => handlePermError("rekap-absen-container", err));
-
-      // 2. Rekap Nilai Simulasi
-      onSnapshot(collection(db, "ulangan_harian"), (snapshot) => {
-        const container = document.getElementById("rekap-ulangan-container");
-        if (!container) return;
-        container.innerHTML = "";
-        if (snapshot.empty) {
-          container.innerHTML = '<p class="text-sm text-slate-500">Belum ada hasil simulasi siswa.</p>';
-          return;
-        }
-        snapshot.forEach((docSnap) => {
-          const data = docSnap.data();
-          const item = document.createElement("div");
-          item.className = "p-4 rounded-xl border border-slate-200 bg-white flex justify-between items-center shadow-sm";
-          item.innerHTML = `
-            <div>
-              <div class="flex items-center gap-2">
-                <span class="font-extrabold text-slate-900">${data.studentName} (${data.studentClass})</span>
-                <span class="text-xs bg-amber-100 text-amber-800 font-bold px-2 py-0.5 rounded-full">${data.simulasiTitle || 'Simulasi'}</span>
-              </div>
-              <p class="text-xs text-slate-400 mt-1">Waktu: ${data.timeString || ''}</p>
-            </div>
-            <div class="flex items-center gap-4">
-              <span class="text-xl font-extrabold text-amber-600">${data.score} / 100</span>
-              ${isTeacher ? `<button onclick="deleteDocument('ulangan_harian', '${docSnap.id}')" class="text-xs text-rose-600 font-bold hover:underline">Hapus</button>` : ''}
-            </div>
-          `;
-          container.appendChild(item);
-        });
-      }, (err) => handlePermError("rekap-ulangan-container", err));
-
-      // 3. Tugas Praktik
-      onSnapshot(collection(db, "tugas_praktik"), (snapshot) => {
-        const currentStudentName = localStorage.getItem("student_name");
-        const studentHistory = document.getElementById("student-tugas-history");
-        const teacherContainer = document.getElementById("rekap-tugas-container");
-
-        if (studentHistory) studentHistory.innerHTML = "";
-        if (teacherContainer) teacherContainer.innerHTML = "";
-
-        if (snapshot.empty) {
-          if (studentHistory) studentHistory.innerHTML = '<p class="text-sm text-slate-500">Kamu belum mengumpulkan tugas apapun.</p>';
-          if (teacherContainer) teacherContainer.innerHTML = '<p class="text-sm text-slate-500">Belum ada kiriman tugas praktik dari siswa.</p>';
-          return;
-        }
-
-        snapshot.forEach((docSnap) => {
-          const data = docSnap.data();
-
-          if (studentHistory && data.studentName === currentStudentName) {
-            const isGraded = data.status === "Sudah Dinilai";
-            const hItem = document.createElement("div");
-            hItem.className = "p-3.5 rounded-xl border bg-slate-50 text-sm";
-            hItem.innerHTML = `
-              <div class="flex justify-between items-start">
-                <span class="font-bold text-slate-900">${data.topic}</span>
-                <span class="text-xs px-2 py-0.5 rounded-full font-bold ${isGraded ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'}">${data.status}</span>
-              </div>
-              <a href="${data.link}" target="_blank" class="text-xs text-sky-700 underline block mt-1 break-all">Lihat File / Link Tugas</a>
-              ${isGraded ? `<div class="mt-2 p-2 bg-emerald-50 border border-emerald-200 rounded-lg text-xs">
-                <span class="font-extrabold text-emerald-900">Nilai: ${data.grade}</span> | <em>Catatan Guru: "${data.feedback || '-'}"</em>
-              </div>` : ''}
-            `;
-            studentHistory.appendChild(hItem);
-          }
-
-          if (teacherContainer) {
-            const tItem = document.createElement("div");
-            tItem.className = "p-4 rounded-xl border border-slate-200 bg-white shadow-sm";
-            tItem.innerHTML = `
-              <div class="flex justify-between items-start flex-wrap gap-2">
-                <div>
-                  <div class="flex items-center gap-2">
-                    <span class="font-extrabold text-slate-900">${data.studentName} (${data.studentClass})</span>
-                    <span class="text-xs bg-teal-100 text-teal-800 font-bold px-2 py-0.5 rounded-full">${data.topic}</span>
-                  </div>
-                  <a href="${data.link}" target="_blank" class="text-xs text-sky-700 underline font-mono block mt-1">Buka Link Tugas Siswa <i data-lucide="external-link" class="w-3 h-3 inline"></i></a>
-                  ${data.notes ? `<p class="text-xs text-slate-500 italic mt-1">Catatan Siswa: "${data.notes}"</p>` : ''}
-                </div>
-                <button onclick="deleteDocument('tugas_praktik', '${docSnap.id}')" class="text-xs text-rose-600 font-bold hover:underline">Hapus</button>
-              </div>
-
-              <div class="mt-3 pt-3 border-t grid md:grid-cols-3 gap-2 items-center">
-                <input id="grade-input-${docSnap.id}" type="number" min="0" max="100" placeholder="Nilai (0-100)" value="${data.grade || ''}" class="border rounded-lg p-2 text-sm">
-                <input id="feedback-input-${docSnap.id}" type="text" placeholder="Catatan / Masukan Guru..." value="${data.feedback || ''}" class="border rounded-lg p-2 text-sm">
-                <button onclick="gradeStudentTask('${docSnap.id}')" class="bg-teal-700 text-white font-bold py-2 px-3 rounded-lg text-xs hover:bg-teal-800">Simpan Nilai</button>
-              </div>
-            `;
-            teacherContainer.appendChild(tItem);
-          }
-        });
-
-        if (studentHistory && !studentHistory.children.length) {
-          studentHistory.innerHTML = '<p class="text-sm text-slate-500">Belum ada riwayat pengumpulkan atas nama kamu.</p>';
-        }
-      }, (err) => {
-        handlePermError("student-tugas-history", err);
-        handlePermError("rekap-tugas-container", err);
-      });
-
-      // 4. Forum Diskusi
-      onSnapshot(collection(db, "forum_diskusi"), (snapshot) => {
-        const container = document.getElementById("forum-posts-container");
-        if (!container) return;
-        container.innerHTML = "";
-        if (snapshot.empty) {
-          container.innerHTML = '<p class="text-sm text-slate-500">Belum ada diskusi. Jadilah yang pertama bertanya!</p>';
-          return;
-        }
-        snapshot.forEach((docSnap) => {
-          const data = docSnap.data();
-          const item = document.createElement("div");
-          item.className = "p-4 rounded-2xl border border-slate-200 bg-white shadow-sm";
-          item.innerHTML = `
-            <div class="flex justify-between items-start">
-              <div class="flex items-center gap-2">
-                <span class="font-extrabold text-slate-900 text-sm">${data.studentName}</span>
-                <span class="text-xs bg-sky-100 text-sky-800 font-bold px-2 py-0.5 rounded-md">Kelas ${data.studentClass}</span>
-              </div>
-              <span class="text-xs text-slate-400 font-mono">${data.timeString || ''}</span>
-            </div>
-            <p class="mt-2 text-sm text-slate-700 leading-relaxed">${data.message}</p>
-            ${isTeacher ? `<button onclick="deleteDocument('forum_diskusi', '${docSnap.id}')" class="mt-2 text-xs text-rose-600 font-bold hover:underline">Hapus Pesan</button>` : ''}
-          `;
-          container.appendChild(item);
-        });
-      }, (err) => handlePermError("forum-posts-container", err));
-
-      // 5. Materi
-      onSnapshot(collection(db, "materi"), (snapshot) => {
-        const materialList = document.getElementById("student-material-list");
-        if (!materialList) return;
-        materialList.innerHTML = "";
-        snapshot.forEach((docSnap) => {
-          const data = docSnap.data();
-          const card = document.createElement("div");
-          card.className = "card student-card relative";
-          card.innerHTML = `
-            <span class="text-xs font-bold text-violet-700 bg-violet-50 px-2 py-1 rounded-lg">${data.category || 'Umum'}</span>
-            <h4 class="font-extrabold text-lg mt-2">${data.title}</h4>
-            <p class="mt-2 text-slate-600">${data.desc}</p>
-            ${isTeacher ? `<button onclick="deleteDocument('materi', '${docSnap.id}')" class="mt-3 text-xs text-rose-600 font-bold hover:underline">Hapus Materi</button>` : ''}
-          `;
-          materialList.appendChild(card);
-        });
-      }, (err) => handlePermError("student-material-list", err));
-
-      // 6. Video
-      onSnapshot(collection(db, "video"), (snapshot) => {
-        const videoList = document.getElementById("student-video-list");
-        if (!videoList) return;
-        videoList.innerHTML = "";
-        snapshot.forEach((docSnap) => {
-          const data = docSnap.data();
-          const card = document.createElement("div");
-          card.className = "card student-card";
-          card.innerHTML = `
-            <h4 class="font-extrabold text-lg mb-2">${data.title}</h4>
-            <div class="aspect-video w-full rounded-xl overflow-hidden bg-black">
-              <iframe class="w-full h-full" src="${data.url}" title="${data.title}" frameborder="0" allowfullscreen></iframe>
-            </div>
-            ${isTeacher ? `<button onclick="deleteDocument('video', '${docSnap.id}')" class="mt-3 text-xs text-rose-600 font-bold hover:underline">Hapus Video</button>` : ''}
-          `;
-          videoList.appendChild(card);
-        });
-      }, (err) => handlePermError("student-video-list", err));
-
-      // 7. Jawaban Siswa
-      onSnapshot(collection(db, "jawaban_siswa"), (snapshot) => {
-        const container = document.getElementById("rekap-siswa-container");
-        if (!container) return;
-        container.innerHTML = "";
-        if (snapshot.empty) {
-          container.innerHTML = '<p class="text-sm text-slate-500">Belum ada jawaban siswa yang dikirim.</p>';
-          return;
-        }
-        snapshot.forEach((docSnap) => {
-          const data = docSnap.data();
-          const item = document.createElement("div");
-          item.className = "p-4 rounded-xl border border-slate-200 bg-slate-50 flex flex-col md:flex-row justify-between md:items-center gap-3";
-          item.innerHTML = `
-            <div>
-              <div class="flex items-center gap-2">
-                <span class="font-extrabold text-slate-900">${data.studentName} (${data.studentClass})</span>
-                <span class="text-xs bg-sky-100 text-sky-800 font-bold px-2 py-0.5 rounded-full">${data.module}</span>
-              </div>
-              <p class="mt-1 text-sm text-slate-600">"${data.notes || 'Tidak ada catatan'}"</p>
-            </div>
-            <button onclick="deleteDocument('jawaban_siswa', '${docSnap.id}')" class="text-xs text-rose-600 font-bold hover:underline self-start md:self-center">Hapus</button>
-          `;
-          container.appendChild(item);
-        });
-      }, (err) => handlePermError("rekap-siswa-container", err));
-    }
         snapshot.forEach((docSnap) => {
           const data = docSnap.data();
           const item = document.createElement("div");
