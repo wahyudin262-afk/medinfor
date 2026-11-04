@@ -876,7 +876,7 @@ end</pre>
                 </div>
               </div>
 
-              <!-- 4. Panduan Langkah Pembuatan Game Scratch: Hiu Pemakan Ikan & Kepiting (FITUR TERBARU) -->
+              <!-- 4. Panduan Langkah Pembuatan Game Scratch: Hiu Pemakan Ikan & Kepiting -->
               <div class="p-5 border border-sky-300 rounded-2xl bg-sky-50/70 shadow-sm">
                 <div class="flex items-center justify-between mb-2 flex-wrap gap-2">
                   <h4 class="font-extrabold text-sky-900 text-base flex items-center gap-2">
@@ -889,7 +889,6 @@ end</pre>
                 </p>
 
                 <div class="space-y-4 text-xs">
-                  <!-- Langkah 1 -->
                   <div class="p-3.5 bg-white rounded-xl border border-sky-200">
                     <strong class="text-sky-900 font-bold block mb-1">Langkah 1: Menyiapkan Objek Karakter & Latar Bawah Laut</strong>
                     <ul class="list-disc list-inside text-slate-700 space-y-1">
@@ -900,7 +899,6 @@ end</pre>
                     </ul>
                   </div>
 
-                  <!-- Langkah 2 -->
                   <div class="p-3.5 bg-white rounded-xl border border-sky-200">
                     <strong class="text-sky-900 font-bold block mb-1">Langkah 2: Pemrograman Pergerakan Hiu (Sprite Shark2)</strong>
                     <p class="text-slate-700 mb-2">Buat Hiu bergerak mulus mengikuti posisi kursor mouse pemain:</p>
@@ -911,7 +909,6 @@ forever
 end</pre>
                   </div>
 
-                  <!-- Langkah 3 -->
                   <div class="p-3.5 bg-white rounded-xl border border-sky-200">
                     <strong class="text-sky-900 font-bold block mb-1">Langkah 3: Pemrograman Ikan Kecil (Poin & Akselerasi Kecepatan Otomatis)</strong>
                     <p class="text-slate-700 mb-2">
@@ -925,7 +922,6 @@ forever
   move (Kecepatan Ikan) steps
   if on edge, bounce
   
-  // Logika Peningkatan Kecepatan Berdasarkan Poin
   if &lt;(Skor) &gt; 5&gt; then
     set [Kecepatan Ikan v] to 8
   end
@@ -933,7 +929,6 @@ forever
     set [Kecepatan Ikan v] to 12
   end
   
-  // Logika Dimakan Hiu
   if &lt;touching [Shark2 v]?&gt; then
     change [Skor v] by 1
     play sound [Bite v] until done
@@ -942,7 +937,6 @@ forever
 end</pre>
                   </div>
 
-                  <!-- Langkah 4 -->
                   <div class="p-3.5 bg-white rounded-xl border border-sky-200">
                     <strong class="text-sky-900 font-bold block mb-1">Langkah 4: Pemrograman Kepiting (Rintangan Musuh & Game Over)</strong>
                     <p class="text-slate-700 mb-2">
@@ -955,7 +949,6 @@ forever
   turn ↻ (pick random (-15) to (15)) degrees
   if on edge, bounce
   
-  // Logika Deteksi Tabrakan (Game Over)
   if &lt;touching [Shark2 v]?&gt; then
     play sound [Oops v] until done
     say [GAME OVER! Kamu Menabrak Kepiting!] for (2) seconds
@@ -1401,13 +1394,13 @@ end</pre>
       </div>
     </div>
 
-    <!-- Overlay PIN Guru Akses Mode Guru -->
+    <!-- Overlay NIP Guru Akses Mode Guru -->
     <div id="access-overlay" class="access-overlay hidden">
       <div class="access-dialog">
         <h2 class="text-2xl font-extrabold">Akses Mode Guru</h2>
-        <p class="mt-1 text-sm text-slate-600">Masukkan PIN / Sandi Anda untuk masuk ke panel guru.</p>
+        <p class="mt-1 text-sm text-slate-600">Masukkan NIP Guru Anda untuk verifikasi masuk ke panel kelola pembelajaran.</p>
         <form id="access-form" class="mt-4">
-          <input id="access-code" type="password" class="w-full border rounded-xl p-3" placeholder="Masukkan PIN" required>
+          <input id="access-code" type="password" class="w-full border rounded-xl p-3 font-mono" placeholder="Masukkan NIP Guru" required>
           <p id="access-message" class="text-sm font-bold text-rose-600 mt-2"></p>
           <div class="mt-4 flex gap-2">
             <button type="submit" class="bg-violet-700 text-white font-bold px-4 py-2 rounded-xl">Masuk</button>
@@ -1426,11 +1419,11 @@ end</pre>
           <p id="quiz-lock-reason" class="mt-2 text-sm font-bold text-slate-800 bg-rose-50 p-3 rounded-xl border border-rose-200">
             Terdeteksi tindakan tidak diizinkan.
           </p>
-          <p class="mt-3 text-xs text-slate-600">Minta bantuan Guru untuk memasukkan PIN pembuka kunci agar Anda dapat melanjutkan simulasi.</p>
+          <p class="mt-3 text-xs text-slate-600">Minta bantuan Guru untuk memasukkan NIP pembuka kunci agar Anda dapat melanjutkan simulasi.</p>
         </div>
 
         <form id="quiz-unlock-form" class="mt-5">
-          <input id="quiz-unlock-pin" type="password" class="w-full border rounded-xl p-3 text-center text-lg font-mono tracking-widest" placeholder="Masukkan PIN Guru" required>
+          <input id="quiz-unlock-pin" type="password" class="w-full border rounded-xl p-3 text-center text-lg font-mono tracking-widest" placeholder="Masukkan NIP Guru" required>
           <p id="quiz-unlock-msg" class="text-xs font-bold text-rose-600 mt-2 text-center"></p>
           <button type="submit" class="mt-4 w-full bg-rose-600 text-white font-bold py-3 rounded-xl hover:bg-rose-700">Buka Kunci Layar</button>
         </form>
@@ -1443,7 +1436,10 @@ end</pre>
   <!-- FIREBASE INTEGRATION SCRIPT -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-    import { getFirestore, collection, addDoc, deleteDoc, doc, updateDoc, onSnapshot, getDocs } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+    import { 
+      getFirestore, collection, addDoc, deleteDoc, doc, updateDoc, 
+      onSnapshot, getDocs, getDoc, setDoc 
+    } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyCcteYGlVMoWO2C4IWniu7rjghxSPoXAXg",
@@ -1463,6 +1459,32 @@ end</pre>
     let isQuizActive = false;
     let quizLocked = false;
     let webcamStream = null;
+
+    // FUNGSI VERIFIKASI NIP GURU VIA FIREBASE FIRESTORE
+    async function verifyTeacherNIP(inputNIP) {
+      const configRef = doc(db, "config", "teacher_access");
+      try {
+        const configSnap = await getDoc(configRef);
+        if (configSnap.exists()) {
+          return configSnap.data().nip === inputNIP;
+        } else {
+          // Buat dokumen konfigurasi otomatis di Firestore jika belum ada
+          try {
+            await setDoc(configRef, { 
+              nip: "199306222025211016",
+              role: "Guru Utama",
+              updatedAt: new Date()
+            });
+          } catch (e) {
+            console.warn("Gagal membuat config di Firestore:", e);
+          }
+          return inputNIP === "199306222025211016";
+        }
+      } catch (error) {
+        console.warn("Gagal koneksi verifikasi NIP Firestore:", error);
+        return inputNIP === "199306222025211016";
+      }
+    }
 
     // DATABASE 30 SOAL TKA BAB 1 (PENYAJIAN DATA)
     const m1TkaQuestions = [
@@ -1730,7 +1752,7 @@ end</pre>
       document.getElementById("student-modal").classList.remove("hidden");
     };
 
-    // Mode Switcher & Peningkatan Keamanan Akses Guru
+    // Mode Switcher & Otentikasi NIP Guru
     document.getElementById("student-mode-button").onclick = () => switchMode("student");
     document.getElementById("teacher-mode-button").onclick = () => {
       document.getElementById("access-code").value = "";
@@ -1739,17 +1761,29 @@ end</pre>
     };
     document.getElementById("access-cancel").onclick = () => document.getElementById("access-overlay").classList.add("hidden");
     
-    document.getElementById("access-form").onsubmit = (e) => {
+    // Handler Login Mode Guru Menggunakan Verifikasi NIP
+    document.getElementById("access-form").onsubmit = async (e) => {
       e.preventDefault();
-      const code = document.getElementById("access-code").value.trim();
-      if (code === "123456" || code === "guru99") {
+      const inputNIP = document.getElementById("access-code").value.trim();
+      const msgEl = document.getElementById("access-message");
+      const submitBtn = e.target.querySelector("button[type='submit']");
+      
+      msgEl.textContent = "Memverifikasi NIP...";
+      msgEl.className = "text-sm font-bold text-sky-600 mt-2";
+      submitBtn.disabled = true;
+
+      const isValid = await verifyTeacherNIP(inputNIP);
+      submitBtn.disabled = false;
+
+      if (isValid) {
         document.getElementById("access-overlay").classList.add("hidden");
-        document.getElementById("access-message").textContent = "";
+        msgEl.textContent = "";
         isTeacher = true;
         switchMode("teacher");
-        showToast("Akses Guru Berhasil Disetujui!");
+        showToast("Akses Guru Berhasil (NIP Terverifikasi)!");
       } else {
-        document.getElementById("access-message").textContent = "PIN Guru salah. Silakan coba lagi!";
+        msgEl.textContent = "NIP Guru tidak terdaftar atau salah!";
+        msgEl.className = "text-sm font-bold text-rose-600 mt-2";
       }
     };
 
@@ -1879,7 +1913,6 @@ end</pre>
           m1TkaCurrentIdx++;
           renderM1TkaQuestion();
         } else {
-          // Selesai 30 Soal
           let correctCount = 0;
           m1TkaUserAnswers.forEach((ans, idx) => {
             if (ans === m1TkaQuestions[idx].answer) correctCount++;
@@ -2073,18 +2106,27 @@ end</pre>
       }
     }
 
-    // KAMERA DEPAN & PENGAWASAN SIMULASI (DENGAN REVISI PERBAIKAN CLEANUP TOTAL)
+    // KAMERA DEPAN & PENGAWASAN SIMULASI (DENGAN PENGECEKAN PROTOKOL HTTPS AMAN)
     async function startFrontCamera() {
+      if (location.protocol !== 'https:' && location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
+        alert("Fitur pengawasan kamera memerlukan koneksi HTTPS aman. Silakan akses aplikasi melalui tautan https://");
+        throw new Error("Protokol tidak aman (HTTP)");
+      }
+
       try {
         webcamStream = await navigator.mediaDevices.getUserMedia({
-          video: { facingMode: "user" },
+          video: { facingMode: "user", width: { ideal: 320 }, height: { ideal: 240 } },
           audio: false
         });
         const videoEl = document.getElementById("simulasi-webcam");
         videoEl.srcObject = webcamStream;
         videoEl.classList.remove("hidden");
       } catch (err) {
-        alert("Akses kamera depan wajib diizinkan untuk memulai simulasi ini!");
+        if (err.name === "NotAllowedError" || err.name === "PermissionDeniedError") {
+          alert("Akses kamera ditolak! Izinkan akses kamera depan di browser Anda untuk melanjutkan simulasi.");
+        } else {
+          alert("Kamera tidak ditemukan atau sedang digunakan aplikasi lain: " + err.message);
+        }
         throw err;
       }
     }
@@ -2108,17 +2150,23 @@ end</pre>
       document.getElementById("quiz-lock-overlay").classList.remove("hidden");
     }
 
-    document.getElementById("quiz-unlock-form").onsubmit = (e) => {
+    // Handler Buka Layar Simulasi Terkunci Menggunakan NIP Guru
+    document.getElementById("quiz-unlock-form").onsubmit = async (e) => {
       e.preventDefault();
-      const pin = document.getElementById("quiz-unlock-pin").value.trim();
-      if (pin === "123456" || pin === "guru99") {
+      const inputNIP = document.getElementById("quiz-unlock-pin").value.trim();
+      const msgEl = document.getElementById("quiz-unlock-msg");
+      
+      msgEl.textContent = "Memeriksa NIP...";
+      const isValid = await verifyTeacherNIP(inputNIP);
+
+      if (isValid) {
         quizLocked = false;
         document.getElementById("quiz-lock-overlay").classList.add("hidden");
         document.getElementById("quiz-unlock-pin").value = "";
-        document.getElementById("quiz-unlock-msg").textContent = "";
-        showToast("Layar simulasi dibuka kembali!");
+        msgEl.textContent = "";
+        showToast("Layar simulasi berhasil dibuka!");
       } else {
-        document.getElementById("quiz-unlock-msg").textContent = "PIN Guru salah!";
+        msgEl.textContent = "NIP Guru salah!";
       }
     };
 
@@ -2130,7 +2178,7 @@ end</pre>
 
     window.addEventListener("blur", () => {
       if (isQuizActive && !quizLocked) {
-        lockSimulasiScreen("Terdeteksi kehilangan fokus layar / membuka aplikasi lain atau mode layar belah!");
+        lockSimulasiScreen("Terdeteksi kehilangan fokus layar / membuka aplikasi lain!");
       }
     });
 
@@ -2397,46 +2445,62 @@ end</pre>
     }
 
     document.getElementById("btn-export-absen").onclick = async () => {
-      const snap = await getDocs(collection(db, "absen_harian"));
-      const list = [];
-      snap.forEach(d => {
-        const data = d.data();
-        list.push({ "Nama Siswa": data.studentName, "Kelas": data.studentClass, "Waktu Absen": data.timeString || "" });
-      });
-      exportToCSV(list, "Rekap_Absen_Harian.csv");
+      try {
+        const snap = await getDocs(collection(db, "absen_harian"));
+        const list = [];
+        snap.forEach(d => {
+          const data = d.data();
+          list.push({ "Nama Siswa": data.studentName, "Kelas": data.studentClass, "Waktu Absen": data.timeString || "" });
+        });
+        exportToCSV(list, "Rekap_Absen_Harian.csv");
+      } catch (e) {
+        showToast("Gagal mengunduh data (Izin ditolak): " + e.message);
+      }
     };
 
     document.getElementById("btn-export-ulangan").onclick = async () => {
-      const snap = await getDocs(collection(db, "ulangan_harian"));
-      const list = [];
-      snap.forEach(d => {
-        const data = d.data();
-        list.push({ "Nama Siswa": data.studentName, "Kelas": data.studentClass, "Judul Simulasi": data.simulasiTitle || "Simulasi", "Nilai": data.score, "Waktu": data.timeString || "" });
-      });
-      exportToCSV(list, "Rekap_Nilai_Simulasi.csv");
+      try {
+        const snap = await getDocs(collection(db, "ulangan_harian"));
+        const list = [];
+        snap.forEach(d => {
+          const data = d.data();
+          list.push({ "Nama Siswa": data.studentName, "Kelas": data.studentClass, "Judul Simulasi": data.simulasiTitle || "Simulasi", "Nilai": data.score, "Waktu": data.timeString || "" });
+        });
+        exportToCSV(list, "Rekap_Nilai_Simulasi.csv");
+      } catch (e) {
+        showToast("Gagal mengunduh data (Izin ditolak): " + e.message);
+      }
     };
 
     document.getElementById("btn-export-tugas").onclick = async () => {
-      const snap = await getDocs(collection(db, "tugas_praktik"));
-      const list = [];
-      snap.forEach(d => {
-        const data = d.data();
-        list.push({ "Nama Siswa": data.studentName, "Kelas": data.studentClass, "Topik Tugas": data.topic, "Link Tugas": data.link, "Status": data.status, "Nilai": data.grade || "Belum", "Catatan Guru": data.feedback || "" });
-      });
-      exportToCSV(list, "Rekap_Tugas_Praktik.csv");
+      try {
+        const snap = await getDocs(collection(db, "tugas_praktik"));
+        const list = [];
+        snap.forEach(d => {
+          const data = d.data();
+          list.push({ "Nama Siswa": data.studentName, "Kelas": data.studentClass, "Topik Tugas": data.topic, "Link Tugas": data.link, "Status": data.status, "Nilai": data.grade || "Belum", "Catatan Guru": data.feedback || "" });
+        });
+        exportToCSV(list, "Rekap_Tugas_Praktik.csv");
+      } catch (e) {
+        showToast("Gagal mengunduh data (Izin ditolak): " + e.message);
+      }
     };
 
     document.getElementById("btn-export-jawaban").onclick = async () => {
-      const snap = await getDocs(collection(db, "jawaban_siswa"));
-      const list = [];
-      snap.forEach(d => {
-        const data = d.data();
-        list.push({ "Nama Siswa": data.studentName, "Kelas": data.studentClass, "Bab": data.module, "Catatan Refleksi": data.notes });
-      });
-      exportToCSV(list, "Rekap_Refleksi_Siswa.csv");
+      try {
+        const snap = await getDocs(collection(db, "jawaban_siswa"));
+        const list = [];
+        snap.forEach(d => {
+          const data = d.data();
+          list.push({ "Nama Siswa": data.studentName, "Kelas": data.studentClass, "Bab": data.module, "Catatan Refleksi": data.notes });
+        });
+        exportToCSV(list, "Rekap_Refleksi_Siswa.csv");
+      } catch (e) {
+        showToast("Gagal mengunduh data (Izin ditolak): " + e.message);
+      }
     };
 
-    // SINKRONISASI REALTIME FIREBASE
+    // SINKRONISASI REALTIME FIREBASE (DENGAN HANDLER ERROR IZIN / PERMISSION)
     function listenFirebaseData() {
       // 1. Absen Harian
       onSnapshot(collection(db, "absen_harian"), (snapshot) => {
@@ -2463,7 +2527,7 @@ end</pre>
           `;
           container.appendChild(item);
         });
-      });
+      }, (err) => console.warn("Firestore error (absen_harian):", err));
 
       // 2. Rekap Nilai Simulasi
       onSnapshot(collection(db, "ulangan_harian"), (snapshot) => {
@@ -2493,7 +2557,7 @@ end</pre>
           `;
           container.appendChild(item);
         });
-      });
+      }, (err) => console.warn("Firestore error (ulangan_harian):", err));
 
       // 3. Tugas Praktik
       onSnapshot(collection(db, "tugas_praktik"), (snapshot) => {
@@ -2559,7 +2623,7 @@ end</pre>
         if (studentHistory && !studentHistory.children.length) {
           studentHistory.innerHTML = '<p class="text-sm text-slate-500">Belum ada riwayat pengumpulkan atas nama kamu.</p>';
         }
-      });
+      }, (err) => console.warn("Firestore error (tugas_praktik):", err));
 
       // 4. Forum Diskusi
       onSnapshot(collection(db, "forum_diskusi"), (snapshot) => {
@@ -2587,7 +2651,7 @@ end</pre>
           `;
           container.appendChild(item);
         });
-      });
+      }, (err) => console.warn("Firestore error (forum_diskusi):", err));
 
       // 5. Materi
       onSnapshot(collection(db, "materi"), (snapshot) => {
@@ -2606,7 +2670,7 @@ end</pre>
           `;
           materialList.appendChild(card);
         });
-      });
+      }, (err) => console.warn("Firestore error (materi):", err));
 
       // 6. Video
       onSnapshot(collection(db, "video"), (snapshot) => {
@@ -2626,7 +2690,7 @@ end</pre>
           `;
           videoList.appendChild(card);
         });
-      });
+      }, (err) => console.warn("Firestore error (video):", err));
 
       // 7. Jawaban Siswa
       onSnapshot(collection(db, "jawaban_siswa"), (snapshot) => {
@@ -2653,7 +2717,7 @@ end</pre>
           `;
           container.appendChild(item);
         });
-      });
+      }, (err) => console.warn("Firestore error (jawaban_siswa):", err));
     }
 
     window.deleteDocument = async function(coll, id) {
