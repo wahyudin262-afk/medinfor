@@ -826,10 +826,10 @@ SELESAI</div>
                 </div>
               </div>
 
-              <!-- 3. Panduan Langkah Pembuatan Game Scratch -->
+              <!-- 3. Panduan Langkah Pembuatan Game Scratch: Tangkap Apel -->
               <div class="p-5 border border-emerald-200 rounded-2xl bg-emerald-50/50">
                 <h4 class="font-extrabold text-emerald-900 text-base mb-2 flex items-center gap-2">
-                  <i data-lucide="gamepad-2" class="w-5 h-5 text-emerald-700"></i> 3. Panduan Langkah Pembuatan Game Sederhana: "Tangkap Apel (Catching Apple)"
+                  <i data-lucide="gamepad-2" class="w-5 h-5 text-emerald-700"></i> 3. Game Dasar: "Tangkap Apel (Catching Apple)"
                 </h4>
                 <p class="text-xs text-slate-600 mb-4">Tujuan Game: Pemain mengontrol mangkok ke kiri-kanan untuk menangkap buah apel yang jatuh acak dari atas. Setiap kali apel tertangkap, skor bertambah 1 poin.</p>
 
@@ -876,9 +876,99 @@ end</pre>
                 </div>
               </div>
 
-              <!-- 4. Embed Proyek Simulasi Interactive Scratch -->
+              <!-- 4. Panduan Langkah Pembuatan Game Scratch: Hiu Pemakan Ikan & Kepiting (FITUR TERBARU) -->
+              <div class="p-5 border border-sky-300 rounded-2xl bg-sky-50/70 shadow-sm">
+                <div class="flex items-center justify-between mb-2 flex-wrap gap-2">
+                  <h4 class="font-extrabold text-sky-900 text-base flex items-center gap-2">
+                    <i data-lucide="waves" class="w-5 h-5 text-sky-700"></i> 4. Game Lanjutan: "Hiu Pemakan Ikan & Hindari Kepiting"
+                  </h4>
+                  <span class="text-xs font-bold bg-sky-200 text-sky-800 px-3 py-1 rounded-full">Fitur Tambahan: Speed Up & Game Over</span>
+                </div>
+                <p class="text-xs text-slate-700 mb-4 leading-relaxed">
+                  <strong>Konsep Utama Game:</strong> Pemain mengendalikan <strong>Hiu (Shark)</strong> untuk berburu <strong>Ikan Kecil (Fish)</strong> demi mendapat poin. Semakin tinggi poin yang didapatkan, pergerakan Ikan akan <strong>semakin cepat (Akselerasi)</strong>. Namun, Hiu harus berhati-hati menghindari <strong>Kepiting (Crab)</strong>! Jika Hiu menyentuh Kepiting, game akan langsung <strong>Game Over</strong>.
+                </p>
+
+                <div class="space-y-4 text-xs">
+                  <!-- Langkah 1 -->
+                  <div class="p-3.5 bg-white rounded-xl border border-sky-200">
+                    <strong class="text-sky-900 font-bold block mb-1">Langkah 1: Menyiapkan Objek Karakter & Latar Bawah Laut</strong>
+                    <ul class="list-disc list-inside text-slate-700 space-y-1">
+                      <li>Pilih <strong>Backdrop</strong> bertema bawah laut: <code>Underwater 1</code> atau <code>Underwater 2</code>.</li>
+                      <li>Tambah Sprite Hiu utama: <strong>Shark2</strong>.</li>
+                      <li>Tambah Sprite Makanan: <strong>Fish</strong>.</li>
+                      <li>Tambah Sprite Musuh/Rintangan: <strong>Crab</strong> (Kepiting).</li>
+                    </ul>
+                  </div>
+
+                  <!-- Langkah 2 -->
+                  <div class="p-3.5 bg-white rounded-xl border border-sky-200">
+                    <strong class="text-sky-900 font-bold block mb-1">Langkah 2: Pemrograman Pergerakan Hiu (Sprite Shark2)</strong>
+                    <p class="text-slate-700 mb-2">Buat Hiu bergerak mulus mengikuti posisi kursor mouse pemain:</p>
+                    <pre class="codebox text-[11px] bg-slate-900 text-sky-300 p-2.5 rounded-lg font-mono">when 🚩 clicked
+forever
+  point towards [mouse-pointer v]
+  move (5) steps
+end</pre>
+                  </div>
+
+                  <!-- Langkah 3 -->
+                  <div class="p-3.5 bg-white rounded-xl border border-sky-200">
+                    <strong class="text-sky-900 font-bold block mb-1">Langkah 3: Pemrograman Ikan Kecil (Poin & Akselerasi Kecepatan Otomatis)</strong>
+                    <p class="text-slate-700 mb-2">
+                      Buat dua buah variabel baru: <code>Skor</code> dan <code>Kecepatan Ikan</code>. Ketika <code>Skor</code> mencapai 5 poin, kecepatan bertambah ke 8, dan saat mencapai 15 poin, kecepatan bertambah ke 12.
+                    </p>
+                    <pre class="codebox text-[11px] bg-slate-900 text-emerald-300 p-2.5 rounded-lg font-mono">when 🚩 clicked
+set [Skor v] to 0
+set [Kecepatan Ikan v] to 4
+show
+forever
+  move (Kecepatan Ikan) steps
+  if on edge, bounce
+  
+  // Logika Peningkatan Kecepatan Berdasarkan Poin
+  if &lt;(Skor) &gt; 5&gt; then
+    set [Kecepatan Ikan v] to 8
+  end
+  if &lt;(Skor) &gt; 15&gt; then
+    set [Kecepatan Ikan v] to 12
+  end
+  
+  // Logika Dimakan Hiu
+  if &lt;touching [Shark2 v]?&gt; then
+    change [Skor v] by 1
+    play sound [Bite v] until done
+    go to (random position v)
+  end
+end</pre>
+                  </div>
+
+                  <!-- Langkah 4 -->
+                  <div class="p-3.5 bg-white rounded-xl border border-sky-200">
+                    <strong class="text-sky-900 font-bold block mb-1">Langkah 4: Pemrograman Kepiting (Rintangan Musuh & Game Over)</strong>
+                    <p class="text-slate-700 mb-2">
+                      Kepiting akan berjalan patroli secara acak. Jika menyentuh Hiu, Kepiting akan menampilkan pesan "Game Over!" dan menghentikan seluruh permainan.
+                    </p>
+                    <pre class="codebox text-[11px] bg-slate-900 text-rose-300 p-2.5 rounded-lg font-mono">when 🚩 clicked
+show
+forever
+  move (3) steps
+  turn ↻ (pick random (-15) to (15)) degrees
+  if on edge, bounce
+  
+  // Logika Deteksi Tabrakan (Game Over)
+  if &lt;touching [Shark2 v]?&gt; then
+    play sound [Oops v] until done
+    say [GAME OVER! Kamu Menabrak Kepiting!] for (2) seconds
+    stop [all v]
+  end
+end</pre>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 5. Embed Proyek Simulasi Interactive Scratch -->
               <div>
-                <h4 class="font-extrabold text-slate-800 text-base mb-2">4. Simulasi Interactive Project Scratch</h4>
+                <h4 class="font-extrabold text-slate-800 text-base mb-2">5. Simulasi Interactive Project Scratch</h4>
                 <p class="text-sm text-slate-600 mb-3">Jalankan dan mainkan proyek contoh Scratch di bawah ini langsung dari browser Anda:</p>
                 <div class="aspect-video w-full rounded-2xl overflow-hidden border bg-slate-900 shadow-sm">
                   <iframe src="https://scratch.mit.edu/projects/10128/embed" class="w-full h-full" allowtransparency="true" frameborder="0" scrolling="no" allowfullscreen></iframe>
@@ -921,7 +1011,7 @@ end</pre>
               <div class="space-y-2 text-sm text-slate-800">
                 <label class="flex gap-2 items-center cursor-pointer"><input class="progress-check" type="checkbox"> Paham perbedaan Function (return value) dan Procedure</label>
                 <label class="flex gap-2 items-center cursor-pointer"><input class="progress-check" type="checkbox"> Memahami 3 manfaat utama penggunaan Library</label>
-                <label class="flex gap-2 items-center cursor-pointer"><input class="progress-check" type="checkbox"> Memahami antarmuka, kategori blok, &amp; langkah pembuatan game Scratch</label>
+                <label class="flex gap-2 items-center cursor-pointer"><input class="progress-check" type="checkbox"> Memahami antarmuka, kategori blok, &amp; langkah pembuatan game Scratch (Apel & Hiu)</label>
                 <label class="flex gap-2 items-center cursor-pointer"><input class="progress-check" type="checkbox"> Mampu menelusuri alur logika flowchart &amp; pseudocode</label>
               </div>
 
