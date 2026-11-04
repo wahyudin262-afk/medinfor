@@ -1348,6 +1348,13 @@ end</pre>
             <textarea id="material-description" class="w-full border rounded-xl p-3 mt-1" rows="3" required></textarea>
             <button type="submit" class="mt-4 bg-violet-700 text-white font-bold px-4 py-3 rounded-xl hover:bg-violet-800">Simpan ke Firebase</button>
           </form>
+
+          <div class="card mt-6">
+            <h3 class="font-extrabold text-lg mb-4">Daftar Materi Terpasang</h3>
+            <div id="teacher-material-list" class="space-y-3">
+              <p class="text-sm text-slate-500">Memuat data materi...</p>
+            </div>
+          </div>
         </section>
 
         <!-- Tab Tambah Video -->
@@ -1360,6 +1367,13 @@ end</pre>
             <input id="video-url" type="url" required class="w-full border rounded-xl p-3 mt-1" placeholder="https://www.youtube.com/watch?v=...">
             <button type="submit" class="mt-4 bg-violet-700 text-white font-bold px-4 py-3 rounded-xl hover:bg-violet-800">Simpan Video</button>
           </form>
+
+          <div class="card mt-6">
+            <h3 class="font-extrabold text-lg mb-4">Daftar Video Terpasang</h3>
+            <div id="teacher-video-list" class="space-y-3">
+              <p class="text-sm text-slate-500">Memuat data video...</p>
+            </div>
+          </div>
         </section>
       </section>
     </main>
@@ -1398,9 +1412,9 @@ end</pre>
     <div id="access-overlay" class="access-overlay hidden">
       <div class="access-dialog">
         <h2 class="text-2xl font-extrabold">Akses Mode Guru</h2>
-        <p class="mt-1 text-sm text-slate-600">Masukkan NIP Guru Anda untuk verifikasi masuk ke panel kelola pembelajaran.</p>
+        <p class="mt-1 text-sm text-slate-600">Masukkan Password Guru Anda untuk verifikasi masuk ke panel kelola pembelajaran.</p>
         <form id="access-form" class="mt-4">
-          <input id="access-code" type="password" class="w-full border rounded-xl p-3 font-mono" placeholder="Masukkan NIP Guru" required>
+          <input id="access-code" type="password" class="w-full border rounded-xl p-3 font-mono" placeholder="Masukkan Password" required>
           <p id="access-message" class="text-sm font-bold text-rose-600 mt-2"></p>
           <div class="mt-4 flex gap-2">
             <button type="submit" class="bg-violet-700 text-white font-bold px-4 py-2 rounded-xl">Masuk</button>
@@ -1419,11 +1433,11 @@ end</pre>
           <p id="quiz-lock-reason" class="mt-2 text-sm font-bold text-slate-800 bg-rose-50 p-3 rounded-xl border border-rose-200">
             Terdeteksi tindakan tidak diizinkan.
           </p>
-          <p class="mt-3 text-xs text-slate-600">Minta bantuan Guru untuk memasukkan NIP pembuka kunci agar Anda dapat melanjutkan simulasi.</p>
+          <p class="mt-3 text-xs text-slate-600">Minta bantuan Guru untuk memasukkan Password pembuka kunci agar Anda dapat melanjutkan simulasi.</p>
         </div>
 
         <form id="quiz-unlock-form" class="mt-5">
-          <input id="quiz-unlock-pin" type="password" class="w-full border rounded-xl p-3 text-center text-lg font-mono tracking-widest" placeholder="Masukkan NIP Guru" required>
+          <input id="quiz-unlock-pin" type="password" class="w-full border rounded-xl p-3 text-center text-lg font-mono tracking-widest" placeholder="Masukkan Password" required>
           <p id="quiz-unlock-msg" class="text-xs font-bold text-rose-600 mt-2 text-center"></p>
           <button type="submit" class="mt-4 w-full bg-rose-600 text-white font-bold py-3 rounded-xl hover:bg-rose-700">Buka Kunci Layar</button>
         </form>
@@ -1768,7 +1782,7 @@ end</pre>
       const msgEl = document.getElementById("access-message");
       const submitBtn = e.target.querySelector("button[type='submit']");
       
-      msgEl.textContent = "Memverifikasi NIP...";
+      msgEl.textContent = "Memverifikasi Password...";
       msgEl.className = "text-sm font-bold text-sky-600 mt-2";
       submitBtn.disabled = true;
 
@@ -1780,9 +1794,9 @@ end</pre>
         msgEl.textContent = "";
         isTeacher = true;
         switchMode("teacher");
-        showToast("Akses Guru Berhasil (NIP Terverifikasi)!");
+        showToast("Akses Guru Berhasil!");
       } else {
-        msgEl.textContent = "NIP Guru tidak terdaftar atau salah!";
+        msgEl.textContent = "Password Guru salah!";
         msgEl.className = "text-sm font-bold text-rose-600 mt-2";
       }
     };
@@ -2156,7 +2170,7 @@ end</pre>
       const inputNIP = document.getElementById("quiz-unlock-pin").value.trim();
       const msgEl = document.getElementById("quiz-unlock-msg");
       
-      msgEl.textContent = "Memeriksa NIP...";
+      msgEl.textContent = "Memeriksa Password...";
       const isValid = await verifyTeacherNIP(inputNIP);
 
       if (isValid) {
@@ -2166,7 +2180,7 @@ end</pre>
         msgEl.textContent = "";
         showToast("Layar simulasi berhasil dibuka!");
       } else {
-        msgEl.textContent = "NIP Guru salah!";
+        msgEl.textContent = "Password Guru salah!";
       }
     };
 
@@ -2656,40 +2670,87 @@ end</pre>
       // 5. Materi
       onSnapshot(collection(db, "materi"), (snapshot) => {
         const materialList = document.getElementById("student-material-list");
-        if (!materialList) return;
-        materialList.innerHTML = "";
-        snapshot.forEach((docSnap) => {
-          const data = docSnap.data();
-          const card = document.createElement("div");
-          card.className = "card student-card relative";
-          card.innerHTML = `
-            <span class="text-xs font-bold text-violet-700 bg-violet-50 px-2 py-1 rounded-lg">${data.category || 'Umum'}</span>
-            <h4 class="font-extrabold text-lg mt-2">${data.title}</h4>
-            <p class="mt-2 text-slate-600">${data.desc}</p>
-            ${isTeacher ? `<button onclick="deleteDocument('materi', '${docSnap.id}')" class="mt-3 text-xs text-rose-600 font-bold hover:underline">Hapus Materi</button>` : ''}
-          `;
-          materialList.appendChild(card);
-        });
+        const teacherMaterialList = document.getElementById("teacher-material-list");
+        
+        if (materialList) {
+          materialList.innerHTML = "";
+          snapshot.forEach((docSnap) => {
+            const data = docSnap.data();
+            const card = document.createElement("div");
+            card.className = "card student-card relative";
+            card.innerHTML = `
+              <span class="text-xs font-bold text-violet-700 bg-violet-50 px-2 py-1 rounded-lg">${data.category || 'Umum'}</span>
+              <h4 class="font-extrabold text-lg mt-2">${data.title}</h4>
+              <p class="mt-2 text-slate-600">${data.desc}</p>
+            `;
+            materialList.appendChild(card);
+          });
+        }
+
+        if (teacherMaterialList) {
+          teacherMaterialList.innerHTML = "";
+          if (snapshot.empty) {
+            teacherMaterialList.innerHTML = '<p class="text-sm text-slate-500">Belum ada materi tersimpan.</p>';
+          } else {
+            snapshot.forEach((docSnap) => {
+              const data = docSnap.data();
+              const card = document.createElement("div");
+              card.className = "p-3.5 rounded-xl border border-slate-200 bg-slate-50 flex justify-between items-center";
+              card.innerHTML = `
+                <div>
+                  <span class="text-xs font-bold text-violet-700 bg-violet-100 px-2 py-0.5 rounded-md">${data.category || 'Umum'}</span>
+                  <h4 class="font-extrabold text-sm mt-1 text-slate-900">${data.title}</h4>
+                  <p class="text-xs text-slate-600 mt-0.5">${data.desc}</p>
+                </div>
+                <button onclick="deleteDocument('materi', '${docSnap.id}')" class="text-xs text-rose-600 font-bold hover:underline shrink-0 ml-3">Hapus Materi</button>
+              `;
+              teacherMaterialList.appendChild(card);
+            });
+          }
+        }
       }, (err) => console.warn("Firestore error (materi):", err));
 
       // 6. Video
       onSnapshot(collection(db, "video"), (snapshot) => {
         const videoList = document.getElementById("student-video-list");
-        if (!videoList) return;
-        videoList.innerHTML = "";
-        snapshot.forEach((docSnap) => {
-          const data = docSnap.data();
-          const card = document.createElement("div");
-          card.className = "card student-card";
-          card.innerHTML = `
-            <h4 class="font-extrabold text-lg mb-2">${data.title}</h4>
-            <div class="aspect-video w-full rounded-xl overflow-hidden bg-black">
-              <iframe class="w-full h-full" src="${data.url}" title="${data.title}" frameborder="0" allowfullscreen></iframe>
-            </div>
-            ${isTeacher ? `<button onclick="deleteDocument('video', '${docSnap.id}')" class="mt-3 text-xs text-rose-600 font-bold hover:underline">Hapus Video</button>` : ''}
-          `;
-          videoList.appendChild(card);
-        });
+        const teacherVideoList = document.getElementById("teacher-video-list");
+        
+        if (videoList) {
+          videoList.innerHTML = "";
+          snapshot.forEach((docSnap) => {
+            const data = docSnap.data();
+            const card = document.createElement("div");
+            card.className = "card student-card";
+            card.innerHTML = `
+              <h4 class="font-extrabold text-lg mb-2">${data.title}</h4>
+              <div class="aspect-video w-full rounded-xl overflow-hidden bg-black">
+                <iframe class="w-full h-full" src="${data.url}" title="${data.title}" frameborder="0" allowfullscreen></iframe>
+              </div>
+            `;
+            videoList.appendChild(card);
+          });
+        }
+
+        if (teacherVideoList) {
+          teacherVideoList.innerHTML = "";
+          if (snapshot.empty) {
+            teacherVideoList.innerHTML = '<p class="text-sm text-slate-500">Belum ada video tersimpan.</p>';
+          } else {
+            snapshot.forEach((docSnap) => {
+              const data = docSnap.data();
+              const card = document.createElement("div");
+              card.className = "p-4 rounded-xl border border-slate-200 bg-white shadow-sm flex flex-col md:flex-row justify-between items-start md:items-center gap-3";
+              card.innerHTML = `
+                <div class="flex-1">
+                  <h4 class="font-extrabold text-sm text-slate-900">${data.title}</h4>
+                  <a href="${data.url}" target="_blank" class="text-xs text-sky-700 underline font-mono block mt-1 truncate max-w-md">${data.url}</a>
+                </div>
+                <button onclick="deleteDocument('video', '${docSnap.id}')" class="text-xs bg-rose-50 text-rose-600 border border-rose-200 px-3 py-1.5 rounded-lg font-bold hover:bg-rose-100 shrink-0">Hapus Video</button>
+              `;
+              teacherVideoList.appendChild(card);
+            });
+          }
+        }
       }, (err) => console.warn("Firestore error (video):", err));
 
       // 7. Jawaban Siswa
@@ -2721,6 +2782,10 @@ end</pre>
     }
 
     window.deleteDocument = async function(coll, id) {
+      if (!isTeacher) {
+        showToast("Akses ditolak! Hanya Guru yang dapat menghapus data.");
+        return;
+      }
       if (confirm("Apakah Anda yakin ingin menghapus data ini?")) {
         try {
           await deleteDoc(doc(db, coll, id));
