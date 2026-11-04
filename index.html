@@ -116,7 +116,7 @@
         <!-- Search Bar -->
         <div class="mb-5 flex items-center rounded-2xl border border-sky-200 bg-white px-4 py-2.5 shadow-sm no-print">
           <i data-lucide="search" class="w-5 h-5 text-slate-400 mr-2"></i>
-          <input id="search-input" type="text" placeholder="Cari materi atau topik (misal: diagram, hoaks, password, function, flowchart)..." class="w-full bg-transparent text-sm outline-none">
+          <input id="search-input" type="text" placeholder="Cari materi atau topik (misal: diagram, hoaks, password, function, flowchart, scratch)..." class="w-full bg-transparent text-sm outline-none">
         </div>
 
         <div class="notice border border-sky-100 bg-sky-50 text-sky-900 no-print">
@@ -564,7 +564,7 @@
           <article class="card student-card">
             <p class="text-sm font-bold uppercase tracking-widest text-violet-700">Bab 2 • Informatika Kelas 9 (Edisi Terpadu Halaman 56–114)</p>
             <h2 class="mt-2 text-2xl font-extrabold text-slate-900">Algoritma Lanjutan & Fondasi Pemrograman</h2>
-            <p class="mt-3 text-slate-600 leading-relaxed">Pelajari teknik pemecahan masalah dengan modularisasi program, penggunaan library, transisi pemrograman visual ke tekstual, serta flowchart & pseudocode secara interaktif.</p>
+            <p class="mt-3 text-slate-600 leading-relaxed">Pelajari teknik pemecahan masalah dengan modularisasi program, penggunaan library, transisi pemrograman visual ke tekstual, flowchart & pseudocode, serta eksplorasi lengkap Scratch interaktif.</p>
           </article>
 
           <!-- Navigasi Subbab Bab 2 -->
@@ -573,7 +573,7 @@
             <button type="button" class="subchapter-button rounded-xl px-3.5 py-2 text-sm" data-subchapter="m2-library">B. Konsep Library</button>
             <button type="button" class="subchapter-button rounded-xl px-3.5 py-2 text-sm" data-subchapter="m2-transisi">C. Blok vs Tekstual</button>
             <button type="button" class="subchapter-button rounded-xl px-3.5 py-2 text-sm" data-subchapter="m2-flowchart">D. Flowchart & Tracing</button>
-            <button type="button" class="subchapter-button rounded-xl px-3.5 py-2 text-sm" data-subchapter="m2-scratch">E. Simulasi Scratch</button>
+            <button type="button" class="subchapter-button rounded-xl px-3.5 py-2 text-sm" data-subchapter="m2-scratch">E. Pemrograman Scratch</button>
             <button type="button" class="subchapter-button rounded-xl px-3.5 py-2 text-sm" data-subchapter="m2-matching">F. Game Pasang Istilah</button>
             <button type="button" class="subchapter-button rounded-xl px-3.5 py-2 text-sm" data-subchapter="m2-refleksi">G. Refleksi Bab 2</button>
           </nav>
@@ -670,13 +670,13 @@ print(akar)  # Hasil Output: 4.0</div>
                     <tr>
                       <td class="p-2.5 font-bold bg-slate-50">Percabangan</td>
                       <td class="p-2.5">Blok <code>if [...] then ... else</code></td>
-                      <td class="p-2.5 font-mono">if (x < y) { ... } else { ... }</td>
-                      <td class="p-2.5 font-mono">if x < y: ... else: ...</td>
+                      <td class="p-2.5 font-mono">if (x &lt; y) { ... } else { ... }</td>
+                      <td class="p-2.5 font-mono">if x &lt; y: ... else: ...</td>
                     </tr>
                     <tr>
                       <td class="p-2.5 font-bold bg-slate-50">Perulangan</td>
                       <td class="p-2.5">Blok <code>repeat (3)</code> / <code>forever</code></td>
-                      <td class="p-2.5 font-mono">for(int i=0; i<3; i++) { ... }</td>
+                      <td class="p-2.5 font-mono">for(int i=0; i&lt;3; i++) { ... }</td>
                       <td class="p-2.5 font-mono">for i in range(3): ...</td>
                     </tr>
                   </tbody>
@@ -749,13 +749,140 @@ SELESAI</div>
             </article>
           </section>
 
-          <!-- Subbab E Bab 2 -->
+          <!-- Subbab E Bab 2: PEMROGRAMAN SCRATCH LENGKAP -->
           <section id="m2-scratch" class="subchapter-view mt-5">
-            <article class="card">
-              <h3 class="text-xl font-extrabold text-slate-900 mb-2">E. Simulasi Pemrograman Blok Scratch</h3>
-              <p class="text-sm text-slate-600 mb-4">Coba jalankan proyek pemrograman Scratch berikut langsung dari halaman web ini:</p>
-              <div class="aspect-video w-full rounded-2xl overflow-hidden border bg-slate-900">
-                <iframe src="https://scratch.mit.edu/projects/10128/embed" class="w-full h-full" allowtransparency="true" frameborder="0" scrolling="no" allowfullscreen></iframe>
+            <article class="card space-y-6">
+              <div>
+                <span class="text-xs font-bold text-violet-700 uppercase block mb-1">TOPIK 05 • PEMROGRAMAN VISUAL BLOK</span>
+                <h3 class="text-xl font-extrabold text-slate-900 mb-2">E. Pemrograman Visual Scratch: Antarmuka, Kode Blok, & Pembuatan Game</h3>
+                <p class="text-slate-700 text-sm leading-relaxed">
+                  <strong>Scratch</strong> adalah lingkungan pemrograman visual berbasis blok yang dikembangkan oleh MIT Media Lab. Pada Scratch, pemrograman dilakukan dengan cara menyusun balok-balok kode (*drag and drop*) sehingga mempermudah pemula dalam memahami algoritma tanpa perlu mengkhawatirkan kesalahan penulisan kata (*syntax error*).
+                </p>
+              </div>
+
+              <!-- 1. Antarmuka Scratch -->
+              <div class="p-4 rounded-xl border border-slate-200 bg-slate-50">
+                <h4 class="font-extrabold text-slate-800 text-base mb-3 flex items-center gap-2">
+                  <i data-lucide="layout-template" class="w-5 h-5 text-violet-600"></i> 1. Mengenal Antarmuka (Interface) Utama Scratch
+                </h4>
+                <div class="grid md:grid-cols-2 gap-3 text-xs">
+                  <div class="p-3 bg-white rounded-lg border border-slate-200">
+                    <strong class="text-violet-900 block mb-1">a. Stage (Panggung Utama)</strong>
+                    <p class="text-slate-600">Layar eksekusi tempat animasi, karakter, dan interaksi program ditampilkan. Stage memiliki sistem koordinat Kartesius: Sumbu X (-240 s/d 240) dan Sumbu Y (-180 s/d 180).</p>
+                  </div>
+                  <div class="p-3 bg-white rounded-lg border border-slate-200">
+                    <strong class="text-violet-900 block mb-1">b. Sprite & Backdrop Pane</strong>
+                    <p class="text-slate-600">Area pengelolaan objek karakter (*Sprite*) dan dekorasi gambar latar belakang (*Backdrop*). Di sini kamu bisa menambah, menghapus, atau mengatur posisi awal Sprite.</p>
+                  </div>
+                  <div class="p-3 bg-white rounded-lg border border-slate-200">
+                    <strong class="text-violet-900 block mb-1">c. Blocks Palette (Koleksi Kategori Blok)</strong>
+                    <p class="text-slate-600">Kumpulan balok perintah program yang dikelompokkan berdasarkan warna dan fungsi operasionalnya (seperti Motion, Looks, Sound, Events, Control, dll).</p>
+                  </div>
+                  <div class="p-3 bg-white rounded-lg border border-slate-200">
+                    <strong class="text-violet-900 block mb-1">d. Scripts Area (Lembar Kerja Kode)</strong>
+                    <p class="text-slate-600">Papan kerja tempat kita menyeret (*drag*) dan menyusun balok-balok perintah menjadi satu skrip algoritma utuh yang saling terhubung.</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 2. Kategori Kode Blok Scratch -->
+              <div>
+                <h4 class="font-extrabold text-slate-800 text-base mb-3 flex items-center gap-2">
+                  <i data-lucide="blocks" class="w-5 h-5 text-violet-600"></i> 2. Kategori & Fungsi Berbagai Kode Blok Scratch
+                </h4>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-3 text-xs">
+                  <div class="p-3 rounded-xl border border-yellow-200 bg-yellow-50">
+                    <span class="font-bold text-yellow-900 block mb-1">⚡ Events (Kuning)</span>
+                    <p class="text-slate-700">Pemicu berjalannya skrip program.<br><em>Contoh:</em> <code>when 🚩 clicked</code>, <code>when key [space] pressed</code>.</p>
+                  </div>
+                  <div class="p-3 rounded-xl border border-blue-200 bg-blue-50">
+                    <span class="font-bold text-blue-900 block mb-1">🏃 Motion (Biru)</span>
+                    <p class="text-slate-700">Mengatur posisi & pergerakan Sprite.<br><em>Contoh:</em> <code>move 10 steps</code>, <code>turn ↻ 15 deg</code>, <code>go to x:0 y:0</code>.</p>
+                  </div>
+                  <div class="p-3 rounded-xl border border-purple-200 bg-purple-50">
+                    <span class="font-bold text-purple-900 block mb-1">🎨 Looks (Ungu)</span>
+                    <p class="text-slate-700">Mengatur tampilan kostum & dialog.<br><em>Contoh:</em> <code>say "Halo!"</code>, <code>switch costume to []</code>.</p>
+                  </div>
+                  <div class="p-3 rounded-xl border border-pink-200 bg-pink-50">
+                    <span class="font-bold text-pink-900 block mb-1">🔊 Sound (Pink)</span>
+                    <p class="text-slate-700">Memutar efek suara dan lagu.<br><em>Contoh:</em> <code>play sound [Pop] until done</code>, <code>change volume by -10</code>.</p>
+                  </div>
+                  <div class="p-3 rounded-xl border border-amber-200 bg-amber-50">
+                    <span class="font-bold text-amber-900 block mb-1">🔄 Control (Oranye)</span>
+                    <p class="text-slate-700">Mengatur alur logika & perulangan.<br><em>Contoh:</em> <code>repeat (10)</code>, <code>forever</code>, <code>if ... then</code>.</p>
+                  </div>
+                  <div class="p-3 rounded-xl border border-cyan-200 bg-cyan-50">
+                    <span class="font-bold text-cyan-900 block mb-1">🎯 Sensing (Cyan)</span>
+                    <p class="text-slate-700">Mendeteksi sentuhan, kursor, & input.<br><em>Contoh:</em> <code>touching [mouse]?</code>, <code>ask [] and wait</code>.</p>
+                  </div>
+                  <div class="p-3 rounded-xl border border-emerald-200 bg-emerald-50">
+                    <span class="font-bold text-emerald-900 block mb-1">🔢 Operators (Hijau)</span>
+                    <p class="text-slate-700">Operasi matematika & perbandingan.<br><em>Contoh:</em> <code>pick random (1) to (10)</code>, <code>(score) > 50</code>.</p>
+                  </div>
+                  <div class="p-3 rounded-xl border border-orange-200 bg-orange-50">
+                    <span class="font-bold text-orange-900 block mb-1">📦 Variables (Oranye Tua)</span>
+                    <p class="text-slate-700">Menyimpan data nilai dinamis.<br><em>Contoh:</em> <code>set [Skor] to 0</code>, <code>change [Skor] by 1</code>.</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 3. Panduan Langkah Pembuatan Game Scratch -->
+              <div class="p-5 border border-emerald-200 rounded-2xl bg-emerald-50/50">
+                <h4 class="font-extrabold text-emerald-900 text-base mb-2 flex items-center gap-2">
+                  <i data-lucide="gamepad-2" class="w-5 h-5 text-emerald-700"></i> 3. Panduan Langkah Pembuatan Game Sederhana: "Tangkap Apel (Catching Apple)"
+                </h4>
+                <p class="text-xs text-slate-600 mb-4">Tujuan Game: Pemain mengontrol mangkok ke kiri-kanan untuk menangkap buah apel yang jatuh acak dari atas. Setiap kali apel tertangkap, skor bertambah 1 poin.</p>
+
+                <div class="space-y-3 text-xs">
+                  <div class="p-3 bg-white rounded-xl border border-emerald-200">
+                    <strong class="text-emerald-900 font-bold block mb-1">Langkah 1: Menyiapkan Karakter (Sprite) dan Latar (Backdrop)</strong>
+                    <ul class="list-disc list-inside text-slate-700 space-y-1">
+                      <li>Klik ikon <strong>Choose a Sprite</strong> &gt; Cari dan pilih Sprite <strong>Bowl</strong> (Mangkok) dan <strong>Apple</strong> (Apel).</li>
+                      <li>Klik ikon <strong>Choose a Backdrop</strong> &gt; Pilih tema latar panggung <strong>Blue Sky</strong> atau <strong>Farm</strong>.</li>
+                    </ul>
+                  </div>
+
+                  <div class="p-3 bg-white rounded-xl border border-emerald-200">
+                    <strong class="text-emerald-900 font-bold block mb-1">Langkah 2: Pemrograman Gerakan Mangkok (Sprite Bowl)</strong>
+                    <p class="text-slate-700 mb-2">Mengatur agar mangkok dapat bergeser ke kanan dan kiri menggunakan tombol panah keyboard:</p>
+                    <pre class="codebox text-[11px] bg-slate-900 text-amber-300 p-2.5 rounded-lg font-mono">when 🚩 clicked
+forever
+  if &lt;key [right arrow v] pressed?&gt; then
+    change x by 10
+  end
+  if &lt;key [left arrow v] pressed?&gt; then
+    change x by -10
+  end
+end</pre>
+                  </div>
+
+                  <div class="p-3 bg-white rounded-xl border border-emerald-200">
+                    <strong class="text-emerald-900 font-bold block mb-1">Langkah 3: Pemrograman Jatuhnya Apel & Logika Penambahan Skor (Sprite Apple)</strong>
+                    <p class="text-slate-700 mb-2">Buat variabel baru bernama <strong>Skor</strong> pada kategori <em>Variables</em>, lalu susun kode berikut pada Sprite Apple:</p>
+                    <pre class="codebox text-[11px] bg-slate-900 text-emerald-400 p-2.5 rounded-lg font-mono">when 🚩 clicked
+set [Skor v] to 0
+forever
+  go to x: (pick random (-200) to (200)) y: 180
+  repeat until &lt;(y position) &lt; -160&gt;
+    change y by -5
+    if &lt;touching [Bowl v]?&gt; then
+      change [Skor v] by 1
+      play sound [Pop v] until done
+      go to x: (pick random (-200) to (200)) y: 180
+    end
+  end
+end</pre>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 4. Embed Proyek Simulasi Interactive Scratch -->
+              <div>
+                <h4 class="font-extrabold text-slate-800 text-base mb-2">4. Simulasi Interactive Project Scratch</h4>
+                <p class="text-sm text-slate-600 mb-3">Jalankan dan mainkan proyek contoh Scratch di bawah ini langsung dari browser Anda:</p>
+                <div class="aspect-video w-full rounded-2xl overflow-hidden border bg-slate-900 shadow-sm">
+                  <iframe src="https://scratch.mit.edu/projects/10128/embed" class="w-full h-full" allowtransparency="true" frameborder="0" scrolling="no" allowfullscreen></iframe>
+                </div>
               </div>
             </article>
           </section>
@@ -794,7 +921,7 @@ SELESAI</div>
               <div class="space-y-2 text-sm text-slate-800">
                 <label class="flex gap-2 items-center cursor-pointer"><input class="progress-check" type="checkbox"> Paham perbedaan Function (return value) dan Procedure</label>
                 <label class="flex gap-2 items-center cursor-pointer"><input class="progress-check" type="checkbox"> Memahami 3 manfaat utama penggunaan Library</label>
-                <label class="flex gap-2 items-center cursor-pointer"><input class="progress-check" type="checkbox"> Memahami transisi dari pemrograman blok Scratch ke bahasa tekstual</label>
+                <label class="flex gap-2 items-center cursor-pointer"><input class="progress-check" type="checkbox"> Memahami antarmuka, kategori blok, &amp; langkah pembuatan game Scratch</label>
                 <label class="flex gap-2 items-center cursor-pointer"><input class="progress-check" type="checkbox"> Mampu menelusuri alur logika flowchart &amp; pseudocode</label>
               </div>
 
@@ -1513,21 +1640,26 @@ SELESAI</div>
       document.getElementById("student-modal").classList.remove("hidden");
     };
 
-    // Mode Switcher
+    // Mode Switcher & Peningkatan Keamanan Akses Guru
     document.getElementById("student-mode-button").onclick = () => switchMode("student");
     document.getElementById("teacher-mode-button").onclick = () => {
+      document.getElementById("access-code").value = "";
+      document.getElementById("access-message").textContent = "";
       document.getElementById("access-overlay").classList.remove("hidden");
     };
     document.getElementById("access-cancel").onclick = () => document.getElementById("access-overlay").classList.add("hidden");
+    
     document.getElementById("access-form").onsubmit = (e) => {
       e.preventDefault();
-      const code = document.getElementById("access-code").value;
-      if (code === "123456" || code.length >= 4) {
+      const code = document.getElementById("access-code").value.trim();
+      if (code === "123456" || code === "guru99") {
         document.getElementById("access-overlay").classList.add("hidden");
+        document.getElementById("access-message").textContent = "";
         isTeacher = true;
         switchMode("teacher");
+        showToast("Akses Guru Berhasil Disetujui!");
       } else {
-        document.getElementById("access-message").textContent = "Sandi salah (Min 4 digit).";
+        document.getElementById("access-message").textContent = "PIN Guru salah. Silakan coba lagi!";
       }
     };
 
@@ -1851,7 +1983,7 @@ SELESAI</div>
       }
     }
 
-    // KAMERA DEPAN & PENGAWASAN SIMULASI
+    // KAMERA DEPAN & PENGAWASAN SIMULASI (DENGAN REVISI PERBAIKAN CLEANUP TOTAL)
     async function startFrontCamera() {
       try {
         webcamStream = await navigator.mediaDevices.getUserMedia({
@@ -1872,7 +2004,11 @@ SELESAI</div>
         webcamStream.getTracks().forEach(track => track.stop());
         webcamStream = null;
       }
-      document.getElementById("simulasi-webcam").classList.add("hidden");
+      const videoEl = document.getElementById("simulasi-webcam");
+      if (videoEl) {
+        videoEl.srcObject = null;
+        videoEl.classList.add("hidden");
+      }
     }
 
     function lockSimulasiScreen(reasonText) {
@@ -1884,8 +2020,8 @@ SELESAI</div>
 
     document.getElementById("quiz-unlock-form").onsubmit = (e) => {
       e.preventDefault();
-      const pin = document.getElementById("quiz-unlock-pin").value;
-      if (pin === "123456") {
+      const pin = document.getElementById("quiz-unlock-pin").value.trim();
+      if (pin === "123456" || pin === "guru99") {
         quizLocked = false;
         document.getElementById("quiz-lock-overlay").classList.add("hidden");
         document.getElementById("quiz-unlock-pin").value = "";
