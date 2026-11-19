@@ -122,7 +122,7 @@
         <div class="notice border border-sky-100 bg-sky-50 text-sky-900 no-print">
           <div class="flex gap-3">
             <i data-lucide="info" class="mt-0.5 w-5 h-5 shrink-0"></i>
-            <p>Pilih bab materi, kirim tugas praktik, atau kerjakan latihan soal berpenjagaan kamera depan.</p>
+            <p>Pilih bab materi, kirim tugas praktik, atau ikuti simulasi ujian berpenjagaan kamera depan.</p>
           </div>
         </div>
 
@@ -136,7 +136,7 @@
             <i data-lucide="file-up" class="w-4 h-4 inline mr-1"></i>Tugas Praktik
           </button>
           <button type="button" class="module-button rounded-xl px-4 py-2.5 text-sm font-bold border-amber-300 text-amber-800" data-module="module-simulasi">
-            <i data-lucide="clipboard-list" class="w-4 h-4 inline mr-1"></i>Latihan Soal
+            <i data-lucide="shield-check" class="w-4 h-4 inline mr-1"></i>Simulasi Bab
           </button>
         </nav>
 
@@ -1153,8 +1153,8 @@ end</pre>
           <div class="card border-l-4 border-amber-500">
             <div class="flex justify-between items-center flex-wrap gap-3">
               <div>
-                <h2 class="text-2xl font-extrabold text-slate-900" id="simulasi-heading">Latihan Soal Pembelajaran</h2>
-                <p class="mt-1 text-slate-600 text-sm">Uji pemahaman materi melalui latihan soal dengan sistem pengawasan kamera depan dan anti-kecurangan.</p>
+                <h2 class="text-2xl font-extrabold text-slate-900" id="simulasi-heading">Simulasi Pembelajaran</h2>
+                <p class="mt-1 text-slate-600 text-sm">Uji pemahaman bab dengan sistem pengawasan kamera depan dan anti-kecurangan.</p>
               </div>
               <div class="flex items-center gap-3">
                 <video id="simulasi-webcam" autoplay playsinline muted class="hidden w-24 h-16 rounded-lg border-2 border-amber-500 bg-black object-cover"></video>
@@ -1167,22 +1167,21 @@ end</pre>
 
           <div id="quiz-start-banner" class="card mt-6 text-center py-8">
             <i data-lucide="shield-alert" class="w-12 h-12 text-amber-500 mx-auto mb-2"></i>
-            <h3 class="text-xl font-extrabold text-slate-900">Pilih Paket Latihan Soal</h3>
+            <h3 class="text-xl font-extrabold text-slate-900">Pilih Judul Simulasi Bab</h3>
             <p class="text-slate-600 max-w-lg mx-auto mt-1 text-sm">Sebelum memulai, pastikan izin Kamera Depan diberikan. Sistem akan mengunci otomatis jika Anda berpindah tab, meminimalkan layar, atau mengambil screenshot.</p>
             
             <div class="max-w-md mx-auto mt-4 text-left">
-              <label class="block text-sm font-bold text-slate-700">Paket Latihan Soal yang Diikuti:</label>
+              <label class="block text-sm font-bold text-slate-700">Judul Simulasi yang Diikuti:</label>
               <select id="simulasi-target-select" class="w-full border rounded-xl p-3 mt-1 font-bold bg-white">
-                <option value="Latihan Soal Asesmen Sumatif Akhir (35 Soal + 5 Essay)">Latihan Soal Asesmen Sumatif Akhir (35 Soal + 5 Essay)</option>
-                <option value="Latihan Soal Bab 1: Penyajian Data Mentah">Latihan Soal Bab 1: Penyajian Data Mentah</option>
-                <option value="Latihan Soal Bab 2: Algoritma Lanjutan & Literasi">Latihan Soal Bab 2: Algoritma Lanjutan & Literasi</option>
-                <option value="Latihan Soal Bab 3: Literasi Digital & Etika">Latihan Soal Bab 3: Literasi Digital & Etika</option>
-                <option value="Latihan Soal Bab 4: Keamanan Digital & Data">Latihan Soal Bab 4: Keamanan Digital & Data</option>
+                <option value="Simulasi Bab 1: Penyajian Data Mentah">Simulasi Bab 1: Penyajian Data Mentah</option>
+                <option value="Simulasi Bab 2: Algoritma Lanjutan & Literasi">Simulasi Bab 2: Algoritma Lanjutan & Literasi</option>
+                <option value="Simulasi Bab 3: Literasi Digital & Etika">Simulasi Bab 3: Literasi Digital & Etika</option>
+                <option value="Simulasi Bab 4: Keamanan Digital & Data">Simulasi Bab 4: Keamanan Digital & Data</option>
               </select>
             </div>
 
             <button id="btn-start-quiz" type="button" class="mt-6 bg-amber-500 text-white font-bold px-6 py-3 rounded-xl text-base hover:bg-amber-600 shadow-md">
-              Izinkan Kamera &amp; Mulai Latihan Soal
+              Izinkan Kamera &amp; Mulai Simulasi
             </button>
           </div>
 
@@ -1193,23 +1192,16 @@ end</pre>
             <div id="simulasi-questions-container" class="space-y-6"></div>
 
             <button type="submit" class="w-full bg-amber-500 text-white font-bold py-3 rounded-xl hover:bg-amber-600 text-lg">
-              Kirim Jawaban Latihan Soal
+              Kirim Jawaban Simulasi
             </button>
           </form>
 
-          <!-- Tampilan Hasil Latihan Soal -->
-          <div id="quiz-result-box" class="card mt-6 hidden py-8">
-            <div class="text-center">
-              <i data-lucide="award" class="w-16 h-16 text-amber-500 mx-auto mb-2"></i>
-              <h3 class="text-2xl font-extrabold text-slate-900">Latihan Soal Selesai!</h3>
-              <p class="text-slate-600 mt-1">Nilai objektif & jawaban essay kamu telah otomatis tersimpan ke data Guru.</p>
-              <div class="mt-4 text-4xl font-extrabold text-amber-600" id="quiz-score-display">0 / 100</div>
-              <p id="quiz-score-detail" class="text-sm font-bold text-slate-600 mt-2"></p>
-              <button type="button" id="btn-retry-simulasi" class="mt-5 bg-sky-700 text-white font-bold px-5 py-2.5 rounded-xl text-sm hover:bg-sky-800">
-                Kembali ke Pilihan Paket Latihan Soal
-              </button>
-            </div>
-            <div id="quiz-review-container" class="mt-8 border-t pt-6 space-y-4"></div>
+          <!-- Tampilan Hasil Simulasi -->
+          <div id="quiz-result-box" class="card mt-6 hidden text-center py-8">
+            <i data-lucide="award" class="w-16 h-16 text-amber-500 mx-auto mb-2"></i>
+            <h3 class="text-2xl font-extrabold text-slate-900">Simulasi Selesai!</h3>
+            <p class="text-slate-600 mt-1">Nilai kamu telah otomatis tersimpan ke data Guru.</p>
+            <div class="mt-4 text-4xl font-extrabold text-amber-600" id="quiz-score-display">0 / 100</div>
           </div>
         </section>
 
@@ -1251,12 +1243,12 @@ end</pre>
       <section id="teacher-mode" class="mode-panel">
         <div class="card teacher-card border-l-4 border-violet-600">
           <h2 class="text-2xl font-extrabold text-slate-900">Panel Kelola Pembelajaran (Mode Guru)</h2>
-          <p class="mt-1 text-slate-600">Kelola hasil latihan soal, nilai tugas praktik, materi, video, rekap absen, dan ekspor data.</p>
+          <p class="mt-1 text-slate-600">Kelola hasil simulasi per bab, nilai tugas praktik, materi, video, rekap absen, dan ekspor data.</p>
         </div>
 
         <nav class="mt-6 flex flex-wrap gap-2">
           <button type="button" class="teacher-tab active rounded-xl px-4 py-2 text-sm font-bold" data-teacher-tab="rekap-absen">Rekap Absen</button>
-          <button type="button" class="teacher-tab rounded-xl px-4 py-2 text-sm font-bold" data-teacher-tab="rekap-ulangan">Nilai Latihan Soal</button>
+          <button type="button" class="teacher-tab rounded-xl px-4 py-2 text-sm font-bold" data-teacher-tab="rekap-ulangan">Nilai Simulasi Bab</button>
           <button type="button" class="teacher-tab rounded-xl px-4 py-2 text-sm font-bold" data-teacher-tab="rekap-tugas">Penilaian Tugas Praktik</button>
           <button type="button" class="teacher-tab rounded-xl px-4 py-2 text-sm font-bold" data-teacher-tab="rekap-siswa">Refleksi Siswa</button>
           <button type="button" class="teacher-tab rounded-xl px-4 py-2 text-sm font-bold" data-teacher-tab="export-data">Ekspor Data</button>
@@ -1277,9 +1269,9 @@ end</pre>
         <!-- Tab Rekap Nilai Simulasi -->
         <section id="rekap-ulangan" class="teacher-tab-panel mt-6">
           <div class="card">
-            <h3 class="font-extrabold text-lg mb-4">Rekap Hasil Nilai Latihan Soal Siswa</h3>
+            <h3 class="font-extrabold text-lg mb-4">Rekap Hasil Nilai Simulasi Siswa per Bab</h3>
             <div id="rekap-ulangan-container" class="space-y-3">
-              <p class="text-sm text-slate-500">Memuat data nilai latihan soal...</p>
+              <p class="text-sm text-slate-500">Memuat data nilai simulasi...</p>
             </div>
           </div>
         </section>
@@ -1319,7 +1311,7 @@ end</pre>
 
               <div class="p-4 border rounded-xl bg-slate-50 text-center">
                 <i data-lucide="award" class="w-8 h-8 text-amber-600 mx-auto mb-2"></i>
-                <h4 class="font-bold text-slate-900 mb-1">Nilai Latihan Soal</h4>
+                <h4 class="font-bold text-slate-900 mb-1">Nilai Simulasi Bab</h4>
                 <button id="btn-export-ulangan" class="mt-2 w-full bg-amber-600 text-white font-bold py-2 px-3 rounded-lg text-xs hover:bg-amber-700">Unduh CSV Nilai</button>
               </div>
 
@@ -1474,11 +1466,11 @@ end</pre>
       <div class="access-dialog border-2 border-rose-500">
         <div class="text-center">
           <i data-lucide="lock" class="w-14 h-14 text-rose-600 mx-auto mb-2"></i>
-          <h2 class="text-2xl font-extrabold text-rose-700">Latihan Soal Terkunci!</h2>
+          <h2 class="text-2xl font-extrabold text-rose-700">Simulasi Terkunci!</h2>
           <p id="quiz-lock-reason" class="mt-2 text-sm font-bold text-slate-800 bg-rose-50 p-3 rounded-xl border border-rose-200">
             Terdeteksi tindakan tidak diizinkan.
           </p>
-          <p class="mt-3 text-xs text-slate-600">Minta bantuan Guru untuk memasukkan Password pembuka kunci agar Anda dapat melanjutkan latihan soal.</p>
+          <p class="mt-3 text-xs text-slate-600">Minta bantuan Guru untuk memasukkan Password pembuka kunci agar Anda dapat melanjutkan simulasi.</p>
         </div>
 
         <form id="quiz-unlock-form" class="mt-5">
@@ -1729,578 +1721,25 @@ end</pre>
       }
     ];
 
-    // Database Paket Latihan Soal Lengkap (Termasuk Asesmen Sumatif Akhir 35 Soal + 5 Essay)
-    const simulasiStimuli = {
-      stimulus_1: `
-        <div class="p-4 sm:p-5 rounded-2xl bg-sky-50/80 border-2 border-sky-200 mb-4">
-          <div class="flex items-center gap-2 mb-2">
-            <span class="text-xs font-extrabold uppercase tracking-wider bg-sky-700 text-white px-2.5 py-1 rounded-lg">Stimulus 1 • Untuk Soal No. 1 – 5</span>
-          </div>
-          <h4 class="font-extrabold text-base text-slate-900 mb-1">Alur Logika Mesin Kasir E-Koperasi</h4>
-          <p class="text-xs sm:text-sm text-slate-700 mb-3">Sebuah koperasi sekolah menggunakan mesin kasir otomatis (E-Koperasi) yang bekerja mengikuti urutan Diagram Alur (Flowchart) berikut:</p>
-          <div class="bg-white rounded-xl border border-sky-200 p-3 overflow-x-auto">
-            <svg viewBox="0 0 680 560" class="w-full max-w-2xl mx-auto h-auto" role="img" aria-label="Flowchart Mesin Kasir E-Koperasi">
-              <defs>
-                <marker id="arrow-ekop" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                  <path d="M 0 1 L 10 5 L 0 9 z" fill="#1e293b" />
-                </marker>
-              </defs>
-              <!-- Mulai -->
-              <rect x="275" y="10" width="130" height="34" rx="17" fill="#e2e8f0" stroke="#334155" stroke-width="1.8" />
-              <text x="340" y="32" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">Mulai</text>
-              <line x1="340" y1="44" x2="340" y2="66" stroke="#1e293b" stroke-width="1.6" marker-end="url(#arrow-ekop)" />
-
-              <!-- Input -->
-              <polygon points="210,68 490,68 470,104 190,104" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.8" />
-              <text x="340" y="90" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#1e3a8a">Input: Status_Member, Total_Belanja</text>
-              <line x1="340" y1="104" x2="340" y2="126" stroke="#1e293b" stroke-width="1.6" marker-end="url(#arrow-ekop)" />
-
-              <!-- Init -->
-              <rect x="230" y="128" width="220" height="34" rx="6" fill="#fef3c7" stroke="#b45309" stroke-width="1.8" />
-              <text x="340" y="149" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#78350f">Poin = 0; Potongan = 0</text>
-              <line x1="340" y1="162" x2="340" y2="184" stroke="#1e293b" stroke-width="1.6" marker-end="url(#arrow-ekop)" />
-
-              <!-- Decision 1: Status_Member -->
-              <polygon points="340,186 465,222 340,258 215,222" fill="#fce7f3" stroke="#be185d" stroke-width="1.8" />
-              <text x="340" y="226" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#831843">Status_Member = "Ya"?</text>
-
-              <!-- Ya Branch -->
-              <polyline points="215,222 165,222 165,274" fill="none" stroke="#1e293b" stroke-width="1.6" marker-end="url(#arrow-ekop)" />
-              <text x="188" y="215" text-anchor="middle" font-size="11" font-weight="bold" fill="#15803d">Ya</text>
-              <rect x="105" y="276" width="120" height="32" rx="6" fill="#fef3c7" stroke="#b45309" stroke-width="1.8" />
-              <text x="165" y="296" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#78350f">Poin = 15</text>
-              <line x1="165" y1="308" x2="165" y2="328" stroke="#1e293b" stroke-width="1.6" marker-end="url(#arrow-ekop)" />
-
-              <!-- Decision 2 Left -->
-              <polygon points="165,330 265,364 165,398 65,364" fill="#fce7f3" stroke="#be185d" stroke-width="1.8" />
-              <text x="165" y="361" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#831843">Total_Belanja</text>
-              <text x="165" y="374" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#831843">&ge; 40.000?</text>
-
-              <polyline points="65,364 55,364 55,420" fill="none" stroke="#1e293b" stroke-width="1.6" marker-end="url(#arrow-ekop)" />
-              <text x="48" y="357" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#15803d">Ya</text>
-              <rect x="8" y="422" width="122" height="32" rx="6" fill="#fef3c7" stroke="#b45309" stroke-width="1.6" />
-              <text x="69" y="442" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#78350f">Potongan = 8.000</text>
-
-              <polyline points="265,364 275,364 275,420" fill="none" stroke="#1e293b" stroke-width="1.6" marker-end="url(#arrow-ekop)" />
-              <text x="285" y="357" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#b91c1c">Tidak</text>
-              <rect x="195" y="422" width="122" height="32" rx="6" fill="#fef3c7" stroke="#b45309" stroke-width="1.6" />
-              <text x="256" y="442" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#78350f">Potongan = 1.500</text>
-
-              <!-- Tidak Branch -->
-              <polyline points="465,222 515,222 515,328" fill="none" stroke="#1e293b" stroke-width="1.6" marker-end="url(#arrow-ekop)" />
-              <text x="492" y="215" text-anchor="middle" font-size="11" font-weight="bold" fill="#b91c1c">Tidak</text>
-
-              <!-- Decision 2 Right -->
-              <polygon points="515,330 615,364 515,398 415,364" fill="#fce7f3" stroke="#be185d" stroke-width="1.8" />
-              <text x="515" y="361" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#831843">Total_Belanja</text>
-              <text x="515" y="374" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#831843">&ge; 40.000?</text>
-
-              <polyline points="415,364 405,364 405,420" fill="none" stroke="#1e293b" stroke-width="1.6" marker-end="url(#arrow-ekop)" />
-              <text x="398" y="357" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#15803d">Ya</text>
-              <rect x="358" y="422" width="122" height="32" rx="6" fill="#fef3c7" stroke="#b45309" stroke-width="1.6" />
-              <text x="419" y="442" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#78350f">Potongan = 2.000</text>
-
-              <polyline points="615,364 625,364 625,420" fill="none" stroke="#1e293b" stroke-width="1.6" marker-end="url(#arrow-ekop)" />
-              <text x="642" y="357" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#b91c1c">Tidak</text>
-              <rect x="548" y="422" width="122" height="32" rx="6" fill="#fef3c7" stroke="#b45309" stroke-width="1.6" />
-              <text x="609" y="442" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#78350f">Potongan = 0</text>
-
-              <!-- Merge Lines -->
-              <line x1="69" y1="454" x2="69" y2="468" stroke="#1e293b" stroke-width="1.6" />
-              <line x1="256" y1="454" x2="256" y2="468" stroke="#1e293b" stroke-width="1.6" />
-              <line x1="419" y1="454" x2="419" y2="468" stroke="#1e293b" stroke-width="1.6" />
-              <line x1="609" y1="454" x2="609" y2="468" stroke="#1e293b" stroke-width="1.6" />
-              <line x1="69" y1="468" x2="609" y2="468" stroke="#1e293b" stroke-width="1.6" />
-              <line x1="340" y1="468" x2="340" y2="480" stroke="#1e293b" stroke-width="1.6" marker-end="url(#arrow-ekop)" />
-
-              <!-- Total_Bayar -->
-              <rect x="190" y="482" width="300" height="30" rx="6" fill="#fef3c7" stroke="#b45309" stroke-width="1.8" />
-              <text x="340" y="501" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#78350f">Total_Bayar = Total_Belanja - Potongan</text>
-              <line x1="340" y1="512" x2="340" y2="522" stroke="#1e293b" stroke-width="1.6" marker-end="url(#arrow-ekop)" />
-
-              <!-- Output & Selesai -->
-              <polygon points="215,524 480,524 465,552 200,552" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.8" />
-              <text x="340" y="542" text-anchor="middle" font-size="11" font-weight="bold" fill="#1e3a8a">Tampilkan Total_Bayar dan Poin (Selesai)</text>
-            </svg>
-          </div>
-        </div>
-      `,
-      stimulus_2: `
-        <div class="p-4 sm:p-5 rounded-2xl bg-emerald-50/80 border-2 border-emerald-200 mb-4">
-          <div class="flex items-center gap-2 mb-2">
-            <span class="text-xs font-extrabold uppercase tracking-wider bg-emerald-700 text-white px-2.5 py-1 rounded-lg">Stimulus 2 • Untuk Soal No. 6 – 15</span>
-          </div>
-          <h4 class="font-extrabold text-base text-slate-900 mb-1">Pengolahan Data Nilai Spreadsheet</h4>
-          <p class="text-xs sm:text-sm text-slate-700 mb-3">Perhatikan tabel pengolahan nilai mata pelajaran Informatika dengan Kriteria Ketuntasan Minimal (KKM) <strong>80</strong> berikut ini:</p>
-          <div class="overflow-x-auto bg-white rounded-xl border border-emerald-200 shadow-sm">
-            <table class="w-full text-xs text-left border-collapse">
-              <thead>
-                <tr class="bg-slate-800 text-white font-bold text-center">
-                  <th class="p-2 border border-slate-700 w-10"></th>
-                  <th class="p-2 border border-slate-700">A</th>
-                  <th class="p-2 border border-slate-700">B</th>
-                  <th class="p-2 border border-slate-700">C</th>
-                  <th class="p-2 border border-slate-700">D</th>
-                  <th class="p-2 border border-slate-700">E</th>
-                  <th class="p-2 border border-slate-700">F</th>
-                </tr>
-              </thead>
-              <tbody class="divide-y divide-slate-200">
-                <tr class="bg-slate-100 font-bold text-slate-900">
-                  <td class="p-2 border text-center bg-slate-200">1</td>
-                  <td class="p-2 border">No.</td>
-                  <td class="p-2 border">Nama Siswa</td>
-                  <td class="p-2 border">Nilai Praktik</td>
-                  <td class="p-2 border">Nilai Teori</td>
-                  <td class="p-2 border">Rata-Rata</td>
-                  <td class="p-2 border">Status Kelulusan</td>
-                </tr>
-                <tr>
-                  <td class="p-2 border text-center font-bold bg-slate-100">2</td>
-                  <td class="p-2 border text-center">1</td>
-                  <td class="p-2 border font-semibold">Dina</td>
-                  <td class="p-2 border text-center">88</td>
-                  <td class="p-2 border text-center">92</td>
-                  <td class="p-2 border font-mono text-sky-800">=AVERAGE(C2:D2)</td>
-                  <td class="p-2 border font-mono text-emerald-800">=IF(AND(C2>=80; D2>=80); "Lulus"; "Remedial")</td>
-                </tr>
-                <tr>
-                  <td class="p-2 border text-center font-bold bg-slate-100">3</td>
-                  <td class="p-2 border text-center">2</td>
-                  <td class="p-2 border font-semibold">Eko</td>
-                  <td class="p-2 border text-center">75</td>
-                  <td class="p-2 border text-center">70</td>
-                  <td class="p-2 border font-mono text-sky-800">=AVERAGE(C3:D3)</td>
-                  <td class="p-2 border font-mono text-emerald-800">=IF(AND(C3>=80; D3>=80); "Lulus"; "Remedial")</td>
-                </tr>
-                <tr>
-                  <td class="p-2 border text-center font-bold bg-slate-100">4</td>
-                  <td class="p-2 border text-center">3</td>
-                  <td class="p-2 border font-semibold">Farah</td>
-                  <td class="p-2 border text-center">96</td>
-                  <td class="p-2 border text-center">94</td>
-                  <td class="p-2 border font-mono text-sky-800">=AVERAGE(C4:D4)</td>
-                  <td class="p-2 border font-mono text-emerald-800">=IF(AND(C4>=80; D4>=80); "Lulus"; "Remedial")</td>
-                </tr>
-                <tr>
-                  <td class="p-2 border text-center font-bold bg-slate-100">5</td>
-                  <td class="p-2 border text-center">4</td>
-                  <td class="p-2 border font-semibold">Galih</td>
-                  <td class="p-2 border text-center">84</td>
-                  <td class="p-2 border text-center">76</td>
-                  <td class="p-2 border font-mono text-sky-800">=AVERAGE(C5:D5)</td>
-                  <td class="p-2 border font-mono text-emerald-800">=IF(AND(C5>=80; D5>=80); "Lulus"; "Remedial")</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      `,
-      stimulus_3: `
-        <div class="p-4 sm:p-5 rounded-2xl bg-violet-50/80 border-2 border-violet-200 mb-4">
-          <div class="flex items-center gap-2 mb-2">
-            <span class="text-xs font-extrabold uppercase tracking-wider bg-violet-700 text-white px-2.5 py-1 rounded-lg">Stimulus 3 • Untuk Soal No. 16 – 25</span>
-          </div>
-          <h4 class="font-extrabold text-base text-slate-900 mb-2">Pemrograman Scratch Game 'Elang &amp; Kelinci'</h4>
-          <div class="grid md:grid-cols-2 gap-3 text-xs">
-            <div class="bg-slate-900 text-emerald-300 p-3 rounded-xl font-mono leading-relaxed">
-              <p class="text-amber-300 font-bold mb-1">// Skrip Sprite Kelinci:</p>
-              when ⚑ clicked<br>
-              set [Skor] to 0<br>
-              set [Kecepatan] to 3<br>
-              forever<br>
-              &nbsp;&nbsp;move (Kecepatan) steps<br>
-              &nbsp;&nbsp;if on edge, bounce<br>
-              &nbsp;&nbsp;if &lt;(Skor) &gt; 4&gt; then set [Kecepatan] to 7<br>
-              &nbsp;&nbsp;if &lt;(Skor) &gt; 12&gt; then set [Kecepatan] to 11<br>
-              &nbsp;&nbsp;if &lt;touching [Elang]?&gt; then<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;change [Skor] by 1<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;play sound [Pop]<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;go to (random position)<br>
-              end
-            </div>
-            <div class="bg-slate-900 text-rose-300 p-3 rounded-xl font-mono leading-relaxed">
-              <p class="text-amber-300 font-bold mb-1">// Skrip Sprite Landak (Rintangan):</p>
-              when ⚑ clicked<br>
-              forever<br>
-              &nbsp;&nbsp;move (2) steps<br>
-              &nbsp;&nbsp;if on edge, bounce<br>
-              &nbsp;&nbsp;if &lt;touching [Elang]?&gt; then<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;say [PERMAINAN BERAKHIR!] for (2) secs<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;stop [all]<br>
-              end
-            </div>
-          </div>
-        </div>
-      `
-    };
-
+    // Database Soal Simulasi per Bab
     const simulasiDatabase = {
-      "Latihan Soal Asesmen Sumatif Akhir (35 Soal + 5 Essay)": {
-        duration: 2700, // 45 Menit
-        questions: [
-          {
-            stimulus: "stimulus_1",
-            type: "single",
-            q: '1. Raka melakukan transaksi di mesin kasir E-Koperasi dengan memasukkan data Status_Member = "Ya" dan Total_Belanja = 55.000. Jika alur diagram di atas dijalankan dari atas ke bawah, hasil Total_Bayar dan Poin yang tampil di layar kasir secara berurutan adalah ....',
-            options: ["Rp. 47.000,- dan 15", "Rp. 47.000,- dan 0", "Rp. 53.500,- dan 15", "Rp. 55.000,- dan 0"],
-            answer: 0,
-            explanation: "Member = Ya (Poin = 15), Total_Belanja 55.000 >= 40.000 (Potongan = 8.000). Total_Bayar = 55.000 - 8.000 = Rp. 47.000,- dan Poin = 15."
-          },
-          {
-            type: "single",
-            q: '2. Sinta berbelanja dengan memasukkan data Status_Member = "Tidak" dan Total_Belanja = 35.000. Hasil Total_Bayar dan Poin yang tampil di layar kasir untuk transaksi Sinta adalah ....',
-            options: ["Rp. 33.000,- dan 15", "Rp. 33.500,- dan 0", "Rp. 35.000,- dan 0", "Rp. 35.000,- dan 15"],
-            answer: 2,
-            explanation: "Status_Member = Tidak (Poin tetap 0), Total_Belanja 35.000 < 40.000 (Potongan = 0). Total_Bayar = Rp. 35.000,- dan Poin = 0."
-          },
-          {
-            type: "multiple",
-            q: '3. (Pilihan Ganda Kompleks) Berdasarkan penelusuran alur kerja mesin kasir E-Koperasi di atas, berilah tanda centang (✓) pada semua pernyataan yang BENAR! (Jawaban benar lebih dari satu)',
-            options: [
-              'Jika Status_Member = "Ya" dan Total_Belanja = 25.000, hasil akhirnya adalah Total_Bayar = 23.500 dan Poin = 15.',
-              'Pelanggan dengan Status_Member = "Tidak" akan selalu memiliki nilai Poin = 0 berapa pun total belanjanya.',
-              'Jika Status_Member = "Tidak" dan Total_Belanja = 40.000, pelanggan mendapatkan Potongan = Rp. 8.000,-.',
-              'Langkah perhitungan Total_Bayar = Total_Belanja - Potongan hanya dijalankan jika pelanggan berstatus member.'
-            ],
-            answer: [0, 1],
-            explanation: "Pernyataan 1 (25.000 - 1.500 = 23.500; Poin = 15) dan Pernyataan 2 (Non-member selalu Poin = 0) adalah BENAR."
-          },
-          {
-            type: "tf_table",
-            q: "4. (Tabel Benar/Salah) Tentukan Benar atau Salah untuk setiap pernyataan mengenai diagram alur E-Koperasi di atas!",
-            rows: [
-              "Jika pelanggan Member berbelanja tepat Rp40.000, alur diagram menuju cabang YA sehingga mendapat Potongan Rp8.000.",
-              "Simbol Belah Ketupat pada diagram alur di atas digunakan untuk memeriksa kondisi/keputusan (Status_Member dan Total_Belanja).",
-              "Jika Member dan Non-Member sama-sama berbelanja Rp50.000, selisih Total_Bayar keduanya adalah Rp8.000."
-            ],
-            answer: ["true", "true", "false"],
-            explanation: "Benar – Benar – Salah (Pada belanja Rp50.000, potongan Member Rp8.000 dan Non-Member Rp2.000, sehingga selisihnya Rp6.000)."
-          },
-          {
-            type: "single",
-            q: "5. Berdasarkan diagram alur (flowchart) mesin kasir E-Koperasi di atas, simbol persegi panjang yang berisi perintah Total_Bayar = Total_Belanja - Potongan digunakan untuk menunjukkan tahapan ....",
-            options: [
-              "Masukan (input) data dari pengguna",
-              "Proses perhitungan atau pengolahan data",
-              "Pengambilan keputusan berdasarkan kondisi tertentu",
-              "Keluaran (output) hasil akhir ke layar kasir"
-            ],
-            answer: 1,
-            explanation: "Simbol persegi panjang (Process) menyatakan proses perhitungan atau pengolahan data."
-          },
-          {
-            stimulus: "stimulus_2",
-            type: "single",
-            q: '6. Guru menambahkan kolom baru pada sel G5 untuk menentukan ketuntasan berdasarkan nilai Rata-Rata (sel E5) milik Galih menggunakan formula =IF(E5>=80; "Tuntas"; "Belum Tuntas"). Berdasarkan tabel data nilai di atas, teks apakah yang akan muncul pada sel G5?',
-            options: ["Tuntas", "Belum Tuntas", "Remedial", "#NAME?"],
-            answer: 0,
-            explanation: "Rata-rata Galih = (84 + 76) / 2 = 80. Karena 80 >= 80 bernilai benar, hasil pada G5 adalah 'Tuntas'."
-          },
-          {
-            type: "single",
-            q: "7. Apakah hasil keluaran Status Kelulusan pada sel F5 untuk Galih?",
-            options: ["Lulus", "Remedial", "Istimewa", "#NAME?"],
-            answer: 1,
-            explanation: "Rumus F5 memakai AND(C5>=80; D5>=80). Nilai Teori Galih (D5 = 76) kurang dari 80, sehingga hasilnya 'Remedial'."
-          },
-          {
-            type: "multiple",
-            q: "8. (Pilihan Ganda Kompleks) Berilah tanda centang (✓) pada semua pernyataan yang BENAR berdasarkan tabel di atas! (Jawaban benar lebih dari satu)",
-            options: [
-              "Jumlah siswa yang dinyatakan 'Lulus' pada kolom F adalah sebanyak 2 orang (Dina dan Farah).",
-              "Rata-rata nilai tertinggi diraih oleh Farah dengan nilai sebesar 95.",
-              "Galih dinyatakan Lulus karena nilai Praktiknya mencapai 84.",
-              "Eko dinyatakan Remedial karena kedua nilainya di bawah 80."
-            ],
-            answer: [0, 1, 3],
-            explanation: "Pernyataan 1, 2, dan 4 benar. Galih dinyatakan Remedial karena nilai Teorinya 76 (< 80)."
-          },
-          {
-            type: "tf_table",
-            q: "9. (Tabel Benar/Salah) Tentukan Benar atau Salah untuk setiap pernyataan mengenai formula spreadsheet berikut!",
-            rows: [
-              "Jika rumus di sel E2 ditulis =AVRG(C2:D2), layar akan menampilkan pesan error #NAME?.",
-              "Diagram Batang adalah pilihan terbaik untuk membandingkan rata-rata nilai antar siswa.",
-              "Jika kolom C dihapus permanen, sel yang merujuk pada sel di kolom C akan menampilkan error #REF!."
-            ],
-            answer: ["true", "true", "true"],
-            explanation: "Ketiga pernyataan tersebut bernilai BENAR."
-          },
-          {
-            type: "single",
-            q: "10. Formula spreadsheet yang digunakan untuk mencari Nilai Teori tertinggi dari seluruh siswa (D2:D5) adalah ....",
-            options: ["=MAX(D2:D5)", "=HIGH(D2:D5)", "=TOP(D2:D5)", "=MAXIMUM(D2:D5)"],
-            answer: 0,
-            explanation: "Fungsi MAX digunakan untuk mencari nilai tertinggi dalam rentang sel."
-          },
-          {
-            type: "single",
-            q: "11. Notasi range yang menunjukkan seluruh sel data Nilai Praktik dari Dina hingga Galih adalah ....",
-            options: ["C2-C5", "C2..C5", "C2:C5", "C2;C5"],
-            answer: 2,
-            explanation: "Rentang sel (range) pada spreadsheet dipisahkan tanda titik dua (:), yaitu C2:C5."
-          },
-          {
-            type: "single",
-            q: '12. Jika syarat predikat diset menggunakan formula =IF(OR(C2>=92; D2>=92); "Istimewa"; "Reguler") lalu disalin ke seluruh siswa (baris 2 sampai 5), siapakah yang mendapat predikat Istimewa?',
-            options: ["Hanya Farah", "Dina dan Farah", "Farah dan Galih", "Semua Siswa"],
-            answer: 1,
-            explanation: "Dina memiliki Nilai Teori 92 (>=92) dan Farah memiliki Nilai Praktik 96 & Teori 94 (>=92)."
-          },
-          {
-            type: "single",
-            q: "13. Sekumpulan fakta mentah berupa angka, karakter, atau teks yang belum diproses dan belum memiliki arti informasi yang jelas dinamakan ....",
-            options: ["Data Mentah", "Tabel Terstruktur", "Informasi Digital", "Database Terolah"],
-            answer: 0,
-            explanation: "Data Mentah adalah kumpulan fakta yang belum dikelompokkan atau diolah menjadi informasi."
-          },
-          {
-            type: "single",
-            q: "14. Untuk menampilkan proporsi persentase pembagian alokasi dana kegiatan OSIS dari total anggaran keseluruhan (100%), jenis diagram yang paling tepat digunakan adalah ....",
-            options: ["Diagram Garis", "Diagram Batang", "Diagram Lingkaran (Pie Chart)", "Diagram Area"],
-            answer: 2,
-            explanation: "Diagram Lingkaran (Pie Chart) paling tepat menunjukkan proporsi bagian dari keseluruhan (100%)."
-          },
-          {
-            type: "single",
-            q: "15. Untuk melihat tren kenaikan atau penurunan jumlah pengunjung perpustakaan sekolah dari minggu ke minggu, jenis diagram yang paling cocok adalah ....",
-            options: ["Diagram Garis (Line Chart)", "Diagram Lingkaran (Pie Chart)", "Diagram Batang", "Diagram Hirarki"],
-            answer: 0,
-            explanation: "Diagram Garis (Line Chart) digunakan untuk memperlihatkan tren perubahan data dari waktu ke waktu."
-          },
-          {
-            stimulus: "stimulus_3",
-            type: "single",
-            q: "16. Saat Elang telah menangkap 6 ekor kelinci (Skor = 6), berapakah nilai variabel Kecepatan Kelinci saat itu?",
-            options: ["4 Step", "7 Step", "11 Step", "12 Step"],
-            answer: 1,
-            explanation: "Karena Skor = 6 memenuhi kondisi (Skor > 4) dan belum > 12, maka Kecepatan diatur menjadi 7 Step."
-          },
-          {
-            type: "multiple",
-            q: "17. (Pilihan Ganda Kompleks) Berilah tanda centang (✓) pada semua pernyataan yang BENAR tentang game Scratch di atas! (Jawaban benar lebih dari satu)",
-            options: [
-              "Setiap kali Elang menyentuh Kelinci, nilai Skor bertambah 1 poin.",
-              "Ketika Skor mencapai 14 poin, kecepatan Kelinci menjadi 11 langkah.",
-              "Menyentuh Landak memberikan bonus skor sebesar 2 poin.",
-              "Blok 'if on edge, bounce' mencegah Kelinci keluar dari layar panggung (Stage)."
-            ],
-            answer: [0, 1, 3],
-            explanation: "Pernyataan 1, 2, dan 4 benar. Menyentuh Landak menyebabkan Game Over (stop all), bukan bonus skor."
-          },
-          {
-            type: "tf_table",
-            q: "18. (Tabel Benar/Salah) Tentukan Benar atau Salah untuk setiap pernyataan mengenai Scratch berikut!",
-            rows: [
-              "Blok warna Kuning (when ⚑ clicked) tergolong kategori Events sebagai pemicu skrip.",
-              "Instruksi stop [all] hanya berfungsi untuk menyembunyikan tampilan Sprite Landak.",
-              "Batas sistem koordinat Sumbu Y pada panggung Stage Scratch adalah -180 hingga +180."
-            ],
-            answer: ["true", "false", "true"],
-            explanation: "Benar – Salah – Benar. Instruksi stop [all] menghentikan seluruh skrip di semua sprite."
-          },
-          {
-            type: "single",
-            q: "19. Area utama pada antarmuka Scratch tempat animasi, objek sprite, dan pementasan program dieksekusi dinamakan ....",
-            options: ["Script Area", "Stage", "Palette Blocks", "Costumes Pane"],
-            answer: 1,
-            explanation: "Stage adalah panggung utama tempat animasi dan objek sprite ditampilkan."
-          },
-          {
-            type: "single",
-            q: "20. Kategori kode blok Scratch berwarna Biru yang berfungsi mengatur gerakan dan perpindahan posisi objek dinamakan ....",
-            options: ["Motion", "Looks", "Control", "Sensing"],
-            answer: 0,
-            explanation: "Motion (Biru) berfungsi mengatur gerak dan posisi koordinat sprite."
-          },
-          {
-            type: "single",
-            q: "21. Untuk membuat instruksi perulangan tanpa henti pada Scratch, kita menggunakan blok kode ....",
-            options: ["Repeat (10)", "Forever", "Repeat Until", "Wait (1) Secs"],
-            answer: 1,
-            explanation: "Blok Forever menjalankan instruksi di dalamnya secara terus-menerus tanpa henti."
-          },
-          {
-            type: "single",
-            q: "22. Kategori kode blok Scratch yang berfungsi mendeteksi sentuhan kursor mouse atau objek lain dinamakan ....",
-            options: ["Operator", "Variables", "Sensing", "Events"],
-            answer: 2,
-            explanation: "Sensing (Cyan/Biru muda) mendeteksi interaksi sentuhan objek, mouse, tombol keyboard, dan input."
-          },
-          {
-            type: "single",
-            q: "23. Pada game 'Tangkap Bintang', perintah untuk menggeser posisi Roket ke arah kiri sebesar 15 langkah saat tombol panah kiri ditekan adalah ....",
-            options: ["Change Y by -15", "Change X by -15", "Set X to -15", "Turn Right 15 Degrees"],
-            answer: 1,
-            explanation: "Menggeser ke arah kiri pada sumbu horizontal menggunakan Change X by -15."
-          },
-          {
-            type: "single",
-            q: "24. Perintah Scratch yang digunakan untuk menghentikan seluruh jalannya program animasi/game saat Game Over adalah ....",
-            options: ["Stop [all]", "Hide", "Delete this clone", "Clear"],
-            answer: 0,
-            explanation: "Blok Stop [all] menghentikan seluruh skrip permainan."
-          },
-          {
-            type: "single",
-            q: "25. Papan kerja tempat kita menyeret (drag) dan menyusun balok-balok perintah menjadi satu rangkaian skrip dinamakan ....",
-            options: ["Stage", "Sprite Pane", "Script Area", "Backdrop Palette"],
-            answer: 2,
-            explanation: "Script Area adalah area kerja tempat menyusun blok-blok kode."
-          },
-          {
-            type: "single",
-            q: "26. Perbedaan utama antara Function dan Procedure pada pemrograman adalah ....",
-            options: [
-              "Function mengembalikan nilai hasil (return value), sedangkan Procedure tidak",
-              "Procedure menggunakan variabel, sedangkan Function tidak",
-              "Function hanya untuk angka, sedangkan Procedure untuk teks",
-              "Tidak ada perbedaan fungsi di antara keduanya"
-            ],
-            answer: 0,
-            explanation: "Function mengembalikan nilai balik (return value), sedangkan Procedure hanya menjalankan prosedur perintah."
-          },
-          {
-            type: "single",
-            q: "27. Kumpulan modul atau fungsi siap pakai yang disimpan dalam satu wadah sehingga dapat dipanggil berulang kali dinamakan ....",
-            options: ["Compiler", "Library (Pustaka)", "Variable", "Flowchart"],
-            answer: 1,
-            explanation: "Library (Pustaka) adalah koleksi fungsi/modul siap pakai dalam pemrograman."
-          },
-          {
-            type: "single",
-            q: "28. Manfaat utama dari konsep Reusability pada penggunaan Library program adalah ....",
-            options: [
-              "Kode dapat digunakan kembali di berbagai proyek tanpa harus menulis dari nol",
-              "Menghapus bug secara otomatis",
-              "Mempercepat koneksi internet",
-              "Mengubah kode visual menjadi fisik"
-            ],
-            answer: 0,
-            explanation: "Reusability memungkinkan kode dipakai ulang secara efisien di berbagai program."
-          },
-          {
-            type: "single",
-            q: "29. Simbol berbentuk Oval (Terminator) pada bagan alur Flowchart berfungsi untuk ....",
-            options: [
-              "Memproses perhitungan",
-              "Menyatakan titik Mulai (Start) atau Selesai (Stop)",
-              "Membaca input data",
-              "Mengambil keputusan"
-            ],
-            answer: 1,
-            explanation: "Terminator (Oval) menandai awal (Start) dan akhir (Stop) diagram alur."
-          },
-          {
-            type: "single",
-            q: "30. Simbol Flowchart berbentuk Belah Ketupat (Decision) digunakan untuk ....",
-            options: [
-              "Titik Start / Stop",
-              "Mengambil keputusan atau percabangan logika",
-              "Input / Output data",
-              "Menghubungkan halaman"
-            ],
-            answer: 1,
-            explanation: "Belah ketupat (Decision) menguji kondisi logika Ya/Tidak."
-          },
-          {
-            type: "single",
-            q: "31. Perintah membaca masukan data dari pengguna maupun menampilkan keluaran dalam Flowchart disimbolkan dengan bangun ....",
-            options: ["Persegi panjang", "Jajar genjang", "Belah ketupat", "Lingkaran"],
-            answer: 1,
-            explanation: "Jajar genjang melambangkan proses Input dan Output data."
-          },
-          {
-            type: "single",
-            q: "32. Deskripsi langkah-langkah algoritma yang ditulis menggunakan bahasa natural terstruktur menyerupai kode pemrograman asli dinamakan ....",
-            options: ["Flowchart", "Pseudocode", "Bahasa Mesin", "Diagram Batang"],
-            answer: 1,
-            explanation: "Pseudocode adalah penulisan algoritma terstruktur menyerupai bahasa pemrograman."
-          },
-          {
-            type: "single",
-            q: "33. Bima menulis rumus =IF(D2>=80;TUNTAS;MENGULANG) dan mendapat pesan error. Penulisan rumus yang sudah dibenarkan adalah ....",
-            options: [
-              '=IF(D2>=80;"TUNTAS";"MENGULANG")',
-              "=IF{D2=>80;TUNTAS;MENGULANG)",
-              '=SUM(D2>=80;"TUNTAS";"MENGULANG")',
-              "=IF D2>=80 THEN TUNTAS"
-            ],
-            answer: 0,
-            explanation: "Nilai teks dalam rumus IF wajib diapit tanda kutip ganda ("...")."
-          },
-          {
-            type: "single",
-            q: '34. Sel C4 berisi angka 78. Apakah hasil keluaran dari formula =IF(C4>=85;"MEMUASKAN";"BAIK")?',
-            options: ["BAIK", "MEMUASKAN", "#VALUE!", "78"],
-            answer: 0,
-            explanation: "Karena 78 >= 85 bernilai salah, rumus menghasilkan cabang kedua yaitu 'BAIK'."
-          },
-          {
-            type: "single",
-            q: "35. Jenis diagram yang paling cocok untuk membandingkan jumlah anggota ekstrakurikuler (Pramuka, PMR, Paskibra, Futsal, dan Basket) secara langsung adalah ....",
-            options: ["Diagram Garis", "Diagram Batang", "Diagram Lingkaran", "Diagram Pohon"],
-            answer: 1,
-            explanation: "Diagram Batang sangat tepat untuk membandingkan kuantitas antar kategori."
-          }
-        ],
-        essays: [
-          {
-            q: "1. Sebuah tim siswa merancang aplikasi peminjaman buku perpustakaan sekolah. Jelaskan bagaimana penerapan teknik Dekomposisi dan Abstraksi pada perancangan sistem tersebut!",
-            rubric: "Dekomposisi: Memecah masalah besar pembuatan sistem perpustakaan menjadi modul-modul kecil seperti pendataan buku, pendataan anggota, transaksi peminjaman, pengembalian, dan perhitungan denda. Abstraksi: Menyaring data penting yang dibutuhkan sistem (judul buku, kode buku, nama siswa, tanggal pinjam) dan mengabaikan detail tidak relevan (warna sampul buku atau hobi siswa)."
-          },
-          {
-            q: "2. Tentukan jenis diagram yang paling tepat untuk menyajikan: (A) Perkembangan suhu rata-rata harian selama satu minggu, dan (B) Persentase jumlah siswa berdasarkan hobi (Olahraga, Seni, Membaca, dan Gaming)! Berikan masing-masing alasannya!",
-            rubric: "(A) Diagram Garis (Line Chart): Tepat untuk menampilkan tren perubahan suhu dari hari ke hari secara berkesinambungan. (B) Diagram Lingkaran (Pie Chart): Tepat untuk menyajikan proporsi persentase masing-masing kategori hobi terhadap keseluruhan siswa (100%)."
-          },
-          {
-            q: "3. Jelaskan perbedaan utama antara Function dan Procedure dalam pemrograman, lalu berikan masing-masing 1 contoh penerapannya dalam aplikasi sehari-hari (misalnya pada aplikasi ATM perbankan atau toko daring/e-commerce)!",
-            rubric: "Function mengembalikan nilai hasil (return value) setelah diproses (contoh: fungsi menghitung total belanja beserta ongkos kirim di aplikasi e-commerce). Procedure menjalankan serangkaian perintah tanpa mengembalikan nilai (contoh: prosedur mencetak struk bukti transaksi pada mesin ATM)."
-          },
-          {
-            q: "4. Jelaskan fungsi komponen Stage pada Scratch serta sebutkan titik pusat dan batas-batas nilai sistem koordinat Kartesius (Sumbu X dan Sumbu Y) yang dimilikinya!",
-            rubric: "Stage adalah panggung utama tempat animasi dan interaksi sprite ditampilkan. Titik pusatnya berada di koordinat (0, 0), dengan batas Sumbu X dari -240 hingga +240 dan Sumbu Y dari -180 hingga +180."
-          },
-          {
-            q: "5. Jelaskan alur algoritma pergerakan dan penambahan skor pada Sprite Bintang dalam game Scratch 'Tangkap Bintang'!",
-            rubric: "Saat bendera hijau diklik, atur Skor = 0 dan posisikan Bintang di bagian atas layar (Y = 180) dengan posisi X acak (-220 hingga 220). Dalam blok forever, gerakkan Bintang turun (change Y by -5). Jika menyentuh Roket, tambah Skor sebesar 1, bunyikan suara, lalu kembalikan Bintang ke atas layar secara acak. Jika melewati batas bawah layar (Y < -170), kembalikan Bintang ke atas layar secara acak."
-          }
-        ]
-      },
-      "Latihan Soal Bab 1: Penyajian Data Mentah": {
-        duration: 600,
-        questions: [
-          { type: "single", q: "1. Formula spreadsheet untuk menghitung nilai rata-rata dari sekelompok data adalah...", options: ["=SUM(...)", "=AVERAGE(...)", "=MAX(...)", "=IF(...)"], answer: 1 },
-          { type: "single", q: "2. Jenis diagram yang paling tepat digunakan untuk membandingkan jumlah nilai antar siswa/kategori secara langsung adalah...", options: ["Diagram Batang", "Diagram Garis", "Diagram Lingkaran", "Diagram Venn"], answer: 0 }
-        ],
-        essays: []
-      },
-      "Latihan Soal Bab 2: Algoritma Lanjutan & Literasi": {
-        duration: 600,
-        questions: [
-          { type: "single", q: "1. Modul/subprogram yang mengembalikan nilai hasil (return value) dinamakan...", options: ["Procedure", "Function", "Variable", "Loop"], answer: 1 },
-          { type: "single", q: "2. Salah satu manfaat utama dari penggunaan Library dalam pemrograman adalah...", options: ["Reusability (dapat dipakai ulang)", "Membuat RAM permanen", "Menghapus bug otomatis", "Mematikan CPU"], answer: 0 },
-          { type: "single", q: "3. Simbol flowchart berbentuk belah ketupat (Decision) berfungsi untuk...", options: ["Start/Stop", "Proses Perhitungan", "Input/Output Data", "Keputusan / Percabangan"], answer: 3 }
-        ],
-        essays: []
-      },
-      "Latihan Soal Bab 3: Literasi Digital & Etika": {
-        duration: 600,
-        questions: [
-          { type: "single", q: "1. Ciri utama dari berita yang terindikasi Hoaks di media sosial adalah...", options: ["Berasal dari situs resmi", "Judul provokatif & memaksa disebarkan", "Mencantumkan data penelitian", "Ditulis bahasa ilmiah"], answer: 1 },
-          { type: "single", q: "2. Rekam jejak seluruh aktivitas yang kita tinggalkan saat menggunakan internet disebut...", options: ["Jejak Digital", "Browsing History", "Cookie", "Phishing"], answer: 0 }
-        ],
-        essays: []
-      },
-      "Latihan Soal Bab 4: Keamanan Digital & Data": {
-        duration: 600,
-        questions: [
-          { type: "single", q: "1. Upaya penipuan digital untuk mencuri data akun/password melalui tautan palsu disebut...", options: ["Cyberbullying", "Phishing", "Coding", "Formatting"], answer: 1 },
-          { type: "single", q: "2. Kombinasi kata sandi (password) berikut yang memiliki kriteria paling kuat adalah...", options: ["12345678", "rahasia123", "P@ssw0rd99!", "tanggallahir"], answer: 2 }
-        ],
-        essays: []
-      }
+      "Simulasi Bab 1: Penyajian Data Mentah": [
+        { q: "1. Formula spreadsheet untuk menghitung nilai rata-rata dari sekelompok data adalah...", options: ["=SUM(...)", "=AVERAGE(...)", "=MAX(...)", "=IF(...)"], answer: "b" },
+        { q: "2. Jenis diagram yang paling tepat digunakan untuk membandingkan jumlah nilai antar siswa/kategori secara langsung adalah...", options: ["Diagram Batang", "Diagram Garis", "Diagram Lingkaran", "Diagram Venn"], answer: "a" }
+      ],
+      "Simulasi Bab 2: Algoritma Lanjutan & Literasi": [
+        { q: "1. Modul/subprogram yang mengembalikan nilai hasil (return value) dinamakan...", options: ["Procedure", "Function", "Variable", "Loop"], answer: "b" },
+        { q: "2. Salah satu manfaat utama dari penggunaan Library dalam pemrograman adalah...", options: ["Reusability (dapat dipakai ulang)", "Membuat RAM permanen", "Menghapus bug otomatis", "Mematikan CPU"], answer: "a" },
+        { q: "3. Simbol flowchart berbentuk belah ketupat (Decision) berfungsi untuk...", options: ["Start/Stop", "Proses Perhitungan", "Input/Output Data", "Keputusan / Percabangan"], answer: "d" }
+      ],
+      "Simulasi Bab 3: Literasi Digital & Etika": [
+        { q: "1. Ciri utama dari berita yang terindikasi Hoaks di media sosial adalah...", options: ["Berasal dari situs resmi", "Judul provokatif & memaksa disebarkan", "Mencantumkan data penelitian", "Ditulis bahasa ilmiah"], answer: "b" },
+        { q: "2. Rekam jejak seluruh aktivitas yang kita tinggalkan saat menggunakan internet disebut...", options: ["Jejak Digital", "Browsing History", "Cookie", "Phishing"], answer: "a" }
+      ],
+      "Simulasi Bab 4: Keamanan Digital & Data": [
+        { q: "1. Upaya penipuan digital untuk mencuri data akun/password melalui tautan palsu disebut...", options: ["Cyberbullying", "Phishing", "Coding", "Formatting"], answer: "b" },
+        { q: "2. Kombinasi kata sandi (password) berikut yang memiliki kriteria paling kuat adalah...", options: ["12345678", "rahasia123", "P@ssw0rd99!", "tanggallahir"], answer: "c" }
+      ]
     };
 
     function showToast(msg) {
@@ -2735,7 +2174,7 @@ end</pre>
         videoEl.classList.remove("hidden");
       } catch (err) {
         if (err.name === "NotAllowedError" || err.name === "PermissionDeniedError") {
-          alert("Akses kamera ditolak! Izinkan akses kamera depan di browser Anda untuk melanjutkan latihan soal.");
+          alert("Akses kamera ditolak! Izinkan akses kamera depan di browser Anda untuk melanjutkan simulasi.");
         } else {
           alert("Kamera tidak ditemukan atau sedang digunakan aplikasi lain: " + err.message);
         }
@@ -2776,7 +2215,7 @@ end</pre>
         document.getElementById("quiz-lock-overlay").classList.add("hidden");
         document.getElementById("quiz-unlock-pin").value = "";
         msgEl.textContent = "";
-        showToast("Layar latihan soal berhasil dibuka!");
+        showToast("Layar simulasi berhasil dibuka!");
       } else {
         msgEl.textContent = "Password Guru salah!";
       }
@@ -2809,18 +2248,16 @@ end</pre>
     document.addEventListener("contextmenu", (e) => {
       if (isQuizActive) {
         e.preventDefault();
-        lockSimulasiScreen("Klik kanan dilarang selama latihan soal berlangsung!");
+        lockSimulasiScreen("Klik kanan dilarang selama simulasi berlangsung!");
       }
     });
 
-    // MEMULAI LATIHAN SOAL
+    // MEMULAI SIMULASI
     const btnStartQuiz = document.getElementById("btn-start-quiz");
     if (btnStartQuiz) {
       btnStartQuiz.onclick = async () => {
         const titleSelect = document.getElementById("simulasi-target-select").value;
-        const packet = simulasiDatabase[titleSelect] || simulasiDatabase["Latihan Soal Asesmen Sumatif Akhir (35 Soal + 5 Essay)"];
-        const questions = packet.questions;
-        const essays = packet.essays || [];
+        const questions = simulasiDatabase[titleSelect] || simulasiDatabase["Simulasi Bab 1: Penyajian Data Mentah"];
 
         try {
           await startFrontCamera();
@@ -2832,109 +2269,28 @@ end</pre>
         quizLocked = false;
 
         document.getElementById("quiz-start-banner").classList.add("hidden");
-        document.getElementById("quiz-result-box").classList.add("hidden");
         document.getElementById("quiz-form").classList.remove("hidden");
         document.getElementById("quiz-timer-box").classList.remove("hidden");
         document.getElementById("current-simulasi-title").textContent = titleSelect;
 
         const container = document.getElementById("simulasi-questions-container");
         container.innerHTML = "";
-
-        if (essays.length > 0) {
-          const sectionHeaderA = document.createElement("div");
-          sectionHeaderA.className = "p-3 rounded-xl bg-amber-50 border border-amber-200 text-xs font-extrabold text-amber-900 uppercase tracking-wide";
-          sectionHeaderA.textContent = "A. Pilihan Ganda, Pilihan Ganda Kompleks, dan Benar/Salah (35 Soal)";
-          container.appendChild(sectionHeaderA);
-        }
-
         questions.forEach((qObj, idx) => {
-          if (qObj.stimulus && simulasiStimuli[qObj.stimulus]) {
-            const stimDiv = document.createElement("div");
-            stimDiv.innerHTML = simulasiStimuli[qObj.stimulus];
-            container.appendChild(stimDiv);
-          }
-
           const qBox = document.createElement("div");
-          qBox.className = "border-b border-slate-200 pb-5";
-          const qType = qObj.type || "single";
-
-          if (qType === "single") {
-            const letters = ["A", "B", "C", "D"];
-            qBox.innerHTML = `
-              <p class="font-extrabold text-slate-900 leading-relaxed">${qObj.q}</p>
-              <div class="mt-3 space-y-2 text-sm">
-                ${qObj.options.map((opt, optIdx) => `
-                  <label class="flex items-start gap-2.5 p-2.5 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer">
-                    <input type="radio" name="sq_${idx}" value="${optIdx}" class="mt-1">
-                    <span><strong>${letters[optIdx]}.</strong> ${opt}</span>
-                  </label>
-                `).join("")}
-              </div>
-            `;
-          } else if (qType === "multiple") {
-            qBox.innerHTML = `
-              <p class="font-extrabold text-slate-900 leading-relaxed">${qObj.q}</p>
-              <div class="mt-3 space-y-2 text-sm">
-                ${qObj.options.map((opt, optIdx) => `
-                  <label class="flex items-start gap-2.5 p-2.5 rounded-xl border border-sky-200 bg-sky-50/40 hover:bg-sky-50 cursor-pointer">
-                    <input type="checkbox" name="sq_${idx}" value="${optIdx}" class="mt-1 w-4 h-4 rounded text-sky-700">
-                    <span>${opt}</span>
-                  </label>
-                `).join("")}
-              </div>
-            `;
-          } else if (qType === "tf_table") {
-            qBox.innerHTML = `
-              <p class="font-extrabold text-slate-900 leading-relaxed mb-3">${qObj.q}</p>
-              <div class="overflow-x-auto rounded-xl border border-slate-200">
-                <table class="w-full text-xs sm:text-sm text-left border-collapse">
-                  <thead>
-                    <tr class="bg-slate-800 text-white">
-                      <th class="p-2.5 border border-slate-700">Pernyataan</th>
-                      <th class="p-2.5 border border-slate-700 text-center w-20">Benar</th>
-                      <th class="p-2.5 border border-slate-700 text-center w-20">Salah</th>
-                    </tr>
-                  </thead>
-                  <tbody class="divide-y divide-slate-200 bg-white">
-                    ${qObj.rows.map((rowText, rIdx) => `
-                      <tr>
-                        <td class="p-2.5 border text-slate-800">${rowText}</td>
-                        <td class="p-2.5 border text-center">
-                          <input type="radio" name="sq_${idx}_r_${rIdx}" value="true" class="w-4 h-4 cursor-pointer">
-                        </td>
-                        <td class="p-2.5 border text-center">
-                          <input type="radio" name="sq_${idx}_r_${rIdx}" value="false" class="w-4 h-4 cursor-pointer">
-                        </td>
-                      </tr>
-                    `).join("")}
-                  </tbody>
-                </table>
-              </div>
-            `;
-          }
-
+          qBox.className = "border-b pb-4";
+          qBox.innerHTML = `
+            <p class="font-extrabold text-slate-900">${qObj.q}</p>
+            <div class="mt-3 space-y-2 text-sm">
+              <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="sq_${idx}" value="a" required> A. ${qObj.options[0]}</label>
+              <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="sq_${idx}" value="b"> B. ${qObj.options[1]}</label>
+              <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="sq_${idx}" value="c"> C. ${qObj.options[2]}</label>
+              <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="sq_${idx}" value="d"> D. ${qObj.options[3]}</label>
+            </div>
+          `;
           container.appendChild(qBox);
         });
 
-        if (essays.length > 0) {
-          const sectionHeaderB = document.createElement("div");
-          sectionHeaderB.className = "p-3 rounded-xl bg-violet-50 border border-violet-200 text-xs font-extrabold text-violet-900 uppercase tracking-wide mt-6";
-          sectionHeaderB.textContent = "B. Soal Essay / Uraian (5 Soal)";
-          container.appendChild(sectionHeaderB);
-
-          essays.forEach((eObj, eIdx) => {
-            const eBox = document.createElement("div");
-            eBox.className = "border-b border-slate-200 pb-5";
-            eBox.innerHTML = `
-              <label for="essay_ans_${eIdx}" class="block font-extrabold text-slate-900 leading-relaxed mb-2">${eObj.q}</label>
-              <textarea id="essay_ans_${eIdx}" name="essay_${eIdx}" rows="3" class="w-full rounded-xl border border-slate-300 p-3 text-sm focus:border-violet-600" placeholder="Tuliskan jawaban uraian kamu dengan jelas dan lengkap di sini..."></textarea>
-            `;
-            container.appendChild(eBox);
-          });
-        }
-
-        let duration = packet.duration || 600;
-        if (quizTimerInterval) clearInterval(quizTimerInterval);
+        let duration = 600;
         quizTimerInterval = setInterval(() => {
           if (quizLocked) return;
           const m = Math.floor(duration / 60);
@@ -2942,18 +2298,10 @@ end</pre>
           document.getElementById("quiz-timer").textContent = `${m}:${s < 10 ? '0' : ''}${s}`;
           if (--duration < 0) {
             clearInterval(quizTimerInterval);
-            alert("Waktu latihan soal telah habis! Jawabanmu dikirim otomatis.");
+            alert("Waktu simulasi telah habis! Jawabanmu dikirim otomatis.");
             document.getElementById("quiz-form").requestSubmit();
           }
         }, 1000);
-      };
-    }
-
-    const btnRetrySimulasi = document.getElementById("btn-retry-simulasi");
-    if (btnRetrySimulasi) {
-      btnRetrySimulasi.onclick = () => {
-        document.getElementById("quiz-result-box").classList.add("hidden");
-        document.getElementById("quiz-start-banner").classList.remove("hidden");
       };
     }
 
@@ -2964,35 +2312,14 @@ end</pre>
       isQuizActive = false;
 
       const titleSelect = document.getElementById("simulasi-target-select").value;
-      const packet = simulasiDatabase[titleSelect] || simulasiDatabase["Latihan Soal Asesmen Sumatif Akhir (35 Soal + 5 Essay)"];
-      const questions = packet.questions;
-      const essays = packet.essays || [];
+      const questions = simulasiDatabase[titleSelect] || simulasiDatabase["Simulasi Bab 1: Penyajian Data Mentah"];
       
       let correct = 0;
       const formData = new FormData(document.getElementById("quiz-form"));
 
       questions.forEach((qObj, idx) => {
-        const qType = qObj.type || "single";
-        if (qType === "single") {
-          const chosen = formData.get(`sq_${idx}`);
-          if (chosen !== null && Number(chosen) === Number(qObj.answer)) correct++;
-        } else if (qType === "multiple") {
-          const chosenArr = formData.getAll(`sq_${idx}`).map(Number).sort((a, b) => a - b);
-          const expectedArr = [...qObj.answer].sort((a, b) => a - b);
-          if (chosenArr.length === expectedArr.length && chosenArr.every((v, i) => v === expectedArr[i])) {
-            correct++;
-          }
-        } else if (qType === "tf_table") {
-          const allMatch = qObj.rows.every((_, rIdx) => formData.get(`sq_${idx}_r_${rIdx}`) === qObj.answer[rIdx]);
-          if (allMatch) correct++;
-        }
+        if (formData.get(`sq_${idx}`) === qObj.answer) correct++;
       });
-
-      const essayResponses = essays.map((eObj, eIdx) => ({
-        question: eObj.q,
-        answer: (formData.get(`essay_${eIdx}`) || "").trim(),
-        rubric: eObj.rubric
-      }));
 
       const score = Math.round((correct / questions.length) * 100);
       const name = localStorage.getItem("student_name") || "Siswa";
@@ -3003,51 +2330,6 @@ end</pre>
       document.getElementById("quiz-timer-box").classList.add("hidden");
       document.getElementById("quiz-result-box").classList.remove("hidden");
       document.getElementById("quiz-score-display").textContent = `${score} / 100`;
-      document.getElementById("quiz-score-detail").textContent = `Benar ${correct} dari ${questions.length} soal objektif` + (essays.length ? ` (+ ${essays.length} soal Essay terkirim ke Guru)` : "");
-
-      // Render pembahasan & pedoman essay untuk siswa setelah selesai
-      const reviewContainer = document.getElementById("quiz-review-container");
-      if (reviewContainer) {
-        reviewContainer.innerHTML = `<h4 class="font-extrabold text-lg text-slate-900">Kunci Pembahasan &amp; Pedoman Jawaban</h4>`;
-        questions.forEach((qObj, idx) => {
-          const qType = qObj.type || "single";
-          let ansText = "";
-          if (qType === "single") {
-            const letters = ["A", "B", "C", "D"];
-            ansText = `${letters[qObj.answer]}. ${qObj.options[qObj.answer]}`;
-          } else if (qType === "multiple") {
-            ansText = qObj.answer.map(i => `✓ ${qObj.options[i]}`).join("<br>");
-          } else if (qType === "tf_table") {
-            ansText = qObj.rows.map((r, i) => `• ${r} → <strong>${qObj.answer[i] === "true" ? "Benar" : "Salah"}</strong>`).join("<br>");
-          }
-          const revCard = document.createElement("div");
-          revCard.className = "p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-xs space-y-1";
-          revCard.innerHTML = `
-            <p class="font-bold text-slate-900">${qObj.q}</p>
-            <p class="text-emerald-800 font-semibold">Kunci Jawaban:<br>${ansText}</p>
-            ${qObj.explanation ? `<p class="text-slate-600 italic">Pembahasan: ${qObj.explanation}</p>` : ""}
-          `;
-          reviewContainer.appendChild(revCard);
-        });
-
-        if (essayResponses.length > 0) {
-          const essayHeader = document.createElement("h5");
-          essayHeader.className = "font-extrabold text-base text-violet-900 pt-3";
-          essayHeader.textContent = "Pedoman Jawaban Soal Essay:";
-          reviewContainer.appendChild(essayHeader);
-
-          essayResponses.forEach((er) => {
-            const eRev = document.createElement("div");
-            eRev.className = "p-3.5 rounded-xl bg-violet-50/70 border border-violet-200 text-xs space-y-1.5";
-            eRev.innerHTML = `
-              <p class="font-bold text-slate-900">${er.question}</p>
-              <p class="text-slate-700"><strong>Jawaban Kamu:</strong> ${er.answer || "<em>(Tidak diisi)</em>"}</p>
-              <p class="text-violet-900"><strong>Pedoman Jawaban:</strong> ${er.rubric}</p>
-            `;
-            reviewContainer.appendChild(eRev);
-          });
-        }
-      }
 
       try {
         await addDoc(collection(db, "ulangan_harian"), {
@@ -3055,11 +2337,10 @@ end</pre>
           studentClass: cls,
           simulasiTitle: titleSelect,
           score: score,
-          essayAnswers: essayResponses,
           timeString: wibTime,
           timestamp: new Date()
         });
-        showToast("Hasil latihan soal berhasil tersimpan!");
+        showToast("Hasil simulasi berhasil tersimpan!");
       } catch (err) {
         showToast("Gagal menyimpan hasil: " + err.message);
       }
@@ -3234,19 +2515,9 @@ end</pre>
         const list = [];
         snap.forEach(d => {
           const data = d.data();
-          const essaySummary = Array.isArray(data.essayAnswers) && data.essayAnswers.length
-            ? data.essayAnswers.map((ea, idx) => `[Essay ${idx + 1}] ${ea.answer || "-"}`).join(" | ")
-            : "-";
-          list.push({
-            "Nama Siswa": data.studentName,
-            "Kelas": data.studentClass,
-            "Paket Latihan Soal": data.simulasiTitle || "Latihan Soal",
-            "Nilai Objektif": data.score,
-            "Jawaban Essay": essaySummary,
-            "Waktu": data.timeString || ""
-          });
+          list.push({ "Nama Siswa": data.studentName, "Kelas": data.studentClass, "Judul Simulasi": data.simulasiTitle || "Simulasi", "Nilai": data.score, "Waktu": data.timeString || "" });
         });
-        exportToCSV(list, "Rekap_Nilai_Latihan_Soal.csv");
+        exportToCSV(list, "Rekap_Nilai_Simulasi.csv");
       } catch (e) {
         showToast("Gagal mengunduh data (Izin ditolak): " + e.message);
       }
@@ -3309,47 +2580,31 @@ end</pre>
         });
       }, (err) => console.warn("Firestore error (absen_harian):", err));
 
-      // 2. Rekap Nilai Latihan Soal
+      // 2. Rekap Nilai Simulasi
       onSnapshot(collection(db, "ulangan_harian"), (snapshot) => {
         const container = document.getElementById("rekap-ulangan-container");
         if (!container) return;
         container.innerHTML = "";
         if (snapshot.empty) {
-          container.innerHTML = '<p class="text-sm text-slate-500">Belum ada hasil latihan soal siswa.</p>';
+          container.innerHTML = '<p class="text-sm text-slate-500">Belum ada hasil simulasi siswa.</p>';
           return;
         }
         snapshot.forEach((docSnap) => {
           const data = docSnap.data();
-          const hasEssays = Array.isArray(data.essayAnswers) && data.essayAnswers.length > 0;
           const item = document.createElement("div");
-          item.className = "p-4 rounded-xl border border-slate-200 bg-white shadow-sm";
+          item.className = "p-4 rounded-xl border border-slate-200 bg-white flex justify-between items-center shadow-sm";
           item.innerHTML = `
-            <div class="flex justify-between items-center flex-wrap gap-2">
-              <div>
-                <div class="flex items-center gap-2 flex-wrap">
-                  <span class="font-extrabold text-slate-900">${data.studentName} (${data.studentClass})</span>
-                  <span class="text-xs bg-amber-100 text-amber-800 font-bold px-2 py-0.5 rounded-full">${data.simulasiTitle || 'Latihan Soal'}</span>
-                </div>
-                <p class="text-xs text-slate-400 mt-1">Waktu: ${data.timeString || ''}</p>
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="font-extrabold text-slate-900">${data.studentName} (${data.studentClass})</span>
+                <span class="text-xs bg-amber-100 text-amber-800 font-bold px-2 py-0.5 rounded-full">${data.simulasiTitle || 'Simulasi'}</span>
               </div>
-              <div class="flex items-center gap-4">
-                <span class="text-xl font-extrabold text-amber-600">${data.score} / 100</span>
-                ${isTeacher ? `<button onclick="deleteDocument('ulangan_harian', '${docSnap.id}')" class="text-xs text-rose-600 font-bold hover:underline">Hapus</button>` : ''}
-              </div>
+              <p class="text-xs text-slate-400 mt-1">Waktu: ${data.timeString || ''}</p>
             </div>
-            ${hasEssays ? `
-              <details class="mt-3 pt-2 border-t border-slate-100 text-xs">
-                <summary class="cursor-pointer font-bold text-violet-700 hover:underline">Lihat Jawaban Essay Siswa (${data.essayAnswers.length} Soal)</summary>
-                <div class="mt-2 space-y-2 bg-slate-50 p-3 rounded-lg">
-                  ${data.essayAnswers.map((ea, i) => `
-                    <div>
-                      <p class="font-bold text-slate-800">${ea.question}</p>
-                      <p class="text-slate-600 mt-0.5">Jawaban: ${ea.answer || '<em>(Kosong)</em>'}</p>
-                    </div>
-                  `).join("")}
-                </div>
-              </details>
-            ` : ''}
+            <div class="flex items-center gap-4">
+              <span class="text-xl font-extrabold text-amber-600">${data.score} / 100</span>
+              ${isTeacher ? `<button onclick="deleteDocument('ulangan_harian', '${docSnap.id}')" class="text-xs text-rose-600 font-bold hover:underline">Hapus</button>` : ''}
+            </div>
           `;
           container.appendChild(item);
         });
