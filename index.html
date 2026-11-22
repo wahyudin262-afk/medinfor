@@ -1186,6 +1186,7 @@ end</pre>
 
             <div id="tka-cooldown-banner" class="hidden max-w-lg mx-auto mt-4 p-4 rounded-xl bg-rose-50 border border-rose-200 text-rose-900 text-xs font-bold leading-relaxed">
               Paket soal ini sudah Anda kerjakan. Anda baru dapat menjawab kembali dalam waktu: <span id="tka-cooldown-timer" class="underline font-extrabold">24 jam 0 menit</span>.
+              <span class="block mt-1.5 text-rose-700 font-normal">Setelah melewati 24 jam, sistem akan otomatis menyajikan soal duplikat dengan nilai angka &amp; nama baru serta mengacak urutan soal dan pilihan jawaban.</span>
             </div>
 
             <button id="btn-start-quiz" type="button" class="mt-6 bg-amber-500 text-white font-bold px-6 py-3 rounded-xl text-base hover:bg-amber-600 shadow-md">
@@ -1196,7 +1197,10 @@ end</pre>
           <!-- Lembar Soal Latihan Soal (TKA) -->
           <form id="quiz-form" class="card mt-6 hidden space-y-6">
             <div class="border-b pb-3 flex flex-wrap justify-between items-center gap-2">
-              <h3 id="current-simulasi-title" class="font-extrabold text-lg text-amber-900">Latihan Soal (TKA)</h3>
+              <div>
+                <h3 id="current-simulasi-title" class="font-extrabold text-lg text-amber-900">Latihan Soal (TKA)</h3>
+                <p id="current-simulasi-variant-badge" class="text-xs font-bold text-emerald-700 mt-0.5">Paket Varian #1 • Urutan Standar</p>
+              </div>
               <span class="text-xs bg-amber-100 text-amber-900 font-bold px-3 py-1 rounded-full">Model: PG Tunggal, PG Kompleks, Tabel Benar/Salah &amp; Essay</span>
             </div>
             
@@ -1728,558 +1732,678 @@ end</pre>
     ];
 
     // =========================================================================
-    // DATABASE LENGKAP LATIHAN SOAL (TKA) INFORMATIKA KELAS IX (40 PG + 10 ESSAY)
+    // DATABASE LENGKAP LATIHAN SOAL (TKA) INFORMATIKA KELAS IX (4 VARIAN DUPLIKAT x 40 PG + 10 ESSAY)
     // =========================================================================
-    const tkaStimuliHTML = {
-      1: `
-        <div class="p-5 rounded-2xl bg-sky-50 border border-sky-200 space-y-4">
-          <div class="flex items-center justify-between flex-wrap gap-2 border-b border-sky-200 pb-2">
-            <span class="text-xs font-extrabold uppercase tracking-wider text-sky-800 bg-sky-200 px-3 py-1 rounded-full">STIMULUS 1 • SOAL NO. 1 – 5</span>
-            <span class="text-xs font-bold text-slate-600">Alur Logika Mesin Kasir E-Kantin</span>
+    const tkaVariantProfiles = [
+      {
+        id: 1,
+        label: "Varian #1 (Paket Dasar)",
+        s1: {
+          system: "E-Kantin",
+          p1Name: "Budi", p1Belanja: "65.000", p1Bayar: "Rp. 55.000,-", p1WrongLowBayar: "Rp. 63.000,-",
+          p2Name: "Ani", p2Belanja: "45.000", p2Bayar: "Rp. 45.000,-", p2WrongNonBayar: "Rp. 42.000,-", p2WrongMemBayar: "Rp. 43.000,-",
+          poin: 10, threshold: "50.000", potMemHigh: "10.000", potMemLow: "2.000", potNonHigh: "3.000",
+          cBelanja: "30.000", cBayar: "28.000",
+          tfCompareBelanja: "Rp60.000", tfWrongDiff: "Rp10.000", tfRealDiff: "Rp7.000"
+        },
+        s2: {
+          kkm: 75, istThreshold: 90,
+          rows: [
+            { name: "Andi", tugas: 85, ujian: 90, avg: "87,5", status: "Lulus" },
+            { name: "Budi", tugas: 70, ujian: 65, avg: "67,5", status: "Remidial" },
+            { name: "Citra", tugas: 95, ujian: 92, avg: "93,5", status: "Lulus" },
+            { name: "Dewi", tugas: 80, ujian: 70, avg: "75,0", status: "Remidial" }
+          ],
+          lulusNames: "Andi dan Citra", topName: "Citra", topAvg: "93,5",
+          remidial1Name: "Dewi", remidial1Tugas: 80, remidial1Ujian: 70,
+          remidial2Name: "Budi", istNames: "Andi dan Citra"
+        },
+        s3: {
+          game: "Hiu & Ikan", hero: "Hiu", target: "Ikan Kecil", enemy: "Kepiting",
+          baseSpeed: 4, thresh1: 5, speed1: 8, thresh2: 15, speed2: 12, enemySpeed: 3,
+          q16Caught: 7, q17Score: 16
+        },
+        s4: {
+          stackBottom: "Ahmad", stackMid: "Budi", stackTop: "Cici"
+        }
+      },
+      {
+        id: 2,
+        label: "Varian #2 (Duplikat Angka & Nama B)",
+        s1: {
+          system: "Koperasi Digital Siswa (KDS)",
+          p1Name: "Raka", p1Belanja: "80.000", p1Bayar: "Rp. 68.000,-", p1WrongLowBayar: "Rp. 77.000,-",
+          p2Name: "Sinta", p2Belanja: "50.000", p2Bayar: "Rp. 50.000,-", p2WrongNonBayar: "Rp. 46.000,-", p2WrongMemBayar: "Rp. 47.000,-",
+          poin: 15, threshold: "60.000", potMemHigh: "12.000", potMemLow: "3.000", potNonHigh: "4.000",
+          cBelanja: "40.000", cBayar: "37.000",
+          tfCompareBelanja: "Rp75.000", tfWrongDiff: "Rp12.000", tfRealDiff: "Rp8.000"
+        },
+        s2: {
+          kkm: 78, istThreshold: 92,
+          rows: [
+            { name: "Galih", tugas: 88, ujian: 92, avg: "90,0", status: "Lulus" },
+            { name: "Hana", tugas: 72, ujian: 68, avg: "70,0", status: "Remidial" },
+            { name: "Indra", tugas: 96, ujian: 94, avg: "95,0", status: "Lulus" },
+            { name: "Jihan", tugas: 84, ujian: 74, avg: "79,0", status: "Remidial" }
+          ],
+          lulusNames: "Galih dan Indra", topName: "Indra", topAvg: "95,0",
+          remidial1Name: "Jihan", remidial1Tugas: 84, remidial1Ujian: 74,
+          remidial2Name: "Hana", istNames: "Galih dan Indra"
+        },
+        s3: {
+          game: "Elang & Merpati", hero: "Elang", target: "Merpati", enemy: "Gagak Hitam",
+          baseSpeed: 5, thresh1: 6, speed1: 10, thresh2: 18, speed2: 15, enemySpeed: 4,
+          q16Caught: 8, q17Score: 19
+        },
+        s4: {
+          stackBottom: "Dedi", stackMid: "Eka", stackTop: "Farah"
+        }
+      },
+      {
+        id: 3,
+        label: "Varian #3 (Duplikat Angka & Nama C)",
+        s1: {
+          system: "Smart Kantin SMP",
+          p1Name: "Dimas", p1Belanja: "55.000", p1Bayar: "Rp. 47.000,-", p1WrongLowBayar: "Rp. 52.500,-",
+          p2Name: "Nadia", p2Belanja: "35.000", p2Bayar: "Rp. 35.000,-", p2WrongNonBayar: "Rp. 33.000,-", p2WrongMemBayar: "Rp. 32.500,-",
+          poin: 20, threshold: "40.000", potMemHigh: "8.000", potMemLow: "2.500", potNonHigh: "2.000",
+          cBelanja: "25.000", cBayar: "22.500",
+          tfCompareBelanja: "Rp50.000", tfWrongDiff: "Rp8.000", tfRealDiff: "Rp6.000"
+        },
+        s2: {
+          kkm: 80, istThreshold: 95,
+          rows: [
+            { name: "Kevin", tugas: 90, ujian: 95, avg: "92,5", status: "Lulus" },
+            { name: "Laras", tugas: 75, ujian: 70, avg: "72,5", status: "Remidial" },
+            { name: "Mira", tugas: 98, ujian: 96, avg: "97,0", status: "Lulus" },
+            { name: "Naufal", tugas: 86, ujian: 76, avg: "81,0", status: "Remidial" }
+          ],
+          lulusNames: "Kevin dan Mira", topName: "Mira", topAvg: "97,0",
+          remidial1Name: "Naufal", remidial1Tugas: 86, remidial1Ujian: 76,
+          remidial2Name: "Laras", istNames: "Kevin dan Mira"
+        },
+        s3: {
+          game: "Robot & Baterai", hero: "Robot", target: "Baterai", enemy: "Laser Merah",
+          baseSpeed: 3, thresh1: 4, speed1: 7, thresh2: 12, speed2: 11, enemySpeed: 5,
+          q16Caught: 6, q17Score: 13
+        },
+        s4: {
+          stackBottom: "Gilang", stackMid: "Hilda", stackTop: "Irfan"
+        }
+      },
+      {
+        id: 4,
+        label: "Varian #4 (Duplikat Angka & Nama D)",
+        s1: {
+          system: "Kios Otomatis Sekolah (KOS)",
+          p1Name: "Fajar", p1Belanja: "90.000", p1Bayar: "Rp. 75.000,-", p1WrongLowBayar: "Rp. 85.000,-",
+          p2Name: "Tari", p2Belanja: "60.000", p2Bayar: "Rp. 60.000,-", p2WrongNonBayar: "Rp. 55.000,-", p2WrongMemBayar: "Rp. 55.000,-",
+          poin: 25, threshold: "75.000", potMemHigh: "15.000", potMemLow: "5.000", potNonHigh: "5.000",
+          cBelanja: "50.000", cBayar: "45.000",
+          tfCompareBelanja: "Rp80.000", tfWrongDiff: "Rp15.000", tfRealDiff: "Rp10.000"
+        },
+        s2: {
+          kkm: 76, istThreshold: 91,
+          rows: [
+            { name: "Oscar", tugas: 86, ujian: 91, avg: "88,5", status: "Lulus" },
+            { name: "Putri", tugas: 71, ujian: 67, avg: "69,0", status: "Remidial" },
+            { name: "Qori", tugas: 97, ujian: 93, avg: "95,0", status: "Lulus" },
+            { name: "Rizky", tugas: 82, ujian: 72, avg: "77,0", status: "Remidial" }
+          ],
+          lulusNames: "Oscar dan Qori", topName: "Qori", topAvg: "95,0",
+          remidial1Name: "Rizky", remidial1Tugas: 82, remidial1Ujian: 72,
+          remidial2Name: "Putri", istNames: "Oscar dan Qori"
+        },
+        s3: {
+          game: "Kucing & Tikus", hero: "Kucing", target: "Tikus", enemy: "Anjing Penjaga",
+          baseSpeed: 6, thresh1: 8, speed1: 11, thresh2: 20, speed2: 16, enemySpeed: 4,
+          q16Caught: 10, q17Score: 21
+        },
+        s4: {
+          stackBottom: "Joko", stackMid: "Kartika", stackTop: "Lukman"
+        }
+      }
+    ];
+
+    function buildTKAStimuliForProfile(prof) {
+      const { s1, s2, s3, s4 } = prof;
+      return {
+        1: `
+          <div class="p-5 rounded-2xl bg-sky-50 border border-sky-200 space-y-4">
+            <div class="flex items-center justify-between flex-wrap gap-2 border-b border-sky-200 pb-2">
+              <span class="text-xs font-extrabold uppercase tracking-wider text-sky-800 bg-sky-200 px-3 py-1 rounded-full">STIMULUS 1 • ALUR LOGIKA MESIN KASIR</span>
+              <span class="text-xs font-bold text-slate-600">${s1.system}</span>
+            </div>
+            <p class="text-sm text-slate-700 leading-relaxed">
+              Sebuah unit layanan sekolah menggunakan mesin kasir otomatis (<strong>${s1.system}</strong>) yang bekerja mengikuti urutan Diagram Alur (<em>Flowchart</em>) berikut:
+            </p>
+            <div class="bg-white p-4 rounded-xl border border-sky-100 overflow-x-auto">
+              <svg viewBox="0 0 680 540" class="w-full max-w-2xl mx-auto h-auto">
+                <rect x="275" y="10" width="130" height="36" rx="18" fill="#e2e8f0" stroke="#475569" stroke-width="2"/>
+                <text x="340" y="33" font-size="12" font-weight="bold" text-anchor="middle" fill="#0f172a">Mulai</text>
+                <line x1="340" y1="46" x2="340" y2="68" stroke="#475569" stroke-width="2"/>
+
+                <polygon points="210,68 490,68 470,106 190,106" fill="#e0e7ff" stroke="#4338ca" stroke-width="2"/>
+                <text x="340" y="91" font-size="11" font-weight="bold" text-anchor="middle" fill="#1e1b4b">Input: Status_Member, Total_Belanja</text>
+                <line x1="340" y1="106" x2="340" y2="128" stroke="#475569" stroke-width="2"/>
+
+                <rect x="235" y="128" width="210" height="36" rx="6" fill="#f1f5f9" stroke="#475569" stroke-width="2"/>
+                <text x="340" y="150" font-size="11" font-weight="bold" text-anchor="middle" fill="#0f172a">Poin = 0 ; Potongan = 0</text>
+                <line x1="340" y1="164" x2="340" y2="186" stroke="#475569" stroke-width="2"/>
+
+                <polygon points="340,186 455,222 340,258 225,222" fill="#fef3c7" stroke="#b45309" stroke-width="2"/>
+                <text x="340" y="226" font-size="11" font-weight="bold" text-anchor="middle" fill="#78350f">Status_Member = "Ya"?</text>
+
+                <polyline points="225,222 165,222 165,265" fill="none" stroke="#475569" stroke-width="2"/>
+                <text x="195" y="215" font-size="11" font-weight="bold" fill="#15803d">Ya</text>
+                <rect x="105" y="265" width="120" height="32" rx="6" fill="#dcfce7" stroke="#15803d" stroke-width="2"/>
+                <text x="165" y="285" font-size="11" font-weight="bold" text-anchor="middle" fill="#14532d">Poin = ${s1.poin}</text>
+                <line x1="165" y1="297" x2="165" y2="318" stroke="#475569" stroke-width="2"/>
+
+                <polygon points="165,318 265,352 165,386 65,352" fill="#fef3c7" stroke="#b45309" stroke-width="2"/>
+                <text x="165" y="349" font-size="10" font-weight="bold" text-anchor="middle" fill="#78350f">Total_Belanja</text>
+                <text x="165" y="362" font-size="10" font-weight="bold" text-anchor="middle" fill="#78350f">≥ ${s1.threshold}?</text>
+
+                <polyline points="65,352 45,352 45,402" fill="none" stroke="#475569" stroke-width="1.5"/>
+                <text x="52" y="345" font-size="10" font-weight="bold" fill="#15803d">Ya</text>
+                <rect x="5" y="402" width="135" height="32" rx="5" fill="#f8fafc" stroke="#475569" stroke-width="1.5"/>
+                <text x="72" y="422" font-size="10" font-weight="bold" text-anchor="middle">Potongan = ${s1.potMemHigh}</text>
+
+                <polyline points="265,352 280,352 280,402" fill="none" stroke="#475569" stroke-width="1.5"/>
+                <text x="272" y="345" font-size="10" font-weight="bold" fill="#b91c1c">Tidak</text>
+                <rect x="195" y="402" width="135" height="32" rx="5" fill="#f8fafc" stroke="#475569" stroke-width="1.5"/>
+                <text x="262" y="422" font-size="10" font-weight="bold" text-anchor="middle">Potongan = ${s1.potMemLow}</text>
+
+                <polyline points="455,222 515,222 515,318" fill="none" stroke="#475569" stroke-width="2"/>
+                <text x="485" y="215" font-size="11" font-weight="bold" fill="#b91c1c">Tidak</text>
+
+                <polygon points="515,318 615,352 515,386 415,352" fill="#fef3c7" stroke="#b45309" stroke-width="2"/>
+                <text x="515" y="349" font-size="10" font-weight="bold" text-anchor="middle" fill="#78350f">Total_Belanja</text>
+                <text x="515" y="362" font-size="10" font-weight="bold" text-anchor="middle" fill="#78350f">≥ ${s1.threshold}?</text>
+
+                <polyline points="415,352 405,352 405,402" fill="none" stroke="#475569" stroke-width="1.5"/>
+                <text x="408" y="345" font-size="10" font-weight="bold" fill="#15803d">Ya</text>
+                <rect x="348" y="402" width="135" height="32" rx="5" fill="#f8fafc" stroke="#475569" stroke-width="1.5"/>
+                <text x="415" y="422" font-size="10" font-weight="bold" text-anchor="middle">Potongan = ${s1.potNonHigh}</text>
+
+                <polyline points="615,352 625,352 625,402" fill="none" stroke="#475569" stroke-width="1.5"/>
+                <text x="615" y="345" font-size="10" font-weight="bold" fill="#b91c1c">Tidak</text>
+                <rect x="538" y="402" width="135" height="32" rx="5" fill="#f8fafc" stroke="#475569" stroke-width="1.5"/>
+                <text x="605" y="422" font-size="10" font-weight="bold" text-anchor="middle">Potongan = 0</text>
+
+                <line x1="72" y1="434" x2="72" y2="452" stroke="#475569" stroke-width="1.5"/>
+                <line x1="262" y1="434" x2="262" y2="452" stroke="#475569" stroke-width="1.5"/>
+                <line x1="415" y1="434" x2="415" y2="452" stroke="#475569" stroke-width="1.5"/>
+                <line x1="605" y1="434" x2="605" y2="452" stroke="#475569" stroke-width="1.5"/>
+                <line x1="72" y1="452" x2="605" y2="452" stroke="#475569" stroke-width="1.5"/>
+                <line x1="340" y1="452" x2="340" y2="466" stroke="#475569" stroke-width="2"/>
+
+                <rect x="195" y="466" width="290" height="30" rx="6" fill="#f1f5f9" stroke="#475569" stroke-width="2"/>
+                <text x="340" y="485" font-size="11" font-weight="bold" text-anchor="middle">Total_Bayar = Total_Belanja - Potongan</text>
+                <line x1="340" y1="496" x2="340" y2="508" stroke="#475569" stroke-width="2"/>
+
+                <text x="340" y="525" font-size="11" font-weight="bold" text-anchor="middle" fill="#1e1b4b">Output: Tampilkan Total_Bayar dan Poin → [Selesai]</text>
+              </svg>
+            </div>
           </div>
-          <p class="text-sm text-slate-700 leading-relaxed">
-            Sebuah kantin sekolah menggunakan mesin kasir otomatis (<strong>E-Kantin</strong>) yang bekerja mengikuti urutan Diagram Alur (<em>Flowchart</em>) berikut:
-          </p>
-          <div class="bg-white p-4 rounded-xl border border-sky-100 overflow-x-auto">
-            <svg viewBox="0 0 680 540" class="w-full max-w-2xl mx-auto h-auto">
-              <!-- Start -->
-              <rect x="275" y="10" width="130" height="36" rx="18" fill="#e2e8f0" stroke="#475569" stroke-width="2"/>
-              <text x="340" y="33" font-size="12" font-weight="bold" text-anchor="middle" fill="#0f172a">Mulai</text>
-              <line x1="340" y1="46" x2="340" y2="68" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
-
-              <!-- Input -->
-              <polygon points="210,68 490,68 470,106 190,106" fill="#e0e7ff" stroke="#4338ca" stroke-width="2"/>
-              <text x="340" y="91" font-size="11" font-weight="bold" text-anchor="middle" fill="#1e1b4b">Input: Status_Member, Total_Belanja</text>
-              <line x1="340" y1="106" x2="340" y2="128" stroke="#475569" stroke-width="2"/>
-
-              <!-- Init -->
-              <rect x="235" y="128" width="210" height="36" rx="6" fill="#f1f5f9" stroke="#475569" stroke-width="2"/>
-              <text x="340" y="150" font-size="11" font-weight="bold" text-anchor="middle" fill="#0f172a">Poin = 0 ; Potongan = 0</text>
-              <line x1="340" y1="164" x2="340" y2="186" stroke="#475569" stroke-width="2"/>
-
-              <!-- Decision 1 -->
-              <polygon points="340,186 455,222 340,258 225,222" fill="#fef3c7" stroke="#b45309" stroke-width="2"/>
-              <text x="340" y="226" font-size="11" font-weight="bold" text-anchor="middle" fill="#78350f">Status_Member = "Ya"?</text>
-
-              <!-- Left Branch (Ya) -->
-              <polyline points="225,222 165,222 165,265" fill="none" stroke="#475569" stroke-width="2"/>
-              <text x="195" y="215" font-size="11" font-weight="bold" fill="#15803d">Ya</text>
-              <rect x="105" y="265" width="120" height="32" rx="6" fill="#dcfce7" stroke="#15803d" stroke-width="2"/>
-              <text x="165" y="285" font-size="11" font-weight="bold" text-anchor="middle" fill="#14532d">Poin = 10</text>
-              <line x1="165" y1="297" x2="165" y2="318" stroke="#475569" stroke-width="2"/>
-
-              <!-- Decision 2A -->
-              <polygon points="165,318 265,352 165,386 65,352" fill="#fef3c7" stroke="#b45309" stroke-width="2"/>
-              <text x="165" y="349" font-size="10" font-weight="bold" text-anchor="middle" fill="#78350f">Total_Belanja</text>
-              <text x="165" y="362" font-size="10" font-weight="bold" text-anchor="middle" fill="#78350f">≥ 50.000?</text>
-
-              <!-- 2A Ya / Tidak -->
-              <polyline points="65,352 45,352 45,402" fill="none" stroke="#475569" stroke-width="1.5"/>
-              <text x="52" y="345" font-size="10" font-weight="bold" fill="#15803d">Ya</text>
-              <rect x="5" y="402" width="135" height="32" rx="5" fill="#f8fafc" stroke="#475569" stroke-width="1.5"/>
-              <text x="72" y="422" font-size="10" font-weight="bold" text-anchor="middle">Potongan = 10.000</text>
-
-              <polyline points="265,352 280,352 280,402" fill="none" stroke="#475569" stroke-width="1.5"/>
-              <text x="272" y="345" font-size="10" font-weight="bold" fill="#b91c1c">Tidak</text>
-              <rect x="195" y="402" width="135" height="32" rx="5" fill="#f8fafc" stroke="#475569" stroke-width="1.5"/>
-              <text x="262" y="422" font-size="10" font-weight="bold" text-anchor="middle">Potongan = 2.000</text>
-
-              <!-- Right Branch (Tidak) -->
-              <polyline points="455,222 515,222 515,318" fill="none" stroke="#475569" stroke-width="2"/>
-              <text x="485" y="215" font-size="11" font-weight="bold" fill="#b91c1c">Tidak</text>
-
-              <!-- Decision 2B -->
-              <polygon points="515,318 615,352 515,386 415,352" fill="#fef3c7" stroke="#b45309" stroke-width="2"/>
-              <text x="515" y="349" font-size="10" font-weight="bold" text-anchor="middle" fill="#78350f">Total_Belanja</text>
-              <text x="515" y="362" font-size="10" font-weight="bold" text-anchor="middle" fill="#78350f">≥ 50.000?</text>
-
-              <!-- 2B Ya / Tidak -->
-              <polyline points="415,352 405,352 405,402" fill="none" stroke="#475569" stroke-width="1.5"/>
-              <text x="408" y="345" font-size="10" font-weight="bold" fill="#15803d">Ya</text>
-              <rect x="348" y="402" width="135" height="32" rx="5" fill="#f8fafc" stroke="#475569" stroke-width="1.5"/>
-              <text x="415" y="422" font-size="10" font-weight="bold" text-anchor="middle">Potongan = 3.000</text>
-
-              <polyline points="615,352 625,352 625,402" fill="none" stroke="#475569" stroke-width="1.5"/>
-              <text x="615" y="345" font-size="10" font-weight="bold" fill="#b91c1c">Tidak</text>
-              <rect x="538" y="402" width="135" height="32" rx="5" fill="#f8fafc" stroke="#475569" stroke-width="1.5"/>
-              <text x="605" y="422" font-size="10" font-weight="bold" text-anchor="middle">Potongan = 0</text>
-
-              <!-- Merge lines -->
-              <line x1="72" y1="434" x2="72" y2="452" stroke="#475569" stroke-width="1.5"/>
-              <line x1="262" y1="434" x2="262" y2="452" stroke="#475569" stroke-width="1.5"/>
-              <line x1="415" y1="434" x2="415" y2="452" stroke="#475569" stroke-width="1.5"/>
-              <line x1="605" y1="434" x2="605" y2="452" stroke="#475569" stroke-width="1.5"/>
-              <line x1="72" y1="452" x2="605" y2="452" stroke="#475569" stroke-width="1.5"/>
-              <line x1="340" y1="452" x2="340" y2="466" stroke="#475569" stroke-width="2"/>
-
-              <!-- Total Bayar -->
-              <rect x="195" y="466" width="290" height="30" rx="6" fill="#f1f5f9" stroke="#475569" stroke-width="2"/>
-              <text x="340" y="485" font-size="11" font-weight="bold" text-anchor="middle">Total_Bayar = Total_Belanja - Potongan</text>
-              <line x1="340" y1="496" x2="340" y2="508" stroke="#475569" stroke-width="2"/>
-
-              <!-- Output & Stop -->
-              <text x="340" y="525" font-size="11" font-weight="bold" text-anchor="middle" fill="#1e1b4b">Output: Tampilkan Total_Bayar dan Poin → [Selesai]</text>
-            </svg>
+        `,
+        2: `
+          <div class="p-5 rounded-2xl bg-emerald-50 border border-emerald-200 space-y-3">
+            <div class="flex items-center justify-between flex-wrap gap-2 border-b border-emerald-200 pb-2">
+              <span class="text-xs font-extrabold uppercase tracking-wider text-emerald-800 bg-emerald-200 px-3 py-1 rounded-full">STIMULUS 2 • PENGOLAHAN DATA SPREADSHEET</span>
+              <span class="text-xs font-bold text-slate-600">KKM Kelulusan: ${s2.kkm}</span>
+            </div>
+            <p class="text-sm text-slate-700">Perhatikan tabel lembar kerja (<em>Spreadsheet</em>) pengolahan nilai siswa berikut:</p>
+            <div class="overflow-x-auto border rounded-xl bg-white p-2 shadow-sm">
+              <table class="w-full text-xs text-left border-collapse">
+                <thead>
+                  <tr class="bg-slate-800 text-white font-bold">
+                    <th class="p-2 border border-slate-700">Baris \ Kolom</th>
+                    <th class="p-2 border border-slate-700">A (No.)</th>
+                    <th class="p-2 border border-slate-700">B (Nama)</th>
+                    <th class="p-2 border border-slate-700">C (Tugas)</th>
+                    <th class="p-2 border border-slate-700">D (Ujian)</th>
+                    <th class="p-2 border border-slate-700">E (Rata-Rata)</th>
+                    <th class="p-2 border border-slate-700">F (Status Kelulusan)</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-200 font-mono">
+                  ${s2.rows.map((r, idx) => `
+                    <tr>
+                      <td class="p-2 font-bold bg-slate-100">${idx + 2}</td>
+                      <td class="p-2">${idx + 1}</td>
+                      <td class="p-2 font-sans font-bold">${r.name}</td>
+                      <td class="p-2">${r.tugas}</td>
+                      <td class="p-2">${r.ujian}</td>
+                      <td class="p-2 text-sky-800">=AVERAGE(C${idx + 2}:D${idx + 2})</td>
+                      <td class="p-2 text-emerald-800">=IF(AND(C${idx + 2}&gt;=${s2.kkm}; D${idx + 2}&gt;=${s2.kkm});"Lulus";"Remidial")</td>
+                    </tr>
+                  `).join("")}
+                </tbody>
+              </table>
+            </div>
           </div>
-        </div>
-      `,
-      2: `
-        <div class="p-5 rounded-2xl bg-emerald-50 border border-emerald-200 space-y-3">
-          <div class="flex items-center justify-between flex-wrap gap-2 border-b border-emerald-200 pb-2">
-            <span class="text-xs font-extrabold uppercase tracking-wider text-emerald-800 bg-emerald-200 px-3 py-1 rounded-full">STIMULUS 2 • SOAL NO. 6 – 15</span>
-            <span class="text-xs font-bold text-slate-600">Pengolahan Data Nilai Spreadsheet</span>
-          </div>
-          <p class="text-sm text-slate-700">Perhatikan tabel lembar kerja (<em>Spreadsheet</em>) pengolahan nilai siswa berikut:</p>
-          <div class="overflow-x-auto border rounded-xl bg-white p-2 shadow-sm">
-            <table class="w-full text-xs text-left border-collapse">
-              <thead>
-                <tr class="bg-slate-800 text-white font-bold">
-                  <th class="p-2 border border-slate-700">Baris \ Kolom</th>
-                  <th class="p-2 border border-slate-700">A (No.)</th>
-                  <th class="p-2 border border-slate-700">B (Nama)</th>
-                  <th class="p-2 border border-slate-700">C (Tugas)</th>
-                  <th class="p-2 border border-slate-700">D (Ujian)</th>
-                  <th class="p-2 border border-slate-700">E (Rata-Rata)</th>
-                  <th class="p-2 border border-slate-700">F (Status Kelulusan)</th>
-                </tr>
-              </thead>
-              <tbody class="divide-y divide-slate-200 font-mono">
-                <tr>
-                  <td class="p-2 font-bold bg-slate-100">2</td>
-                  <td class="p-2">1</td>
-                  <td class="p-2 font-sans font-bold">Andi</td>
-                  <td class="p-2">85</td>
-                  <td class="p-2">90</td>
-                  <td class="p-2 text-sky-800">=AVERAGE(C2:D2)</td>
-                  <td class="p-2 text-emerald-800">=IF(AND(C2&gt;=75; D2&gt;=75);"Lulus";"Remidial")</td>
-                </tr>
-                <tr>
-                  <td class="p-2 font-bold bg-slate-100">3</td>
-                  <td class="p-2">2</td>
-                  <td class="p-2 font-sans font-bold">Budi</td>
-                  <td class="p-2">70</td>
-                  <td class="p-2">65</td>
-                  <td class="p-2 text-sky-800">=AVERAGE(C3:D3)</td>
-                  <td class="p-2 text-emerald-800">=IF(AND(C3&gt;=75; D3&gt;=75);"Lulus";"Remidial")</td>
-                </tr>
-                <tr>
-                  <td class="p-2 font-bold bg-slate-100">4</td>
-                  <td class="p-2">3</td>
-                  <td class="p-2 font-sans font-bold">Citra</td>
-                  <td class="p-2">95</td>
-                  <td class="p-2">92</td>
-                  <td class="p-2 text-sky-800">=AVERAGE(C4:D4)</td>
-                  <td class="p-2 text-emerald-800">=IF(AND(C4&gt;=75; D4&gt;=75);"Lulus";"Remidial")</td>
-                </tr>
-                <tr>
-                  <td class="p-2 font-bold bg-slate-100">5</td>
-                  <td class="p-2">4</td>
-                  <td class="p-2 font-sans font-bold">Dewi</td>
-                  <td class="p-2">80</td>
-                  <td class="p-2">70</td>
-                  <td class="p-2 text-sky-800">=AVERAGE(C5:D5)</td>
-                  <td class="p-2 text-emerald-800">=IF(AND(C5&gt;=75; D5&gt;=75);"Lulus";"Remidial")</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      `,
-      3: `
-        <div class="p-5 rounded-2xl bg-violet-50 border border-violet-200 space-y-3">
-          <div class="flex items-center justify-between flex-wrap gap-2 border-b border-violet-200 pb-2">
-            <span class="text-xs font-extrabold uppercase tracking-wider text-violet-800 bg-violet-200 px-3 py-1 rounded-full">STIMULUS 3 • SOAL NO. 16 – 25</span>
-            <span class="text-xs font-bold text-slate-600">Pemrograman Scratch Game Bawah Laut</span>
-          </div>
-          <p class="text-sm text-slate-700">Pada game Scratch <strong>'Hiu &amp; Ikan'</strong>, skrip pada masing-masing Sprite diatur sebagai berikut:</p>
-          <div class="grid md:grid-cols-2 gap-3 text-xs">
-            <div class="codebox"><strong>Skrip Sprite Ikan Kecil:</strong>
+        `,
+        3: `
+          <div class="p-5 rounded-2xl bg-violet-50 border border-violet-200 space-y-3">
+            <div class="flex items-center justify-between flex-wrap gap-2 border-b border-violet-200 pb-2">
+              <span class="text-xs font-extrabold uppercase tracking-wider text-violet-800 bg-violet-200 px-3 py-1 rounded-full">STIMULUS 3 • PEMROGRAMAN VISUAL SCRATCH</span>
+              <span class="text-xs font-bold text-slate-600">Game '${s3.game}'</span>
+            </div>
+            <p class="text-sm text-slate-700">Pada game Scratch <strong>'${s3.game}'</strong>, skrip pada masing-masing Sprite diatur sebagai berikut:</p>
+            <div class="grid md:grid-cols-2 gap-3 text-xs">
+              <div class="codebox"><strong>Skrip Sprite ${s3.target}:</strong>
 when ⚑ clicked
 set [Skor] to 0
-set [Kecepatan] to 4
+set [Kecepatan] to ${s3.baseSpeed}
 forever
   move (Kecepatan) steps
   if on edge, bounce
-  if &lt;(Skor) &gt; 5&gt; then set [Kecepatan] to 8
-  if &lt;(Skor) &gt; 15&gt; then set [Kecepatan] to 12
-  if &lt;touching [Hiu]?&gt; then
+  if &lt;(Skor) &gt; ${s3.thresh1}&gt; then set [Kecepatan] to ${s3.speed1}
+  if &lt;(Skor) &gt; ${s3.thresh2}&gt; then set [Kecepatan] to ${s3.speed2}
+  if &lt;touching [${s3.hero}]?&gt; then
     change [Skor] by 1
     play sound [Bite]
     go to (random position)
   end
 end</div>
-            <div class="codebox"><strong>Skrip Sprite Kepiting:</strong>
+              <div class="codebox"><strong>Skrip Sprite ${s3.enemy}:</strong>
 when ⚑ clicked
 forever
-  move (3) steps
-  if &lt;touching [Hiu]?&gt; then
+  move (${s3.enemySpeed}) steps
+  if &lt;touching [${s3.hero}]?&gt; then
     say [GAME OVER!] for (2) secs
     stop [all]
   end
 end</div>
+            </div>
           </div>
-        </div>
-      `,
-      4: `
-        <div class="p-5 rounded-2xl bg-amber-50 border border-amber-200 space-y-3">
-          <div class="flex items-center justify-between flex-wrap gap-2 border-b border-amber-200 pb-2">
-            <span class="text-xs font-extrabold uppercase tracking-wider text-amber-800 bg-amber-200 px-3 py-1 rounded-full">STIMULUS 4 • SOAL NO. 26 – 40</span>
-            <span class="text-xs font-bold text-slate-600">Berpikir Komputasional &amp; Struktur Data</span>
+        `,
+        4: `
+          <div class="p-5 rounded-2xl bg-amber-50 border border-amber-200 space-y-3">
+            <div class="flex items-center justify-between flex-wrap gap-2 border-b border-amber-200 pb-2">
+              <span class="text-xs font-extrabold uppercase tracking-wider text-amber-800 bg-amber-200 px-3 py-1 rounded-full">STIMULUS 4 • BERPIKIR KOMPUTASIONAL &amp; STRUKTUR DATA</span>
+              <span class="text-xs font-bold text-slate-600">Simulasi Perpustakaan Digital</span>
+            </div>
+            <p class="text-sm text-slate-700 leading-relaxed">
+              Di perpustakaan digital sekolah, petugas mengelola dua sistem data:<br>
+              • <strong>Printer Queue (Antrean Cetak):</strong> Berkas yang dikirim paling awal akan dicetak terlebih dahulu.<br>
+              • <strong>Tumpukan Buku (Stack):</strong> Buku dikembalikan ditumpuk ke atas <code>[${s4.stackBottom} (Bawah), ${s4.stackMid} (Tengah), ${s4.stackTop} (Atas)]</code>. Petugas mengambil dari posisi paling atas.
+            </p>
           </div>
-          <p class="text-sm text-slate-700 leading-relaxed">
-            Di perpustakaan digital sekolah, petugas mengelola dua sistem data:<br>
-            • <strong>Printer Queue (Antrean Cetak):</strong> Berkas yang dikirim paling awal akan dicetak terlebih dahulu.<br>
-            • <strong>Tumpukan Buku (Stack):</strong> Buku dikembalikan ditumpuk ke atas <code>[Ahmad (Bawah), Budi (Tengah), Cici (Atas)]</code>. Petugas mengambil dari posisi paling atas.
-          </p>
-        </div>
-      `
-    };
+        `
+      };
+    }
 
-    const tkaPGQuestions = [
-      // STIMULUS 1 (1 - 5)
-      {
-        num: 1, stimulus: 1, type: "single",
-        q: "1. Budi melakukan transaksi di mesin kasir dengan memasukkan data Status_Member = \"Ya\" dan Total_Belanja = 65.000. Jika alur diagram di atas dijalankan dari atas ke bawah, hasil Total_Bayar dan Poin yang tampil di layar kasir secara berurutan adalah...",
-        options: ["Rp. 55.000,- dan 10", "Rp. 55.000,- dan 0", "Rp. 63.000,- dan 10", "Rp. 65.000,- dan 0"],
-        answer: 0,
-        why: "Status_Member = 'Ya' menghasilkan Poin = 10. Total_Belanja (65.000) >= 50.000 mendapat Potongan = 10.000, sehingga Total_Bayar = 65.000 - 10.000 = Rp. 55.000,-."
-      },
-      {
-        num: 2, stimulus: 1, type: "single",
-        q: "2. Ani berbelanja dengan memasukkan data Status_Member = \"Tidak\" dan Total_Belanja = 45.000. Hasil Total_Bayar dan Poin yang tampil di layar kasir untuk transaksi Ani adalah...",
-        options: ["Rp. 42.000,- dan 10", "Rp. 43.000,- dan 0", "Rp. 45.000,- dan 0", "Rp. 45.000,- dan 10"],
-        answer: 2,
-        why: "Status_Member = 'Tidak' membuat Poin tetap 0, dan Total_Belanja (45.000) < 50.000 mendapat Potongan = 0, sehingga Total_Bayar = Rp. 45.000,-."
-      },
-      {
-        num: 3, stimulus: 1, type: "complex",
-        q: "3. (Pilihan Ganda Kompleks) Berdasarkan penelusuran alur kerja mesin kasir E-Kantin di atas, pilihlah semua pernyataan yang BENAR! (Jawaban benar lebih dari satu)",
-        options: [
-          "Jika Status member = \"ya\" dan total belanja = 30.000,- hasil akhirnya adalah total bayar = 28.000 dan poin = 10",
-          "Pelanggan dengan status member = \"tidak\" akan selalu memiliki nilai poin = 0 berapa pun total belanjanya.",
-          "Jika status member = \"tidak\" dan total belanja = 50.000,- pelanggan mendapatkan potongan = Rp. 10.000,-",
-          "Langkah perhitungan total bayar = total belanja – potongan hanya dijalankan jika pelanggan berstatus member."
-        ],
-        answer: [0, 1],
-        why: "Pernyataan 1 & 2 Benar. Non-member belanja 50.000 mendapat potongan Rp 3.000 (bukan 10.000), dan Total_Bayar dihitung untuk semua pelanggan."
-      },
-      {
-        num: 4, stimulus: 1, type: "tf_table",
-        q: "4. (Tabel Benar/Salah) Tentukan Benar atau Salah untuk setiap pernyataan mengenai diagram alur E-Kantin di atas!",
-        statements: [
-          "Jika pelanggan Member berbelanja tepat Rp50.000, alur diagram menuju cabang YA sehingga mendapat Potongan Rp10.000.",
-          "Simbol Belah Ketupat pada diagram alur di atas digunakan untuk memeriksa kondisi/keputusan (Status_Member dan Total_Belanja).",
-          "Jika Member dan Non-Member sama-sama berbelanja Rp60.000, selisih Total_Bayar keduanya adalah Rp10.000."
-        ],
-        answer: ["Benar", "Benar", "Salah"],
-        why: "Pernyataan 1 Benar (>= 50.000). Pernyataan 2 Benar. Pernyataan 3 Salah karena Member membayar Rp50.000 dan Non-Member membayar Rp57.000 (selisih Rp7.000)."
-      },
-      {
-        num: 5, stimulus: 1, type: "single",
-        q: "5. Struktur kontrol percabangan pada program algoritma E-Kantin di atas paling tepat dimodelkan menggunakan bentuk penulisan ....",
-        options: ["Percabangan Tunggal", "Percabangan Ganda", "Percabangan Bersarang", "Perulangan"],
-        answer: 2,
-        why: "Di dalam cabang percabangan Status_Member terdapat pengecekan kondisi lagi (Total_Belanja >= 50.000), sehingga disebut Percabangan Bersarang (Nested If)."
-      },
+    function buildTKAPGForProfile(prof) {
+      const { s1, s2, s3, s4 } = prof;
+      return [
+        // STIMULUS 1 (1 - 5)
+        {
+          num: 1, stimulus: 1, type: "single",
+          q: `1. ${s1.p1Name} melakukan transaksi di mesin kasir ${s1.system} dengan memasukkan data Status_Member = "Ya" dan Total_Belanja = ${s1.p1Belanja}. Jika alur diagram di atas dijalankan dari atas ke bawah, hasil Total_Bayar dan Poin yang tampil di layar kasir secara berurutan adalah...`,
+          options: [
+            `${s1.p1Bayar} dan ${s1.poin}`,
+            `${s1.p1Bayar} dan 0`,
+            `${s1.p1WrongLowBayar} dan ${s1.poin}`,
+            `Rp. ${s1.p1Belanja},- dan 0`
+          ],
+          answer: 0,
+          why: `Status_Member = 'Ya' menghasilkan Poin = ${s1.poin}. Total_Belanja (${s1.p1Belanja}) >= ${s1.threshold} mendapat Potongan = ${s1.potMemHigh}, sehingga Total_Bayar = ${s1.p1Bayar}.`
+        },
+        {
+          num: 2, stimulus: 1, type: "single",
+          q: `2. ${s1.p2Name} berbelanja dengan memasukkan data Status_Member = "Tidak" dan Total_Belanja = ${s1.p2Belanja}. Hasil Total_Bayar dan Poin yang tampil di layar kasir untuk transaksi ${s1.p2Name} adalah...`,
+          options: [
+            `${s1.p2WrongNonBayar} dan ${s1.poin}`,
+            `${s1.p2WrongMemBayar} dan 0`,
+            `${s1.p2Bayar} dan 0`,
+            `${s1.p2Bayar} dan ${s1.poin}`
+          ],
+          answer: 2,
+          why: `Status_Member = 'Tidak' membuat Poin tetap 0, dan Total_Belanja (${s1.p2Belanja}) < ${s1.threshold} mendapat Potongan = 0, sehingga Total_Bayar = ${s1.p2Bayar}.`
+        },
+        {
+          num: 3, stimulus: 1, type: "complex",
+          q: `3. (Pilihan Ganda Kompleks) Berdasarkan penelusuran alur kerja mesin kasir ${s1.system} di atas, pilihlah semua pernyataan yang BENAR! (Jawaban benar lebih dari satu)`,
+          options: [
+            `Jika Status member = "ya" dan total belanja = ${s1.cBelanja},- hasil akhirnya adalah total bayar = ${s1.cBayar} dan poin = ${s1.poin}`,
+            `Pelanggan dengan status member = "tidak" akan selalu memiliki nilai poin = 0 berapa pun total belanjanya.`,
+            `Jika status member = "tidak" dan total belanja = ${s1.threshold},- pelanggan mendapatkan potongan = Rp. ${s1.potMemHigh},-`,
+            `Langkah perhitungan total bayar = total belanja – potongan hanya dijalankan jika pelanggan berstatus member.`
+          ],
+          answer: [0, 1],
+          why: `Pernyataan 1 & 2 Benar. Non-member belanja ${s1.threshold} mendapat potongan Rp ${s1.potNonHigh} (bukan ${s1.potMemHigh}), dan Total_Bayar dihitung untuk semua pelanggan.`
+        },
+        {
+          num: 4, stimulus: 1, type: "tf_table",
+          q: `4. (Tabel Benar/Salah) Tentukan Benar atau Salah untuk setiap pernyataan mengenai diagram alur ${s1.system} di atas!`,
+          statements: [
+            `Jika pelanggan Member berbelanja tepat Rp${s1.threshold}, alur diagram menuju cabang YA sehingga mendapat Potongan Rp${s1.potMemHigh}.`,
+            `Simbol Belah Ketupat pada diagram alur di atas digunakan untuk memeriksa kondisi/keputusan (Status_Member dan Total_Belanja).`,
+            `Jika Member dan Non-Member sama-sama berbelanja ${s1.tfCompareBelanja}, selisih Total_Bayar keduanya adalah ${s1.tfWrongDiff}.`
+          ],
+          answer: ["Benar", "Benar", "Salah"],
+          why: `Pernyataan 1 Benar (>= ${s1.threshold}). Pernyataan 2 Benar. Pernyataan 3 Salah karena selisih potongannya adalah ${s1.tfRealDiff} (bukan ${s1.tfWrongDiff}).`
+        },
+        {
+          num: 5, stimulus: 1, type: "single",
+          q: `5. Struktur kontrol percabangan pada program algoritma ${s1.system} di atas paling tepat dimodelkan menggunakan bentuk penulisan ....`,
+          options: ["Percabangan Tunggal", "Percabangan Ganda", "Percabangan Bersarang", "Perulangan"],
+          answer: 2,
+          why: `Di dalam cabang percabangan Status_Member terdapat pengecekan kondisi lagi (Total_Belanja >= ${s1.threshold}), sehingga disebut Percabangan Bersarang (Nested If).`
+        },
 
-      // STIMULUS 2 (6 - 15)
-      {
-        num: 6, stimulus: 2, type: "single",
-        q: "6. Guru menambahkan kolom baru pada sel F5 untuk menentukan ketuntasan nilai Ujian Dewi menggunakan formula =if (D5>=75; “Tuntas”;”Belum Tuntas”). Berdasarkan tabel data nilai di atas, teks apakah yang akan muncul?",
-        options: ["Tuntas", "Belum Tuntas", "Remedial", "#NAME?"],
-        answer: 1,
-        why: "Nilai D5 (Ujian Dewi) adalah 70. Karena 70 >= 75 bernilai SALAH, maka hasilnya adalah 'Belum Tuntas'."
-      },
-      {
-        num: 7, stimulus: 2, type: "single",
-        q: "7. Apakah hasil keluaran Status Kelulusan pada tabel untuk Dewi (Tugas = 80, Ujian = 70)?",
-        options: ["Lulus", "Remedial", "Istimewa", "#Name?"],
-        answer: 1,
-        why: "Formula menggunakan logika AND(C5>=75; D5>=75). Karena D5 = 70 (< 75), maka statusnya 'Remidial' (Remedial)."
-      },
-      {
-        num: 8, stimulus: 2, type: "complex",
-        q: "8. (Pilihan Ganda Kompleks) Pilihlah semua pernyataan yang BENAR berdasarkan tabel di atas! (Jawaban benar lebih dari satu)",
-        options: [
-          "Jumlah siswa yang dinyatakan 'Lulus' adalah sebanyak 2 orang (Andi dan Citra)",
-          "Rata-rata nilai tertinggi diraih oleh Citra dengan nilai sebesar 93,5",
-          "Dewi dinyatakan Lulus karena nilai Tugasnya mencapai 80",
-          "Budi dinyatakan Remidial karena kedua nilainya di bawah 75"
-        ],
-        answer: [0, 1, 3],
-        why: "Andi & Citra Lulus (2 orang), rata-rata Citra = (95+92)/2 = 93,5, dan Budi Remidial (70 & 65). Dewi dinyatakan Remidial karena nilai ujiannya 70."
-      },
-      {
-        num: 9, stimulus: 2, type: "tf_table",
-        q: "9. (Tabel Benar/Salah) Tentukan Benar atau Salah untuk setiap pernyataan mengenai formula spreadsheet berikut!",
-        statements: [
-          "Jika rumus di D2 ditulis =AVRG(B2:C2), layar akan menampilkan pesan error #NAME?.",
-          "Diagram Batang adalah pilihan terbaik untuk membandingkan rata-rata nilai antar siswa.",
-          "Jika sel B3 dihapus permanen, sel yang merujuk pada B3 akan menampilkan error #REF!."
-        ],
-        answer: ["Benar", "Benar", "Benar"],
-        why: "Ketiga pernyataan Benar: AVRG bukan fungsi baku (#NAME?), Diagram Batang cocok untuk perbandingan kategori, dan menghapus sel acuan menyebabkan #REF!."
-      },
-      {
-        num: 10, stimulus: 2, type: "single",
-        q: "10. Formula spreadsheet yang digunakan untuk mencari nilai tertinggi dari rentang data (B2:C5) adalah ....",
-        options: ["=MAX(B2:C5)", "=HIGH(B2:C5)", "=TOP(B2:C5)", "=MAXIMUM(B2:C5)"],
-        answer: 0,
-        why: "Fungsi baku spreadsheet untuk nilai tertinggi adalah =MAX(...)."
-      },
-      {
-        num: 11, stimulus: 2, type: "single",
-        q: "11. Notasi range yang menunjukkan seluruh sel data nilai dari baris 2 hingga baris 5 pada kolom B adalah...",
-        options: ["B2-B5", "B2..B5", "B2:B5", "B2;B5"],
-        answer: 2,
-        why: "Notasi range menggunakan tanda titik dua (:), yaitu B2:B5."
-      },
-      {
-        num: 12, stimulus: 2, type: "single",
-        q: "12. Jika syarat predikat diset =IF(OR(C2>=90; D2>=90); \"Istimewa\"; \"Reguler\"), siapakah yang mendapat predikat Istimewa?",
-        options: ["Hanya Citra", "Andi dan Citra", "Citra dan Dewi", "Semua Siswa"],
-        answer: 1,
-        why: "Andi memiliki nilai Ujian 90 (>=90) dan Citra memiliki nilai Tugas 95 & Ujian 92 (>=90)."
-      },
-      {
-        num: 13, stimulus: 2, type: "single",
-        q: "13. Kumpulan fakta mentah berupa angka atau teks yang belum diproses dan belum memiliki arti informasi jelas dinamakan...",
-        options: ["Data Mentah", "Tabel Terstruktur", "Informasi Digital", "Database Terolah"],
-        answer: 0,
-        why: "Data Mentah adalah kumpulan fakta yang belum diolah atau dikelompokkan."
-      },
-      {
-        num: 14, stimulus: 2, type: "single",
-        q: "14. Jenis diagram yang paling tepat digunakan untuk menyajikan proporsi persentase bagian dari keseluruhan (100%) adalah...",
-        options: ["Diagram Garis", "Diagram Batang", "Diagram Lingkaran (Pie Chart)", "Diagram Area"],
-        answer: 2,
-        why: "Diagram Lingkaran (Pie Chart) menunjukkan proporsi persentase dari total 100%."
-      },
-      {
-        num: 15, stimulus: 2, type: "single",
-        q: "15. Untuk melihat tren kenaikan atau penurunan nilai Try Out siswa dari bulan ke bulan, jenis diagram yang paling cocok adalah...",
-        options: ["Diagram Garis (Line Chart)", "Diagram Lingkaran (Pie Chart)", "Diagram Batang", "Diagram Hirarki"],
-        answer: 0,
-        why: "Diagram Garis (Line Chart) paling efektif untuk menampilkan tren perkembangan berdasarkan waktu."
-      },
+        // STIMULUS 2 (6 - 15)
+        {
+          num: 6, stimulus: 2, type: "single",
+          q: `6. Guru menambahkan formula uji ketuntasan Ujian untuk ${s2.remidial1Name} pada baris 5: =IF(D5>=${s2.kkm}; "Tuntas"; "Belum Tuntas"). Berdasarkan tabel data nilai di atas, teks apakah yang akan muncul?`,
+          options: ["Tuntas", "Belum Tuntas", "Remedial", "#NAME?"],
+          answer: 1,
+          why: `Nilai D5 (Ujian ${s2.remidial1Name}) adalah ${s2.remidial1Ujian}. Karena ${s2.remidial1Ujian} >= ${s2.kkm} bernilai SALAH, maka hasilnya adalah 'Belum Tuntas'.`
+        },
+        {
+          num: 7, stimulus: 2, type: "single",
+          q: `7. Apakah hasil keluaran Status Kelulusan pada tabel untuk ${s2.remidial1Name} (Tugas = ${s2.remidial1Tugas}, Ujian = ${s2.remidial1Ujian})?`,
+          options: ["Lulus", "Remedial", "Istimewa", "#Name?"],
+          answer: 1,
+          why: `Formula menggunakan logika AND(C5>=${s2.kkm}; D5>=${s2.kkm}). Karena D5 = ${s2.remidial1Ujian} (< ${s2.kkm}), maka statusnya 'Remidial' (Remedial).`
+        },
+        {
+          num: 8, stimulus: 2, type: "complex",
+          q: "8. (Pilihan Ganda Kompleks) Pilihlah semua pernyataan yang BENAR berdasarkan tabel nilai di atas! (Jawaban benar lebih dari satu)",
+          options: [
+            `Jumlah siswa yang dinyatakan 'Lulus' adalah sebanyak 2 orang (${s2.lulusNames})`,
+            `Rata-rata nilai tertinggi diraih oleh ${s2.topName} dengan nilai sebesar ${s2.topAvg}`,
+            `${s2.remidial1Name} dinyatakan Lulus karena nilai Tugasnya mencapai ${s2.remidial1Tugas}`,
+            `${s2.remidial2Name} dinyatakan Remidial karena kedua nilainya di bawah ${s2.kkm}`
+          ],
+          answer: [0, 1, 3],
+          why: `${s2.lulusNames} Lulus (2 orang), rata-rata ${s2.topName} = ${s2.topAvg}, dan ${s2.remidial2Name} Remidial. ${s2.remidial1Name} dinyatakan Remidial karena nilai ujiannya ${s2.remidial1Ujian}.`
+        },
+        {
+          num: 9, stimulus: 2, type: "tf_table",
+          q: "9. (Tabel Benar/Salah) Tentukan Benar atau Salah untuk setiap pernyataan mengenai formula spreadsheet berikut!",
+          statements: [
+            "Jika rumus di E2 ditulis =AVRG(C2:D2), layar akan menampilkan pesan error #NAME?.",
+            "Diagram Batang adalah pilihan terbaik untuk membandingkan rata-rata nilai antar siswa.",
+            "Jika sel C3 dihapus permanen, sel yang merujuk pada C3 akan menampilkan error #REF!."
+          ],
+          answer: ["Benar", "Benar", "Benar"],
+          why: "Ketiga pernyataan Benar: AVRG bukan fungsi baku (#NAME?), Diagram Batang cocok untuk perbandingan kategori, dan menghapus sel acuan menyebabkan #REF!."
+        },
+        {
+          num: 10, stimulus: 2, type: "single",
+          q: "10. Formula spreadsheet yang digunakan untuk mencari nilai tertinggi dari rentang data nilai (C2:D5) adalah ....",
+          options: ["=MAX(C2:D5)", "=HIGH(C2:D5)", "=TOP(C2:D5)", "=MAXIMUM(C2:D5)"],
+          answer: 0,
+          why: "Fungsi baku spreadsheet untuk nilai tertinggi adalah =MAX(...)."
+        },
+        {
+          num: 11, stimulus: 2, type: "single",
+          q: "11. Notasi range yang menunjukkan seluruh sel data nilai Tugas dari baris 2 hingga baris 5 pada kolom C adalah...",
+          options: ["C2-C5", "C2..C5", "C2:C5", "C2;C5"],
+          answer: 2,
+          why: "Notasi range menggunakan tanda titik dua (:), yaitu C2:C5."
+        },
+        {
+          num: 12, stimulus: 2, type: "single",
+          q: `12. Jika syarat predikat diset =IF(OR(C2>=${s2.istThreshold}; D2>=${s2.istThreshold}); "Istimewa"; "Reguler"), siapakah yang mendapat predikat Istimewa?`,
+          options: [`Hanya ${s2.topName}`, `${s2.istNames}`, `${s2.topName} dan ${s2.remidial1Name}`, "Semua Siswa"],
+          answer: 1,
+          why: `Siswa yang memiliki minimal satu nilai (Tugas atau Ujian) >= ${s2.istThreshold} adalah ${s2.istNames}.`
+        },
+        {
+          num: 13, stimulus: 2, type: "single",
+          q: "13. Kumpulan fakta mentah berupa angka atau teks yang belum diproses dan belum memiliki arti informasi jelas dinamakan...",
+          options: ["Data Mentah", "Tabel Terstruktur", "Informasi Digital", "Database Terolah"],
+          answer: 0,
+          why: "Data Mentah adalah kumpulan fakta yang belum diolah atau dikelompokkan."
+        },
+        {
+          num: 14, stimulus: 2, type: "single",
+          q: "14. Jenis diagram yang paling tepat digunakan untuk menyajikan proporsi persentase kelulusan siswa dari keseluruhan (100%) adalah...",
+          options: ["Diagram Garis", "Diagram Batang", "Diagram Lingkaran (Pie Chart)", "Diagram Area"],
+          answer: 2,
+          why: "Diagram Lingkaran (Pie Chart) menunjukkan proporsi persentase dari total 100%."
+        },
+        {
+          num: 15, stimulus: 2, type: "single",
+          q: "15. Untuk melihat tren kenaikan atau penurunan nilai Try Out siswa dari bulan ke bulan, jenis diagram yang paling cocok adalah...",
+          options: ["Diagram Garis (Line Chart)", "Diagram Lingkaran (Pie Chart)", "Diagram Batang", "Diagram Hirarki"],
+          answer: 0,
+          why: "Diagram Garis (Line Chart) paling efektif untuk menampilkan tren perkembangan berdasarkan waktu."
+        },
 
-      // STIMULUS 3 (16 - 25)
-      {
-        num: 16, stimulus: 3, type: "single",
-        q: "16. Saat Hiu telah memakan 7 ekor ikan (Skor = 7), berapakah nilai variabel Kecepatan Ikan Kecil saat itu?",
-        options: ["4 Step", "8 Step", "12 Step", "15 Step"],
-        answer: 1,
-        why: "Karena Skor = 7 memenuhi kondisi (Skor > 5) dan belum > 15, maka Kecepatan diatur menjadi 8 Step."
-      },
-      {
-        num: 17, stimulus: 3, type: "complex",
-        q: "17. (Pilihan Ganda Kompleks) Pilih semua pernyataan yang BENAR tentang game Scratch di atas! (Jawaban benar lebih dari satu)",
-        options: [
-          "Setiap kali Hiu menyentuh Ikan Kecil, nilai Skor bertambah 1 poin.",
-          "Ketika Skor mencapai 16 poin, kecepatan ikan menjadi 12 langkah",
-          "Menyentuh Kepiting memberikan bonus skor sebesar 3 poin",
-          "Blok 'if on edge, bounce' mencegah Ikan keluar dari layar panggung"
-        ],
-        answer: [0, 1, 3],
-        why: "Pernyataan 1, 2, dan 4 Benar. Menyentuh Kepiting menyebabkan GAME OVER dan menghentikan semua skrip."
-      },
-      {
-        num: 18, stimulus: 3, type: "tf_table",
-        q: "18. (Tabel Benar/Salah) Tentukan Benar atau Salah untuk setiap pernyataan mengenai Scratch berikut!",
-        statements: [
-          "Blok warna Kuning (when flag clicked) tergolong kategori Events sebagai pemicu skrip.",
-          "Instruksi stop [all] hanya berfungsi menyembunyikan gambar Kepiting.",
-          "Batas sistem koordinat Sumbu X pada panggung Stage Scratch adalah -240 hingga +240."
-        ],
-        answer: ["Benar", "Salah", "Benar"],
-        why: "Pernyataan 1 & 3 Benar. Pernyataan 2 Salah karena stop [all] menghentikan seluruh jalannya program, bukan menyembunyikan sprite."
-      },
-      {
-        num: 19, stimulus: 3, type: "single",
-        q: "19. Area utama pada antarmuka Scratch tempat animasi, objek sprite, dan pementasan program dieksekusi dinamakan....",
-        options: ["Script Area", "Stage", "Pallette Blocks", "Costumes Pane"],
-        answer: 1,
-        why: "Stage adalah panggung utama tempat animasi dan permainan ditampilkan."
-      },
-      {
-        num: 20, stimulus: 3, type: "single",
-        q: "20. Kategori kode blok Scratch berwarna Biru yang berfungsi mengatur gerakan dan perpindahan posisi dinamakan...",
-        options: ["Motion", "Looks", "Control", "Sensing"],
-        answer: 0,
-        why: "Kategori Motion (Biru) mengatur perpindahan dan arah gerak sprite."
-      },
-      {
-        num: 21, stimulus: 3, type: "single",
-        q: "21. Untuk membuat instruksi perulangan tanpa henti pada Scratch, kita menggunakan blok kode...",
-        options: ["Repeat (10)", "Forever", "Repeat Until", "Wait (1) Secs"],
-        answer: 1,
-        why: "Blok Forever menjalankan instruksi di dalamnya secara terus-menerus tanpa henti."
-      },
-      {
-        num: 22, stimulus: 3, type: "single",
-        q: "22. Kategori kode blok Scratch yang berfungsi mendeteksi sentuhan kursor mouse atau objek lain dinamakan...",
-        options: ["Operator", "Variables", "Sensing", "Events"],
-        answer: 2,
-        why: "Kategori Sensing (Biru Muda/Cyan) berfungsi sebagai sensor deteksi sentuhan dan input."
-      },
-      {
-        num: 23, stimulus: 3, type: "single",
-        q: "23. Pada game 'Tangkap Apel', perintah untuk menggeser posisi Mangkok ke kanan sebesar 10 langkah saat panah kanan ditekan adalah...",
-        options: ["Change Y by 10", "Change X by 10", "Set X to 10", "Turn Right 10 Degrees"],
-        answer: 1,
-        why: "Geser ke kanan berarti menambah nilai koordinat horizontal (Change X by 10)."
-      },
-      {
-        num: 24, stimulus: 3, type: "single",
-        q: "24. Perintah Scratch yang digunakan untuk menghentikan seluruh jalannya program animasi/game saat Game Over adalah...",
-        options: ["Stop [all]", "Hide", "Delete this clone", "Clear"],
-        answer: 0,
-        why: "Blok Stop [all] menghentikan seluruh skrip di semua sprite."
-      },
-      {
-        num: 25, stimulus: 3, type: "single",
-        q: "25. Papan kerja tempat kita menyeret (drag) dan menyusun balok-balok perintah menjadi satu skrip dinamakan...",
-        options: ["Stage", "Sprite Pane", "Script Area", "Backdrop Palette"],
-        answer: 2,
-        why: "Script Area adalah lembar kerja tempat merangkai blok-blok kode."
-      },
+        // STIMULUS 3 (16 - 25)
+        {
+          num: 16, stimulus: 3, type: "single",
+          q: `16. Pada game '${s3.game}', saat ${s3.hero} telah mengumpulkan ${s3.q16Caught} ${s3.target} (Skor = ${s3.q16Caught}), berapakah nilai variabel Kecepatan ${s3.target} saat itu?`,
+          options: [`${s3.baseSpeed} Step`, `${s3.speed1} Step`, `${s3.speed2} Step`, `${s3.thresh2} Step`],
+          answer: 1,
+          why: `Karena Skor = ${s3.q16Caught} memenuhi kondisi (Skor > ${s3.thresh1}) dan belum > ${s3.thresh2}, maka Kecepatan diatur menjadi ${s3.speed1} Step.`
+        },
+        {
+          num: 17, stimulus: 3, type: "complex",
+          q: `17. (Pilihan Ganda Kompleks) Pilih semua pernyataan yang BENAR tentang game Scratch '${s3.game}' di atas! (Jawaban benar lebih dari satu)`,
+          options: [
+            `Setiap kali ${s3.hero} menyentuh ${s3.target}, nilai Skor bertambah 1 poin.`,
+            `Ketika Skor mencapai ${s3.q17Score} poin, kecepatan ${s3.target} menjadi ${s3.speed2} langkah`,
+            `Menyentuh ${s3.enemy} memberikan bonus skor sebesar ${s3.enemySpeed} poin`,
+            `Blok 'if on edge, bounce' mencegah ${s3.target} keluar dari layar panggung`
+          ],
+          answer: [0, 1, 3],
+          why: `Pernyataan 1, 2, dan 4 Benar. Menyentuh ${s3.enemy} menyebabkan GAME OVER dan menghentikan semua skrip.`
+        },
+        {
+          num: 18, stimulus: 3, type: "tf_table",
+          q: "18. (Tabel Benar/Salah) Tentukan Benar atau Salah untuk setiap pernyataan mengenai Scratch berikut!",
+          statements: [
+            "Blok warna Kuning (when flag clicked) tergolong kategori Events sebagai pemicu skrip.",
+            `Instruksi stop [all] hanya berfungsi menyembunyikan gambar ${s3.enemy}.`,
+            "Batas sistem koordinat Sumbu X pada panggung Stage Scratch adalah -240 hingga +240."
+          ],
+          answer: ["Benar", "Salah", "Benar"],
+          why: "Pernyataan 1 & 3 Benar. Pernyataan 2 Salah karena stop [all] menghentikan seluruh jalannya program, bukan menyembunyikan sprite."
+        },
+        {
+          num: 19, stimulus: 3, type: "single",
+          q: "19. Area utama pada antarmuka Scratch tempat animasi, objek sprite, dan pementasan program dieksekusi dinamakan....",
+          options: ["Script Area", "Stage", "Pallette Blocks", "Costumes Pane"],
+          answer: 1,
+          why: "Stage adalah panggung utama tempat animasi dan permainan ditampilkan."
+        },
+        {
+          num: 20, stimulus: 3, type: "single",
+          q: "20. Kategori kode blok Scratch berwarna Biru yang berfungsi mengatur gerakan dan perpindahan posisi dinamakan...",
+          options: ["Motion", "Looks", "Control", "Sensing"],
+          answer: 0,
+          why: "Kategori Motion (Biru) mengatur perpindahan dan arah gerak sprite."
+        },
+        {
+          num: 21, stimulus: 3, type: "single",
+          q: "21. Untuk membuat instruksi perulangan tanpa henti pada Scratch, kita menggunakan blok kode...",
+          options: ["Repeat (10)", "Forever", "Repeat Until", "Wait (1) Secs"],
+          answer: 1,
+          why: "Blok Forever menjalankan instruksi di dalamnya secara terus-menerus tanpa henti."
+        },
+        {
+          num: 22, stimulus: 3, type: "single",
+          q: "22. Kategori kode blok Scratch yang berfungsi mendeteksi sentuhan kursor mouse atau objek lain dinamakan...",
+          options: ["Operator", "Variables", "Sensing", "Events"],
+          answer: 2,
+          why: "Kategori Sensing (Biru Muda/Cyan) berfungsi sebagai sensor deteksi sentuhan dan input."
+        },
+        {
+          num: 23, stimulus: 3, type: "single",
+          q: "23. Pada game 'Tangkap Apel', perintah untuk menggeser posisi Mangkok ke kanan sebesar 10 langkah saat panah kanan ditekan adalah...",
+          options: ["Change Y by 10", "Change X by 10", "Set X to 10", "Turn Right 10 Degrees"],
+          answer: 1,
+          why: "Geser ke kanan berarti menambah nilai koordinat horizontal (Change X by 10)."
+        },
+        {
+          num: 24, stimulus: 3, type: "single",
+          q: "24. Perintah Scratch yang digunakan untuk menghentikan seluruh jalannya program animasi/game saat Game Over adalah...",
+          options: ["Stop [all]", "Hide", "Delete this clone", "Clear"],
+          answer: 0,
+          why: "Blok Stop [all] menghentikan seluruh skrip di semua sprite."
+        },
+        {
+          num: 25, stimulus: 3, type: "single",
+          q: "25. Papan kerja tempat kita menyeret (drag) dan menyusun balok-balok perintah menjadi satu skrip dinamakan...",
+          options: ["Stage", "Sprite Pane", "Script Area", "Backdrop Palette"],
+          answer: 2,
+          why: "Script Area adalah lembar kerja tempat merangkai blok-blok kode."
+        },
 
-      // STIMULUS 4 (26 - 40)
-      {
-        num: 26, stimulus: 4, type: "single",
-        q: "26. Jika petugas perpustakaan mengambil 2 buah buku teratas dari tumpukan [Ahmad (Bawah), Budi (Tengah), Cici (Atas)], buku siapakah yang masih tersisa di meja?",
-        options: ["Cici", "Budi", "Ahmad", "Tidak ada buku tersisa"],
-        answer: 2,
-        why: "Prinsip Stack (LIFO): 2 buku teratas yang diambil adalah Cici lalu Budi, sehingga yang tersisa di bawah adalah Ahmad."
-      },
-      {
-        num: 27, stimulus: 4, type: "complex",
-        q: "27. (Pilihan Ganda Kompleks) Pilih semua pernyataan yang BENAR tentang Stack dan Queue! (Jawaban benar lebih dari satu)",
-        options: [
-          "Antrean cetak printer menerapkan prinsip FIFO (First In, First Out)",
-          "Fitur Undo pada pengolah kata menerapkan prinsip LIFO (Last In, First Out)",
-          "Menambahkan elemen baru pada Stack dinamakan Enqueue",
-          "Mengeluarkan elemen dari Queue dinamakan Dequeue"
-        ],
-        answer: [0, 1, 3],
-        why: "Pernyataan 1, 2, dan 4 Benar. Menambahkan elemen pada Stack dinamakan Push (bukan Enqueue)."
-      },
-      {
-        num: 28, stimulus: 4, type: "tf_table",
-        q: "28. (Tabel Benar/Salah) Tentukan Benar atau Salah untuk pernyataan Berpikir Komputasional berikut!",
-        statements: [
-          "Menyaring informasi tidak penting dan fokus pada poin utama dinamakan Abstraksi.",
-          "Algoritma Binary Search dapat langsung digunakan pada data acak tidak terurut.",
-          "Dalam struktur data Queue, elemen terakhir masuk akan diproses paling awal."
-        ],
-        answer: ["Benar", "Salah", "Salah"],
-        why: "Pernyataan 1 Benar. Pernyataan 2 Salah (Binary Search wajib data terurut). Pernyataan 3 Salah (Queue adalah FIFO: pertama masuk diproses paling awal)."
-      },
-      {
-        num: 29, stimulus: 4, type: "single",
-        q: "29. Proses memecah masalah besar dan kompleks menjadi sub-masalah kecil yang lebih mudah dikelola disebut....",
-        options: ["Abstraksi", "Dekomposisi", "Pengenalan Pola", "Algoritma"],
-        answer: 1,
-        why: "Dekomposisi adalah pemecahan masalah kompleks menjadi bagian-bagian kecil."
-      },
-      {
-        num: 30, stimulus: 4, type: "single",
-        q: "30. Metode pencarian data yang bekerja dengan membagi dua rentang data terurut secara berulang dinamakan...",
-        options: ["Linear Search", "Binary Search", "Bubble Sort", "Insertion Sort"],
-        answer: 1,
-        why: "Binary Search membagi dua ruang pencarian secara berulang pada data terurut."
-      },
-      {
-        num: 31, stimulus: 4, type: "single",
-        q: "31. Algoritma pengurutan yang bekerja membandingkan pasangan elemen bertetangga dan menukarnya jika urutannya salah adalah...",
-        options: ["Bubble Sort", "Selection Sort", "Quick Sort", "Merge Sort"],
-        answer: 0,
-        why: "Bubble Sort membandingkan dan menukar elemen yang bersebelahan secara berulang."
-      },
-      {
-        num: 32, stimulus: 4, type: "single",
-        q: "32. Operasi penambahan elemen baru ke dalam tumpukan (Stack) dinamakan...",
-        options: ["Pop", "Push", "Enqueue", "Dequeue"],
-        answer: 1,
-        why: "Push adalah operasi menambah elemen ke puncak Stack; Pop adalah mengambilnya."
-      },
-      {
-        num: 33, stimulus: 4, type: "single",
-        q: "33. Teknik memecah program besar menjadi subprogram kecil agar lebih terstruktur dan reusable disebut...",
-        options: ["Abstraksi", "Modularisasi Program", "Kompilasi", "Enkapsulasi"],
-        answer: 1,
-        why: "Modularisasi Program memecah program besar menjadi fungsi/prosedur kecil."
-      },
-      {
-        num: 34, stimulus: 4, type: "single",
-        q: "34. Perbedaan utama antara Function dan Procedure pada pemrograman adalah...",
-        options: [
-          "Function mengembalikan nilai hasil (return value), sedangkan Procedure tidak",
-          "Procedure menggunakan variabel, sedangkan Function tidak",
-          "Function hanya untuk angka, Procedure untuk teks",
-          "Tidak ada perbedaan fungsi"
-        ],
-        answer: 0,
-        why: "Function mengembalikan nilai (return value), sedangkan Procedure hanya menjalankan aksi tanpa nilai balik."
-      },
-      {
-        num: 35, stimulus: 4, type: "single",
-        q: "35. Kumpulan modul atau fungsi siap pakai yang disimpan dalam satu wadah sehingga dapat dipanggil berulang kali dinamakan...",
-        options: ["Compiler", "Library (Pustaka)", "Variable", "Flowchart"],
-        answer: 1,
-        why: "Library (Pustaka) berisi kumpulan fungsi/modul siap pakai."
-      },
-      {
-        num: 36, stimulus: 4, type: "single",
-        q: "36. Manfaat utama dari konsep Reusability pada penggunaan Library program adalah...",
-        options: [
-          "Kode dapat digunakan kembali di berbagai proyek tanpa menulis dari nol",
-          "Menghapus bug secara otomatis",
-          "Mempercepat koneksi internet",
-          "Mengubah kode visual menjadi fisik"
-        ],
-        answer: 0,
-        why: "Reusability memungkinkan kode digunakan ulang pada berbagai proyek."
-      },
-      {
-        num: 37, stimulus: 4, type: "single",
-        q: "37. Simbol berbentuk Oval (Terminator) pada bagan alur Flowchart berfungsi untuk...",
-        options: [
-          "Memproses perhitungan",
-          "Menyatakan titik Mulai (Start) atau Selesai (Stop)",
-          "Membaca input data",
-          "Mengambil keputusan"
-        ],
-        answer: 1,
-        why: "Terminator (Oval) menandai awal (Start) dan akhir (Stop) flowchart."
-      },
-      {
-        num: 38, stimulus: 4, type: "single",
-        q: "38. Simbol Flowchart berbentuk Belah Ketupat (Decision) digunakan untuk...",
-        options: [
-          "Titik Start/Stop",
-          "Mengambil keputusan atau percabangan logika",
-          "Input / Output data",
-          "Menghubungkan halaman"
-        ],
-        answer: 1,
-        why: "Belah ketupat (Decision) digunakan untuk pengujian kondisi logika (Ya/Tidak)."
-      },
-      {
-        num: 39, stimulus: 4, type: "single",
-        q: "39. Perintah membaca masukan data dari pengguna dalam Flowchart disimbolkan dengan bangun...",
-        options: ["Persegi panjang", "Jajar genjang", "Belah ketupat", "Lingkaran"],
-        answer: 1,
-        why: "Jajar genjang digunakan untuk proses Input dan Output."
-      },
-      {
-        num: 40, stimulus: 4, type: "single",
-        q: "40. Deskripsi langkah-langkah algoritma yang ditulis menggunakan bahasa natural terstruktur menyerupai kode asli dinamakan...",
-        options: ["Flowchart", "Pseudocode", "Bahasa Mesin", "Diagram Batang"],
-        answer: 1,
-        why: "Pseudocode adalah penulisan algoritma terstruktur menyerupai kode program."
-      }
-    ];
+        // STIMULUS 4 (26 - 40)
+        {
+          num: 26, stimulus: 4, type: "single",
+          q: `26. Jika petugas perpustakaan mengambil 2 buah buku teratas dari tumpukan [${s4.stackBottom} (Bawah), ${s4.stackMid} (Tengah), ${s4.stackTop} (Atas)], buku siapakah yang masih tersisa di meja?`,
+          options: [s4.stackTop, s4.stackMid, s4.stackBottom, "Tidak ada buku tersisa"],
+          answer: 2,
+          why: `Prinsip Stack (LIFO): 2 buku teratas yang diambil adalah ${s4.stackTop} lalu ${s4.stackMid}, sehingga yang tersisa di bawah adalah ${s4.stackBottom}.`
+        },
+        {
+          num: 27, stimulus: 4, type: "complex",
+          q: "27. (Pilihan Ganda Kompleks) Pilih semua pernyataan yang BENAR tentang Stack dan Queue! (Jawaban benar lebih dari satu)",
+          options: [
+            "Antrean cetak printer menerapkan prinsip FIFO (First In, First Out)",
+            "Fitur Undo pada pengolah kata menerapkan prinsip LIFO (Last In, First Out)",
+            "Menambahkan elemen baru pada Stack dinamakan Enqueue",
+            "Mengeluarkan elemen dari Queue dinamakan Dequeue"
+          ],
+          answer: [0, 1, 3],
+          why: "Pernyataan 1, 2, dan 4 Benar. Menambahkan elemen pada Stack dinamakan Push (bukan Enqueue)."
+        },
+        {
+          num: 28, stimulus: 4, type: "tf_table",
+          q: "28. (Tabel Benar/Salah) Tentukan Benar atau Salah untuk pernyataan Berpikir Komputasional berikut!",
+          statements: [
+            "Menyaring informasi tidak penting dan fokus pada poin utama dinamakan Abstraksi.",
+            "Algoritma Binary Search dapat langsung digunakan pada data acak tidak terurut.",
+            "Dalam struktur data Queue, elemen terakhir masuk akan diproses paling awal."
+          ],
+          answer: ["Benar", "Salah", "Salah"],
+          why: "Pernyataan 1 Benar. Pernyataan 2 Salah (Binary Search wajib data terurut). Pernyataan 3 Salah (Queue adalah FIFO: pertama masuk diproses paling awal)."
+        },
+        {
+          num: 29, stimulus: 4, type: "single",
+          q: "29. Proses memecah masalah besar dan kompleks menjadi sub-masalah kecil yang lebih mudah dikelola disebut....",
+          options: ["Abstraksi", "Dekomposisi", "Pengenalan Pola", "Algoritma"],
+          answer: 1,
+          why: "Dekomposisi adalah pemecahan masalah kompleks menjadi bagian-bagian kecil."
+        },
+        {
+          num: 30, stimulus: 4, type: "single",
+          q: "30. Metode pencarian data yang bekerja dengan membagi dua rentang data terurut secara berulang dinamakan...",
+          options: ["Linear Search", "Binary Search", "Bubble Sort", "Insertion Sort"],
+          answer: 1,
+          why: "Binary Search membagi dua ruang pencarian secara berulang pada data terurut."
+        },
+        {
+          num: 31, stimulus: 4, type: "single",
+          q: "31. Algoritma pengurutan yang bekerja membandingkan pasangan elemen bertetangga dan menukarnya jika urutannya salah adalah...",
+          options: ["Bubble Sort", "Selection Sort", "Quick Sort", "Merge Sort"],
+          answer: 0,
+          why: "Bubble Sort membandingkan dan menukar elemen yang bersebelahan secara berulang."
+        },
+        {
+          num: 32, stimulus: 4, type: "single",
+          q: "32. Operasi penambahan elemen baru ke dalam tumpukan (Stack) dinamakan...",
+          options: ["Pop", "Push", "Enqueue", "Dequeue"],
+          answer: 1,
+          why: "Push adalah operasi menambah elemen ke puncak Stack; Pop adalah mengambilnya."
+        },
+        {
+          num: 33, stimulus: 4, type: "single",
+          q: "33. Teknik memecah program besar menjadi subprogram kecil agar lebih terstruktur dan reusable disebut...",
+          options: ["Abstraksi", "Modularisasi Program", "Kompilasi", "Enkapsulasi"],
+          answer: 1,
+          why: "Modularisasi Program memecah program besar menjadi fungsi/prosedur kecil."
+        },
+        {
+          num: 34, stimulus: 4, type: "single",
+          q: "34. Perbedaan utama antara Function dan Procedure pada pemrograman adalah...",
+          options: [
+            "Function mengembalikan nilai hasil (return value), sedangkan Procedure tidak",
+            "Procedure menggunakan variabel, sedangkan Function tidak",
+            "Function hanya untuk angka, Procedure untuk teks",
+            "Tidak ada perbedaan fungsi"
+          ],
+          answer: 0,
+          why: "Function mengembalikan nilai (return value), sedangkan Procedure hanya menjalankan aksi tanpa nilai balik."
+        },
+        {
+          num: 35, stimulus: 4, type: "single",
+          q: "35. Kumpulan modul atau fungsi siap pakai yang disimpan dalam satu wadah sehingga dapat dipanggil berulang kali dinamakan...",
+          options: ["Compiler", "Library (Pustaka)", "Variable", "Flowchart"],
+          answer: 1,
+          why: "Library (Pustaka) berisi kumpulan fungsi/modul siap pakai."
+        },
+        {
+          num: 36, stimulus: 4, type: "single",
+          q: "36. Manfaat utama dari konsep Reusability pada penggunaan Library program adalah...",
+          options: [
+            "Kode dapat digunakan kembali di berbagai proyek tanpa menulis dari nol",
+            "Menghapus bug secara otomatis",
+            "Mempercepat koneksi internet",
+            "Mengubah kode visual menjadi fisik"
+          ],
+          answer: 0,
+          why: "Reusability memungkinkan kode digunakan ulang pada berbagai proyek."
+        },
+        {
+          num: 37, stimulus: 4, type: "single",
+          q: "37. Simbol berbentuk Oval (Terminator) pada bagan alur Flowchart berfungsi untuk...",
+          options: [
+            "Memproses perhitungan",
+            "Menyatakan titik Mulai (Start) atau Selesai (Stop)",
+            "Membaca input data",
+            "Mengambil keputusan"
+          ],
+          answer: 1,
+          why: "Terminator (Oval) menandai awal (Start) dan akhir (Stop) flowchart."
+        },
+        {
+          num: 38, stimulus: 4, type: "single",
+          q: "38. Simbol Flowchart berbentuk Belah Ketupat (Decision) digunakan untuk...",
+          options: [
+            "Titik Start/Stop",
+            "Mengambil keputusan atau percabangan logika",
+            "Input / Output data",
+            "Menghubungkan halaman"
+          ],
+          answer: 1,
+          why: "Belah ketupat (Decision) digunakan untuk pengujian kondisi logika (Ya/Tidak)."
+        },
+        {
+          num: 39, stimulus: 4, type: "single",
+          q: "39. Perintah membaca masukan data dari pengguna dalam Flowchart disimbolkan dengan bangun...",
+          options: ["Persegi panjang", "Jajar genjang", "Belah ketupat", "Lingkaran"],
+          answer: 1,
+          why: "Jajar genjang digunakan untuk proses Input dan Output."
+        },
+        {
+          num: 40, stimulus: 4, type: "single",
+          q: "40. Deskripsi langkah-langkah algoritma yang ditulis menggunakan bahasa natural terstruktur menyerupai kode asli dinamakan...",
+          options: ["Flowchart", "Pseudocode", "Bahasa Mesin", "Diagram Batang"],
+          answer: 1,
+          why: "Pseudocode adalah penulisan algoritma terstruktur menyerupai kode program."
+        }
+      ];
+    }
+
+    // Bank soal TKA tergandakan (4 Varian Lengkap = 160 Soal PG berparameter beda)
+    const tkaDuplicatedBank = tkaVariantProfiles.map((prof) => ({
+      id: prof.id,
+      label: prof.label,
+      stimuliHTML: buildTKAStimuliForProfile(prof),
+      pgQuestions: buildTKAPGForProfile(prof)
+    }));
+
+    const tkaStimuliHTML = tkaDuplicatedBank[0].stimuliHTML;
+    const tkaPGQuestions = tkaDuplicatedBank[0].pgQuestions;
 
     const tkaEssayQuestions = [
       {
@@ -2899,12 +3023,98 @@ end</div>
       return "tka_cd_" + btoa(unescape(encodeURIComponent(packetTitle))).replace(/[^a-zA-Z0-9]/g, "").slice(0, 28);
     }
 
+    function getTKAAttemptCountStorageKey(packetTitle) {
+      return "tka_cnt_" + btoa(unescape(encodeURIComponent(packetTitle))).replace(/[^a-zA-Z0-9]/g, "").slice(0, 28);
+    }
+
+    // Seeded PRNG (Mulberry32) & Fisher-Yates Shuffle untuk pengacakan konsisten pasca 24 jam
+    function hashStringSeed(str) {
+      let h = 1779033703 ^ str.length;
+      for (let i = 0; i < str.length; i++) {
+        h = Math.imul(h ^ str.charCodeAt(i), 3432918353);
+        h = (h << 13) | (h >>> 19);
+      }
+      h = Math.imul(h ^ (h >>> 16), 2246822507);
+      h = Math.imul(h ^ (h >>> 13), 3266489909);
+      return (h ^= h >>> 16) >>> 0;
+    }
+
+    function createSeededRng(seedStr) {
+      let a = hashStringSeed(seedStr);
+      return function() {
+        let t = (a += 0x6D2B79F5);
+        t = Math.imul(t ^ (t >>> 15), t | 1);
+        t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+        return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+      };
+    }
+
+    function seededShuffleArray(arr, rng) {
+      const copy = [...arr];
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(rng() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    function cloneAndShuffleQuestion(qObj, displayNum, rng) {
+      const cleanText = qObj.q.replace(/^\d+\.\s*/, "");
+      const numberedQ = `${displayNum}. ${cleanText}`;
+
+      if (qObj.type === "single") {
+        const paired = qObj.options.map((text, idx) => ({
+          text,
+          isCorrect: idx === qObj.answer
+        }));
+        const shuffled = seededShuffleArray(paired, rng);
+        return {
+          ...qObj,
+          q: numberedQ,
+          options: shuffled.map(item => item.text),
+          answer: shuffled.findIndex(item => item.isCorrect)
+        };
+      }
+
+      if (qObj.type === "complex") {
+        const paired = qObj.options.map((text, idx) => ({
+          text,
+          isCorrect: qObj.answer.includes(idx)
+        }));
+        const shuffled = seededShuffleArray(paired, rng);
+        return {
+          ...qObj,
+          q: numberedQ,
+          options: shuffled.map(item => item.text),
+          answer: shuffled.map((item, idx) => item.isCorrect ? idx : -1).filter(idx => idx !== -1)
+        };
+      }
+
+      if (qObj.type === "tf_table") {
+        const paired = qObj.statements.map((stmt, idx) => ({
+          stmt,
+          ans: qObj.answer[idx]
+        }));
+        const shuffled = seededShuffleArray(paired, rng);
+        return {
+          ...qObj,
+          q: numberedQ,
+          statements: shuffled.map(item => item.stmt),
+          answer: shuffled.map(item => item.ans)
+        };
+      }
+
+      return { ...qObj, q: numberedQ };
+    }
+
     async function checkTKACooldown(packetTitle) {
       const studentName = (localStorage.getItem("student_name") || "").trim().toLowerCase();
       const studentClass = (localStorage.getItem("student_class") || "").trim();
       let latestAttemptMs = Number(localStorage.getItem(getTKACooldownStorageKey(packetTitle)) || 0);
+      let firestoreAttemptCount = 0;
+      const localAttemptCount = Number(localStorage.getItem(getTKAAttemptCountStorageKey(packetTitle)) || (latestAttemptMs > 0 ? 1 : 0));
 
-      // Verifikasi juga ke Firestore agar tetap terkunci meski siswa ganti browser/perangkat
+      // Verifikasi juga ke Firestore agar tetap terkunci & menghitung jumlah percobaan lintas perangkat
       if (studentName && studentName !== "anonim") {
         try {
           const snap = await getDocs(collection(db, "ulangan_harian"));
@@ -2915,6 +3125,7 @@ end</div>
               String(d.studentClass || "").trim() === studentClass &&
               d.babTitle === packetTitle
             ) {
+              firestoreAttemptCount++;
               const recordMs = d.submittedAtMs
                 ? Number(d.submittedAtMs)
                 : (d.timestamp && typeof d.timestamp.toMillis === "function" ? d.timestamp.toMillis() : 0);
@@ -2926,11 +3137,12 @@ end</div>
         }
       }
 
+      const attemptCount = Math.max(localAttemptCount, firestoreAttemptCount);
       const elapsed = Date.now() - latestAttemptMs;
       if (latestAttemptMs > 0 && elapsed < COOLDOWN_24H_MS) {
-        return { locked: true, remainingMs: COOLDOWN_24H_MS - elapsed };
+        return { locked: true, remainingMs: COOLDOWN_24H_MS - elapsed, attemptCount, latestAttemptMs };
       }
-      return { locked: false, remainingMs: 0 };
+      return { locked: false, remainingMs: 0, attemptCount, latestAttemptMs };
     }
 
     let tkaCooldownInterval = null;
@@ -2965,7 +3177,9 @@ end</div>
         bannerEl.classList.add("hidden");
         btnStart.disabled = false;
         btnStart.className = "mt-6 bg-amber-500 text-white font-bold px-6 py-3 rounded-xl text-base hover:bg-amber-600 shadow-md";
-        btnStart.textContent = "Izinkan Kamera & Mulai Latihan Soal (TKA)";
+        btnStart.textContent = status.attemptCount > 0
+          ? "Mulai Ulang (Varian Soal Baru & Acak Jawaban)"
+          : "Izinkan Kamera & Mulai Latihan Soal (TKA)";
       }
     }
 
@@ -2974,21 +3188,86 @@ end</div>
       simSelectEl.onchange = () => refreshTKACooldownUI();
     }
 
-    function getSelectedTKAPacket(titleSelect) {
+    let currentActiveTKAPacket = null;
+
+    function getSelectedTKAPacket(titleSelect, attemptCount = 0) {
+      const shouldShuffle = attemptCount > 0;
+      const variantIdx = attemptCount % tkaDuplicatedBank.length;
+      const activeBank = tkaDuplicatedBank[variantIdx];
+
+      const studentKey = `${localStorage.getItem("student_name") || "anon"}_${localStorage.getItem("student_class") || "-"}`;
+      const dayEpoch = Math.floor(Date.now() / COOLDOWN_24H_MS);
+      const rng = createSeededRng(`${studentKey}|${titleSelect}|attempt:${attemptCount}|epoch:${dayEpoch}`);
+
+      let rawPG = [];
+      let rawEssays = [];
+      let minutes = 120;
+
       if (titleSelect.includes("Stimulus 1")) {
-        return { pg: tkaPGQuestions.filter(q => q.stimulus === 1), essays: [], minutes: 20 };
+        rawPG = activeBank.pgQuestions.filter(q => q.stimulus === 1);
+        minutes = 20;
       } else if (titleSelect.includes("Stimulus 2")) {
-        return { pg: tkaPGQuestions.filter(q => q.stimulus === 2), essays: [], minutes: 30 };
+        rawPG = activeBank.pgQuestions.filter(q => q.stimulus === 2);
+        minutes = 30;
       } else if (titleSelect.includes("Stimulus 3")) {
-        return { pg: tkaPGQuestions.filter(q => q.stimulus === 3), essays: [], minutes: 30 };
+        rawPG = activeBank.pgQuestions.filter(q => q.stimulus === 3);
+        minutes = 30;
       } else if (titleSelect.includes("Stimulus 4")) {
-        return { pg: tkaPGQuestions.filter(q => q.stimulus === 4), essays: [], minutes: 40 };
+        rawPG = activeBank.pgQuestions.filter(q => q.stimulus === 4);
+        minutes = 40;
       } else if (titleSelect.includes("Bagian I:")) {
-        return { pg: tkaPGQuestions, essays: [], minutes: 90 };
+        rawPG = activeBank.pgQuestions;
+        minutes = 90;
       } else if (titleSelect.includes("Bagian II:")) {
-        return { pg: [], essays: tkaEssayQuestions, minutes: 45 };
+        rawEssays = tkaEssayQuestions;
+        minutes = 45;
+      } else {
+        rawPG = activeBank.pgQuestions;
+        rawEssays = tkaEssayQuestions;
+        minutes = 120;
       }
-      return { pg: tkaPGQuestions, essays: tkaEssayQuestions, minutes: 120 };
+
+      let finalPG = [];
+      if (rawPG.length > 0) {
+        if (shouldShuffle) {
+          // Kelompokkan per stimulus agar setiap soal tetap berada di bawah Stimulus yang sesuai,
+          // lalu acak urutan kelompok stimulus dan acak urutan soal serta pilihan jawaban di dalamnya.
+          const stimulusIds = [...new Set(rawPG.map(q => q.stimulus))];
+          const shuffledStimulusIds = seededShuffleArray(stimulusIds, rng);
+          let displayCounter = 1;
+          shuffledStimulusIds.forEach((stimId) => {
+            const groupQs = rawPG.filter(q => q.stimulus === stimId);
+            const shuffledGroup = seededShuffleArray(groupQs, rng);
+            shuffledGroup.forEach((qObj) => {
+              finalPG.push(cloneAndShuffleQuestion(qObj, displayCounter++, rng));
+            });
+          });
+        } else {
+          finalPG = rawPG.map((qObj, idx) => ({
+            ...qObj,
+            q: `${idx + 1}. ${qObj.q.replace(/^\d+\.\s*/, "")}`
+          }));
+        }
+      }
+
+      let finalEssays = rawEssays;
+      if (rawEssays.length > 0 && shouldShuffle) {
+        finalEssays = seededShuffleArray(rawEssays, rng).map((eObj, idx) => ({
+          ...eObj,
+          title: `Soal Essay ${idx + 1}`
+        }));
+      }
+
+      return {
+        pg: finalPG,
+        essays: finalEssays,
+        minutes,
+        stimuliHTML: activeBank.stimuliHTML,
+        variantLabel: shouldShuffle
+          ? `${activeBank.label} • Soal & Pilihan Jawaban Diacak (Pasca 24 Jam)`
+          : `${activeBank.label} • Urutan Standar`,
+        isShuffled: shouldShuffle
+      };
     }
 
     // MEMULAI LATIHAN SOAL (TKA)
@@ -3010,7 +3289,8 @@ end</div>
           return;
         }
 
-        const packet = getSelectedTKAPacket(titleSelect);
+        const packet = getSelectedTKAPacket(titleSelect, cooldown.attemptCount);
+        currentActiveTKAPacket = packet;
 
         try {
           await startFrontCamera();
@@ -3025,6 +3305,10 @@ end</div>
         document.getElementById("quiz-form").classList.remove("hidden");
         document.getElementById("quiz-timer-box").classList.remove("hidden");
         document.getElementById("current-simulasi-title").textContent = titleSelect;
+        const variantBadge = document.getElementById("current-simulasi-variant-badge");
+        if (variantBadge) {
+          variantBadge.textContent = packet.variantLabel;
+        }
 
         const container = document.getElementById("simulasi-questions-container");
         container.innerHTML = "";
@@ -3041,7 +3325,7 @@ end</div>
           if (qObj.stimulus !== lastStimulus) {
             lastStimulus = qObj.stimulus;
             const stimDiv = document.createElement("div");
-            stimDiv.innerHTML = tkaStimuliHTML[qObj.stimulus] || "";
+            stimDiv.innerHTML = packet.stimuliHTML[qObj.stimulus] || "";
             container.appendChild(stimDiv);
           }
 
@@ -3153,7 +3437,7 @@ end</div>
         stopFrontCamera();
 
         const titleSelect = document.getElementById("simulasi-target-select").value;
-        const packet = getSelectedTKAPacket(titleSelect);
+        const packet = currentActiveTKAPacket || getSelectedTKAPacket(titleSelect, 0);
 
         let earnedPoints = 0;
         let maxPoints = packet.pg.length;
@@ -3229,7 +3513,7 @@ end</div>
 
         if (maxPoints > 0) {
           document.getElementById("quiz-score-display").textContent = `${finalScore} / 100`;
-          document.getElementById("quiz-score-detail").textContent = `Skor akhir Anda telah tercatat otomatis ke rekap Guru. Paket soal ini terkunci selama 24 jam sebelum dapat dicoba kembali.`;
+          document.getElementById("quiz-score-detail").textContent = `Skor akhir Anda telah tercatat otomatis ke rekap Guru (${packet.variantLabel}). Paket soal ini terkunci selama 24 jam sebelum dapat dicoba kembali dengan varian soal baru yang diacak.`;
         } else {
           document.getElementById("quiz-score-display").textContent = "Terkirim";
           document.getElementById("quiz-score-detail").textContent = `${essayResponses.length} jawaban Essay telah tersimpan dan siap dikoreksi Guru. Paket soal ini terkunci selama 24 jam.`;
@@ -3254,14 +3538,18 @@ end</div>
         const studentName = localStorage.getItem("student_name") || "Anonim";
         const studentClass = localStorage.getItem("student_class") || "-";
         const nowMs = Date.now();
+        const prevCount = Number(localStorage.getItem(getTKAAttemptCountStorageKey(titleSelect)) || 0);
 
         localStorage.setItem(getTKACooldownStorageKey(titleSelect), String(nowMs));
+        localStorage.setItem(getTKAAttemptCountStorageKey(titleSelect), String(prevCount + 1));
+        currentActiveTKAPacket = null;
 
         try {
           await addDoc(collection(db, "ulangan_harian"), {
             studentName,
             studentClass,
             babTitle: titleSelect,
+            variantLabel: packet.variantLabel,
             score: finalScore,
             essayAnswers: essayResponses,
             submittedAtMs: nowMs,
