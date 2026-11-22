@@ -7,6 +7,7 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <script src="https://cdn.jsdelivr.net/npm/lucide@0.577.0/dist/umd/lucide.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/exceljs@4.4.0/dist/exceljs.min.js"></script>
   <style>
     :root { --ink:#12304a; --blue:#146bb2; --teal:#087f7b; --violet:#6d4bc3; --green:#16836b; --line:#cfe3ec; }
     * { box-sizing: border-box; }
@@ -1315,32 +1316,32 @@ end</pre>
         <!-- Tab Fitur Ekspor Data -->
         <section id="export-data" class="teacher-tab-panel mt-6">
           <div class="card">
-            <h3 class="font-extrabold text-lg mb-2">Ekspor Rekapitulasi Data (Excel / CSV)</h3>
-            <p class="text-sm text-slate-600 mb-5">Unduh data kehadiran, nilai Latihan Soal (TKA), pengumpulan tugas, dan jawaban siswa ke format spreadsheet (.csv).</p>
+            <h3 class="font-extrabold text-lg mb-2">Ekspor Rekapitulasi Data (Microsoft Excel .xlsx)</h3>
+            <p class="text-sm text-slate-600 mb-5">Unduh data kehadiran, nilai Latihan Soal (TKA), pengumpulan tugas, dan jawaban siswa ke format Microsoft Excel (.xlsx) yang sudah tertata rapi.</p>
             
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
               <div class="p-4 border rounded-xl bg-slate-50 text-center">
                 <i data-lucide="file-spreadsheet" class="w-8 h-8 text-emerald-600 mx-auto mb-2"></i>
                 <h4 class="font-bold text-slate-900 mb-1">Data Absen Harian</h4>
-                <button id="btn-export-absen" class="mt-2 w-full bg-emerald-700 text-white font-bold py-2 px-3 rounded-lg text-xs hover:bg-emerald-800">Unduh CSV Absen</button>
+                <button id="btn-export-absen" class="mt-2 w-full bg-emerald-700 text-white font-bold py-2 px-3 rounded-lg text-xs hover:bg-emerald-800">Unduh Excel Absen (.xlsx)</button>
               </div>
 
               <div class="p-4 border rounded-xl bg-slate-50 text-center">
                 <i data-lucide="award" class="w-8 h-8 text-amber-600 mx-auto mb-2"></i>
                 <h4 class="font-bold text-slate-900 mb-1">Nilai Latihan Soal (TKA)</h4>
-                <button id="btn-export-ulangan" class="mt-2 w-full bg-amber-600 text-white font-bold py-2 px-3 rounded-lg text-xs hover:bg-amber-700">Unduh CSV Nilai TKA</button>
+                <button id="btn-export-ulangan" class="mt-2 w-full bg-amber-600 text-white font-bold py-2 px-3 rounded-lg text-xs hover:bg-amber-700">Unduh Excel Nilai TKA (.xlsx)</button>
               </div>
 
               <div class="p-4 border rounded-xl bg-slate-50 text-center">
                 <i data-lucide="file-up" class="w-8 h-8 text-teal-600 mx-auto mb-2"></i>
                 <h4 class="font-bold text-slate-900 mb-1">Data Tugas Praktik</h4>
-                <button id="btn-export-tugas" class="mt-2 w-full bg-teal-700 text-white font-bold py-2 px-3 rounded-lg text-xs hover:bg-teal-800">Unduh CSV Tugas</button>
+                <button id="btn-export-tugas" class="mt-2 w-full bg-teal-700 text-white font-bold py-2 px-3 rounded-lg text-xs hover:bg-teal-800">Unduh Excel Tugas (.xlsx)</button>
               </div>
 
               <div class="p-4 border rounded-xl bg-slate-50 text-center">
                 <i data-lucide="file-check" class="w-8 h-8 text-sky-600 mx-auto mb-2"></i>
                 <h4 class="font-bold text-slate-900 mb-1">Data Refleksi Siswa</h4>
-                <button id="btn-export-jawaban" class="mt-2 w-full bg-sky-700 text-white font-bold py-2 px-3 rounded-lg text-xs hover:bg-sky-800">Unduh CSV Refleksi</button>
+                <button id="btn-export-jawaban" class="mt-2 w-full bg-sky-700 text-white font-bold py-2 px-3 rounded-lg text-xs hover:bg-sky-800">Unduh Excel Refleksi (.xlsx)</button>
               </div>
             </div>
           </div>
@@ -3724,43 +3725,241 @@ end</div>
       });
     }
 
-    // EKSPOR DATA KE CSV
-    async function exportCollectionToCSV(colName, filename, headers, mapRowFn) {
-      const snap = await getDocs(collection(db, colName));
-      if (snap.empty) {
-        showToast("Tidak ada data untuk diekspor!");
-        return;
-      }
-      const rows = [headers.join(",")];
-      snap.forEach(docSnap => {
-        const rowData = mapRowFn(docSnap.data());
-        rows.push(rowData.map(v => `"${String(v).replace(/"/g, '""')}"`).join(","));
+    // EKSPOR DATA KE MICROSOFT EXCEL (.XLSX) RAPI
+    function sortRecordsByClassAndName(records) {
+      return [...records].sort((a, b) => {
+        const clsA = String(a.studentClass || "");
+        const clsB = String(b.studentClass || "");
+        const cmpClass = clsA.localeCompare(clsB, "id", { numeric: true, sensitivity: "base" });
+        if (cmpClass !== 0) return cmpClass;
+        const nameA = String(a.studentName || "");
+        const nameB = String(b.studentName || "");
+        return nameA.localeCompare(nameB, "id", { sensitivity: "base" });
+      });
+    }
+
+    function buildStyledWorksheet(workbook, sheetName, reportTitle, headers, rowsData, headerColorHex) {
+      const fullHeaders = ["No.", ...headers];
+      const totalCols = fullHeaders.length;
+      const ws = workbook.addWorksheet(sheetName, {
+        views: [{ state: "frozen", ySplit: 4 }]
       });
 
-      const blob = new Blob([rows.join("\n")], { type: "text/csv;charset=utf-8;" });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = filename;
-      a.click();
-      URL.revokeObjectURL(url);
-      showToast("File CSV berhasil diunduh!");
+      // Baris 1: Judul Laporan
+      ws.mergeCells(1, 1, 1, totalCols);
+      const titleCell = ws.getCell(1, 1);
+      titleCell.value = reportTitle;
+      titleCell.font = { name: "Calibri", size: 13, bold: true, color: { argb: "FFFFFFFF" } };
+      titleCell.fill = { type: "pattern", pattern: "solid", fgColor: { argb: "FF12304A" } };
+      titleCell.alignment = { vertical: "middle", horizontal: "left", indent: 1 };
+      ws.getRow(1).height = 28;
+
+      // Baris 2: Keterangan Waktu Unduh & Jumlah Data
+      ws.mergeCells(2, 1, 2, totalCols);
+      const metaCell = ws.getCell(2, 1);
+      const waktuUnduh = new Date().toLocaleString("id-ID", { dateStyle: "full", timeStyle: "short" });
+      metaCell.value = `Diunduh pada: ${waktuUnduh}   |   Total Data: ${rowsData.length} Baris (Urut Kelas & Nama)`;
+      metaCell.font = { name: "Calibri", size: 10, italic: true, color: { argb: "FF334155" } };
+      metaCell.fill = { type: "pattern", pattern: "solid", fgColor: { argb: "FFEAF5FF" } };
+      metaCell.alignment = { vertical: "middle", horizontal: "left", indent: 1 };
+      ws.getRow(2).height = 20;
+
+      // Baris 3: Spasi pemisah
+      ws.getRow(3).height = 8;
+
+      // Baris 4: Header Tabel
+      const headerRow = ws.getRow(4);
+      headerRow.height = 26;
+      const colMaxLen = fullHeaders.map(h => String(h).length);
+
+      fullHeaders.forEach((hText, colIdx) => {
+        const cell = headerRow.getCell(colIdx + 1);
+        cell.value = hText;
+        cell.font = { name: "Calibri", size: 11, bold: true, color: { argb: "FFFFFFFF" } };
+        cell.fill = { type: "pattern", pattern: "solid", fgColor: { argb: headerColorHex } };
+        cell.alignment = { vertical: "middle", horizontal: colIdx === 0 ? "center" : "left", wrapText: true };
+        cell.border = {
+          top: { style: "thin", color: { argb: "FFCBD5E1" } },
+          left: { style: "thin", color: { argb: "FFCBD5E1" } },
+          bottom: { style: "medium", color: { argb: "FF94A3B8" } },
+          right: { style: "thin", color: { argb: "FFCBD5E1" } }
+        };
+      });
+
+      // Aktifkan AutoFilter pada baris header tabel
+      ws.autoFilter = {
+        from: { row: 4, column: 1 },
+        to: { row: 4, column: totalCols }
+      };
+
+      // Baris 5+: Isi Data
+      rowsData.forEach((rawRow, rIdx) => {
+        const excelRow = ws.getRow(5 + rIdx);
+        const fullRow = [rIdx + 1, ...rawRow];
+        const isEven = rIdx % 2 === 1;
+
+        fullRow.forEach((val, cIdx) => {
+          const cell = excelRow.getCell(cIdx + 1);
+          const cleanVal = (val === undefined || val === null || val === "") ? "-" : val;
+          cell.value = cleanVal;
+          cell.font = { name: "Calibri", size: 10.5, color: { argb: "FF0F172A" } };
+          cell.fill = {
+            type: "pattern",
+            pattern: "solid",
+            fgColor: { argb: isEven ? "FFF8FAFC" : "FFFFFFFF" }
+          };
+          cell.alignment = {
+            vertical: "middle",
+            horizontal: (cIdx === 0 || typeof cleanVal === "number") ? "center" : "left",
+            wrapText: true
+          };
+          cell.border = {
+            top: { style: "thin", color: { argb: "FFE2E8F0" } },
+            left: { style: "thin", color: { argb: "FFE2E8F0" } },
+            bottom: { style: "thin", color: { argb: "FFE2E8F0" } },
+            right: { style: "thin", color: { argb: "FFE2E8F0" } }
+          };
+
+          const textLen = String(cleanVal).length;
+          if (textLen > colMaxLen[cIdx]) colMaxLen[cIdx] = textLen;
+        });
+      });
+
+      // Atur lebar kolom otomatis (Auto-Fit) agar rapi di Excel
+      colMaxLen.forEach((maxLen, cIdx) => {
+        const minW = cIdx === 0 ? 7 : 14;
+        ws.getColumn(cIdx + 1).width = Math.min(Math.max(maxLen + 5, minW), 55);
+      });
+    }
+
+    async function exportCollectionToXLSX({ colName, filename, sheetName, reportTitle, headers, mapRowFn, headerColorHex, extraSheetFn }) {
+      if (!window.ExcelJS) {
+        showToast("Library Excel sedang dimuat, silakan coba beberapa detik lagi.");
+        return;
+      }
+
+      showToast("Menyiapkan file Excel (.xlsx)...");
+      try {
+        const snap = await getDocs(collection(db, colName));
+        if (snap.empty) {
+          showToast("Tidak ada data untuk diekspor!");
+          return;
+        }
+
+        const unsortedRecords = [];
+        snap.forEach(docSnap => {
+          unsortedRecords.push(docSnap.data());
+        });
+
+        const sortedRecords = sortRecordsByClassAndName(unsortedRecords);
+        const rowsData = sortedRecords.map(data => mapRowFn(data));
+
+        const workbook = new ExcelJS.Workbook();
+        workbook.creator = "Media Pembelajaran Informatika Kelas 9";
+        workbook.created = new Date();
+
+        buildStyledWorksheet(workbook, sheetName, reportTitle, headers, rowsData, headerColorHex);
+
+        if (typeof extraSheetFn === "function") {
+          extraSheetFn(workbook, sortedRecords);
+        }
+
+        const buffer = await workbook.xlsx.writeBuffer();
+        const blob = new Blob([buffer], {
+          type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+        });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = filename;
+        a.click();
+        URL.revokeObjectURL(url);
+        showToast(`File ${filename} berhasil diunduh!`);
+      } catch (err) {
+        console.error("Gagal ekspor XLSX:", err);
+        showToast("Gagal mengekspor Excel: " + err.message);
+      }
     }
 
     document.getElementById("btn-export-absen").onclick = () => {
-      exportCollectionToCSV("absen_harian", "Rekap_Absen_Informatika.csv", ["Nama Siswa", "Kelas", "Waktu Absen"], d => [d.studentName, d.studentClass, d.timeString]);
+      exportCollectionToXLSX({
+        colName: "absen_harian",
+        filename: "Rekap_Absen_Informatika.xlsx",
+        sheetName: "Absen Harian",
+        reportTitle: "REKAPITULASI KEHADIRAN / ABSEN HARIAN SISWA — INFORMATIKA KELAS 9",
+        headers: ["Nama Siswa", "Kelas", "Waktu Absen"],
+        headerColorHex: "FF047857",
+        mapRowFn: d => [d.studentName, d.studentClass, d.timeString]
+      });
     };
 
     document.getElementById("btn-export-ulangan").onclick = () => {
-      exportCollectionToCSV("ulangan_harian", "Nilai_Latihan_Soal_TKA.csv", ["Nama Siswa", "Kelas", "Paket Latihan Soal", "Nilai PG"], d => [d.studentName, d.studentClass, d.babTitle, d.score]);
+      exportCollectionToXLSX({
+        colName: "ulangan_harian",
+        filename: "Nilai_Latihan_Soal_TKA.xlsx",
+        sheetName: "Rekap Nilai TKA",
+        reportTitle: "REKAPITULASI NILAI LATIHAN SOAL (TKA) — INFORMATIKA KELAS 9",
+        headers: ["Nama Siswa", "Kelas", "Paket Latihan Soal", "Nilai PG", "Jumlah Essay Dijawab"],
+        headerColorHex: "FFB45309",
+        mapRowFn: d => [
+          d.studentName,
+          d.studentClass,
+          d.babTitle,
+          typeof d.score === "number" ? d.score : Number(d.score || 0),
+          Array.isArray(d.essayAnswers) ? d.essayAnswers.length : 0
+        ],
+        extraSheetFn: (workbook, records) => {
+          const essayRows = [];
+          records.forEach(d => {
+            if (Array.isArray(d.essayAnswers) && d.essayAnswers.length > 0) {
+              d.essayAnswers.forEach(ea => {
+                essayRows.push([d.studentName, d.studentClass, d.babTitle, ea.title || "-", ea.studentAnswer || "-"]);
+              });
+            }
+          });
+          if (essayRows.length > 0) {
+            buildStyledWorksheet(
+              workbook,
+              "Rincian Jawaban Essay",
+              "RINCIAN JAWABAN URAIAN / ESSAY TKA — INFORMATIKA KELAS 9",
+              ["Nama Siswa", "Kelas", "Paket Soal", "Soal Essay", "Jawaban Siswa"],
+              essayRows,
+              "FF6D4BC3"
+            );
+          }
+        }
+      });
     };
 
     document.getElementById("btn-export-tugas").onclick = () => {
-      exportCollectionToCSV("tugas_praktik", "Data_Tugas_Praktik.csv", ["Nama Siswa", "Kelas", "Topik Tugas", "Tautan Link", "Nilai", "Feedback Guru"], d => [d.studentName, d.studentClass, d.topic, d.link, d.grade || '-', d.teacherFeedback || '-']);
+      exportCollectionToXLSX({
+        colName: "tugas_praktik",
+        filename: "Data_Tugas_Praktik.xlsx",
+        sheetName: "Tugas Praktik",
+        reportTitle: "REKAPITULASI PENGUMPULAN & NILAI TUGAS PRAKTIK — INFORMATIKA KELAS 9",
+        headers: ["Nama Siswa", "Kelas", "Topik Tugas", "Tautan Link", "Nilai", "Feedback Guru"],
+        headerColorHex: "FF0F766E",
+        mapRowFn: d => [
+          d.studentName,
+          d.studentClass,
+          d.topic,
+          d.link,
+          d.grade !== "" && d.grade !== undefined && !isNaN(Number(d.grade)) ? Number(d.grade) : "-",
+          d.teacherFeedback || "-"
+        ]
+      });
     };
 
     document.getElementById("btn-export-jawaban").onclick = () => {
-      exportCollectionToCSV("jawaban_siswa", "Refleksi_Siswa.csv", ["Nama Siswa", "Kelas", "Bab", "Catatan"], d => [d.studentName, d.studentClass, d.babTitle, d.notes]);
+      exportCollectionToXLSX({
+        colName: "jawaban_siswa",
+        filename: "Refleksi_Siswa.xlsx",
+        sheetName: "Refleksi Siswa",
+        reportTitle: "REKAPITULASI CATATAN REFLEKSI PEMBELAJARAN SISWA — INFORMATIKA KELAS 9",
+        headers: ["Nama Siswa", "Kelas", "Bab", "Catatan Refleksi"],
+        headerColorHex: "FF0369A1",
+        mapRowFn: d => [d.studentName, d.studentClass, d.babTitle, d.notes]
+      });
     };
 
     // INISIALISASI HALAMAN
