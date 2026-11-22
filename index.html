@@ -1183,6 +1183,10 @@ end</pre>
               </select>
             </div>
 
+            <div id="tka-cooldown-banner" class="hidden max-w-lg mx-auto mt-4 p-4 rounded-xl bg-rose-50 border border-rose-200 text-rose-900 text-xs font-bold leading-relaxed">
+              Paket soal ini sudah Anda kerjakan. Anda baru dapat menjawab kembali dalam waktu: <span id="tka-cooldown-timer" class="underline font-extrabold">24 jam 0 menit</span>.
+            </div>
+
             <button id="btn-start-quiz" type="button" class="mt-6 bg-amber-500 text-white font-bold px-6 py-3 rounded-xl text-base hover:bg-amber-600 shadow-md">
               Izinkan Kamera &amp; Mulai Latihan Soal (TKA)
             </button>
@@ -1523,28 +1527,18 @@ end</pre>
     let quizLocked = false;
     let webcamStream = null;
 
-    // FUNGSI VERIFIKASI NIP GURU VIA FIREBASE FIRESTORE
+    // FUNGSI VERIFIKASI NIP GURU VIA FIREBASE FIRESTORE (TANPA HARDCODE DI KODE HTML)
     async function verifyTeacherNIP(inputNIP) {
       const configRef = doc(db, "config", "teacher_access");
       try {
         const configSnap = await getDoc(configRef);
         if (configSnap.exists()) {
-          return configSnap.data().nip === inputNIP;
-        } else {
-          try {
-            await setDoc(configRef, { 
-              nip: "199306222025211016",
-              role: "Guru Utama",
-              updatedAt: new Date()
-            });
-          } catch (e) {
-            console.warn("Gagal membuat config di Firestore:", e);
-          }
-          return inputNIP === "199306222025211016";
+          return String(configSnap.data().nip || "").trim() === inputNIP;
         }
+        return false;
       } catch (error) {
         console.warn("Gagal koneksi verifikasi NIP Firestore:", error);
-        return inputNIP === "199306222025211016";
+        return false;
       }
     }
 
@@ -2390,6 +2384,7 @@ end</div>
       localStorage.setItem("student_class", cls);
       document.getElementById("student-identity-display").textContent = `${name} (${cls})`;
       document.getElementById("student-modal").classList.add("hidden");
+      if (typeof refreshTKACooldownUI === "function") refreshTKACooldownUI();
 
       try {
         await addDoc(collection(db, "absen_harian"), {
@@ -2436,6 +2431,7 @@ end</div>
         document.getElementById("access-overlay").classList.add("hidden");
         msgEl.textContent = "";
         isTeacher = true;
+        initTeacherListeners();
         switchMode("teacher");
         showToast("Akses Guru Berhasil!");
       } else {
@@ -2533,8 +2529,17 @@ end</div>
       showM1TkaFeedback();
     }
 
+    const COOLDOWN_24H_MS = 24 * 60 * 60 * 1000;
+
+    function formatRemainingTime(ms) {
+      const totalSec = Math.max(0, Math.ceil(ms / 1000));
+      const hrs = Math.floor(totalSec / 3600);
+      const mins = Math.floor((totalSec % 3600) / 60);
+      const secs = totalSec % 60;
+      return `${hrs} jam ${mins} menit ${secs} detik`;
+    }
+
     function showM1TkaFeedback() {
-      const qObj = m1TkaQuestions[m1TkaCurrentIdx];
       const userAns = m1TkaUserAnswers[m1TkaCurrentIdx];
       const fbBox = document.getElementById("m1-tka-feedback");
 
@@ -2544,19 +2549,31 @@ end</div>
       }
 
       fbBox.classList.remove("hidden");
-      if (userAns === qObj.answer) {
-        fbBox.className = "mt-4 p-3.5 rounded-xl bg-emerald-50 border border-emerald-200 text-xs font-bold text-emerald-900 leading-relaxed";
-        fbBox.innerHTML = `✓ <strong>Jawaban Tepat!</strong><br><span class="font-normal text-slate-700">${qObj.why}</span>`;
-      } else {
-        fbBox.className = "mt-4 p-3.5 rounded-xl bg-rose-50 border border-rose-200 text-xs font-bold text-rose-900 leading-relaxed";
-        fbBox.innerHTML = `✕ <strong>Jawaban Kurang Tepat.</strong> Jawaban benar adalah <strong>${String.fromCharCode(65 + qObj.answer)}. ${qObj.options[qObj.answer]}</strong>.<br><span class="font-normal text-slate-700">${qObj.why}</span>`;
-      }
+      fbBox.className = "mt-4 p-3 rounded-xl bg-sky-50 border border-sky-200 text-xs font-bold text-sky-900";
+      fbBox.innerHTML = `✓ <strong>Jawaban Soal No. ${m1TkaCurrentIdx + 1} tersimpan.</strong> Silakan lanjut ke soal berikutnya.`;
     }
 
     function initM1TkaQuiz() {
       const btnPrev = document.getElementById("btn-m1-tka-prev");
       const btnNext = document.getElementById("btn-m1-tka-next");
       const btnRestart = document.getElementById("btn-m1-tka-restart");
+
+      const checkM1Cooldown = () => {
+        const lastAttempt = Number(localStorage.getItem("m1_tka_last_attempt") || 0);
+        const elapsed = Date.now() - lastAttempt;
+        if (lastAttempt && elapsed < COOLDOWN_24H_MS) {
+          document.getElementById("m1-tka-quiz-box").classList.add("hidden");
+          document.getElementById("m1-tka-result-card").classList.remove("hidden");
+          btnRestart.disabled = true;
+          btnRestart.className = "mt-4 bg-slate-400 text-white font-bold px-5 py-2.5 rounded-xl text-sm cursor-not-allowed";
+          btnRestart.textContent = `Terkunci (${formatRemainingTime(COOLDOWN_24H_MS - elapsed)})`;
+          return true;
+        }
+        btnRestart.disabled = false;
+        btnRestart.className = "mt-4 bg-sky-700 text-white font-bold px-5 py-2.5 rounded-xl text-sm hover:bg-sky-800";
+        btnRestart.textContent = "Ulangi Latihan Soal";
+        return false;
+      };
 
       btnPrev.onclick = () => {
         if (m1TkaCurrentIdx > 0) {
@@ -2575,14 +2592,17 @@ end</div>
             if (ans === m1TkaQuestions[idx].answer) correctCount++;
           });
           const score = Math.round((correctCount / m1TkaQuestions.length) * 100);
+          localStorage.setItem("m1_tka_last_attempt", String(Date.now()));
 
           document.getElementById("m1-tka-quiz-box").classList.add("hidden");
           document.getElementById("m1-tka-result-card").classList.remove("hidden");
-          document.getElementById("m1-tka-score-text").textContent = `Nilai: ${score} / 100 (${correctCount} dari 30 Soal Benar)`;
+          document.getElementById("m1-tka-score-text").textContent = `Skor Akhir: ${score} / 100`;
+          checkM1Cooldown();
         }
       };
 
       btnRestart.onclick = () => {
+        if (checkM1Cooldown()) return;
         m1TkaCurrentIdx = 0;
         m1TkaUserAnswers.fill(null);
         document.getElementById("m1-tka-quiz-box").classList.remove("hidden");
@@ -2590,7 +2610,9 @@ end</div>
         renderM1TkaQuestion();
       };
 
-      renderM1TkaQuestion();
+      if (!checkM1Cooldown()) {
+        renderM1TkaQuestion();
+      }
     }
 
     window.checkHoax = function(isHoax) {
@@ -2838,12 +2860,25 @@ end</div>
       }
     });
 
+    // PROTEKSI VIEW SOURCE / INSPECT ELEMENT GLOBAL DI MODE SISWA
     document.addEventListener("keydown", (e) => {
-      if (!isQuizActive) return;
+      if (isTeacher) return;
       if (
-        e.key === "PrintScreen" ||
-        (e.ctrlKey && (e.key === "p" || e.key === "P" || e.key === "c" || e.key === "C" || e.key === "u" || e.key === "U")) ||
-        (e.ctrlKey && e.shiftKey && (e.key === "S" || e.key === "s" || e.key === "I" || e.key === "i"))
+        e.key === "F12" ||
+        (e.ctrlKey && (e.key === "u" || e.key === "U" || e.key === "s" || e.key === "S")) ||
+        (e.ctrlKey && e.shiftKey && ["I", "i", "J", "j", "C", "c"].includes(e.key))
+      ) {
+        e.preventDefault();
+        if (isQuizActive) {
+          lockSimulasiScreen("Terdeteksi mencoba membuka Developer Tools / melihat kode sumber!");
+        }
+        return;
+      }
+      if (
+        isQuizActive &&
+        (e.key === "PrintScreen" ||
+          (e.ctrlKey && (e.key === "p" || e.key === "P" || e.key === "c" || e.key === "C")) ||
+          (e.ctrlKey && e.shiftKey && (e.key === "S" || e.key === "s")))
       ) {
         e.preventDefault();
         lockSimulasiScreen("Terdeteksi mencoba mengambil tangkapan layar (screenshot) / menyalin teks!");
@@ -2851,11 +2886,92 @@ end</div>
     });
 
     document.addEventListener("contextmenu", (e) => {
-      if (isQuizActive) {
+      if (!isTeacher) {
         e.preventDefault();
-        lockSimulasiScreen("Klik kanan dilarang selama Latihan Soal (TKA) berlangsung!");
+        if (isQuizActive) {
+          lockSimulasiScreen("Klik kanan dilarang selama Latihan Soal (TKA) berlangsung!");
+        }
       }
     });
+
+    function getTKACooldownStorageKey(packetTitle) {
+      return "tka_cd_" + btoa(unescape(encodeURIComponent(packetTitle))).replace(/[^a-zA-Z0-9]/g, "").slice(0, 28);
+    }
+
+    async function checkTKACooldown(packetTitle) {
+      const studentName = (localStorage.getItem("student_name") || "").trim().toLowerCase();
+      const studentClass = (localStorage.getItem("student_class") || "").trim();
+      let latestAttemptMs = Number(localStorage.getItem(getTKACooldownStorageKey(packetTitle)) || 0);
+
+      // Verifikasi juga ke Firestore agar tetap terkunci meski siswa ganti browser/perangkat
+      if (studentName && studentName !== "anonim") {
+        try {
+          const snap = await getDocs(collection(db, "ulangan_harian"));
+          snap.forEach((docSnap) => {
+            const d = docSnap.data();
+            if (
+              String(d.studentName || "").trim().toLowerCase() === studentName &&
+              String(d.studentClass || "").trim() === studentClass &&
+              d.babTitle === packetTitle
+            ) {
+              const recordMs = d.submittedAtMs
+                ? Number(d.submittedAtMs)
+                : (d.timestamp && typeof d.timestamp.toMillis === "function" ? d.timestamp.toMillis() : 0);
+              if (recordMs > latestAttemptMs) latestAttemptMs = recordMs;
+            }
+          });
+        } catch (err) {
+          console.warn("Gagal memeriksa riwayat cooldown Firestore:", err);
+        }
+      }
+
+      const elapsed = Date.now() - latestAttemptMs;
+      if (latestAttemptMs > 0 && elapsed < COOLDOWN_24H_MS) {
+        return { locked: true, remainingMs: COOLDOWN_24H_MS - elapsed };
+      }
+      return { locked: false, remainingMs: 0 };
+    }
+
+    let tkaCooldownInterval = null;
+    async function refreshTKACooldownUI() {
+      const selectEl = document.getElementById("simulasi-target-select");
+      const btnStart = document.getElementById("btn-start-quiz");
+      const bannerEl = document.getElementById("tka-cooldown-banner");
+      const timerEl = document.getElementById("tka-cooldown-timer");
+      if (!selectEl || !btnStart) return;
+
+      if (tkaCooldownInterval) clearInterval(tkaCooldownInterval);
+      const status = await checkTKACooldown(selectEl.value);
+
+      if (status.locked) {
+        let rem = status.remainingMs;
+        bannerEl.classList.remove("hidden");
+        btnStart.disabled = true;
+        btnStart.className = "mt-6 bg-slate-400 text-white font-bold px-6 py-3 rounded-xl text-base cursor-not-allowed";
+        btnStart.textContent = "Terkunci (Tunggu Jeda 24 Jam)";
+        timerEl.textContent = formatRemainingTime(rem);
+
+        tkaCooldownInterval = setInterval(() => {
+          rem -= 1000;
+          if (rem <= 0) {
+            clearInterval(tkaCooldownInterval);
+            refreshTKACooldownUI();
+          } else {
+            timerEl.textContent = formatRemainingTime(rem);
+          }
+        }, 1000);
+      } else {
+        bannerEl.classList.add("hidden");
+        btnStart.disabled = false;
+        btnStart.className = "mt-6 bg-amber-500 text-white font-bold px-6 py-3 rounded-xl text-base hover:bg-amber-600 shadow-md";
+        btnStart.textContent = "Izinkan Kamera & Mulai Latihan Soal (TKA)";
+      }
+    }
+
+    const simSelectEl = document.getElementById("simulasi-target-select");
+    if (simSelectEl) {
+      simSelectEl.onchange = () => refreshTKACooldownUI();
+    }
 
     function getSelectedTKAPacket(titleSelect) {
       if (titleSelect.includes("Stimulus 1")) {
@@ -2878,7 +2994,21 @@ end</div>
     const btnStartQuiz = document.getElementById("btn-start-quiz");
     if (btnStartQuiz) {
       btnStartQuiz.onclick = async () => {
+        const studentName = (localStorage.getItem("student_name") || "").trim();
+        if (!studentName || studentName === "Anonim") {
+          document.getElementById("student-modal").classList.remove("hidden");
+          showToast("Silakan isi Absen Harian terlebih dahulu sebelum memulai ujian!");
+          return;
+        }
+
         const titleSelect = document.getElementById("simulasi-target-select").value;
+        const cooldown = await checkTKACooldown(titleSelect);
+        if (cooldown.locked) {
+          refreshTKACooldownUI();
+          showToast("Paket soal masih terkunci. Silakan tunggu jeda 24 jam!");
+          return;
+        }
+
         const packet = getSelectedTKAPacket(titleSelect);
 
         try {
@@ -3098,46 +3228,33 @@ end</div>
 
         if (maxPoints > 0) {
           document.getElementById("quiz-score-display").textContent = `${finalScore} / 100`;
-          document.getElementById("quiz-score-detail").textContent = `Poin Pilihan Ganda: ${earnedPoints.toFixed(1)} dari ${maxPoints} soal.${essayResponses.length ? ` (${essayResponses.length} jawaban Essay terkirim ke Guru)` : ''}`;
+          document.getElementById("quiz-score-detail").textContent = `Skor akhir Anda telah tercatat otomatis ke rekap Guru. Paket soal ini terkunci selama 24 jam sebelum dapat dicoba kembali.`;
         } else {
           document.getElementById("quiz-score-display").textContent = "Terkirim";
-          document.getElementById("quiz-score-detail").textContent = `${essayResponses.length} jawaban Essay telah tersimpan dan siap dikoreksi Guru.`;
+          document.getElementById("quiz-score-detail").textContent = `${essayResponses.length} jawaban Essay telah tersimpan dan siap dikoreksi Guru. Paket soal ini terkunci selama 24 jam.`;
         }
 
-        // Render Pembahasan PG & Kunci Essay
+        // Sembunyikan kunci jawaban & pembahasan dari tampilan siswa (tampilkan skor saja)
         const reviewContainer = document.getElementById("tka-review-container");
-        reviewContainer.innerHTML = `<h4 class="text-lg font-extrabold text-slate-900">Kunci Jawaban &amp; Pembahasan Latihan Soal (TKA)</h4>`;
-
-        reviewItems.forEach((item) => {
-          const card = document.createElement("div");
-          card.className = `p-4 rounded-xl border ${item.isCorrect ? 'bg-emerald-50/70 border-emerald-200' : 'bg-rose-50/70 border-rose-200'} text-xs space-y-1`;
-          card.innerHTML = `
-            <div class="flex justify-between font-extrabold">
-              <span>${item.label}</span>
-              <span class="${item.isCorrect ? 'text-emerald-700' : 'text-rose-700'}">${item.isCorrect ? '✓ Benar' : '✕ Perlu Evaluasi'}</span>
-            </div>
-            <p class="text-slate-800 font-semibold">${item.question}</p>
-            <p class="text-slate-600">Jawaban Kamu: <strong>${item.userAnswer}</strong></p>
-            <p class="text-emerald-900">Kunci Jawaban: <strong>${item.correctAnswer}</strong></p>
-            <p class="text-slate-600 italic">Pembahasan: ${item.why}</p>
-          `;
-          reviewContainer.appendChild(card);
-        });
-
-        essayResponses.forEach((eItem) => {
-          const card = document.createElement("div");
-          card.className = "p-4 rounded-xl border bg-violet-50/60 border-violet-200 text-xs space-y-1.5";
-          card.innerHTML = `
-            <p class="font-extrabold text-violet-900">${eItem.title}</p>
-            <p class="text-slate-800 font-semibold">${eItem.question}</p>
-            <p class="text-slate-700 bg-white p-2 rounded border"><strong>Jawaban Kamu:</strong> ${eItem.studentAnswer}</p>
-            <p class="text-emerald-900 bg-emerald-50 p-2 rounded border border-emerald-200"><strong>Kunci &amp; Rubrik Penskoran:</strong> ${eItem.key}</p>
-          `;
-          reviewContainer.appendChild(card);
-        });
+        reviewContainer.innerHTML = `
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 text-center space-y-3">
+            <p class="text-xs text-slate-600">Demi menjaga kerahasiaan evaluasi, rincian jawaban benar/salah dan pembahasan tidak ditampilkan.</p>
+            <button type="button" id="btn-back-tka-menu" class="bg-slate-800 text-white font-bold px-5 py-2.5 rounded-xl text-xs hover:bg-slate-900">
+              Kembali ke Pilihan Paket Soal
+            </button>
+          </div>
+        `;
+        document.getElementById("btn-back-tka-menu").onclick = () => {
+          document.getElementById("quiz-result-box").classList.add("hidden");
+          document.getElementById("quiz-start-banner").classList.remove("hidden");
+          refreshTKACooldownUI();
+        };
 
         const studentName = localStorage.getItem("student_name") || "Anonim";
         const studentClass = localStorage.getItem("student_class") || "-";
+        const nowMs = Date.now();
+
+        localStorage.setItem(getTKACooldownStorageKey(titleSelect), String(nowMs));
 
         try {
           await addDoc(collection(db, "ulangan_harian"), {
@@ -3146,9 +3263,10 @@ end</div>
             babTitle: titleSelect,
             score: finalScore,
             essayAnswers: essayResponses,
+            submittedAtMs: nowMs,
             timestamp: new Date()
           });
-          showToast("Nilai & Jawaban Latihan Soal (TKA) berhasil disimpan!");
+          showToast("Skor Latihan Soal (TKA) berhasil disimpan!");
         } catch (err) {
           showToast("Error simpan nilai: " + err.message);
         }
@@ -3500,105 +3618,111 @@ end</div>
       });
     });
 
-    // REKAP ABSEN, ULANGAN (LATIHAN SOAL TKA), REFLEKSI
-    onSnapshot(collection(db, "absen_harian"), (snap) => {
-      const container = document.getElementById("rekap-absen-container");
-      container.innerHTML = "";
-      if (snap.empty) {
-        container.innerHTML = "<p class='text-sm text-slate-500'>Belum ada absen harian siswa.</p>";
-        return;
-      }
-      snap.forEach(docSnap => {
-        const d = docSnap.data();
-        const item = document.createElement("div");
-        item.className = "p-4 rounded-xl border bg-slate-50 flex justify-between items-center";
-        item.innerHTML = `
-          <div>
-            <p class="font-bold text-slate-900">${d.studentName} <span class="text-xs bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full ml-1">${d.studentClass}</span></p>
-            <p class="text-xs text-slate-500 mt-1">Waktu Absen: ${d.timeString}</p>
-          </div>
-          <button data-id="${docSnap.id}" class="btn-del-absen text-rose-600 text-xs font-bold hover:underline">Hapus</button>
-        `;
-        container.appendChild(item);
-      });
+    // REKAP ABSEN, ULANGAN (LATIHAN SOAL TKA), REFLEKSI (HANYA DIMUAT SETELAH LOGIN GURU)
+    let teacherListenersInitialized = false;
+    function initTeacherListeners() {
+      if (teacherListenersInitialized || !isTeacher) return;
+      teacherListenersInitialized = true;
 
-      document.querySelectorAll(".btn-del-absen").forEach(b => {
-        b.onclick = async () => {
-          await deleteDoc(doc(db, "absen_harian", b.dataset.id));
-          showToast("Data absen dihapus.");
-        };
-      });
-    });
-
-    onSnapshot(collection(db, "ulangan_harian"), (snap) => {
-      const container = document.getElementById("rekap-ulangan-container");
-      container.innerHTML = "";
-      if (snap.empty) {
-        container.innerHTML = "<p class='text-sm text-slate-500'>Belum ada hasil nilai Latihan Soal (TKA).</p>";
-        return;
-      }
-      snap.forEach(docSnap => {
-        const d = docSnap.data();
-        const hasEssays = Array.isArray(d.essayAnswers) && d.essayAnswers.length > 0;
-        const essayHtml = hasEssays
-          ? `<details class="mt-2 bg-white p-2.5 rounded-lg border text-xs"><summary class="font-bold text-violet-800 cursor-pointer">Lihat ${d.essayAnswers.length} Jawaban Essay Siswa</summary><div class="mt-2 space-y-2">${d.essayAnswers.map(ea => `<div class="border-b pb-1"><p class="font-bold">${ea.title}</p><p class="text-slate-700">${ea.studentAnswer}</p></div>`).join("")}</div></details>`
-          : "";
-
-        const item = document.createElement("div");
-        item.className = "p-4 rounded-xl border bg-slate-50";
-        item.innerHTML = `
-          <div class="flex justify-between items-center">
+      onSnapshot(collection(db, "absen_harian"), (snap) => {
+        const container = document.getElementById("rekap-absen-container");
+        container.innerHTML = "";
+        if (snap.empty) {
+          container.innerHTML = "<p class='text-sm text-slate-500'>Belum ada absen harian siswa.</p>";
+          return;
+        }
+        snap.forEach(docSnap => {
+          const d = docSnap.data();
+          const item = document.createElement("div");
+          item.className = "p-4 rounded-xl border bg-slate-50 flex justify-between items-center";
+          item.innerHTML = `
             <div>
-              <p class="font-bold text-slate-900">${d.studentName} <span class="text-xs bg-amber-100 text-amber-800 px-2 py-0.5 rounded-full ml-1">${d.studentClass}</span></p>
-              <p class="text-xs text-slate-600 mt-1">${d.babTitle}</p>
+              <p class="font-bold text-slate-900">${d.studentName} <span class="text-xs bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full ml-1">${d.studentClass}</span></p>
+              <p class="text-xs text-slate-500 mt-1">Waktu Absen: ${d.timeString}</p>
             </div>
-            <div class="flex items-center gap-3">
-              <span class="text-xl font-extrabold ${d.score >= 75 ? 'text-emerald-600' : 'text-rose-600'}">Nilai PG: ${d.score}</span>
-              <button data-id="${docSnap.id}" class="btn-del-ul text-rose-600 text-xs font-bold hover:underline">Hapus</button>
+            <button data-id="${docSnap.id}" class="btn-del-absen text-rose-600 text-xs font-bold hover:underline">Hapus</button>
+          `;
+          container.appendChild(item);
+        });
+
+        document.querySelectorAll(".btn-del-absen").forEach(b => {
+          b.onclick = async () => {
+            await deleteDoc(doc(db, "absen_harian", b.dataset.id));
+            showToast("Data absen dihapus.");
+          };
+        });
+      });
+
+      onSnapshot(collection(db, "ulangan_harian"), (snap) => {
+        const container = document.getElementById("rekap-ulangan-container");
+        container.innerHTML = "";
+        if (snap.empty) {
+          container.innerHTML = "<p class='text-sm text-slate-500'>Belum ada hasil nilai Latihan Soal (TKA).</p>";
+          return;
+        }
+        snap.forEach(docSnap => {
+          const d = docSnap.data();
+          const hasEssays = Array.isArray(d.essayAnswers) && d.essayAnswers.length > 0;
+          const essayHtml = hasEssays
+            ? `<details class="mt-2 bg-white p-2.5 rounded-lg border text-xs"><summary class="font-bold text-violet-800 cursor-pointer">Lihat ${d.essayAnswers.length} Jawaban Essay Siswa</summary><div class="mt-2 space-y-2">${d.essayAnswers.map(ea => `<div class="border-b pb-1"><p class="font-bold">${ea.title}</p><p class="text-slate-700">${ea.studentAnswer}</p></div>`).join("")}</div></details>`
+            : "";
+
+          const item = document.createElement("div");
+          item.className = "p-4 rounded-xl border bg-slate-50";
+          item.innerHTML = `
+            <div class="flex justify-between items-center">
+              <div>
+                <p class="font-bold text-slate-900">${d.studentName} <span class="text-xs bg-amber-100 text-amber-800 px-2 py-0.5 rounded-full ml-1">${d.studentClass}</span></p>
+                <p class="text-xs text-slate-600 mt-1">${d.babTitle}</p>
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="text-xl font-extrabold ${d.score >= 75 ? 'text-emerald-600' : 'text-rose-600'}">Nilai PG: ${d.score}</span>
+                <button data-id="${docSnap.id}" class="btn-del-ul text-rose-600 text-xs font-bold hover:underline">Hapus</button>
+              </div>
             </div>
-          </div>
-          ${essayHtml}
-        `;
-        container.appendChild(item);
+            ${essayHtml}
+          `;
+          container.appendChild(item);
+        });
+
+        document.querySelectorAll(".btn-del-ul").forEach(b => {
+          b.onclick = async () => {
+            await deleteDoc(doc(db, "ulangan_harian", b.dataset.id));
+            showToast("Nilai dihapus.");
+          };
+        });
       });
 
-      document.querySelectorAll(".btn-del-ul").forEach(b => {
-        b.onclick = async () => {
-          await deleteDoc(doc(db, "ulangan_harian", b.dataset.id));
-          showToast("Nilai dihapus.");
-        };
-      });
-    });
+      onSnapshot(collection(db, "jawaban_siswa"), (snap) => {
+        const container = document.getElementById("rekap-siswa-container");
+        container.innerHTML = "";
+        if (snap.empty) {
+          container.innerHTML = "<p class='text-sm text-slate-500'>Belum ada refleksi siswa.</p>";
+          return;
+        }
+        snap.forEach(docSnap => {
+          const d = docSnap.data();
+          const item = document.createElement("div");
+          item.className = "p-4 rounded-xl border bg-slate-50 flex justify-between items-start gap-4";
+          item.innerHTML = `
+            <div>
+              <p class="font-bold text-slate-900">${d.studentName} <span class="text-xs bg-sky-100 text-sky-800 px-2 py-0.5 rounded-full ml-1">${d.studentClass}</span></p>
+              <p class="text-xs font-bold text-violet-700 mt-1">${d.babTitle}</p>
+              <p class="text-sm text-slate-700 mt-1">"${d.notes}"</p>
+            </div>
+            <button data-id="${docSnap.id}" class="btn-del-ans text-rose-600 text-xs font-bold hover:underline">Hapus</button>
+          `;
+          container.appendChild(item);
+        });
 
-    onSnapshot(collection(db, "jawaban_siswa"), (snap) => {
-      const container = document.getElementById("rekap-siswa-container");
-      container.innerHTML = "";
-      if (snap.empty) {
-        container.innerHTML = "<p class='text-sm text-slate-500'>Belum ada refleksi siswa.</p>";
-        return;
-      }
-      snap.forEach(docSnap => {
-        const d = docSnap.data();
-        const item = document.createElement("div");
-        item.className = "p-4 rounded-xl border bg-slate-50 flex justify-between items-start gap-4";
-        item.innerHTML = `
-          <div>
-            <p class="font-bold text-slate-900">${d.studentName} <span class="text-xs bg-sky-100 text-sky-800 px-2 py-0.5 rounded-full ml-1">${d.studentClass}</span></p>
-            <p class="text-xs font-bold text-violet-700 mt-1">${d.babTitle}</p>
-            <p class="text-sm text-slate-700 mt-1">"${d.notes}"</p>
-          </div>
-          <button data-id="${docSnap.id}" class="btn-del-ans text-rose-600 text-xs font-bold hover:underline">Hapus</button>
-        `;
-        container.appendChild(item);
+        document.querySelectorAll(".btn-del-ans").forEach(b => {
+          b.onclick = async () => {
+            await deleteDoc(doc(db, "jawaban_siswa", b.dataset.id));
+            showToast("Refleksi dihapus.");
+          };
+        });
       });
-
-      document.querySelectorAll(".btn-del-ans").forEach(b => {
-        b.onclick = async () => {
-          await deleteDoc(doc(db, "jawaban_siswa", b.dataset.id));
-          showToast("Refleksi dihapus.");
-        };
-      });
-    });
+    }
 
     // EKSPOR DATA KE CSV
     async function exportCollectionToCSV(colName, filename, headers, mapRowFn) {
@@ -3642,6 +3766,7 @@ end</div>
     // INISIALISASI HALAMAN
     checkStudentIdentity();
     initM1TkaQuiz();
+    refreshTKACooldownUI();
     initFlowchartTracing();
     renderMatchingGame();
     if (window.lucide) lucide.createIcons();
