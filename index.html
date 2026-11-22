@@ -122,7 +122,7 @@
         <div class="notice border border-sky-100 bg-sky-50 text-sky-900 no-print">
           <div class="flex gap-3">
             <i data-lucide="info" class="mt-0.5 w-5 h-5 shrink-0"></i>
-            <p>Pilih bab materi, kirim tugas praktik, atau ikuti simulasi ujian berpenjagaan kamera depan.</p>
+            <p>Pilih bab materi, kirim tugas praktik, atau kerjakan Latihan Soal (TKA) berpenjagaan kamera depan.</p>
           </div>
         </div>
 
@@ -136,7 +136,7 @@
             <i data-lucide="file-up" class="w-4 h-4 inline mr-1"></i>Tugas Praktik
           </button>
           <button type="button" class="module-button rounded-xl px-4 py-2.5 text-sm font-bold border-amber-300 text-amber-800" data-module="module-simulasi">
-            <i data-lucide="shield-check" class="w-4 h-4 inline mr-1"></i>Simulasi Bab
+            <i data-lucide="shield-check" class="w-4 h-4 inline mr-1"></i>Latihan Soal (TKA)
           </button>
         </nav>
 
@@ -152,7 +152,7 @@
             <button type="button" class="subchapter-button active rounded-xl px-3.5 py-2 text-sm" data-subchapter="m1-konsep">A. Konsep Dasar</button>
             <button type="button" class="subchapter-button rounded-xl px-3.5 py-2 text-sm" data-subchapter="m1-excel">B. Tabel & Rumus Olah Data</button>
             <button type="button" class="subchapter-button rounded-xl px-3.5 py-2 text-sm" data-subchapter="m1-sheets">C. Visualisasi 3 Diagram</button>
-            <button type="button" class="subchapter-button rounded-xl px-3.5 py-2 text-sm" data-subchapter="m1-latihan">D. Latihan Praktik TKA (30 Soal)</button>
+            <button type="button" class="subchapter-button rounded-xl px-3.5 py-2 text-sm" data-subchapter="m1-latihan">D. Latihan Soal</button>
             <button type="button" class="subchapter-button rounded-xl px-3.5 py-2 text-sm" data-subchapter="m1-refleksi">E. Refleksi Pembelajaran</button>
           </nav>
 
@@ -305,7 +305,7 @@
                       <span class="font-bold text-sky-900">AVERAGE (Rata-rata)</span>
                       <span class="text-xs bg-sky-200 text-sky-800 px-2 py-0.5 rounded font-mono font-bold">=AVERAGE(...)</span>
                     </div>
-                    <p class="text-xs text-slate-600">Menhitung nilai rata-rata dari rentang angka.</p>
+                    <p class="text-xs text-slate-600">Menghitung nilai rata-rata dari rentang angka.</p>
                     <pre class="code-note bg-slate-900 text-emerald-400 p-2 rounded-lg mt-2 text-xs">=AVERAGE(B2:C2)</pre>
                   </div>
 
@@ -499,12 +499,12 @@
             </article>
           </section>
 
-          <!-- Subbab D Bab 1: LATIHAN PRAKTIK TKA (30 SOAL LENGKAP) -->
+          <!-- Subbab D Bab 1: LATIHAN SOAL (30 SOAL LENGKAP) -->
           <section id="m1-latihan" class="subchapter-view mt-5">
             <article class="card">
               <div class="flex items-center justify-between border-b pb-3 mb-4 flex-wrap gap-2">
                 <div>
-                  <h3 class="text-xl font-extrabold text-slate-900">D. Latihan Praktik TKA Bab 1 (30 Soal Interaktif)</h3>
+                  <h3 class="text-xl font-extrabold text-slate-900">D. Latihan Soal Bab 1 (30 Soal Interaktif)</h3>
                   <p class="text-xs text-slate-500">Uji pemahaman sintaks formula, analisis tabel, penanganan error, dan visualisasi diagram.</p>
                 </div>
                 <div class="flex items-center gap-2">
@@ -512,10 +512,10 @@
                 </div>
               </div>
 
-              <!-- Interaktif Player 30 Soal TKA Bab 1 -->
+              <!-- Interaktif Player 30 Soal Bab 1 -->
               <div id="m1-tka-quiz-box" class="p-4 rounded-2xl bg-slate-50 border border-slate-200">
                 <p id="m1-tka-question-text" class="font-extrabold text-base text-slate-900 leading-relaxed mb-4">
-                  Loading Soal TKA Bab 1...
+                  Loading Latihan Soal Bab 1...
                 </p>
 
                 <div id="m1-tka-options-container" class="space-y-2 text-sm"></div>
@@ -534,10 +534,10 @@
 
               <div id="m1-tka-result-card" class="mt-4 p-5 rounded-2xl bg-emerald-50 border border-emerald-200 hidden text-center">
                 <i data-lucide="award" class="w-12 h-12 text-emerald-600 mx-auto mb-2"></i>
-                <h4 class="text-xl font-extrabold text-emerald-900">Latihan TKA Bab 1 Selesai!</h4>
+                <h4 class="text-xl font-extrabold text-emerald-900">Latihan Soal Bab 1 Selesai!</h4>
                 <p id="m1-tka-score-text" class="text-3xl font-extrabold text-emerald-700 mt-2">Nilai: 0 / 100</p>
                 <button id="btn-m1-tka-restart" type="button" class="mt-4 bg-emerald-700 text-white px-4 py-2 rounded-xl text-xs font-bold hover:bg-emerald-800">
-                  Ulangi Latihan TKA (30 Soal)
+                  Ulangi Latihan Soal (30 Soal)
                 </button>
               </div>
             </article>
@@ -1148,18 +1148,18 @@ end</pre>
           </div>
         </section>
 
-        <!-- FITUR SIMULASI BAB (SISTEM PROCTORING & KAMERA) -->
+        <!-- FITUR LATIHAN SOAL (TKA) (SISTEM PROCTORING & KAMERA) -->
         <section id="module-simulasi" class="module-view mt-6">
           <div class="card border-l-4 border-amber-500">
             <div class="flex justify-between items-center flex-wrap gap-3">
               <div>
-                <h2 class="text-2xl font-extrabold text-slate-900" id="simulasi-heading">Simulasi Pembelajaran</h2>
-                <p class="mt-1 text-slate-600 text-sm">Uji pemahaman bab dengan sistem pengawasan kamera depan dan anti-kecurangan.</p>
+                <h2 class="text-2xl font-extrabold text-slate-900" id="simulasi-heading">Latihan Soal (TKA)</h2>
+                <p class="mt-1 text-slate-600 text-sm">Tes Kemampuan Akademik Informatika Kelas IX (40 Pilihan Ganda &amp; 10 Essay) dengan sistem pengawasan kamera depan.</p>
               </div>
               <div class="flex items-center gap-3">
                 <video id="simulasi-webcam" autoplay playsinline muted class="hidden w-24 h-16 rounded-lg border-2 border-amber-500 bg-black object-cover"></video>
                 <div id="quiz-timer-box" class="hidden bg-amber-100 border border-amber-300 rounded-xl px-4 py-2 font-mono font-bold text-amber-900 text-base">
-                  Sisa Waktu: <span id="quiz-timer">10:00</span>
+                  Sisa Waktu: <span id="quiz-timer">120:00</span>
                 </div>
               </div>
             </div>
@@ -1167,41 +1167,53 @@ end</pre>
 
           <div id="quiz-start-banner" class="card mt-6 text-center py-8">
             <i data-lucide="shield-alert" class="w-12 h-12 text-amber-500 mx-auto mb-2"></i>
-            <h3 class="text-xl font-extrabold text-slate-900">Pilih Judul Simulasi Bab</h3>
+            <h3 class="text-xl font-extrabold text-slate-900">Pilih Paket Latihan Soal (TKA)</h3>
             <p class="text-slate-600 max-w-lg mx-auto mt-1 text-sm">Sebelum memulai, pastikan izin Kamera Depan diberikan. Sistem akan mengunci otomatis jika Anda berpindah tab, meminimalkan layar, atau mengambil screenshot.</p>
             
-            <div class="max-w-md mx-auto mt-4 text-left">
-              <label class="block text-sm font-bold text-slate-700">Judul Simulasi yang Diikuti:</label>
+            <div class="max-w-lg mx-auto mt-4 text-left">
+              <label class="block text-sm font-bold text-slate-700">Paket Latihan Soal (TKA) yang Diikuti:</label>
               <select id="simulasi-target-select" class="w-full border rounded-xl p-3 mt-1 font-bold bg-white">
-                <option value="Simulasi Bab 1: Penyajian Data Mentah">Simulasi Bab 1: Penyajian Data Mentah</option>
-                <option value="Simulasi Bab 2: Algoritma Lanjutan & Literasi">Simulasi Bab 2: Algoritma Lanjutan & Literasi</option>
-                <option value="Simulasi Bab 3: Literasi Digital & Etika">Simulasi Bab 3: Literasi Digital & Etika</option>
-                <option value="Simulasi Bab 4: Keamanan Digital & Data">Simulasi Bab 4: Keamanan Digital & Data</option>
+                <option value="Paket Lengkap TKA Informatika (40 PG & 10 Essay)">Paket Lengkap TKA Informatika (40 PG & 10 Essay • 120 Menit)</option>
+                <option value="TKA Bagian I: Pilihan Ganda Lengkap (Soal 1 - 40)">TKA Bagian I: Pilihan Ganda Lengkap (Soal 1 - 40 • 90 Menit)</option>
+                <option value="TKA Stimulus 1: Alur Logika Mesin Kasir E-Kantin (Soal 1 - 5)">TKA Stimulus 1: Alur Logika Mesin Kasir E-Kantin (Soal 1 - 5)</option>
+                <option value="TKA Stimulus 2: Pengolahan Data Nilai Spreadsheet (Soal 6 - 15)">TKA Stimulus 2: Pengolahan Data Nilai Spreadsheet (Soal 6 - 15)</option>
+                <option value="TKA Stimulus 3: Pemrograman Scratch Game Bawah Laut (Soal 16 - 25)">TKA Stimulus 3: Pemrograman Scratch Game Bawah Laut (Soal 16 - 25)</option>
+                <option value="TKA Stimulus 4: Berpikir Komputasional & Struktur Data (Soal 26 - 40)">TKA Stimulus 4: Berpikir Komputasional & Struktur Data (Soal 26 - 40)</option>
+                <option value="TKA Bagian II: Uraian / Essay Lengkap (Soal 1 - 10)">TKA Bagian II: Uraian / Essay Lengkap (Soal 1 - 10)</option>
               </select>
             </div>
 
             <button id="btn-start-quiz" type="button" class="mt-6 bg-amber-500 text-white font-bold px-6 py-3 rounded-xl text-base hover:bg-amber-600 shadow-md">
-              Izinkan Kamera &amp; Mulai Simulasi
+              Izinkan Kamera &amp; Mulai Latihan Soal (TKA)
             </button>
           </div>
 
-          <!-- Lembar Soal Simulasi -->
+          <!-- Lembar Soal Latihan Soal (TKA) -->
           <form id="quiz-form" class="card mt-6 hidden space-y-6">
-            <h3 id="current-simulasi-title" class="font-extrabold text-lg text-amber-900 border-b pb-2">Judul Simulasi</h3>
+            <div class="border-b pb-3 flex flex-wrap justify-between items-center gap-2">
+              <h3 id="current-simulasi-title" class="font-extrabold text-lg text-amber-900">Latihan Soal (TKA)</h3>
+              <span class="text-xs bg-amber-100 text-amber-900 font-bold px-3 py-1 rounded-full">Model: PG Tunggal, PG Kompleks, Tabel Benar/Salah &amp; Essay</span>
+            </div>
             
             <div id="simulasi-questions-container" class="space-y-6"></div>
 
-            <button type="submit" class="w-full bg-amber-500 text-white font-bold py-3 rounded-xl hover:bg-amber-600 text-lg">
-              Kirim Jawaban Simulasi
+            <button type="submit" class="w-full bg-amber-500 text-white font-bold py-3 rounded-xl hover:bg-amber-600 text-lg shadow-md">
+              Kirim Jawaban Latihan Soal (TKA)
             </button>
           </form>
 
-          <!-- Tampilan Hasil Simulasi -->
-          <div id="quiz-result-box" class="card mt-6 hidden text-center py-8">
-            <i data-lucide="award" class="w-16 h-16 text-amber-500 mx-auto mb-2"></i>
-            <h3 class="text-2xl font-extrabold text-slate-900">Simulasi Selesai!</h3>
-            <p class="text-slate-600 mt-1">Nilai kamu telah otomatis tersimpan ke data Guru.</p>
-            <div class="mt-4 text-4xl font-extrabold text-amber-600" id="quiz-score-display">0 / 100</div>
+          <!-- Tampilan Hasil Latihan Soal (TKA) -->
+          <div id="quiz-result-box" class="card mt-6 hidden py-8">
+            <div class="text-center">
+              <i data-lucide="award" class="w-16 h-16 text-amber-500 mx-auto mb-2"></i>
+              <h3 class="text-2xl font-extrabold text-slate-900">Latihan Soal (TKA) Selesai!</h3>
+              <p class="text-slate-600 mt-1">Nilai Pilihan Ganda dan jawaban Essay kamu telah otomatis tersimpan ke data Guru.</p>
+              <div class="mt-4 text-4xl font-extrabold text-amber-600" id="quiz-score-display">0 / 100</div>
+              <p id="quiz-score-detail" class="text-sm font-bold text-slate-600 mt-2"></p>
+            </div>
+
+            <!-- Kunci Jawaban & Pembahasan TKA -->
+            <div id="tka-review-container" class="mt-8 pt-6 border-t space-y-4 text-left"></div>
           </div>
         </section>
 
@@ -1243,12 +1255,12 @@ end</pre>
       <section id="teacher-mode" class="mode-panel">
         <div class="card teacher-card border-l-4 border-violet-600">
           <h2 class="text-2xl font-extrabold text-slate-900">Panel Kelola Pembelajaran (Mode Guru)</h2>
-          <p class="mt-1 text-slate-600">Kelola hasil simulasi per bab, nilai tugas praktik, materi, video, rekap absen, dan ekspor data.</p>
+          <p class="mt-1 text-slate-600">Kelola hasil Latihan Soal (TKA), nilai tugas praktik, materi, video, rekap absen, dan ekspor data.</p>
         </div>
 
         <nav class="mt-6 flex flex-wrap gap-2">
           <button type="button" class="teacher-tab active rounded-xl px-4 py-2 text-sm font-bold" data-teacher-tab="rekap-absen">Rekap Absen</button>
-          <button type="button" class="teacher-tab rounded-xl px-4 py-2 text-sm font-bold" data-teacher-tab="rekap-ulangan">Nilai Simulasi Bab</button>
+          <button type="button" class="teacher-tab rounded-xl px-4 py-2 text-sm font-bold" data-teacher-tab="rekap-ulangan">Nilai Latihan Soal (TKA)</button>
           <button type="button" class="teacher-tab rounded-xl px-4 py-2 text-sm font-bold" data-teacher-tab="rekap-tugas">Penilaian Tugas Praktik</button>
           <button type="button" class="teacher-tab rounded-xl px-4 py-2 text-sm font-bold" data-teacher-tab="rekap-siswa">Refleksi Siswa</button>
           <button type="button" class="teacher-tab rounded-xl px-4 py-2 text-sm font-bold" data-teacher-tab="export-data">Ekspor Data</button>
@@ -1266,12 +1278,12 @@ end</pre>
           </div>
         </section>
 
-        <!-- Tab Rekap Nilai Simulasi -->
+        <!-- Tab Rekap Nilai Latihan Soal (TKA) -->
         <section id="rekap-ulangan" class="teacher-tab-panel mt-6">
           <div class="card">
-            <h3 class="font-extrabold text-lg mb-4">Rekap Hasil Nilai Simulasi Siswa per Bab</h3>
+            <h3 class="font-extrabold text-lg mb-4">Rekap Hasil Nilai Latihan Soal (TKA) Siswa</h3>
             <div id="rekap-ulangan-container" class="space-y-3">
-              <p class="text-sm text-slate-500">Memuat data nilai simulasi...</p>
+              <p class="text-sm text-slate-500">Memuat data nilai Latihan Soal (TKA)...</p>
             </div>
           </div>
         </section>
@@ -1300,7 +1312,7 @@ end</pre>
         <section id="export-data" class="teacher-tab-panel mt-6">
           <div class="card">
             <h3 class="font-extrabold text-lg mb-2">Ekspor Rekapitulasi Data (Excel / CSV)</h3>
-            <p class="text-sm text-slate-600 mb-5">Unduh data kehadiran, nilai simulasi, pengumpulan tugas, dan jawaban siswa ke format spreadsheet (.csv).</p>
+            <p class="text-sm text-slate-600 mb-5">Unduh data kehadiran, nilai Latihan Soal (TKA), pengumpulan tugas, dan jawaban siswa ke format spreadsheet (.csv).</p>
             
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
               <div class="p-4 border rounded-xl bg-slate-50 text-center">
@@ -1311,8 +1323,8 @@ end</pre>
 
               <div class="p-4 border rounded-xl bg-slate-50 text-center">
                 <i data-lucide="award" class="w-8 h-8 text-amber-600 mx-auto mb-2"></i>
-                <h4 class="font-bold text-slate-900 mb-1">Nilai Simulasi Bab</h4>
-                <button id="btn-export-ulangan" class="mt-2 w-full bg-amber-600 text-white font-bold py-2 px-3 rounded-lg text-xs hover:bg-amber-700">Unduh CSV Nilai</button>
+                <h4 class="font-bold text-slate-900 mb-1">Nilai Latihan Soal (TKA)</h4>
+                <button id="btn-export-ulangan" class="mt-2 w-full bg-amber-600 text-white font-bold py-2 px-3 rounded-lg text-xs hover:bg-amber-700">Unduh CSV Nilai TKA</button>
               </div>
 
               <div class="p-4 border rounded-xl bg-slate-50 text-center">
@@ -1466,11 +1478,11 @@ end</pre>
       <div class="access-dialog border-2 border-rose-500">
         <div class="text-center">
           <i data-lucide="lock" class="w-14 h-14 text-rose-600 mx-auto mb-2"></i>
-          <h2 class="text-2xl font-extrabold text-rose-700">Simulasi Terkunci!</h2>
+          <h2 class="text-2xl font-extrabold text-rose-700">Latihan Soal (TKA) Terkunci!</h2>
           <p id="quiz-lock-reason" class="mt-2 text-sm font-bold text-slate-800 bg-rose-50 p-3 rounded-xl border border-rose-200">
             Terdeteksi tindakan tidak diizinkan.
           </p>
-          <p class="mt-3 text-xs text-slate-600">Minta bantuan Guru untuk memasukkan Password pembuka kunci agar Anda dapat melanjutkan simulasi.</p>
+          <p class="mt-3 text-xs text-slate-600">Minta bantuan Guru untuk memasukkan Password pembuka kunci agar Anda dapat melanjutkan.</p>
         </div>
 
         <form id="quiz-unlock-form" class="mt-5">
@@ -1519,7 +1531,6 @@ end</pre>
         if (configSnap.exists()) {
           return configSnap.data().nip === inputNIP;
         } else {
-          // Buat dokumen konfigurasi otomatis di Firestore jika belum ada
           try {
             await setDoc(configRef, { 
               nip: "199306222025211016",
@@ -1537,7 +1548,7 @@ end</pre>
       }
     }
 
-    // DATABASE 30 SOAL TKA BAB 1 (PENYAJIAN DATA)
+    // DATABASE 30 SOAL LATIHAN BAB 1 (PENYAJIAN DATA)
     const m1TkaQuestions = [
       {
         q: "1. Kumpulan fakta mentah berupa angka atau teks yang belum memiliki struktur dan arti informasi jelas dinamakan...",
@@ -1721,26 +1732,622 @@ end</pre>
       }
     ];
 
-    // Database Soal Simulasi per Bab
-    const simulasiDatabase = {
-      "Simulasi Bab 1: Penyajian Data Mentah": [
-        { q: "1. Formula spreadsheet untuk menghitung nilai rata-rata dari sekelompok data adalah...", options: ["=SUM(...)", "=AVERAGE(...)", "=MAX(...)", "=IF(...)"], answer: "b" },
-        { q: "2. Jenis diagram yang paling tepat digunakan untuk membandingkan jumlah nilai antar siswa/kategori secara langsung adalah...", options: ["Diagram Batang", "Diagram Garis", "Diagram Lingkaran", "Diagram Venn"], answer: "a" }
-      ],
-      "Simulasi Bab 2: Algoritma Lanjutan & Literasi": [
-        { q: "1. Modul/subprogram yang mengembalikan nilai hasil (return value) dinamakan...", options: ["Procedure", "Function", "Variable", "Loop"], answer: "b" },
-        { q: "2. Salah satu manfaat utama dari penggunaan Library dalam pemrograman adalah...", options: ["Reusability (dapat dipakai ulang)", "Membuat RAM permanen", "Menghapus bug otomatis", "Mematikan CPU"], answer: "a" },
-        { q: "3. Simbol flowchart berbentuk belah ketupat (Decision) berfungsi untuk...", options: ["Start/Stop", "Proses Perhitungan", "Input/Output Data", "Keputusan / Percabangan"], answer: "d" }
-      ],
-      "Simulasi Bab 3: Literasi Digital & Etika": [
-        { q: "1. Ciri utama dari berita yang terindikasi Hoaks di media sosial adalah...", options: ["Berasal dari situs resmi", "Judul provokatif & memaksa disebarkan", "Mencantumkan data penelitian", "Ditulis bahasa ilmiah"], answer: "b" },
-        { q: "2. Rekam jejak seluruh aktivitas yang kita tinggalkan saat menggunakan internet disebut...", options: ["Jejak Digital", "Browsing History", "Cookie", "Phishing"], answer: "a" }
-      ],
-      "Simulasi Bab 4: Keamanan Digital & Data": [
-        { q: "1. Upaya penipuan digital untuk mencuri data akun/password melalui tautan palsu disebut...", options: ["Cyberbullying", "Phishing", "Coding", "Formatting"], answer: "b" },
-        { q: "2. Kombinasi kata sandi (password) berikut yang memiliki kriteria paling kuat adalah...", options: ["12345678", "rahasia123", "P@ssw0rd99!", "tanggallahir"], answer: "c" }
-      ]
+    // =========================================================================
+    // DATABASE LENGKAP LATIHAN SOAL (TKA) INFORMATIKA KELAS IX (40 PG + 10 ESSAY)
+    // =========================================================================
+    const tkaStimuliHTML = {
+      1: `
+        <div class="p-5 rounded-2xl bg-sky-50 border border-sky-200 space-y-4">
+          <div class="flex items-center justify-between flex-wrap gap-2 border-b border-sky-200 pb-2">
+            <span class="text-xs font-extrabold uppercase tracking-wider text-sky-800 bg-sky-200 px-3 py-1 rounded-full">STIMULUS 1 • SOAL NO. 1 – 5</span>
+            <span class="text-xs font-bold text-slate-600">Alur Logika Mesin Kasir E-Kantin</span>
+          </div>
+          <p class="text-sm text-slate-700 leading-relaxed">
+            Sebuah kantin sekolah menggunakan mesin kasir otomatis (<strong>E-Kantin</strong>) yang bekerja mengikuti urutan Diagram Alur (<em>Flowchart</em>) berikut:
+          </p>
+          <div class="bg-white p-4 rounded-xl border border-sky-100 overflow-x-auto">
+            <svg viewBox="0 0 680 540" class="w-full max-w-2xl mx-auto h-auto">
+              <!-- Start -->
+              <rect x="275" y="10" width="130" height="36" rx="18" fill="#e2e8f0" stroke="#475569" stroke-width="2"/>
+              <text x="340" y="33" font-size="12" font-weight="bold" text-anchor="middle" fill="#0f172a">Mulai</text>
+              <line x1="340" y1="46" x2="340" y2="68" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+
+              <!-- Input -->
+              <polygon points="210,68 490,68 470,106 190,106" fill="#e0e7ff" stroke="#4338ca" stroke-width="2"/>
+              <text x="340" y="91" font-size="11" font-weight="bold" text-anchor="middle" fill="#1e1b4b">Input: Status_Member, Total_Belanja</text>
+              <line x1="340" y1="106" x2="340" y2="128" stroke="#475569" stroke-width="2"/>
+
+              <!-- Init -->
+              <rect x="235" y="128" width="210" height="36" rx="6" fill="#f1f5f9" stroke="#475569" stroke-width="2"/>
+              <text x="340" y="150" font-size="11" font-weight="bold" text-anchor="middle" fill="#0f172a">Poin = 0 ; Potongan = 0</text>
+              <line x1="340" y1="164" x2="340" y2="186" stroke="#475569" stroke-width="2"/>
+
+              <!-- Decision 1 -->
+              <polygon points="340,186 455,222 340,258 225,222" fill="#fef3c7" stroke="#b45309" stroke-width="2"/>
+              <text x="340" y="226" font-size="11" font-weight="bold" text-anchor="middle" fill="#78350f">Status_Member = "Ya"?</text>
+
+              <!-- Left Branch (Ya) -->
+              <polyline points="225,222 165,222 165,265" fill="none" stroke="#475569" stroke-width="2"/>
+              <text x="195" y="215" font-size="11" font-weight="bold" fill="#15803d">Ya</text>
+              <rect x="105" y="265" width="120" height="32" rx="6" fill="#dcfce7" stroke="#15803d" stroke-width="2"/>
+              <text x="165" y="285" font-size="11" font-weight="bold" text-anchor="middle" fill="#14532d">Poin = 10</text>
+              <line x1="165" y1="297" x2="165" y2="318" stroke="#475569" stroke-width="2"/>
+
+              <!-- Decision 2A -->
+              <polygon points="165,318 265,352 165,386 65,352" fill="#fef3c7" stroke="#b45309" stroke-width="2"/>
+              <text x="165" y="349" font-size="10" font-weight="bold" text-anchor="middle" fill="#78350f">Total_Belanja</text>
+              <text x="165" y="362" font-size="10" font-weight="bold" text-anchor="middle" fill="#78350f">≥ 50.000?</text>
+
+              <!-- 2A Ya / Tidak -->
+              <polyline points="65,352 45,352 45,402" fill="none" stroke="#475569" stroke-width="1.5"/>
+              <text x="52" y="345" font-size="10" font-weight="bold" fill="#15803d">Ya</text>
+              <rect x="5" y="402" width="135" height="32" rx="5" fill="#f8fafc" stroke="#475569" stroke-width="1.5"/>
+              <text x="72" y="422" font-size="10" font-weight="bold" text-anchor="middle">Potongan = 10.000</text>
+
+              <polyline points="265,352 280,352 280,402" fill="none" stroke="#475569" stroke-width="1.5"/>
+              <text x="272" y="345" font-size="10" font-weight="bold" fill="#b91c1c">Tidak</text>
+              <rect x="195" y="402" width="135" height="32" rx="5" fill="#f8fafc" stroke="#475569" stroke-width="1.5"/>
+              <text x="262" y="422" font-size="10" font-weight="bold" text-anchor="middle">Potongan = 2.000</text>
+
+              <!-- Right Branch (Tidak) -->
+              <polyline points="455,222 515,222 515,318" fill="none" stroke="#475569" stroke-width="2"/>
+              <text x="485" y="215" font-size="11" font-weight="bold" fill="#b91c1c">Tidak</text>
+
+              <!-- Decision 2B -->
+              <polygon points="515,318 615,352 515,386 415,352" fill="#fef3c7" stroke="#b45309" stroke-width="2"/>
+              <text x="515" y="349" font-size="10" font-weight="bold" text-anchor="middle" fill="#78350f">Total_Belanja</text>
+              <text x="515" y="362" font-size="10" font-weight="bold" text-anchor="middle" fill="#78350f">≥ 50.000?</text>
+
+              <!-- 2B Ya / Tidak -->
+              <polyline points="415,352 405,352 405,402" fill="none" stroke="#475569" stroke-width="1.5"/>
+              <text x="408" y="345" font-size="10" font-weight="bold" fill="#15803d">Ya</text>
+              <rect x="348" y="402" width="135" height="32" rx="5" fill="#f8fafc" stroke="#475569" stroke-width="1.5"/>
+              <text x="415" y="422" font-size="10" font-weight="bold" text-anchor="middle">Potongan = 3.000</text>
+
+              <polyline points="615,352 625,352 625,402" fill="none" stroke="#475569" stroke-width="1.5"/>
+              <text x="615" y="345" font-size="10" font-weight="bold" fill="#b91c1c">Tidak</text>
+              <rect x="538" y="402" width="135" height="32" rx="5" fill="#f8fafc" stroke="#475569" stroke-width="1.5"/>
+              <text x="605" y="422" font-size="10" font-weight="bold" text-anchor="middle">Potongan = 0</text>
+
+              <!-- Merge lines -->
+              <line x1="72" y1="434" x2="72" y2="452" stroke="#475569" stroke-width="1.5"/>
+              <line x1="262" y1="434" x2="262" y2="452" stroke="#475569" stroke-width="1.5"/>
+              <line x1="415" y1="434" x2="415" y2="452" stroke="#475569" stroke-width="1.5"/>
+              <line x1="605" y1="434" x2="605" y2="452" stroke="#475569" stroke-width="1.5"/>
+              <line x1="72" y1="452" x2="605" y2="452" stroke="#475569" stroke-width="1.5"/>
+              <line x1="340" y1="452" x2="340" y2="466" stroke="#475569" stroke-width="2"/>
+
+              <!-- Total Bayar -->
+              <rect x="195" y="466" width="290" height="30" rx="6" fill="#f1f5f9" stroke="#475569" stroke-width="2"/>
+              <text x="340" y="485" font-size="11" font-weight="bold" text-anchor="middle">Total_Bayar = Total_Belanja - Potongan</text>
+              <line x1="340" y1="496" x2="340" y2="508" stroke="#475569" stroke-width="2"/>
+
+              <!-- Output & Stop -->
+              <text x="340" y="525" font-size="11" font-weight="bold" text-anchor="middle" fill="#1e1b4b">Output: Tampilkan Total_Bayar dan Poin → [Selesai]</text>
+            </svg>
+          </div>
+        </div>
+      `,
+      2: `
+        <div class="p-5 rounded-2xl bg-emerald-50 border border-emerald-200 space-y-3">
+          <div class="flex items-center justify-between flex-wrap gap-2 border-b border-emerald-200 pb-2">
+            <span class="text-xs font-extrabold uppercase tracking-wider text-emerald-800 bg-emerald-200 px-3 py-1 rounded-full">STIMULUS 2 • SOAL NO. 6 – 15</span>
+            <span class="text-xs font-bold text-slate-600">Pengolahan Data Nilai Spreadsheet</span>
+          </div>
+          <p class="text-sm text-slate-700">Perhatikan tabel lembar kerja (<em>Spreadsheet</em>) pengolahan nilai siswa berikut:</p>
+          <div class="overflow-x-auto border rounded-xl bg-white p-2 shadow-sm">
+            <table class="w-full text-xs text-left border-collapse">
+              <thead>
+                <tr class="bg-slate-800 text-white font-bold">
+                  <th class="p-2 border border-slate-700">Baris \ Kolom</th>
+                  <th class="p-2 border border-slate-700">A (No.)</th>
+                  <th class="p-2 border border-slate-700">B (Nama)</th>
+                  <th class="p-2 border border-slate-700">C (Tugas)</th>
+                  <th class="p-2 border border-slate-700">D (Ujian)</th>
+                  <th class="p-2 border border-slate-700">E (Rata-Rata)</th>
+                  <th class="p-2 border border-slate-700">F (Status Kelulusan)</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-200 font-mono">
+                <tr>
+                  <td class="p-2 font-bold bg-slate-100">2</td>
+                  <td class="p-2">1</td>
+                  <td class="p-2 font-sans font-bold">Andi</td>
+                  <td class="p-2">85</td>
+                  <td class="p-2">90</td>
+                  <td class="p-2 text-sky-800">=AVERAGE(C2:D2)</td>
+                  <td class="p-2 text-emerald-800">=IF(AND(C2&gt;=75; D2&gt;=75);"Lulus";"Remidial")</td>
+                </tr>
+                <tr>
+                  <td class="p-2 font-bold bg-slate-100">3</td>
+                  <td class="p-2">2</td>
+                  <td class="p-2 font-sans font-bold">Budi</td>
+                  <td class="p-2">70</td>
+                  <td class="p-2">65</td>
+                  <td class="p-2 text-sky-800">=AVERAGE(C3:D3)</td>
+                  <td class="p-2 text-emerald-800">=IF(AND(C3&gt;=75; D3&gt;=75);"Lulus";"Remidial")</td>
+                </tr>
+                <tr>
+                  <td class="p-2 font-bold bg-slate-100">4</td>
+                  <td class="p-2">3</td>
+                  <td class="p-2 font-sans font-bold">Citra</td>
+                  <td class="p-2">95</td>
+                  <td class="p-2">92</td>
+                  <td class="p-2 text-sky-800">=AVERAGE(C4:D4)</td>
+                  <td class="p-2 text-emerald-800">=IF(AND(C4&gt;=75; D4&gt;=75);"Lulus";"Remidial")</td>
+                </tr>
+                <tr>
+                  <td class="p-2 font-bold bg-slate-100">5</td>
+                  <td class="p-2">4</td>
+                  <td class="p-2 font-sans font-bold">Dewi</td>
+                  <td class="p-2">80</td>
+                  <td class="p-2">70</td>
+                  <td class="p-2 text-sky-800">=AVERAGE(C5:D5)</td>
+                  <td class="p-2 text-emerald-800">=IF(AND(C5&gt;=75; D5&gt;=75);"Lulus";"Remidial")</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      `,
+      3: `
+        <div class="p-5 rounded-2xl bg-violet-50 border border-violet-200 space-y-3">
+          <div class="flex items-center justify-between flex-wrap gap-2 border-b border-violet-200 pb-2">
+            <span class="text-xs font-extrabold uppercase tracking-wider text-violet-800 bg-violet-200 px-3 py-1 rounded-full">STIMULUS 3 • SOAL NO. 16 – 25</span>
+            <span class="text-xs font-bold text-slate-600">Pemrograman Scratch Game Bawah Laut</span>
+          </div>
+          <p class="text-sm text-slate-700">Pada game Scratch <strong>'Hiu &amp; Ikan'</strong>, skrip pada masing-masing Sprite diatur sebagai berikut:</p>
+          <div class="grid md:grid-cols-2 gap-3 text-xs">
+            <div class="codebox"><strong>Skrip Sprite Ikan Kecil:</strong>
+when ⚑ clicked
+set [Skor] to 0
+set [Kecepatan] to 4
+forever
+  move (Kecepatan) steps
+  if on edge, bounce
+  if &lt;(Skor) &gt; 5&gt; then set [Kecepatan] to 8
+  if &lt;(Skor) &gt; 15&gt; then set [Kecepatan] to 12
+  if &lt;touching [Hiu]?&gt; then
+    change [Skor] by 1
+    play sound [Bite]
+    go to (random position)
+  end
+end</div>
+            <div class="codebox"><strong>Skrip Sprite Kepiting:</strong>
+when ⚑ clicked
+forever
+  move (3) steps
+  if &lt;touching [Hiu]?&gt; then
+    say [GAME OVER!] for (2) secs
+    stop [all]
+  end
+end</div>
+          </div>
+        </div>
+      `,
+      4: `
+        <div class="p-5 rounded-2xl bg-amber-50 border border-amber-200 space-y-3">
+          <div class="flex items-center justify-between flex-wrap gap-2 border-b border-amber-200 pb-2">
+            <span class="text-xs font-extrabold uppercase tracking-wider text-amber-800 bg-amber-200 px-3 py-1 rounded-full">STIMULUS 4 • SOAL NO. 26 – 40</span>
+            <span class="text-xs font-bold text-slate-600">Berpikir Komputasional &amp; Struktur Data</span>
+          </div>
+          <p class="text-sm text-slate-700 leading-relaxed">
+            Di perpustakaan digital sekolah, petugas mengelola dua sistem data:<br>
+            • <strong>Printer Queue (Antrean Cetak):</strong> Berkas yang dikirim paling awal akan dicetak terlebih dahulu.<br>
+            • <strong>Tumpukan Buku (Stack):</strong> Buku dikembalikan ditumpuk ke atas <code>[Ahmad (Bawah), Budi (Tengah), Cici (Atas)]</code>. Petugas mengambil dari posisi paling atas.
+          </p>
+        </div>
+      `
     };
+
+    const tkaPGQuestions = [
+      // STIMULUS 1 (1 - 5)
+      {
+        num: 1, stimulus: 1, type: "single",
+        q: "1. Budi melakukan transaksi di mesin kasir dengan memasukkan data Status_Member = \"Ya\" dan Total_Belanja = 65.000. Jika alur diagram di atas dijalankan dari atas ke bawah, hasil Total_Bayar dan Poin yang tampil di layar kasir secara berurutan adalah...",
+        options: ["Rp. 55.000,- dan 10", "Rp. 55.000,- dan 0", "Rp. 63.000,- dan 10", "Rp. 65.000,- dan 0"],
+        answer: 0,
+        why: "Status_Member = 'Ya' menghasilkan Poin = 10. Total_Belanja (65.000) >= 50.000 mendapat Potongan = 10.000, sehingga Total_Bayar = 65.000 - 10.000 = Rp. 55.000,-."
+      },
+      {
+        num: 2, stimulus: 1, type: "single",
+        q: "2. Ani berbelanja dengan memasukkan data Status_Member = \"Tidak\" dan Total_Belanja = 45.000. Hasil Total_Bayar dan Poin yang tampil di layar kasir untuk transaksi Ani adalah...",
+        options: ["Rp. 42.000,- dan 10", "Rp. 43.000,- dan 0", "Rp. 45.000,- dan 0", "Rp. 45.000,- dan 10"],
+        answer: 2,
+        why: "Status_Member = 'Tidak' membuat Poin tetap 0, dan Total_Belanja (45.000) < 50.000 mendapat Potongan = 0, sehingga Total_Bayar = Rp. 45.000,-."
+      },
+      {
+        num: 3, stimulus: 1, type: "complex",
+        q: "3. (Pilihan Ganda Kompleks) Berdasarkan penelusuran alur kerja mesin kasir E-Kantin di atas, pilihlah semua pernyataan yang BENAR! (Jawaban benar lebih dari satu)",
+        options: [
+          "Jika Status member = \"ya\" dan total belanja = 30.000,- hasil akhirnya adalah total bayar = 28.000 dan poin = 10",
+          "Pelanggan dengan status member = \"tidak\" akan selalu memiliki nilai poin = 0 berapa pun total belanjanya.",
+          "Jika status member = \"tidak\" dan total belanja = 50.000,- pelanggan mendapatkan potongan = Rp. 10.000,-",
+          "Langkah perhitungan total bayar = total belanja – potongan hanya dijalankan jika pelanggan berstatus member."
+        ],
+        answer: [0, 1],
+        why: "Pernyataan 1 & 2 Benar. Non-member belanja 50.000 mendapat potongan Rp 3.000 (bukan 10.000), dan Total_Bayar dihitung untuk semua pelanggan."
+      },
+      {
+        num: 4, stimulus: 1, type: "tf_table",
+        q: "4. (Tabel Benar/Salah) Tentukan Benar atau Salah untuk setiap pernyataan mengenai diagram alur E-Kantin di atas!",
+        statements: [
+          "Jika pelanggan Member berbelanja tepat Rp50.000, alur diagram menuju cabang YA sehingga mendapat Potongan Rp10.000.",
+          "Simbol Belah Ketupat pada diagram alur di atas digunakan untuk memeriksa kondisi/keputusan (Status_Member dan Total_Belanja).",
+          "Jika Member dan Non-Member sama-sama berbelanja Rp60.000, selisih Total_Bayar keduanya adalah Rp10.000."
+        ],
+        answer: ["Benar", "Benar", "Salah"],
+        why: "Pernyataan 1 Benar (>= 50.000). Pernyataan 2 Benar. Pernyataan 3 Salah karena Member membayar Rp50.000 dan Non-Member membayar Rp57.000 (selisih Rp7.000)."
+      },
+      {
+        num: 5, stimulus: 1, type: "single",
+        q: "5. Struktur kontrol percabangan pada program algoritma E-Kantin di atas paling tepat dimodelkan menggunakan bentuk penulisan ....",
+        options: ["Percabangan Tunggal", "Percabangan Ganda", "Percabangan Bersarang", "Perulangan"],
+        answer: 2,
+        why: "Di dalam cabang percabangan Status_Member terdapat pengecekan kondisi lagi (Total_Belanja >= 50.000), sehingga disebut Percabangan Bersarang (Nested If)."
+      },
+
+      // STIMULUS 2 (6 - 15)
+      {
+        num: 6, stimulus: 2, type: "single",
+        q: "6. Guru menambahkan kolom baru pada sel F5 untuk menentukan ketuntasan nilai Ujian Dewi menggunakan formula =if (D5>=75; “Tuntas”;”Belum Tuntas”). Berdasarkan tabel data nilai di atas, teks apakah yang akan muncul?",
+        options: ["Tuntas", "Belum Tuntas", "Remedial", "#NAME?"],
+        answer: 1,
+        why: "Nilai D5 (Ujian Dewi) adalah 70. Karena 70 >= 75 bernilai SALAH, maka hasilnya adalah 'Belum Tuntas'."
+      },
+      {
+        num: 7, stimulus: 2, type: "single",
+        q: "7. Apakah hasil keluaran Status Kelulusan pada tabel untuk Dewi (Tugas = 80, Ujian = 70)?",
+        options: ["Lulus", "Remedial", "Istimewa", "#Name?"],
+        answer: 1,
+        why: "Formula menggunakan logika AND(C5>=75; D5>=75). Karena D5 = 70 (< 75), maka statusnya 'Remidial' (Remedial)."
+      },
+      {
+        num: 8, stimulus: 2, type: "complex",
+        q: "8. (Pilihan Ganda Kompleks) Pilihlah semua pernyataan yang BENAR berdasarkan tabel di atas! (Jawaban benar lebih dari satu)",
+        options: [
+          "Jumlah siswa yang dinyatakan 'Lulus' adalah sebanyak 2 orang (Andi dan Citra)",
+          "Rata-rata nilai tertinggi diraih oleh Citra dengan nilai sebesar 93,5",
+          "Dewi dinyatakan Lulus karena nilai Tugasnya mencapai 80",
+          "Budi dinyatakan Remidial karena kedua nilainya di bawah 75"
+        ],
+        answer: [0, 1, 3],
+        why: "Andi & Citra Lulus (2 orang), rata-rata Citra = (95+92)/2 = 93,5, dan Budi Remidial (70 & 65). Dewi dinyatakan Remidial karena nilai ujiannya 70."
+      },
+      {
+        num: 9, stimulus: 2, type: "tf_table",
+        q: "9. (Tabel Benar/Salah) Tentukan Benar atau Salah untuk setiap pernyataan mengenai formula spreadsheet berikut!",
+        statements: [
+          "Jika rumus di D2 ditulis =AVRG(B2:C2), layar akan menampilkan pesan error #NAME?.",
+          "Diagram Batang adalah pilihan terbaik untuk membandingkan rata-rata nilai antar siswa.",
+          "Jika sel B3 dihapus permanen, sel yang merujuk pada B3 akan menampilkan error #REF!."
+        ],
+        answer: ["Benar", "Benar", "Benar"],
+        why: "Ketiga pernyataan Benar: AVRG bukan fungsi baku (#NAME?), Diagram Batang cocok untuk perbandingan kategori, dan menghapus sel acuan menyebabkan #REF!."
+      },
+      {
+        num: 10, stimulus: 2, type: "single",
+        q: "10. Formula spreadsheet yang digunakan untuk mencari nilai tertinggi dari rentang data (B2:C5) adalah ....",
+        options: ["=MAX(B2:C5)", "=HIGH(B2:C5)", "=TOP(B2:C5)", "=MAXIMUM(B2:C5)"],
+        answer: 0,
+        why: "Fungsi baku spreadsheet untuk nilai tertinggi adalah =MAX(...)."
+      },
+      {
+        num: 11, stimulus: 2, type: "single",
+        q: "11. Notasi range yang menunjukkan seluruh sel data nilai dari baris 2 hingga baris 5 pada kolom B adalah...",
+        options: ["B2-B5", "B2..B5", "B2:B5", "B2;B5"],
+        answer: 2,
+        why: "Notasi range menggunakan tanda titik dua (:), yaitu B2:B5."
+      },
+      {
+        num: 12, stimulus: 2, type: "single",
+        q: "12. Jika syarat predikat diset =IF(OR(C2>=90; D2>=90); \"Istimewa\"; \"Reguler\"), siapakah yang mendapat predikat Istimewa?",
+        options: ["Hanya Citra", "Andi dan Citra", "Citra dan Dewi", "Semua Siswa"],
+        answer: 1,
+        why: "Andi memiliki nilai Ujian 90 (>=90) dan Citra memiliki nilai Tugas 95 & Ujian 92 (>=90)."
+      },
+      {
+        num: 13, stimulus: 2, type: "single",
+        q: "13. Kumpulan fakta mentah berupa angka atau teks yang belum diproses dan belum memiliki arti informasi jelas dinamakan...",
+        options: ["Data Mentah", "Tabel Terstruktur", "Informasi Digital", "Database Terolah"],
+        answer: 0,
+        why: "Data Mentah adalah kumpulan fakta yang belum diolah atau dikelompokkan."
+      },
+      {
+        num: 14, stimulus: 2, type: "single",
+        q: "14. Jenis diagram yang paling tepat digunakan untuk menyajikan proporsi persentase bagian dari keseluruhan (100%) adalah...",
+        options: ["Diagram Garis", "Diagram Batang", "Diagram Lingkaran (Pie Chart)", "Diagram Area"],
+        answer: 2,
+        why: "Diagram Lingkaran (Pie Chart) menunjukkan proporsi persentase dari total 100%."
+      },
+      {
+        num: 15, stimulus: 2, type: "single",
+        q: "15. Untuk melihat tren kenaikan atau penurunan nilai Try Out siswa dari bulan ke bulan, jenis diagram yang paling cocok adalah...",
+        options: ["Diagram Garis (Line Chart)", "Diagram Lingkaran (Pie Chart)", "Diagram Batang", "Diagram Hirarki"],
+        answer: 0,
+        why: "Diagram Garis (Line Chart) paling efektif untuk menampilkan tren perkembangan berdasarkan waktu."
+      },
+
+      // STIMULUS 3 (16 - 25)
+      {
+        num: 16, stimulus: 3, type: "single",
+        q: "16. Saat Hiu telah memakan 7 ekor ikan (Skor = 7), berapakah nilai variabel Kecepatan Ikan Kecil saat itu?",
+        options: ["4 Step", "8 Step", "12 Step", "15 Step"],
+        answer: 1,
+        why: "Karena Skor = 7 memenuhi kondisi (Skor > 5) dan belum > 15, maka Kecepatan diatur menjadi 8 Step."
+      },
+      {
+        num: 17, stimulus: 3, type: "complex",
+        q: "17. (Pilihan Ganda Kompleks) Pilih semua pernyataan yang BENAR tentang game Scratch di atas! (Jawaban benar lebih dari satu)",
+        options: [
+          "Setiap kali Hiu menyentuh Ikan Kecil, nilai Skor bertambah 1 poin.",
+          "Ketika Skor mencapai 16 poin, kecepatan ikan menjadi 12 langkah",
+          "Menyentuh Kepiting memberikan bonus skor sebesar 3 poin",
+          "Blok 'if on edge, bounce' mencegah Ikan keluar dari layar panggung"
+        ],
+        answer: [0, 1, 3],
+        why: "Pernyataan 1, 2, dan 4 Benar. Menyentuh Kepiting menyebabkan GAME OVER dan menghentikan semua skrip."
+      },
+      {
+        num: 18, stimulus: 3, type: "tf_table",
+        q: "18. (Tabel Benar/Salah) Tentukan Benar atau Salah untuk setiap pernyataan mengenai Scratch berikut!",
+        statements: [
+          "Blok warna Kuning (when flag clicked) tergolong kategori Events sebagai pemicu skrip.",
+          "Instruksi stop [all] hanya berfungsi menyembunyikan gambar Kepiting.",
+          "Batas sistem koordinat Sumbu X pada panggung Stage Scratch adalah -240 hingga +240."
+        ],
+        answer: ["Benar", "Salah", "Benar"],
+        why: "Pernyataan 1 & 3 Benar. Pernyataan 2 Salah karena stop [all] menghentikan seluruh jalannya program, bukan menyembunyikan sprite."
+      },
+      {
+        num: 19, stimulus: 3, type: "single",
+        q: "19. Area utama pada antarmuka Scratch tempat animasi, objek sprite, dan pementasan program dieksekusi dinamakan....",
+        options: ["Script Area", "Stage", "Pallette Blocks", "Costumes Pane"],
+        answer: 1,
+        why: "Stage adalah panggung utama tempat animasi dan permainan ditampilkan."
+      },
+      {
+        num: 20, stimulus: 3, type: "single",
+        q: "20. Kategori kode blok Scratch berwarna Biru yang berfungsi mengatur gerakan dan perpindahan posisi dinamakan...",
+        options: ["Motion", "Looks", "Control", "Sensing"],
+        answer: 0,
+        why: "Kategori Motion (Biru) mengatur perpindahan dan arah gerak sprite."
+      },
+      {
+        num: 21, stimulus: 3, type: "single",
+        q: "21. Untuk membuat instruksi perulangan tanpa henti pada Scratch, kita menggunakan blok kode...",
+        options: ["Repeat (10)", "Forever", "Repeat Until", "Wait (1) Secs"],
+        answer: 1,
+        why: "Blok Forever menjalankan instruksi di dalamnya secara terus-menerus tanpa henti."
+      },
+      {
+        num: 22, stimulus: 3, type: "single",
+        q: "22. Kategori kode blok Scratch yang berfungsi mendeteksi sentuhan kursor mouse atau objek lain dinamakan...",
+        options: ["Operator", "Variables", "Sensing", "Events"],
+        answer: 2,
+        why: "Kategori Sensing (Biru Muda/Cyan) berfungsi sebagai sensor deteksi sentuhan dan input."
+      },
+      {
+        num: 23, stimulus: 3, type: "single",
+        q: "23. Pada game 'Tangkap Apel', perintah untuk menggeser posisi Mangkok ke kanan sebesar 10 langkah saat panah kanan ditekan adalah...",
+        options: ["Change Y by 10", "Change X by 10", "Set X to 10", "Turn Right 10 Degrees"],
+        answer: 1,
+        why: "Geser ke kanan berarti menambah nilai koordinat horizontal (Change X by 10)."
+      },
+      {
+        num: 24, stimulus: 3, type: "single",
+        q: "24. Perintah Scratch yang digunakan untuk menghentikan seluruh jalannya program animasi/game saat Game Over adalah...",
+        options: ["Stop [all]", "Hide", "Delete this clone", "Clear"],
+        answer: 0,
+        why: "Blok Stop [all] menghentikan seluruh skrip di semua sprite."
+      },
+      {
+        num: 25, stimulus: 3, type: "single",
+        q: "25. Papan kerja tempat kita menyeret (drag) dan menyusun balok-balok perintah menjadi satu skrip dinamakan...",
+        options: ["Stage", "Sprite Pane", "Script Area", "Backdrop Palette"],
+        answer: 2,
+        why: "Script Area adalah lembar kerja tempat merangkai blok-blok kode."
+      },
+
+      // STIMULUS 4 (26 - 40)
+      {
+        num: 26, stimulus: 4, type: "single",
+        q: "26. Jika petugas perpustakaan mengambil 2 buah buku teratas dari tumpukan [Ahmad (Bawah), Budi (Tengah), Cici (Atas)], buku siapakah yang masih tersisa di meja?",
+        options: ["Cici", "Budi", "Ahmad", "Tidak ada buku tersisa"],
+        answer: 2,
+        why: "Prinsip Stack (LIFO): 2 buku teratas yang diambil adalah Cici lalu Budi, sehingga yang tersisa di bawah adalah Ahmad."
+      },
+      {
+        num: 27, stimulus: 4, type: "complex",
+        q: "27. (Pilihan Ganda Kompleks) Pilih semua pernyataan yang BENAR tentang Stack dan Queue! (Jawaban benar lebih dari satu)",
+        options: [
+          "Antrean cetak printer menerapkan prinsip FIFO (First In, First Out)",
+          "Fitur Undo pada pengolah kata menerapkan prinsip LIFO (Last In, First Out)",
+          "Menambahkan elemen baru pada Stack dinamakan Enqueue",
+          "Mengeluarkan elemen dari Queue dinamakan Dequeue"
+        ],
+        answer: [0, 1, 3],
+        why: "Pernyataan 1, 2, dan 4 Benar. Menambahkan elemen pada Stack dinamakan Push (bukan Enqueue)."
+      },
+      {
+        num: 28, stimulus: 4, type: "tf_table",
+        q: "28. (Tabel Benar/Salah) Tentukan Benar atau Salah untuk pernyataan Berpikir Komputasional berikut!",
+        statements: [
+          "Menyaring informasi tidak penting dan fokus pada poin utama dinamakan Abstraksi.",
+          "Algoritma Binary Search dapat langsung digunakan pada data acak tidak terurut.",
+          "Dalam struktur data Queue, elemen terakhir masuk akan diproses paling awal."
+        ],
+        answer: ["Benar", "Salah", "Salah"],
+        why: "Pernyataan 1 Benar. Pernyataan 2 Salah (Binary Search wajib data terurut). Pernyataan 3 Salah (Queue adalah FIFO: pertama masuk diproses paling awal)."
+      },
+      {
+        num: 29, stimulus: 4, type: "single",
+        q: "29. Proses memecah masalah besar dan kompleks menjadi sub-masalah kecil yang lebih mudah dikelola disebut....",
+        options: ["Abstraksi", "Dekomposisi", "Pengenalan Pola", "Algoritma"],
+        answer: 1,
+        why: "Dekomposisi adalah pemecahan masalah kompleks menjadi bagian-bagian kecil."
+      },
+      {
+        num: 30, stimulus: 4, type: "single",
+        q: "30. Metode pencarian data yang bekerja dengan membagi dua rentang data terurut secara berulang dinamakan...",
+        options: ["Linear Search", "Binary Search", "Bubble Sort", "Insertion Sort"],
+        answer: 1,
+        why: "Binary Search membagi dua ruang pencarian secara berulang pada data terurut."
+      },
+      {
+        num: 31, stimulus: 4, type: "single",
+        q: "31. Algoritma pengurutan yang bekerja membandingkan pasangan elemen bertetangga dan menukarnya jika urutannya salah adalah...",
+        options: ["Bubble Sort", "Selection Sort", "Quick Sort", "Merge Sort"],
+        answer: 0,
+        why: "Bubble Sort membandingkan dan menukar elemen yang bersebelahan secara berulang."
+      },
+      {
+        num: 32, stimulus: 4, type: "single",
+        q: "32. Operasi penambahan elemen baru ke dalam tumpukan (Stack) dinamakan...",
+        options: ["Pop", "Push", "Enqueue", "Dequeue"],
+        answer: 1,
+        why: "Push adalah operasi menambah elemen ke puncak Stack; Pop adalah mengambilnya."
+      },
+      {
+        num: 33, stimulus: 4, type: "single",
+        q: "33. Teknik memecah program besar menjadi subprogram kecil agar lebih terstruktur dan reusable disebut...",
+        options: ["Abstraksi", "Modularisasi Program", "Kompilasi", "Enkapsulasi"],
+        answer: 1,
+        why: "Modularisasi Program memecah program besar menjadi fungsi/prosedur kecil."
+      },
+      {
+        num: 34, stimulus: 4, type: "single",
+        q: "34. Perbedaan utama antara Function dan Procedure pada pemrograman adalah...",
+        options: [
+          "Function mengembalikan nilai hasil (return value), sedangkan Procedure tidak",
+          "Procedure menggunakan variabel, sedangkan Function tidak",
+          "Function hanya untuk angka, Procedure untuk teks",
+          "Tidak ada perbedaan fungsi"
+        ],
+        answer: 0,
+        why: "Function mengembalikan nilai (return value), sedangkan Procedure hanya menjalankan aksi tanpa nilai balik."
+      },
+      {
+        num: 35, stimulus: 4, type: "single",
+        q: "35. Kumpulan modul atau fungsi siap pakai yang disimpan dalam satu wadah sehingga dapat dipanggil berulang kali dinamakan...",
+        options: ["Compiler", "Library (Pustaka)", "Variable", "Flowchart"],
+        answer: 1,
+        why: "Library (Pustaka) berisi kumpulan fungsi/modul siap pakai."
+      },
+      {
+        num: 36, stimulus: 4, type: "single",
+        q: "36. Manfaat utama dari konsep Reusability pada penggunaan Library program adalah...",
+        options: [
+          "Kode dapat digunakan kembali di berbagai proyek tanpa menulis dari nol",
+          "Menghapus bug secara otomatis",
+          "Mempercepat koneksi internet",
+          "Mengubah kode visual menjadi fisik"
+        ],
+        answer: 0,
+        why: "Reusability memungkinkan kode digunakan ulang pada berbagai proyek."
+      },
+      {
+        num: 37, stimulus: 4, type: "single",
+        q: "37. Simbol berbentuk Oval (Terminator) pada bagan alur Flowchart berfungsi untuk...",
+        options: [
+          "Memproses perhitungan",
+          "Menyatakan titik Mulai (Start) atau Selesai (Stop)",
+          "Membaca input data",
+          "Mengambil keputusan"
+        ],
+        answer: 1,
+        why: "Terminator (Oval) menandai awal (Start) dan akhir (Stop) flowchart."
+      },
+      {
+        num: 38, stimulus: 4, type: "single",
+        q: "38. Simbol Flowchart berbentuk Belah Ketupat (Decision) digunakan untuk...",
+        options: [
+          "Titik Start/Stop",
+          "Mengambil keputusan atau percabangan logika",
+          "Input / Output data",
+          "Menghubungkan halaman"
+        ],
+        answer: 1,
+        why: "Belah ketupat (Decision) digunakan untuk pengujian kondisi logika (Ya/Tidak)."
+      },
+      {
+        num: 39, stimulus: 4, type: "single",
+        q: "39. Perintah membaca masukan data dari pengguna dalam Flowchart disimbolkan dengan bangun...",
+        options: ["Persegi panjang", "Jajar genjang", "Belah ketupat", "Lingkaran"],
+        answer: 1,
+        why: "Jajar genjang digunakan untuk proses Input dan Output."
+      },
+      {
+        num: 40, stimulus: 4, type: "single",
+        q: "40. Deskripsi langkah-langkah algoritma yang ditulis menggunakan bahasa natural terstruktur menyerupai kode asli dinamakan...",
+        options: ["Flowchart", "Pseudocode", "Bahasa Mesin", "Diagram Batang"],
+        answer: 1,
+        why: "Pseudocode adalah penulisan algoritma terstruktur menyerupai kode program."
+      }
+    ];
+
+    const tkaEssayQuestions = [
+      {
+        num: 1,
+        title: "Soal Essay 1 (Stack vs Queue)",
+        q: "Jelaskan perbedaan mendasar antara struktur data Stack (Tumpukan) dan Queue (Antrean) berdasarkan prinsip operasionalnya, serta berikan masing-masing 1 contoh penerapannya!",
+        key: "Stack menggunakan prinsip LIFO (Last In, First Out), contoh: Tumpukan piring/buku atau fitur Undo. Queue menggunakan prinsip FIFO (First In, First Out), contoh: Antrean tiket kasir atau antrean printer. (Skor maks: 10 poin)"
+      },
+      {
+        num: 2,
+        title: "Soal Essay 2 (Dekomposisi & Abstraksi)",
+        q: "Sebuah tim siswa merancang sistem pendaftaran siswa baru. Jelaskan bagaimana penerapan teknik Dekomposisi dan Abstraksi pada tugas tersebut!",
+        key: "Dekomposisi memecah proyek menjadi modul kecil (formulir, verifikasi dokumen, pembayaran). Abstraksi menyaring data penting (Nama, NISN, Alamat) dan mengabaikan detail tak relevan (warna baju favorit). (Skor maks: 10 poin)"
+      },
+      {
+        num: 3,
+        title: "Soal Essay 3 (Spreadsheet IF AND vs IF OR)",
+        q: "Jelaskan perbedaan logika formula =IF(AND(B2>=75; C2>=75); \"Lulus\"; \"Remidial\") dengan =IF(OR(B2>=75; C2>=75); \"Lulus\"; \"Remidial\")!",
+        key: "IF AND mewajibkan KEDUA syarat (B2 DAN C2) bernilai >= 75 untuk Lulus. IF OR cukup MINIMAL SALAH SATU syarat bernilai >= 75 untuk Lulus. (Skor maks: 10 poin)"
+      },
+      {
+        num: 4,
+        title: "Soal Essay 4 (Analisis Visualisasi Diagram)",
+        q: "Tentukan jenis diagram yang paling tepat untuk menyajikan: (A) Tren nilai Try Out 1 s/d 4 selama 4 bulan, dan (B) Persentase siswa Lulus vs Remidial! Berikan alasannya!",
+        key: "(A) Diagram Garis (Line Chart) karena efektif menunjukkan tren perkembangan seiring waktu. (B) Diagram Lingkaran (Pie Chart) karena tepat menunjukkan proporsi persentase bagian dari total 100%. (Skor maks: 10 poin)"
+      },
+      {
+        num: 5,
+        title: "Soal Essay 5 (Function vs Procedure)",
+        q: "Jelaskan perbedaan utama antara Function dan Procedure dalam pemrograman, lalu berikan masing-masing 1 contoh penerapannya dalam aplikasi sehari-hari (misalnya pada aplikasi kasir atau game)!",
+        key: "Perbedaan: Function mengembalikan nilai hasil pemrosesan (return value) untuk dipakai di bagian program lain, sedangkan Procedure hanya menjalankan serangkaian perintah/aksi tanpa mengembalikan nilai. Contoh: Function menghitung total harga belanja/skor game lalu mengembalikan angka hasilnya; Procedure menampilkan tulisan 'GAME OVER!' di layar atau mencetak struk belanja. (Skor maks: 10 poin)"
+      },
+      {
+        num: 6,
+        title: "Soal Essay 6 (Manfaat Library)",
+        q: "Sebutkan dan jelaskan 3 (tiga) manfaat utama penggunaan Library dalam pemrograman komputer!",
+        key: "1. Reusability (kode dapat dipakai ulang berulang kali). 2. Abstraction (menyembunyikan kerumitan internal). 3. Efficiency (menghemat waktu pengembangan aplikasi). (Skor maks: 10 poin)"
+      },
+      {
+        num: 7,
+        title: "Soal Essay 7 (Penyusunan Diagram Alur / Flowchart)",
+        q: "Uraikan susunan simbol Diagram Alur (Flowchart) sederhana untuk menentukan kategori umur pengguna dengan ketentuan: Program dimulai (Mulai) -> Membaca masukan data umur -> Jika umur >= 18 tampilkan 'Dewasa', selain itu tampilkan 'Anak-anak' -> Program berakhir (Selesai). Sebutkan simbol yang tepat!",
+        key: "(1) Simbol Oval (Terminator): Mulai -> (2) Simbol Jajar Genjang (Input/Output): Input umur -> (3) Simbol Belah Ketupat (Decision): Apakah umur >= 18? dengan cabang Ya menuju Simbol Jajar Genjang Tampilkan 'Dewasa' dan cabang Tidak menuju Simbol Jajar Genjang Tampilkan 'Anak-anak' -> (4) Kedua cabang menyatu menuju Simbol Oval (Terminator): Selesai. (Skor maks: 10 poin)"
+      },
+      {
+        num: 8,
+        title: "Soal Essay 8 (Antarmuka Scratch Stage)",
+        q: "Jelaskan fungsi komponen Stage pada Scratch serta sebutkan batas-batas nilai sistem koordinat Kartesius (Sumbu X dan Y) yang dimilikinya!",
+        key: "Stage adalah layar panggung utama tempat animasi dan objek dieksekusi. Sistem koordinat: Titik pusat (0,0), Sumbu X (-240 s/d +240), Sumbu Y (-180 s/d +180). (Skor maks: 10 poin)"
+      },
+      {
+        num: 9,
+        title: "Soal Essay 9 (Algoritma Game Tangkap Apel)",
+        q: "Jelaskan alur algoritma pergerakan dan penambahan skor pada Sprite Apel dalam game Scratch 'Tangkap Apel'!",
+        key: "1. Diset Skor = 0. 2. Dalam perulangan forever, Apel muncul di posisi X acak dan Y=180. 3. Apel bergerak turun (change y by -5). 4. Jika menyentuh Mangkok, Skor bertambah 1 dan Apel kembali ke atas. (Skor maks: 10 poin)"
+      },
+      {
+        num: 10,
+        title: "Soal Essay 10 (Akselerasi & Game Over Scratch)",
+        q: "Bagaimana cara merancang skrip agar pergerakan Ikan mengalami akselerasi saat Skor bertambah, serta apa yang terjadi jika Hiu menabrak Kepiting?",
+        key: "1. Dibuat variabel Kecepatan. Disisipkan pengecekan: IF (Skor)>5 THEN set Kecepatan to 8; IF (Skor)>15 THEN set Kecepatan to 12. 2. Tabrakan Kepiting memicu pesan GAME OVER! dan mengeksekusi stop [all]. (Skor maks: 10 poin)"
+      }
+    ];
 
     function showToast(msg) {
       const t = document.getElementById("toast");
@@ -1812,7 +2419,6 @@ end</pre>
     };
     document.getElementById("access-cancel").onclick = () => document.getElementById("access-overlay").classList.add("hidden");
     
-    // Handler Login Mode Guru Menggunakan Verifikasi NIP
     document.getElementById("access-form").onsubmit = async (e) => {
       e.preventDefault();
       const inputNIP = document.getElementById("access-code").value.trim();
@@ -1893,7 +2499,7 @@ end</pre>
     }
     document.querySelectorAll(".progress-check").forEach(chk => chk.onchange = updateProgress);
 
-    // SYSTEM INTERAKTIF 30 SOAL TKA BAB 1
+    // SYSTEM INTERAKTIF 30 LATIHAN SOAL BAB 1
     let m1TkaCurrentIdx = 0;
     let m1TkaUserAnswers = new Array(m1TkaQuestions.length).fill(null);
 
@@ -2157,7 +2763,7 @@ end</pre>
       }
     }
 
-    // KAMERA DEPAN & PENGAWASAN SIMULASI (DENGAN PENGECEKAN PROTOKOL HTTPS AMAN)
+    // KAMERA DEPAN & PENGAWASAN LATIHAN SOAL (TKA)
     async function startFrontCamera() {
       if (location.protocol !== 'https:' && location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
         alert("Fitur pengawasan kamera memerlukan koneksi HTTPS aman. Silakan akses aplikasi melalui tautan https://");
@@ -2174,7 +2780,7 @@ end</pre>
         videoEl.classList.remove("hidden");
       } catch (err) {
         if (err.name === "NotAllowedError" || err.name === "PermissionDeniedError") {
-          alert("Akses kamera ditolak! Izinkan akses kamera depan di browser Anda untuk melanjutkan simulasi.");
+          alert("Akses kamera ditolak! Izinkan akses kamera depan di browser Anda untuk melanjutkan.");
         } else {
           alert("Kamera tidak ditemukan atau sedang digunakan aplikasi lain: " + err.message);
         }
@@ -2201,7 +2807,6 @@ end</pre>
       document.getElementById("quiz-lock-overlay").classList.remove("hidden");
     }
 
-    // Handler Buka Layar Simulasi Terkunci Menggunakan NIP Guru
     document.getElementById("quiz-unlock-form").onsubmit = async (e) => {
       e.preventDefault();
       const inputNIP = document.getElementById("quiz-unlock-pin").value.trim();
@@ -2215,7 +2820,7 @@ end</pre>
         document.getElementById("quiz-lock-overlay").classList.add("hidden");
         document.getElementById("quiz-unlock-pin").value = "";
         msgEl.textContent = "";
-        showToast("Layar simulasi berhasil dibuka!");
+        showToast("Layar berhasil dibuka!");
       } else {
         msgEl.textContent = "Password Guru salah!";
       }
@@ -2248,16 +2853,33 @@ end</pre>
     document.addEventListener("contextmenu", (e) => {
       if (isQuizActive) {
         e.preventDefault();
-        lockSimulasiScreen("Klik kanan dilarang selama simulasi berlangsung!");
+        lockSimulasiScreen("Klik kanan dilarang selama Latihan Soal (TKA) berlangsung!");
       }
     });
 
-    // MEMULAI SIMULASI
+    function getSelectedTKAPacket(titleSelect) {
+      if (titleSelect.includes("Stimulus 1")) {
+        return { pg: tkaPGQuestions.filter(q => q.stimulus === 1), essays: [], minutes: 20 };
+      } else if (titleSelect.includes("Stimulus 2")) {
+        return { pg: tkaPGQuestions.filter(q => q.stimulus === 2), essays: [], minutes: 30 };
+      } else if (titleSelect.includes("Stimulus 3")) {
+        return { pg: tkaPGQuestions.filter(q => q.stimulus === 3), essays: [], minutes: 30 };
+      } else if (titleSelect.includes("Stimulus 4")) {
+        return { pg: tkaPGQuestions.filter(q => q.stimulus === 4), essays: [], minutes: 40 };
+      } else if (titleSelect.includes("Bagian I:")) {
+        return { pg: tkaPGQuestions, essays: [], minutes: 90 };
+      } else if (titleSelect.includes("Bagian II:")) {
+        return { pg: [], essays: tkaEssayQuestions, minutes: 45 };
+      }
+      return { pg: tkaPGQuestions, essays: tkaEssayQuestions, minutes: 120 };
+    }
+
+    // MEMULAI LATIHAN SOAL (TKA)
     const btnStartQuiz = document.getElementById("btn-start-quiz");
     if (btnStartQuiz) {
       btnStartQuiz.onclick = async () => {
         const titleSelect = document.getElementById("simulasi-target-select").value;
-        const questions = simulasiDatabase[titleSelect] || simulasiDatabase["Simulasi Bab 1: Penyajian Data Mentah"];
+        const packet = getSelectedTKAPacket(titleSelect);
 
         try {
           await startFrontCamera();
@@ -2275,573 +2897,754 @@ end</pre>
 
         const container = document.getElementById("simulasi-questions-container");
         container.innerHTML = "";
-        questions.forEach((qObj, idx) => {
+
+        if (packet.pg.length > 0) {
+          const pgHeader = document.createElement("div");
+          pgHeader.className = "p-3.5 rounded-xl bg-slate-900 text-white font-extrabold text-sm";
+          pgHeader.textContent = `BAGIAN I: PILIHAN GANDA (${packet.pg.length} SOAL)`;
+          container.appendChild(pgHeader);
+        }
+
+        let lastStimulus = null;
+        packet.pg.forEach((qObj) => {
+          if (qObj.stimulus !== lastStimulus) {
+            lastStimulus = qObj.stimulus;
+            const stimDiv = document.createElement("div");
+            stimDiv.innerHTML = tkaStimuliHTML[qObj.stimulus] || "";
+            container.appendChild(stimDiv);
+          }
+
           const qBox = document.createElement("div");
-          qBox.className = "border-b pb-4";
-          qBox.innerHTML = `
-            <p class="font-extrabold text-slate-900">${qObj.q}</p>
-            <div class="mt-3 space-y-2 text-sm">
-              <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="sq_${idx}" value="a" required> A. ${qObj.options[0]}</label>
-              <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="sq_${idx}" value="b"> B. ${qObj.options[1]}</label>
-              <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="sq_${idx}" value="c"> C. ${qObj.options[2]}</label>
-              <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="sq_${idx}" value="d"> D. ${qObj.options[3]}</label>
-            </div>
-          `;
+          qBox.className = "p-5 rounded-2xl border border-slate-200 bg-white shadow-sm space-y-3";
+
+          if (qObj.type === "single") {
+            qBox.innerHTML = `
+              <div class="flex justify-between items-start gap-2">
+                <p class="font-extrabold text-slate-900 text-sm leading-relaxed">${qObj.q}</p>
+                <span class="text-[11px] bg-sky-100 text-sky-800 font-bold px-2.5 py-0.5 rounded-full shrink-0">PG Tunggal</span>
+              </div>
+              <div class="space-y-2 text-sm">
+                ${qObj.options.map((opt, i) => `
+                  <label class="flex items-start gap-2.5 p-2.5 rounded-xl border border-slate-100 hover:bg-slate-50 cursor-pointer">
+                    <input type="radio" name="tka_pg_${qObj.num}" value="${i}" class="mt-1">
+                    <span><strong>${String.fromCharCode(65 + i)}.</strong> ${opt}</span>
+                  </label>
+                `).join("")}
+              </div>
+            `;
+          } else if (qObj.type === "complex") {
+            qBox.innerHTML = `
+              <div class="flex justify-between items-start gap-2">
+                <p class="font-extrabold text-slate-900 text-sm leading-relaxed">${qObj.q}</p>
+                <span class="text-[11px] bg-violet-100 text-violet-800 font-bold px-2.5 py-0.5 rounded-full shrink-0">PG Kompleks</span>
+              </div>
+              <div class="space-y-2 text-sm">
+                ${qObj.options.map((opt, i) => `
+                  <label class="flex items-start gap-2.5 p-2.5 rounded-xl border border-slate-100 hover:bg-violet-50/40 cursor-pointer">
+                    <input type="checkbox" name="tka_pg_${qObj.num}" value="${i}" class="mt-1 rounded">
+                    <span>${opt}</span>
+                  </label>
+                `).join("")}
+              </div>
+            `;
+          } else if (qObj.type === "tf_table") {
+            qBox.innerHTML = `
+              <div class="flex justify-between items-start gap-2">
+                <p class="font-extrabold text-slate-900 text-sm leading-relaxed">${qObj.q}</p>
+                <span class="text-[11px] bg-emerald-100 text-emerald-800 font-bold px-2.5 py-0.5 rounded-full shrink-0">Tabel Benar/Salah</span>
+              </div>
+              <div class="overflow-x-auto border rounded-xl">
+                <table class="w-full text-xs text-left border-collapse">
+                  <thead>
+                    <tr class="bg-slate-100 text-slate-800 font-bold">
+                      <th class="p-2.5 border-b">Pernyataan</th>
+                      <th class="p-2.5 border-b text-center w-20">Benar</th>
+                      <th class="p-2.5 border-b text-center w-20">Salah</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-slate-200">
+                    ${qObj.statements.map((stmt, sIdx) => `
+                      <tr>
+                        <td class="p-2.5 text-slate-700">${stmt}</td>
+                        <td class="p-2.5 text-center"><input type="radio" name="tka_tf_${qObj.num}_${sIdx}" value="Benar"></td>
+                        <td class="p-2.5 text-center"><input type="radio" name="tka_tf_${qObj.num}_${sIdx}" value="Salah"></td>
+                      </tr>
+                    `).join("")}
+                  </tbody>
+                </table>
+              </div>
+            `;
+          }
+
           container.appendChild(qBox);
         });
 
-        let duration = 600;
+        if (packet.essays.length > 0) {
+          const essayHeader = document.createElement("div");
+          essayHeader.className = "p-3.5 rounded-xl bg-violet-900 text-white font-extrabold text-sm mt-6";
+          essayHeader.textContent = `BAGIAN II: SOAL URAIAN / ESSAY (${packet.essays.length} SOAL)`;
+          container.appendChild(essayHeader);
+
+          packet.essays.forEach((eObj) => {
+            const eBox = document.createElement("div");
+            eBox.className = "p-5 rounded-2xl border border-violet-200 bg-violet-50/30 space-y-2";
+            eBox.innerHTML = `
+              <span class="text-xs font-extrabold text-violet-800">${eObj.title}</span>
+              <p class="font-bold text-slate-900 text-sm leading-relaxed">${eObj.q}</p>
+              <textarea name="tka_essay_${eObj.num}" rows="3" class="w-full border border-slate-300 rounded-xl p-3 text-sm bg-white mt-2" placeholder="Tuliskan jawaban uraianmu secara lengkap di sini..."></textarea>
+            `;
+            container.appendChild(eBox);
+          });
+        }
+
+        let duration = packet.minutes * 60;
+        document.getElementById("quiz-timer").textContent = `${String(packet.minutes).padStart(2, '0')}:00`;
         quizTimerInterval = setInterval(() => {
-          if (quizLocked) return;
-          const m = Math.floor(duration / 60);
-          const s = duration % 60;
-          document.getElementById("quiz-timer").textContent = `${m}:${s < 10 ? '0' : ''}${s}`;
-          if (--duration < 0) {
+          duration--;
+          const mins = Math.floor(duration / 60);
+          const secs = duration % 60;
+          document.getElementById("quiz-timer").textContent = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+          if (duration <= 0) {
             clearInterval(quizTimerInterval);
-            alert("Waktu simulasi telah habis! Jawabanmu dikirim otomatis.");
-            document.getElementById("quiz-form").requestSubmit();
+            document.getElementById("quiz-form").dispatchEvent(new Event("submit"));
           }
         }, 1000);
       };
     }
 
-    document.getElementById("quiz-form").onsubmit = async (e) => {
-      e.preventDefault();
-      if (quizTimerInterval) clearInterval(quizTimerInterval);
-      stopFrontCamera();
-      isQuizActive = false;
+    // SUBMIT & PENILAIAN LATIHAN SOAL (TKA)
+    const quizForm = document.getElementById("quiz-form");
+    if (quizForm) {
+      quizForm.onsubmit = async (e) => {
+        e.preventDefault();
+        clearInterval(quizTimerInterval);
+        isQuizActive = false;
+        stopFrontCamera();
 
-      const titleSelect = document.getElementById("simulasi-target-select").value;
-      const questions = simulasiDatabase[titleSelect] || simulasiDatabase["Simulasi Bab 1: Penyajian Data Mentah"];
-      
-      let correct = 0;
-      const formData = new FormData(document.getElementById("quiz-form"));
+        const titleSelect = document.getElementById("simulasi-target-select").value;
+        const packet = getSelectedTKAPacket(titleSelect);
 
-      questions.forEach((qObj, idx) => {
-        if (formData.get(`sq_${idx}`) === qObj.answer) correct++;
-      });
+        let earnedPoints = 0;
+        let maxPoints = packet.pg.length;
+        const reviewItems = [];
 
-      const score = Math.round((correct / questions.length) * 100);
-      const name = localStorage.getItem("student_name") || "Siswa";
-      const cls = localStorage.getItem("student_class") || "Umum";
-      const wibTime = new Date().toLocaleString('id-ID', { dateStyle: 'medium', timeStyle: 'short' });
+        packet.pg.forEach((qObj) => {
+          if (qObj.type === "single") {
+            const selected = document.querySelector(`input[name="tka_pg_${qObj.num}"]:checked`);
+            const userVal = selected ? Number(selected.value) : null;
+            const isCorrect = userVal === qObj.answer;
+            if (isCorrect) earnedPoints += 1;
+            reviewItems.push({
+              label: `Soal PG No. ${qObj.num}`,
+              question: qObj.q,
+              isCorrect,
+              userAnswer: userVal !== null ? `${String.fromCharCode(65 + userVal)}. ${qObj.options[userVal]}` : "(Tidak dijawab)",
+              correctAnswer: `${String.fromCharCode(65 + qObj.answer)}. ${qObj.options[qObj.answer]}`,
+              why: qObj.why
+            });
+          } else if (qObj.type === "complex") {
+            const checkedBoxes = Array.from(document.querySelectorAll(`input[name="tka_pg_${qObj.num}"]:checked`)).map(cb => Number(cb.value)).sort();
+            const expected = [...qObj.answer].sort();
+            const isCorrect = JSON.stringify(checkedBoxes) === JSON.stringify(expected);
+            if (isCorrect) earnedPoints += 1;
+            reviewItems.push({
+              label: `Soal PG Kompleks No. ${qObj.num}`,
+              question: qObj.q,
+              isCorrect,
+              userAnswer: checkedBoxes.length ? checkedBoxes.map(i => qObj.options[i]).join("; ") : "(Tidak dijawab)",
+              correctAnswer: expected.map(i => qObj.options[i]).join("; "),
+              why: qObj.why
+            });
+          } else if (qObj.type === "tf_table") {
+            let rowMatches = 0;
+            const userRows = [];
+            qObj.statements.forEach((stmt, sIdx) => {
+              const sel = document.querySelector(`input[name="tka_tf_${qObj.num}_${sIdx}"]:checked`);
+              const val = sel ? sel.value : "-";
+              userRows.push(`${stmt.slice(0, 45)}... (${val})`);
+              if (val === qObj.answer[sIdx]) rowMatches++;
+            });
+            const isCorrect = rowMatches === qObj.statements.length;
+            earnedPoints += (rowMatches / qObj.statements.length);
+            reviewItems.push({
+              label: `Soal Tabel B/S No. ${qObj.num} (${rowMatches}/${qObj.statements.length} Benar)`,
+              question: qObj.q,
+              isCorrect,
+              userAnswer: userRows.join(" | "),
+              correctAnswer: qObj.answer.join(", "),
+              why: qObj.why
+            });
+          }
+        });
 
-      document.getElementById("quiz-form").classList.add("hidden");
-      document.getElementById("quiz-timer-box").classList.add("hidden");
-      document.getElementById("quiz-result-box").classList.remove("hidden");
-      document.getElementById("quiz-score-display").textContent = `${score} / 100`;
+        const essayResponses = [];
+        packet.essays.forEach((eObj) => {
+          const ta = document.querySelector(`textarea[name="tka_essay_${eObj.num}"]`);
+          const ansText = ta ? ta.value.trim() : "";
+          essayResponses.push({
+            num: eObj.num,
+            title: eObj.title,
+            question: eObj.q,
+            studentAnswer: ansText || "(Tidak dijawab)",
+            key: eObj.key
+          });
+        });
 
+        const finalScore = maxPoints > 0 ? Math.round((earnedPoints / maxPoints) * 100) : 100;
+
+        document.getElementById("quiz-form").classList.add("hidden");
+        document.getElementById("quiz-timer-box").classList.add("hidden");
+        document.getElementById("quiz-result-box").classList.remove("hidden");
+
+        if (maxPoints > 0) {
+          document.getElementById("quiz-score-display").textContent = `${finalScore} / 100`;
+          document.getElementById("quiz-score-detail").textContent = `Poin Pilihan Ganda: ${earnedPoints.toFixed(1)} dari ${maxPoints} soal.${essayResponses.length ? ` (${essayResponses.length} jawaban Essay terkirim ke Guru)` : ''}`;
+        } else {
+          document.getElementById("quiz-score-display").textContent = "Terkirim";
+          document.getElementById("quiz-score-detail").textContent = `${essayResponses.length} jawaban Essay telah tersimpan dan siap dikoreksi Guru.`;
+        }
+
+        // Render Pembahasan PG & Kunci Essay
+        const reviewContainer = document.getElementById("tka-review-container");
+        reviewContainer.innerHTML = `<h4 class="text-lg font-extrabold text-slate-900">Kunci Jawaban &amp; Pembahasan Latihan Soal (TKA)</h4>`;
+
+        reviewItems.forEach((item) => {
+          const card = document.createElement("div");
+          card.className = `p-4 rounded-xl border ${item.isCorrect ? 'bg-emerald-50/70 border-emerald-200' : 'bg-rose-50/70 border-rose-200'} text-xs space-y-1`;
+          card.innerHTML = `
+            <div class="flex justify-between font-extrabold">
+              <span>${item.label}</span>
+              <span class="${item.isCorrect ? 'text-emerald-700' : 'text-rose-700'}">${item.isCorrect ? '✓ Benar' : '✕ Perlu Evaluasi'}</span>
+            </div>
+            <p class="text-slate-800 font-semibold">${item.question}</p>
+            <p class="text-slate-600">Jawaban Kamu: <strong>${item.userAnswer}</strong></p>
+            <p class="text-emerald-900">Kunci Jawaban: <strong>${item.correctAnswer}</strong></p>
+            <p class="text-slate-600 italic">Pembahasan: ${item.why}</p>
+          `;
+          reviewContainer.appendChild(card);
+        });
+
+        essayResponses.forEach((eItem) => {
+          const card = document.createElement("div");
+          card.className = "p-4 rounded-xl border bg-violet-50/60 border-violet-200 text-xs space-y-1.5";
+          card.innerHTML = `
+            <p class="font-extrabold text-violet-900">${eItem.title}</p>
+            <p class="text-slate-800 font-semibold">${eItem.question}</p>
+            <p class="text-slate-700 bg-white p-2 rounded border"><strong>Jawaban Kamu:</strong> ${eItem.studentAnswer}</p>
+            <p class="text-emerald-900 bg-emerald-50 p-2 rounded border border-emerald-200"><strong>Kunci &amp; Rubrik Penskoran:</strong> ${eItem.key}</p>
+          `;
+          reviewContainer.appendChild(card);
+        });
+
+        const studentName = localStorage.getItem("student_name") || "Anonim";
+        const studentClass = localStorage.getItem("student_class") || "-";
+
+        try {
+          await addDoc(collection(db, "ulangan_harian"), {
+            studentName,
+            studentClass,
+            babTitle: titleSelect,
+            score: finalScore,
+            essayAnswers: essayResponses,
+            timestamp: new Date()
+          });
+          showToast("Nilai & Jawaban Latihan Soal (TKA) berhasil disimpan!");
+        } catch (err) {
+          showToast("Error simpan nilai: " + err.message);
+        }
+      };
+    }
+
+    // FITUR REFLEKSI SISWA
+    async function saveStudentReflection(babTitle, notesInputId) {
+      const studentName = localStorage.getItem("student_name") || "Anonim";
+      const studentClass = localStorage.getItem("student_class") || "-";
+      const notes = document.getElementById(notesInputId).value;
+      if (!notes.trim()) {
+        showToast("Isi catatan refleksi terlebih dahulu.");
+        return;
+      }
       try {
-        await addDoc(collection(db, "ulangan_harian"), {
-          studentName: name,
-          studentClass: cls,
-          simulasiTitle: titleSelect,
-          score: score,
-          timeString: wibTime,
+        await addDoc(collection(db, "jawaban_siswa"), {
+          studentName,
+          studentClass,
+          babTitle,
+          notes,
           timestamp: new Date()
         });
-        showToast("Hasil simulasi berhasil tersimpan!");
-      } catch (err) {
-        showToast("Gagal menyimpan hasil: " + err.message);
+        showToast("Refleksi tersimpan ke Guru!");
+        document.getElementById(notesInputId).value = "";
+      } catch (e) {
+        showToast("Gagal kirim: " + e.message);
       }
-    };
+    }
 
-    // FITUR PENGUMPULAN TUGAS PRAKTIK
+    document.getElementById("save-m1-btn").onclick = () => saveStudentReflection("Bab 1: Penyajian Data", "module1-notes");
+    document.getElementById("save-m2-btn").onclick = () => saveStudentReflection("Bab 2: Algoritma Lanjutan", "module2-notes");
+    document.getElementById("save-m3-btn").onclick = () => saveStudentReflection("Bab 3: Literasi Digital", "module3-notes");
+    document.getElementById("save-m4-btn").onclick = () => saveStudentReflection("Bab 4: Keamanan Digital", "module4-notes");
+
+    // FITUR TUGAS PRAKTIK
     document.getElementById("tugas-submit-form").onsubmit = async (e) => {
       e.preventDefault();
-      const name = localStorage.getItem("student_name") || "Siswa";
-      const cls = localStorage.getItem("student_class") || "Umum";
+      const studentName = localStorage.getItem("student_name") || "Anonim";
+      const studentClass = localStorage.getItem("student_class") || "-";
       const topic = document.getElementById("tugas-topic").value;
       const link = document.getElementById("tugas-link").value;
       const notes = document.getElementById("tugas-notes").value;
-      const wibTime = new Date().toLocaleString('id-ID', { dateStyle: 'medium', timeStyle: 'short' });
 
       try {
         await addDoc(collection(db, "tugas_praktik"), {
-          studentName: name,
-          studentClass: cls,
-          topic: topic,
-          link: link,
-          notes: notes,
-          status: "Menunggu Penilaian",
-          grade: null,
-          feedback: "",
-          timeString: wibTime,
+          studentName,
+          studentClass,
+          topic,
+          link,
+          notes,
+          grade: "",
+          teacherFeedback: "",
           timestamp: new Date()
         });
+        showToast("Tugas praktik berhasil dikirim!");
         document.getElementById("tugas-submit-form").reset();
-        showToast("Tugas Praktik berhasil dikirim ke Guru!");
       } catch (err) {
         showToast("Gagal mengirim tugas: " + err.message);
       }
     };
 
-    // FITUR FORUM DISKUSI
+    onSnapshot(collection(db, "tugas_praktik"), (snapshot) => {
+      const currentName = localStorage.getItem("student_name");
+      const historyContainer = document.getElementById("student-tugas-history");
+      const teacherContainer = document.getElementById("rekap-tugas-container");
+
+      historyContainer.innerHTML = "";
+      teacherContainer.innerHTML = "";
+
+      let myTaskCount = 0;
+
+      if (snapshot.empty) {
+        teacherContainer.innerHTML = "<p class='text-sm text-slate-500'>Belum ada siswa yang mengirim tugas praktik.</p>";
+      }
+
+      snapshot.forEach((docSnap) => {
+        const d = docSnap.data();
+        const id = docSnap.id;
+
+        if (d.studentName === currentName) {
+          myTaskCount++;
+          const card = document.createElement("div");
+          card.className = "p-4 rounded-xl border bg-slate-50 text-sm";
+          card.innerHTML = `
+            <div class="flex justify-between font-bold">
+              <span class="text-teal-800">${d.topic}</span>
+              ${d.grade ? `<span class="bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-lg text-xs">Nilai: ${d.grade}</span>` : `<span class="bg-amber-100 text-amber-800 px-2 py-0.5 rounded-lg text-xs">Belum Dinilai</span>`}
+            </div>
+            <a href="${d.link}" target="_blank" class="text-xs text-sky-600 underline block mt-1 truncate">${d.link}</a>
+            ${d.teacherFeedback ? `<p class="mt-2 text-xs bg-white p-2 rounded border text-slate-700"><strong>Catatan Guru:</strong> ${d.teacherFeedback}</p>` : ''}
+          `;
+          historyContainer.appendChild(card);
+        }
+
+        const tCard = document.createElement("div");
+        tCard.className = "p-4 rounded-xl border bg-white shadow-sm space-y-2";
+        tCard.innerHTML = `
+          <div class="flex justify-between items-start">
+            <div>
+              <p class="font-bold text-slate-900">${d.studentName} <span class="text-xs bg-violet-100 text-violet-800 px-2 py-0.5 rounded-full ml-1">${d.studentClass}</span></p>
+              <p class="text-xs font-bold text-teal-700 mt-1">${d.topic}</p>
+            </div>
+            <button data-id="${id}" class="btn-del-tugas text-rose-600 text-xs font-bold hover:underline">Hapus</button>
+          </div>
+          <a href="${d.link}" target="_blank" class="text-xs text-sky-600 underline block truncate">${d.link}</a>
+          <p class="text-xs text-slate-600 italic">"${d.notes || '-'}"</p>
+          <div class="pt-2 border-t flex flex-wrap gap-2 items-center">
+            <input type="number" id="grade-input-${id}" value="${d.grade || ''}" placeholder="Nilai (0-100)" class="border rounded-lg px-2 py-1 text-xs w-28">
+            <input type="text" id="fb-input-${id}" value="${d.teacherFeedback || ''}" placeholder="Feedback guru..." class="border rounded-lg px-2 py-1 text-xs flex-1">
+            <button data-id="${id}" class="btn-save-grade bg-violet-700 text-white px-3 py-1 rounded-lg text-xs font-bold hover:bg-violet-800">Simpan Nilai</button>
+          </div>
+        `;
+        teacherContainer.appendChild(tCard);
+      });
+
+      if (myTaskCount === 0) {
+        historyContainer.innerHTML = "<p class='text-sm text-slate-500'>Anda belum mengumpulkan tugas praktik.</p>";
+      }
+
+      document.querySelectorAll(".btn-save-grade").forEach(btn => {
+        btn.onclick = async () => {
+          const id = btn.dataset.id;
+          const grade = document.getElementById(`grade-input-${id}`).value;
+          const teacherFeedback = document.getElementById(`fb-input-${id}`).value;
+          await updateDoc(doc(db, "tugas_praktik", id), { grade, teacherFeedback });
+          showToast("Nilai & feedback berhasil disimpan!");
+        };
+      });
+
+      document.querySelectorAll(".btn-del-tugas").forEach(btn => {
+        btn.onclick = async () => {
+          if (confirm("Hapus kiriman tugas ini?")) {
+            await deleteDoc(doc(db, "tugas_praktik", btn.dataset.id));
+            showToast("Tugas dihapus.");
+          }
+        };
+      });
+    });
+
+    // FORUM DISKUSI
     document.getElementById("forum-form").onsubmit = async (e) => {
       e.preventDefault();
-      const name = localStorage.getItem("student_name") || "Siswa";
-      const cls = localStorage.getItem("student_class") || "Umum";
-      const msg = document.getElementById("forum-message-input").value;
-      const wibTime = new Date().toLocaleString('id-ID', { dateStyle: 'medium', timeStyle: 'short' });
+      const author = localStorage.getItem("student_name") || "Siswa";
+      const cls = localStorage.getItem("student_class") || "-";
+      const message = document.getElementById("forum-message-input").value;
+      if (!message.trim()) return;
 
       try {
         await addDoc(collection(db, "forum_diskusi"), {
-          studentName: name,
-          studentClass: cls,
-          message: msg,
-          timeString: wibTime,
+          author: `${author} (${cls})`,
+          message,
+          replies: [],
           timestamp: new Date()
         });
         document.getElementById("forum-message-input").value = "";
-        showToast("Pertanyaan dikirim ke Forum!");
+        showToast("Pertanyaan dikirim ke forum!");
       } catch (err) {
-        showToast("Gagal mengirim pesan: " + err.message);
+        showToast("Gagal mengirim forum: " + err.message);
       }
     };
 
-    // SIMPAN REFLEKSI SISWA
-    async function saveStudentAnswer(moduleName, notesId) {
-      const name = localStorage.getItem("student_name") || "Tanpa Nama";
-      const cls = localStorage.getItem("student_class") || "Tanpa Kelas";
-      const notes = document.getElementById(notesId).value;
-
-      try {
-        await addDoc(collection(db, "jawaban_siswa"), {
-          studentName: name,
-          studentClass: cls,
-          module: moduleName,
-          notes: notes,
-          timestamp: new Date()
-        });
-        showToast(`Jawaban ${moduleName} dikirim ke Guru!`);
-      } catch (err) {
-        showToast("Gagal mengirim jawaban: " + err.message);
+    onSnapshot(collection(db, "forum_diskusi"), (snapshot) => {
+      const container = document.getElementById("forum-posts-container");
+      container.innerHTML = "";
+      if (snapshot.empty) {
+        container.innerHTML = "<p class='text-sm text-slate-500'>Belum ada diskusi. Jadilah yang pertama bertanya!</p>";
+        return;
       }
-    }
 
-    document.getElementById("save-m1-btn").onclick = () => saveStudentAnswer("Bab 1", "module1-notes");
-    document.getElementById("save-m2-btn").onclick = () => saveStudentAnswer("Bab 2", "module2-notes");
-    document.getElementById("save-m3-btn").onclick = () => saveStudentAnswer("Bab 3", "module3-notes");
-    document.getElementById("save-m4-btn").onclick = () => saveStudentAnswer("Bab 4", "module4-notes");
+      snapshot.forEach((docSnap) => {
+        const d = docSnap.data();
+        const id = docSnap.id;
+        const postDiv = document.createElement("div");
+        postDiv.className = "p-4 rounded-xl bg-white border border-sky-100 shadow-sm space-y-2";
+        
+        let repliesHtml = "";
+        if (d.replies && d.replies.length > 0) {
+          repliesHtml = `<div class="ml-4 pl-3 border-l-2 border-sky-200 space-y-1 mt-2">` + 
+            d.replies.map(r => `<p class="text-xs text-slate-700"><strong class="text-sky-800">${r.sender}:</strong> ${r.text}</p>`).join("") +
+            `</div>`;
+        }
 
-    // TAMBAH MATERI & VIDEO (GURU)
+        postDiv.innerHTML = `
+          <div class="flex justify-between items-center">
+            <span class="text-xs font-extrabold text-sky-900">${d.author}</span>
+            ${isTeacher ? `<button data-id="${id}" class="btn-del-post text-rose-500 text-xs font-bold hover:underline">Hapus</button>` : ''}
+          </div>
+          <p class="text-sm text-slate-800">${d.message}</p>
+          ${repliesHtml}
+          <div class="flex gap-2 pt-2">
+            <input type="text" id="reply-input-${id}" placeholder="Tulis balasan..." class="border rounded-lg px-2.5 py-1 text-xs flex-1">
+            <button data-id="${id}" class="btn-send-reply bg-sky-100 text-sky-800 px-3 py-1 rounded-lg text-xs font-bold hover:bg-sky-200">Balas</button>
+          </div>
+        `;
+        container.appendChild(postDiv);
+      });
+
+      document.querySelectorAll(".btn-send-reply").forEach(btn => {
+        btn.onclick = async () => {
+          const id = btn.dataset.id;
+          const input = document.getElementById(`reply-input-${id}`);
+          const text = input.value;
+          if (!text.trim()) return;
+
+          const senderName = isTeacher ? "GURU INFORMATIKA" : (localStorage.getItem("student_name") || "Siswa");
+          const docRef = doc(db, "forum_diskusi", id);
+          const snap = await getDocs(collection(db, "forum_diskusi"));
+          let currentReplies = [];
+          snap.forEach(s => { if(s.id === id) currentReplies = s.data().replies || []; });
+
+          currentReplies.push({ sender: senderName, text });
+          await updateDoc(docRef, { replies: currentReplies });
+          input.value = "";
+          showToast("Balasan ditambahkan!");
+        };
+      });
+
+      document.querySelectorAll(".btn-del-post").forEach(btn => {
+        btn.onclick = async () => {
+          await deleteDoc(doc(db, "forum_diskusi", btn.dataset.id));
+          showToast("Postingan dihapus.");
+        };
+      });
+    });
+
+    // MATERI & VIDEO TAMBAHAN GURU
     document.getElementById("material-form").onsubmit = async (e) => {
       e.preventDefault();
-      const title = document.getElementById("material-title").value;
-      const desc = document.getElementById("material-description").value;
-      const category = document.getElementById("material-category").value;
       try {
-        await addDoc(collection(db, "materi"), { title, desc, category, createdAt: new Date() });
+        await addDoc(collection(db, "materials"), {
+          category: document.getElementById("material-category").value,
+          title: document.getElementById("material-title").value,
+          description: document.getElementById("material-description").value,
+          createdAt: new Date()
+        });
         showToast("Materi tersimpan!");
         document.getElementById("material-form").reset();
-      } catch (err) {
-        showToast("Gagal menyimpan: " + err.message);
-      }
+      } catch (e) { showToast("Error: " + e.message); }
     };
 
     document.getElementById("video-form").onsubmit = async (e) => {
       e.preventDefault();
-      const title = document.getElementById("video-title").value;
-      const rawUrl = document.getElementById("video-url").value;
-      const embedUrl = convertToEmbedUrl(rawUrl);
-
       try {
-        await addDoc(collection(db, "video"), { title, url: embedUrl, createdAt: new Date() });
+        await addDoc(collection(db, "videos"), {
+          title: document.getElementById("video-title").value,
+          url: document.getElementById("video-url").value,
+          createdAt: new Date()
+        });
         showToast("Video tersimpan!");
         document.getElementById("video-form").reset();
-      } catch (err) {
-        showToast("Gagal menyimpan: " + err.message);
-      }
+      } catch (e) { showToast("Error: " + e.message); }
     };
 
-    // FORM PENILAIAN TUGAS OLEH GURU
-    window.gradeStudentTask = async function(docId) {
-      const gradeInput = document.getElementById(`grade-input-${docId}`).value;
-      const feedbackInput = document.getElementById(`feedback-input-${docId}`).value;
+    onSnapshot(collection(db, "materials"), (snap) => {
+      const sList = document.getElementById("student-material-list");
+      const tList = document.getElementById("teacher-material-list");
+      sList.innerHTML = "";
+      tList.innerHTML = "";
 
-      if (!gradeInput) {
-        showToast("Silakan isi nilai terlebih dahulu.");
+      if (snap.empty) {
+        sList.innerHTML = "<p class='text-sm text-slate-500'>Belum ada materi tambahan.</p>";
+        tList.innerHTML = "<p class='text-sm text-slate-500'>Belum ada materi tambahan.</p>";
         return;
       }
 
-      try {
-        await updateDoc(doc(db, "tugas_praktik", docId), {
-          grade: Number(gradeInput),
-          feedback: feedbackInput,
-          status: "Sudah Dinilai"
-        });
-        showToast("Penilaian tugas berhasil disimpan!");
-      } catch (err) {
-        showToast("Gagal menyimpan nilai: " + err.message);
-      }
-    };
+      snap.forEach(docSnap => {
+        const d = docSnap.data();
+        const id = docSnap.id;
 
-    // FITUR EKSPOR DATA KE CSV
-    function exportToCSV(dataArray, filename) {
-      if (!dataArray || !dataArray.length) {
-        showToast("Belum ada data untuk diekspor.");
+        const sc = document.createElement("div");
+        sc.className = "card";
+        sc.innerHTML = `
+          <span class="text-xs font-bold text-violet-700 bg-violet-100 px-2 py-0.5 rounded-full">${d.category}</span>
+          <h4 class="font-extrabold text-lg mt-2">${d.title}</h4>
+          <p class="mt-1 text-slate-600 text-sm">${d.description}</p>
+        `;
+        sList.appendChild(sc);
+
+        const tc = document.createElement("div");
+        tc.className = "p-4 rounded-xl border bg-slate-50 flex justify-between items-start gap-4";
+        tc.innerHTML = `
+          <div>
+            <span class="text-xs font-bold text-violet-700 bg-violet-100 px-2 py-0.5 rounded-full">${d.category}</span>
+            <h4 class="font-bold text-slate-900 mt-1">${d.title}</h4>
+            <p class="text-xs text-slate-600 mt-1">${d.description}</p>
+          </div>
+          <button data-id="${id}" class="btn-del-mat bg-rose-100 text-rose-700 font-bold text-xs px-3 py-1.5 rounded-lg hover:bg-rose-200 shrink-0">Hapus</button>
+        `;
+        tList.appendChild(tc);
+      });
+
+      document.querySelectorAll(".btn-del-mat").forEach(btn => {
+        btn.onclick = async () => {
+          if(confirm("Hapus materi ini?")) {
+            await deleteDoc(doc(db, "materials", btn.dataset.id));
+            showToast("Materi dihapus.");
+          }
+        };
+      });
+    });
+
+    onSnapshot(collection(db, "videos"), (snap) => {
+      const sList = document.getElementById("student-video-list");
+      const tList = document.getElementById("teacher-video-list");
+      sList.innerHTML = "";
+      tList.innerHTML = "";
+
+      if (snap.empty) {
+        sList.innerHTML = "<p class='text-sm text-slate-500'>Belum ada video tambahan.</p>";
+        tList.innerHTML = "<p class='text-sm text-slate-500'>Belum ada video tambahan.</p>";
         return;
       }
-      const headers = Object.keys(dataArray[0]).join(",");
-      const rows = dataArray.map(obj => 
-        Object.values(obj).map(val => `"${String(val).replace(/"/g, '""')}"`).join(",")
-      );
-      const csvString = "\uFEFF" + [headers, ...rows].join("\r\n");
-      const blob = new Blob([csvString], { type: "text/csv;charset=utf-8;" });
-      const link = document.createElement("a");
-      link.href = URL.createObjectURL(blob);
-      link.download = filename;
-      link.click();
+
+      snap.forEach(docSnap => {
+        const d = docSnap.data();
+        const id = docSnap.id;
+        const embedUrl = convertToEmbedUrl(d.url);
+
+        const sc = document.createElement("div");
+        sc.className = "card";
+        sc.innerHTML = `
+          <h4 class="font-extrabold text-lg mb-2">${d.title}</h4>
+          <div class="aspect-video w-full rounded-xl overflow-hidden bg-slate-900">
+            <iframe class="w-full h-full" src="${embedUrl}" title="${d.title}" frameborder="0" allowfullscreen></iframe>
+          </div>
+        `;
+        sList.appendChild(sc);
+
+        const tc = document.createElement("div");
+        tc.className = "p-4 rounded-xl border bg-slate-50 flex justify-between items-center gap-4";
+        tc.innerHTML = `
+          <div>
+            <h4 class="font-bold text-slate-900">${d.title}</h4>
+            <p class="text-xs text-sky-600 truncate max-w-md">${d.url}</p>
+          </div>
+          <button data-id="${id}" class="btn-del-vid bg-rose-100 text-rose-700 font-bold text-xs px-3 py-1.5 rounded-lg hover:bg-rose-200 shrink-0">Hapus</button>
+        `;
+        tList.appendChild(tc);
+      });
+
+      document.querySelectorAll(".btn-del-vid").forEach(btn => {
+        btn.onclick = async () => {
+          if(confirm("Hapus video ini?")) {
+            await deleteDoc(doc(db, "videos", btn.dataset.id));
+            showToast("Video dihapus.");
+          }
+        };
+      });
+    });
+
+    // REKAP ABSEN, ULANGAN (LATIHAN SOAL TKA), REFLEKSI
+    onSnapshot(collection(db, "absen_harian"), (snap) => {
+      const container = document.getElementById("rekap-absen-container");
+      container.innerHTML = "";
+      if (snap.empty) {
+        container.innerHTML = "<p class='text-sm text-slate-500'>Belum ada absen harian siswa.</p>";
+        return;
+      }
+      snap.forEach(docSnap => {
+        const d = docSnap.data();
+        const item = document.createElement("div");
+        item.className = "p-4 rounded-xl border bg-slate-50 flex justify-between items-center";
+        item.innerHTML = `
+          <div>
+            <p class="font-bold text-slate-900">${d.studentName} <span class="text-xs bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full ml-1">${d.studentClass}</span></p>
+            <p class="text-xs text-slate-500 mt-1">Waktu Absen: ${d.timeString}</p>
+          </div>
+          <button data-id="${docSnap.id}" class="btn-del-absen text-rose-600 text-xs font-bold hover:underline">Hapus</button>
+        `;
+        container.appendChild(item);
+      });
+
+      document.querySelectorAll(".btn-del-absen").forEach(b => {
+        b.onclick = async () => {
+          await deleteDoc(doc(db, "absen_harian", b.dataset.id));
+          showToast("Data absen dihapus.");
+        };
+      });
+    });
+
+    onSnapshot(collection(db, "ulangan_harian"), (snap) => {
+      const container = document.getElementById("rekap-ulangan-container");
+      container.innerHTML = "";
+      if (snap.empty) {
+        container.innerHTML = "<p class='text-sm text-slate-500'>Belum ada hasil nilai Latihan Soal (TKA).</p>";
+        return;
+      }
+      snap.forEach(docSnap => {
+        const d = docSnap.data();
+        const hasEssays = Array.isArray(d.essayAnswers) && d.essayAnswers.length > 0;
+        const essayHtml = hasEssays
+          ? `<details class="mt-2 bg-white p-2.5 rounded-lg border text-xs"><summary class="font-bold text-violet-800 cursor-pointer">Lihat ${d.essayAnswers.length} Jawaban Essay Siswa</summary><div class="mt-2 space-y-2">${d.essayAnswers.map(ea => `<div class="border-b pb-1"><p class="font-bold">${ea.title}</p><p class="text-slate-700">${ea.studentAnswer}</p></div>`).join("")}</div></details>`
+          : "";
+
+        const item = document.createElement("div");
+        item.className = "p-4 rounded-xl border bg-slate-50";
+        item.innerHTML = `
+          <div class="flex justify-between items-center">
+            <div>
+              <p class="font-bold text-slate-900">${d.studentName} <span class="text-xs bg-amber-100 text-amber-800 px-2 py-0.5 rounded-full ml-1">${d.studentClass}</span></p>
+              <p class="text-xs text-slate-600 mt-1">${d.babTitle}</p>
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="text-xl font-extrabold ${d.score >= 75 ? 'text-emerald-600' : 'text-rose-600'}">Nilai PG: ${d.score}</span>
+              <button data-id="${docSnap.id}" class="btn-del-ul text-rose-600 text-xs font-bold hover:underline">Hapus</button>
+            </div>
+          </div>
+          ${essayHtml}
+        `;
+        container.appendChild(item);
+      });
+
+      document.querySelectorAll(".btn-del-ul").forEach(b => {
+        b.onclick = async () => {
+          await deleteDoc(doc(db, "ulangan_harian", b.dataset.id));
+          showToast("Nilai dihapus.");
+        };
+      });
+    });
+
+    onSnapshot(collection(db, "jawaban_siswa"), (snap) => {
+      const container = document.getElementById("rekap-siswa-container");
+      container.innerHTML = "";
+      if (snap.empty) {
+        container.innerHTML = "<p class='text-sm text-slate-500'>Belum ada refleksi siswa.</p>";
+        return;
+      }
+      snap.forEach(docSnap => {
+        const d = docSnap.data();
+        const item = document.createElement("div");
+        item.className = "p-4 rounded-xl border bg-slate-50 flex justify-between items-start gap-4";
+        item.innerHTML = `
+          <div>
+            <p class="font-bold text-slate-900">${d.studentName} <span class="text-xs bg-sky-100 text-sky-800 px-2 py-0.5 rounded-full ml-1">${d.studentClass}</span></p>
+            <p class="text-xs font-bold text-violet-700 mt-1">${d.babTitle}</p>
+            <p class="text-sm text-slate-700 mt-1">"${d.notes}"</p>
+          </div>
+          <button data-id="${docSnap.id}" class="btn-del-ans text-rose-600 text-xs font-bold hover:underline">Hapus</button>
+        `;
+        container.appendChild(item);
+      });
+
+      document.querySelectorAll(".btn-del-ans").forEach(b => {
+        b.onclick = async () => {
+          await deleteDoc(doc(db, "jawaban_siswa", b.dataset.id));
+          showToast("Refleksi dihapus.");
+        };
+      });
+    });
+
+    // EKSPOR DATA KE CSV
+    async function exportCollectionToCSV(colName, filename, headers, mapRowFn) {
+      const snap = await getDocs(collection(db, colName));
+      if (snap.empty) {
+        showToast("Tidak ada data untuk diekspor!");
+        return;
+      }
+      const rows = [headers.join(",")];
+      snap.forEach(docSnap => {
+        const rowData = mapRowFn(docSnap.data());
+        rows.push(rowData.map(v => `"${String(v).replace(/"/g, '""')}"`).join(","));
+      });
+
+      const blob = new Blob([rows.join("\n")], { type: "text/csv;charset=utf-8;" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = filename;
+      a.click();
+      URL.revokeObjectURL(url);
       showToast("File CSV berhasil diunduh!");
     }
 
-    document.getElementById("btn-export-absen").onclick = async () => {
-      try {
-        const snap = await getDocs(collection(db, "absen_harian"));
-        const list = [];
-        snap.forEach(d => {
-          const data = d.data();
-          list.push({ "Nama Siswa": data.studentName, "Kelas": data.studentClass, "Waktu Absen": data.timeString || "" });
-        });
-        exportToCSV(list, "Rekap_Absen_Harian.csv");
-      } catch (e) {
-        showToast("Gagal mengunduh data (Izin ditolak): " + e.message);
-      }
+    document.getElementById("btn-export-absen").onclick = () => {
+      exportCollectionToCSV("absen_harian", "Rekap_Absen_Informatika.csv", ["Nama Siswa", "Kelas", "Waktu Absen"], d => [d.studentName, d.studentClass, d.timeString]);
     };
 
-    document.getElementById("btn-export-ulangan").onclick = async () => {
-      try {
-        const snap = await getDocs(collection(db, "ulangan_harian"));
-        const list = [];
-        snap.forEach(d => {
-          const data = d.data();
-          list.push({ "Nama Siswa": data.studentName, "Kelas": data.studentClass, "Judul Simulasi": data.simulasiTitle || "Simulasi", "Nilai": data.score, "Waktu": data.timeString || "" });
-        });
-        exportToCSV(list, "Rekap_Nilai_Simulasi.csv");
-      } catch (e) {
-        showToast("Gagal mengunduh data (Izin ditolak): " + e.message);
-      }
+    document.getElementById("btn-export-ulangan").onclick = () => {
+      exportCollectionToCSV("ulangan_harian", "Nilai_Latihan_Soal_TKA.csv", ["Nama Siswa", "Kelas", "Paket Latihan Soal", "Nilai PG"], d => [d.studentName, d.studentClass, d.babTitle, d.score]);
     };
 
-    document.getElementById("btn-export-tugas").onclick = async () => {
-      try {
-        const snap = await getDocs(collection(db, "tugas_praktik"));
-        const list = [];
-        snap.forEach(d => {
-          const data = d.data();
-          list.push({ "Nama Siswa": data.studentName, "Kelas": data.studentClass, "Topik Tugas": data.topic, "Link Tugas": data.link, "Status": data.status, "Nilai": data.grade || "Belum", "Catatan Guru": data.feedback || "" });
-        });
-        exportToCSV(list, "Rekap_Tugas_Praktik.csv");
-      } catch (e) {
-        showToast("Gagal mengunduh data (Izin ditolak): " + e.message);
-      }
+    document.getElementById("btn-export-tugas").onclick = () => {
+      exportCollectionToCSV("tugas_praktik", "Data_Tugas_Praktik.csv", ["Nama Siswa", "Kelas", "Topik Tugas", "Tautan Link", "Nilai", "Feedback Guru"], d => [d.studentName, d.studentClass, d.topic, d.link, d.grade || '-', d.teacherFeedback || '-']);
     };
 
-    document.getElementById("btn-export-jawaban").onclick = async () => {
-      try {
-        const snap = await getDocs(collection(db, "jawaban_siswa"));
-        const list = [];
-        snap.forEach(d => {
-          const data = d.data();
-          list.push({ "Nama Siswa": data.studentName, "Kelas": data.studentClass, "Bab": data.module, "Catatan Refleksi": data.notes });
-        });
-        exportToCSV(list, "Rekap_Refleksi_Siswa.csv");
-      } catch (e) {
-        showToast("Gagal mengunduh data (Izin ditolak): " + e.message);
-      }
+    document.getElementById("btn-export-jawaban").onclick = () => {
+      exportCollectionToCSV("jawaban_siswa", "Refleksi_Siswa.csv", ["Nama Siswa", "Kelas", "Bab", "Catatan"], d => [d.studentName, d.studentClass, d.babTitle, d.notes]);
     };
 
-    // SINKRONISASI REALTIME FIREBASE (DENGAN HANDLER ERROR IZIN / PERMISSION)
-    function listenFirebaseData() {
-      // 1. Absen Harian
-      onSnapshot(collection(db, "absen_harian"), (snapshot) => {
-        const container = document.getElementById("rekap-absen-container");
-        if (!container) return;
-        container.innerHTML = "";
-        if (snapshot.empty) {
-          container.innerHTML = '<p class="text-sm text-slate-500">Belum ada siswa yang absen hari ini.</p>';
-          return;
-        }
-        snapshot.forEach((docSnap) => {
-          const data = docSnap.data();
-          const item = document.createElement("div");
-          item.className = "p-3.5 rounded-xl border border-slate-200 bg-slate-50 flex justify-between items-center";
-          item.innerHTML = `
-            <div>
-              <div class="flex items-center gap-2">
-                <span class="font-extrabold text-slate-900">${data.studentName}</span>
-                <span class="text-xs bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded-full">Kelas ${data.studentClass}</span>
-              </div>
-              <p class="text-xs text-slate-500 mt-1">Waktu Masuk: ${data.timeString || 'Hari ini'}</p>
-            </div>
-            ${isTeacher ? `<button onclick="deleteDocument('absen_harian', '${docSnap.id}')" class="text-xs text-rose-600 font-bold hover:underline">Hapus</button>` : ''}
-          `;
-          container.appendChild(item);
-        });
-      }, (err) => console.warn("Firestore error (absen_harian):", err));
-
-      // 2. Rekap Nilai Simulasi
-      onSnapshot(collection(db, "ulangan_harian"), (snapshot) => {
-        const container = document.getElementById("rekap-ulangan-container");
-        if (!container) return;
-        container.innerHTML = "";
-        if (snapshot.empty) {
-          container.innerHTML = '<p class="text-sm text-slate-500">Belum ada hasil simulasi siswa.</p>';
-          return;
-        }
-        snapshot.forEach((docSnap) => {
-          const data = docSnap.data();
-          const item = document.createElement("div");
-          item.className = "p-4 rounded-xl border border-slate-200 bg-white flex justify-between items-center shadow-sm";
-          item.innerHTML = `
-            <div>
-              <div class="flex items-center gap-2">
-                <span class="font-extrabold text-slate-900">${data.studentName} (${data.studentClass})</span>
-                <span class="text-xs bg-amber-100 text-amber-800 font-bold px-2 py-0.5 rounded-full">${data.simulasiTitle || 'Simulasi'}</span>
-              </div>
-              <p class="text-xs text-slate-400 mt-1">Waktu: ${data.timeString || ''}</p>
-            </div>
-            <div class="flex items-center gap-4">
-              <span class="text-xl font-extrabold text-amber-600">${data.score} / 100</span>
-              ${isTeacher ? `<button onclick="deleteDocument('ulangan_harian', '${docSnap.id}')" class="text-xs text-rose-600 font-bold hover:underline">Hapus</button>` : ''}
-            </div>
-          `;
-          container.appendChild(item);
-        });
-      }, (err) => console.warn("Firestore error (ulangan_harian):", err));
-
-      // 3. Tugas Praktik
-      onSnapshot(collection(db, "tugas_praktik"), (snapshot) => {
-        const currentStudentName = localStorage.getItem("student_name");
-        const studentHistory = document.getElementById("student-tugas-history");
-        const teacherContainer = document.getElementById("rekap-tugas-container");
-
-        if (studentHistory) studentHistory.innerHTML = "";
-        if (teacherContainer) teacherContainer.innerHTML = "";
-
-        if (snapshot.empty) {
-          if (studentHistory) studentHistory.innerHTML = '<p class="text-sm text-slate-500">Kamu belum mengumpulkan tugas apapun.</p>';
-          if (teacherContainer) teacherContainer.innerHTML = '<p class="text-sm text-slate-500">Belum ada kiriman tugas praktik dari siswa.</p>';
-          return;
-        }
-
-        snapshot.forEach((docSnap) => {
-          const data = docSnap.data();
-
-          if (studentHistory && data.studentName === currentStudentName) {
-            const isGraded = data.status === "Sudah Dinilai";
-            const hItem = document.createElement("div");
-            hItem.className = "p-3.5 rounded-xl border bg-slate-50 text-sm";
-            hItem.innerHTML = `
-              <div class="flex justify-between items-start">
-                <span class="font-bold text-slate-900">${data.topic}</span>
-                <span class="text-xs px-2 py-0.5 rounded-full font-bold ${isGraded ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'}">${data.status}</span>
-              </div>
-              <a href="${data.link}" target="_blank" class="text-xs text-sky-700 underline block mt-1 break-all">Lihat File / Link Tugas</a>
-              ${isGraded ? `<div class="mt-2 p-2 bg-emerald-50 border border-emerald-200 rounded-lg text-xs">
-                <span class="font-extrabold text-emerald-900">Nilai: ${data.grade}</span> | <em>Catatan Guru: "${data.feedback || '-'}"</em>
-              </div>` : ''}
-            `;
-            studentHistory.appendChild(hItem);
-          }
-
-          if (teacherContainer) {
-            const tItem = document.createElement("div");
-            tItem.className = "p-4 rounded-xl border border-slate-200 bg-white shadow-sm";
-            tItem.innerHTML = `
-              <div class="flex justify-between items-start flex-wrap gap-2">
-                <div>
-                  <div class="flex items-center gap-2">
-                    <span class="font-extrabold text-slate-900">${data.studentName} (${data.studentClass})</span>
-                    <span class="text-xs bg-teal-100 text-teal-800 font-bold px-2 py-0.5 rounded-full">${data.topic}</span>
-                  </div>
-                  <a href="${data.link}" target="_blank" class="text-xs text-sky-700 underline font-mono block mt-1">Buka Link Tugas Siswa <i data-lucide="external-link" class="w-3 h-3 inline"></i></a>
-                  ${data.notes ? `<p class="text-xs text-slate-500 italic mt-1">Catatan Siswa: "${data.notes}"</p>` : ''}
-                </div>
-                <button onclick="deleteDocument('tugas_praktik', '${docSnap.id}')" class="text-xs text-rose-600 font-bold hover:underline">Hapus</button>
-              </div>
-
-              <div class="mt-3 pt-3 border-t grid md:grid-cols-3 gap-2 items-center">
-                <input id="grade-input-${docSnap.id}" type="number" min="0" max="100" placeholder="Nilai (0-100)" value="${data.grade || ''}" class="border rounded-lg p-2 text-sm">
-                <input id="feedback-input-${docSnap.id}" type="text" placeholder="Catatan / Masukan Guru..." value="${data.feedback || ''}" class="border rounded-lg p-2 text-sm">
-                <button onclick="gradeStudentTask('${docSnap.id}')" class="bg-teal-700 text-white font-bold py-2 px-3 rounded-lg text-xs hover:bg-teal-800">Simpan Nilai</button>
-              </div>
-            `;
-            teacherContainer.appendChild(tItem);
-          }
-        });
-
-        if (studentHistory && !studentHistory.children.length) {
-          studentHistory.innerHTML = '<p class="text-sm text-slate-500">Belum ada riwayat pengumpulkan atas nama kamu.</p>';
-        }
-      }, (err) => console.warn("Firestore error (tugas_praktik):", err));
-
-      // 4. Forum Diskusi
-      onSnapshot(collection(db, "forum_diskusi"), (snapshot) => {
-        const container = document.getElementById("forum-posts-container");
-        if (!container) return;
-        container.innerHTML = "";
-        if (snapshot.empty) {
-          container.innerHTML = '<p class="text-sm text-slate-500">Belum ada diskusi. Jadilah yang pertama bertanya!</p>';
-          return;
-        }
-        snapshot.forEach((docSnap) => {
-          const data = docSnap.data();
-          const item = document.createElement("div");
-          item.className = "p-4 rounded-2xl border border-slate-200 bg-white shadow-sm";
-          item.innerHTML = `
-            <div class="flex justify-between items-start">
-              <div class="flex items-center gap-2">
-                <span class="font-extrabold text-slate-900 text-sm">${data.studentName}</span>
-                <span class="text-xs bg-sky-100 text-sky-800 font-bold px-2 py-0.5 rounded-md">Kelas ${data.studentClass}</span>
-              </div>
-              <span class="text-xs text-slate-400 font-mono">${data.timeString || ''}</span>
-            </div>
-            <p class="mt-2 text-sm text-slate-700 leading-relaxed">${data.message}</p>
-            ${isTeacher ? `<button onclick="deleteDocument('forum_diskusi', '${docSnap.id}')" class="mt-2 text-xs text-rose-600 font-bold hover:underline">Hapus Pesan</button>` : ''}
-          `;
-          container.appendChild(item);
-        });
-      }, (err) => console.warn("Firestore error (forum_diskusi):", err));
-
-      // 5. Materi
-      onSnapshot(collection(db, "materi"), (snapshot) => {
-        const materialList = document.getElementById("student-material-list");
-        const teacherMaterialList = document.getElementById("teacher-material-list");
-        
-        if (materialList) {
-          materialList.innerHTML = "";
-          snapshot.forEach((docSnap) => {
-            const data = docSnap.data();
-            const card = document.createElement("div");
-            card.className = "card student-card relative";
-            card.innerHTML = `
-              <span class="text-xs font-bold text-violet-700 bg-violet-50 px-2 py-1 rounded-lg">${data.category || 'Umum'}</span>
-              <h4 class="font-extrabold text-lg mt-2">${data.title}</h4>
-              <p class="mt-2 text-slate-600">${data.desc}</p>
-            `;
-            materialList.appendChild(card);
-          });
-        }
-
-        if (teacherMaterialList) {
-          teacherMaterialList.innerHTML = "";
-          if (snapshot.empty) {
-            teacherMaterialList.innerHTML = '<p class="text-sm text-slate-500">Belum ada materi tersimpan.</p>';
-          } else {
-            snapshot.forEach((docSnap) => {
-              const data = docSnap.data();
-              const card = document.createElement("div");
-              card.className = "p-3.5 rounded-xl border border-slate-200 bg-slate-50 flex justify-between items-center";
-              card.innerHTML = `
-                <div>
-                  <span class="text-xs font-bold text-violet-700 bg-violet-100 px-2 py-0.5 rounded-md">${data.category || 'Umum'}</span>
-                  <h4 class="font-extrabold text-sm mt-1 text-slate-900">${data.title}</h4>
-                  <p class="text-xs text-slate-600 mt-0.5">${data.desc}</p>
-                </div>
-                <button onclick="deleteDocument('materi', '${docSnap.id}')" class="text-xs text-rose-600 font-bold hover:underline shrink-0 ml-3">Hapus Materi</button>
-              `;
-              teacherMaterialList.appendChild(card);
-            });
-          }
-        }
-      }, (err) => console.warn("Firestore error (materi):", err));
-
-      // 6. Video
-      onSnapshot(collection(db, "video"), (snapshot) => {
-        const videoList = document.getElementById("student-video-list");
-        const teacherVideoList = document.getElementById("teacher-video-list");
-        
-        if (videoList) {
-          videoList.innerHTML = "";
-          snapshot.forEach((docSnap) => {
-            const data = docSnap.data();
-            const card = document.createElement("div");
-            card.className = "card student-card";
-            card.innerHTML = `
-              <h4 class="font-extrabold text-lg mb-2">${data.title}</h4>
-              <div class="aspect-video w-full rounded-xl overflow-hidden bg-black">
-                <iframe class="w-full h-full" src="${data.url}" title="${data.title}" frameborder="0" allowfullscreen></iframe>
-              </div>
-            `;
-            videoList.appendChild(card);
-          });
-        }
-
-        if (teacherVideoList) {
-          teacherVideoList.innerHTML = "";
-          if (snapshot.empty) {
-            teacherVideoList.innerHTML = '<p class="text-sm text-slate-500">Belum ada video tersimpan.</p>';
-          } else {
-            snapshot.forEach((docSnap) => {
-              const data = docSnap.data();
-              const card = document.createElement("div");
-              card.className = "p-4 rounded-xl border border-slate-200 bg-white shadow-sm flex flex-col md:flex-row justify-between items-start md:items-center gap-3";
-              card.innerHTML = `
-                <div class="flex-1">
-                  <h4 class="font-extrabold text-sm text-slate-900">${data.title}</h4>
-                  <a href="${data.url}" target="_blank" class="text-xs text-sky-700 underline font-mono block mt-1 truncate max-w-md">${data.url}</a>
-                </div>
-                <button onclick="deleteDocument('video', '${docSnap.id}')" class="text-xs bg-rose-50 text-rose-600 border border-rose-200 px-3 py-1.5 rounded-lg font-bold hover:bg-rose-100 shrink-0">Hapus Video</button>
-              `;
-              teacherVideoList.appendChild(card);
-            });
-          }
-        }
-      }, (err) => console.warn("Firestore error (video):", err));
-
-      // 7. Jawaban Siswa
-      onSnapshot(collection(db, "jawaban_siswa"), (snapshot) => {
-        const container = document.getElementById("rekap-siswa-container");
-        if (!container) return;
-        container.innerHTML = "";
-        if (snapshot.empty) {
-          container.innerHTML = '<p class="text-sm text-slate-500">Belum ada jawaban siswa yang dikirim.</p>';
-          return;
-        }
-        snapshot.forEach((docSnap) => {
-          const data = docSnap.data();
-          const item = document.createElement("div");
-          item.className = "p-4 rounded-xl border border-slate-200 bg-slate-50 flex flex-col md:flex-row justify-between md:items-center gap-3";
-          item.innerHTML = `
-            <div>
-              <div class="flex items-center gap-2">
-                <span class="font-extrabold text-slate-900">${data.studentName} (${data.studentClass})</span>
-                <span class="text-xs bg-sky-100 text-sky-800 font-bold px-2 py-0.5 rounded-full">${data.module}</span>
-              </div>
-              <p class="mt-1 text-sm text-slate-600">"${data.notes || 'Tidak ada catatan'}"</p>
-            </div>
-            <button onclick="deleteDocument('jawaban_siswa', '${docSnap.id}')" class="text-xs text-rose-600 font-bold hover:underline self-start md:self-center">Hapus</button>
-          `;
-          container.appendChild(item);
-        });
-      }, (err) => console.warn("Firestore error (jawaban_siswa):", err));
-    }
-
-    window.deleteDocument = async function(coll, id) {
-      if (!isTeacher) {
-        showToast("Akses ditolak! Hanya Guru yang dapat menghapus data.");
-        return;
-      }
-      if (confirm("Apakah Anda yakin ingin menghapus data ini?")) {
-        try {
-          await deleteDoc(doc(db, coll, id));
-          showToast("Data berhasil dihapus.");
-        } catch (err) {
-          showToast("Gagal menghapus: " + err.message);
-        }
-      }
-    };
-
-    window.onload = () => {
-      lucide.createIcons();
-      checkStudentIdentity();
-      listenFirebaseData();
-      updateProgress();
-      initM1TkaQuiz();
-      initFlowchartTracing();
-      renderMatchingGame();
-    };
+    // INISIALISASI HALAMAN
+    checkStudentIdentity();
+    initM1TkaQuiz();
+    initFlowchartTracing();
+    renderMatchingGame();
+    if (window.lucide) lucide.createIcons();
   </script>
 </body>
 </html>
