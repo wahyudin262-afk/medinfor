@@ -1241,6 +1241,26 @@ end</pre>
 
             <form id="forum-form" class="mt-3">
               <textarea id="forum-message-input" required class="w-full border rounded-xl p-3 bg-white" rows="2" placeholder="Tuliskan pertanyaan atau tanggapanmu di sini..."></textarea>
+              
+              <!-- Toolbar Pilihan Emoticon Pertanyaan -->
+              <div class="mt-2 flex flex-wrap items-center gap-1.5 bg-white border border-sky-100 rounded-xl px-3 py-2">
+                <span class="text-xs font-bold text-slate-500 mr-1">Emoticon:</span>
+                <button type="button" class="forum-emoji-btn text-lg hover:bg-sky-100 rounded-lg px-1.5 py-0.5 transition" data-emoji="😊" title="Senyum">😊</button>
+                <button type="button" class="forum-emoji-btn text-lg hover:bg-sky-100 rounded-lg px-1.5 py-0.5 transition" data-emoji="😂" title="Tertawa">😂</button>
+                <button type="button" class="forum-emoji-btn text-lg hover:bg-sky-100 rounded-lg px-1.5 py-0.5 transition" data-emoji="🤔" title="Berpikir">🤔</button>
+                <button type="button" class="forum-emoji-btn text-lg hover:bg-sky-100 rounded-lg px-1.5 py-0.5 transition" data-emoji="❓" title="Bertanya">❓</button>
+                <button type="button" class="forum-emoji-btn text-lg hover:bg-sky-100 rounded-lg px-1.5 py-0.5 transition" data-emoji="💡" title="Ide">💡</button>
+                <button type="button" class="forum-emoji-btn text-lg hover:bg-sky-100 rounded-lg px-1.5 py-0.5 transition" data-emoji="👍" title="Setuju">👍</button>
+                <button type="button" class="forum-emoji-btn text-lg hover:bg-sky-100 rounded-lg px-1.5 py-0.5 transition" data-emoji="👏" title="Apresiasi">👏</button>
+                <button type="button" class="forum-emoji-btn text-lg hover:bg-sky-100 rounded-lg px-1.5 py-0.5 transition" data-emoji="🙌" title="Semangat">🙌</button>
+                <button type="button" class="forum-emoji-btn text-lg hover:bg-sky-100 rounded-lg px-1.5 py-0.5 transition" data-emoji="🙏" title="Terima kasih">🙏</button>
+                <button type="button" class="forum-emoji-btn text-lg hover:bg-sky-100 rounded-lg px-1.5 py-0.5 transition" data-emoji="😅" title="Canggung">😅</button>
+                <button type="button" class="forum-emoji-btn text-lg hover:bg-sky-100 rounded-lg px-1.5 py-0.5 transition" data-emoji="🔥" title="Keren">🔥</button>
+                <button type="button" class="forum-emoji-btn text-lg hover:bg-sky-100 rounded-lg px-1.5 py-0.5 transition" data-emoji="🎉" title="Selamat">🎉</button>
+                <button type="button" class="forum-emoji-btn text-lg hover:bg-sky-100 rounded-lg px-1.5 py-0.5 transition" data-emoji="💻" title="Komputer">💻</button>
+                <button type="button" class="forum-emoji-btn text-lg hover:bg-sky-100 rounded-lg px-1.5 py-0.5 transition" data-emoji="📊" title="Data">📊</button>
+              </div>
+
               <button type="submit" class="mt-3 bg-sky-700 text-white font-bold px-5 py-2.5 rounded-xl hover:bg-sky-800 flex items-center gap-2">
                 <i data-lucide="send" class="w-4 h-4"></i> Kirim Pertanyaan
               </button>
@@ -1510,7 +1530,7 @@ end</pre>
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
     import { 
       getFirestore, collection, addDoc, deleteDoc, doc, updateDoc, 
-      onSnapshot, getDocs, getDoc, setDoc 
+      onSnapshot, getDocs, getDoc, setDoc, arrayUnion, arrayRemove 
     } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
     const firebaseConfig = {
@@ -3697,6 +3717,46 @@ end</div>
     });
 
     // FORUM DISKUSI
+    function escapeForumHtml(str) {
+      return String(str || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
+
+    function getCurrentForumUserKey() {
+      if (isTeacher) return "GURU INFORMATIKA";
+      const name = (localStorage.getItem("student_name") || "").trim();
+      const cls = (localStorage.getItem("student_class") || "-").trim();
+      if (name) return `${name} (${cls})`;
+
+      let guestId = localStorage.getItem("forum_guest_id");
+      if (!guestId) {
+        guestId = "Siswa_" + Math.random().toString(36).slice(2, 8);
+        localStorage.setItem("forum_guest_id", guestId);
+      }
+      return guestId;
+    }
+
+    function insertEmoticonAtCursor(fieldEl, emoji) {
+      if (!fieldEl) return;
+      const start = fieldEl.selectionStart ?? fieldEl.value.length;
+      const end = fieldEl.selectionEnd ?? fieldEl.value.length;
+      const text = fieldEl.value;
+      fieldEl.value = text.slice(0, start) + emoji + text.slice(end);
+      fieldEl.focus();
+      const newPos = start + emoji.length;
+      fieldEl.setSelectionRange(newPos, newPos);
+    }
+
+    document.querySelectorAll(".forum-emoji-btn").forEach(btn => {
+      btn.onclick = () => {
+        const msgInput = document.getElementById("forum-message-input");
+        insertEmoticonAtCursor(msgInput, btn.dataset.emoji);
+      };
+    });
+
     document.getElementById("forum-form").onsubmit = async (e) => {
       e.preventDefault();
       const author = localStorage.getItem("student_name") || "Siswa";
@@ -3709,6 +3769,7 @@ end</div>
           author: `${author} (${cls})`,
           message,
           replies: [],
+          reactions: {},
           timestamp: new Date()
         });
         document.getElementById("forum-message-input").value = "";
@@ -3726,34 +3787,120 @@ end</div>
         return;
       }
 
+      const quickReactions = ["👍", "❤️", "💡", "👏", "😂"];
+      const replyEmoticons = ["😊", "👍", "👏", "🤔", "💡", "🙏", "😂", "🔥"];
+      const currentUserKey = getCurrentForumUserKey();
+
       snapshot.forEach((docSnap) => {
         const d = docSnap.data();
         const id = docSnap.id;
         const postDiv = document.createElement("div");
-        postDiv.className = "p-4 rounded-xl bg-white border border-sky-100 shadow-sm space-y-2";
-        
+        postDiv.className = "p-4 rounded-xl bg-white border border-sky-100 shadow-sm space-y-2.5";
+
+        // Render Tombol Reaksi Cepat + Counter
+        const reactionsMap = d.reactions && typeof d.reactions === "object" ? d.reactions : {};
+        const reactionButtonsHtml = quickReactions.map((em) => {
+          const users = Array.isArray(reactionsMap[em]) ? reactionsMap[em] : [];
+          const count = users.length;
+          const hasReacted = users.includes(currentUserKey);
+          const activeClass = hasReacted
+            ? "bg-sky-100 border-sky-400 text-sky-900 font-extrabold shadow-sm"
+            : "bg-slate-50 border-slate-200 text-slate-600 hover:bg-sky-50 hover:border-sky-200 font-semibold";
+          const tooltip = count > 0
+            ? `Direaksi oleh: ${users.join(", ")}`
+            : `Beri reaksi ${em}`;
+
+          return `
+            <button
+              type="button"
+              data-id="${id}"
+              data-emoji="${em}"
+              data-reacted="${hasReacted ? "1" : "0"}"
+              title="${escapeForumHtml(tooltip)}"
+              class="btn-react-post inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full border text-xs transition cursor-pointer ${activeClass}">
+              <span class="text-sm leading-none">${em}</span>
+              <span>${count}</span>
+            </button>
+          `;
+        }).join("");
+
+        // Render Balasan Diskusi
         let repliesHtml = "";
         if (d.replies && d.replies.length > 0) {
           repliesHtml = `<div class="ml-4 pl-3 border-l-2 border-sky-200 space-y-1 mt-2">` + 
-            d.replies.map(r => `<p class="text-xs text-slate-700"><strong class="text-sky-800">${r.sender}:</strong> ${r.text}</p>`).join("") +
+            d.replies.map(r => `<p class="text-xs text-slate-700"><strong class="text-sky-800">${escapeForumHtml(r.sender)}:</strong> ${escapeForumHtml(r.text)}</p>`).join("") +
             `</div>`;
         }
 
+        const emojiPickerHtml = replyEmoticons
+          .map(em => `<button type="button" data-id="${id}" data-emoji="${em}" class="btn-reply-emoji text-base hover:bg-white rounded px-1.5 py-0.5 transition">${em}</button>`)
+          .join("");
+
         postDiv.innerHTML = `
           <div class="flex justify-between items-center">
-            <span class="text-xs font-extrabold text-sky-900">${d.author}</span>
+            <span class="text-xs font-extrabold text-sky-900">${escapeForumHtml(d.author)}</span>
             ${isTeacher ? `<button data-id="${id}" class="btn-del-post text-rose-500 text-xs font-bold hover:underline">Hapus</button>` : ''}
           </div>
-          <p class="text-sm text-slate-800">${d.message}</p>
+          <p class="text-sm text-slate-800 whitespace-pre-line">${escapeForumHtml(d.message)}</p>
+
+          <!-- Bar Reaksi Emoticon Cepat -->
+          <div class="flex flex-wrap items-center gap-1.5 pt-1">
+            ${reactionButtonsHtml}
+          </div>
+
           ${repliesHtml}
-          <div class="flex gap-2 pt-2">
-            <input type="text" id="reply-input-${id}" placeholder="Tulis balasan..." class="border rounded-lg px-2.5 py-1 text-xs flex-1">
-            <button data-id="${id}" class="btn-send-reply bg-sky-100 text-sky-800 px-3 py-1 rounded-lg text-xs font-bold hover:bg-sky-200">Balas</button>
+
+          <div class="pt-2 border-t border-slate-100">
+            <div id="reply-emoji-picker-${id}" class="hidden mb-1.5 flex flex-wrap gap-1 bg-sky-50 border border-sky-200 rounded-lg p-1.5">
+              ${emojiPickerHtml}
+            </div>
+            <div class="flex gap-2">
+              <button type="button" data-id="${id}" class="btn-toggle-reply-emoji border border-slate-200 bg-slate-50 hover:bg-sky-50 px-2.5 py-1 rounded-lg text-sm" title="Pilih Emoticon">😊</button>
+              <input type="text" id="reply-input-${id}" placeholder="Tulis balasan..." class="border rounded-lg px-2.5 py-1 text-xs flex-1">
+              <button data-id="${id}" class="btn-send-reply bg-sky-100 text-sky-800 px-3 py-1 rounded-lg text-xs font-bold hover:bg-sky-200">Balas</button>
+            </div>
           </div>
         `;
         container.appendChild(postDiv);
       });
 
+      // Event Klik Reaksi Emoticon Cepat (Toggle)
+      document.querySelectorAll(".btn-react-post").forEach(btn => {
+        btn.onclick = async () => {
+          const id = btn.dataset.id;
+          const emoji = btn.dataset.emoji;
+          const alreadyReacted = btn.dataset.reacted === "1";
+          const userKey = getCurrentForumUserKey();
+
+          btn.disabled = true;
+          try {
+            await updateDoc(doc(db, "forum_diskusi", id), {
+              [`reactions.${emoji}`]: alreadyReacted ? arrayRemove(userKey) : arrayUnion(userKey)
+            });
+          } catch (err) {
+            showToast("Gagal memperbarui reaksi: " + err.message);
+            btn.disabled = false;
+          }
+        };
+      });
+
+      // Event Buka/Tutup Picker Emoticon Balasan
+      document.querySelectorAll(".btn-toggle-reply-emoji").forEach(btn => {
+        btn.onclick = () => {
+          const picker = document.getElementById(`reply-emoji-picker-${btn.dataset.id}`);
+          if (picker) picker.classList.toggle("hidden");
+        };
+      });
+
+      // Event Sisip Emoticon ke Kolom Balasan
+      document.querySelectorAll(".btn-reply-emoji").forEach(btn => {
+        btn.onclick = () => {
+          const replyInput = document.getElementById(`reply-input-${btn.dataset.id}`);
+          insertEmoticonAtCursor(replyInput, btn.dataset.emoji);
+        };
+      });
+
+      // Event Kirim Balasan
       document.querySelectorAll(".btn-send-reply").forEach(btn => {
         btn.onclick = async () => {
           const id = btn.dataset.id;
@@ -3763,9 +3910,8 @@ end</div>
 
           const senderName = isTeacher ? "GURU INFORMATIKA" : (localStorage.getItem("student_name") || "Siswa");
           const docRef = doc(db, "forum_diskusi", id);
-          const snap = await getDocs(collection(db, "forum_diskusi"));
-          let currentReplies = [];
-          snap.forEach(s => { if(s.id === id) currentReplies = s.data().replies || []; });
+          const snap = await getDoc(docRef);
+          const currentReplies = snap.exists() ? (snap.data().replies || []) : [];
 
           currentReplies.push({ sender: senderName, text });
           await updateDoc(docRef, { replies: currentReplies });
@@ -3774,6 +3920,7 @@ end</div>
         };
       });
 
+      // Event Hapus Kiriman (Mode Guru)
       document.querySelectorAll(".btn-del-post").forEach(btn => {
         btn.onclick = async () => {
           await deleteDoc(doc(db, "forum_diskusi", btn.dataset.id));
